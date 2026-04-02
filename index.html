@@ -12,19 +12,22 @@
             font-family: 'DM Sans', sans-serif;
             background: #0a0a0a;
             color: #f0f0f0;
-            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .header {
             text-align: center;
-            padding: 80px 24px 40px;
+            padding: 32px 24px 8px;
         }
 
         .header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: 1.8rem;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 4px;
             background: linear-gradient(135deg, #D4714E, #FFD166, #D4714E);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -32,79 +35,81 @@
         }
 
         .header p {
-            color: #888;
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto;
+            color: #666;
+            font-size: 0.85rem;
         }
 
         .grid {
-            max-width: 1200px;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
             margin: 0 auto;
-            padding: 40px 24px 80px;
+            padding: 16px 24px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 1fr 1fr;
+            gap: 14px;
         }
 
         .card {
             background: #151515;
             border: 1px solid #2a2a2a;
-            border-radius: 16px;
+            border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-4px);
+            transform: translateY(-3px);
             border-color: #444;
-            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
         }
 
         .card-preview {
-            height: 200px;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 3rem;
             position: relative;
             overflow: hidden;
+            min-height: 0;
         }
 
         .card-body {
-            padding: 24px;
+            padding: 12px 14px;
+            border-top: 1px solid #2a2a2a;
         }
 
         .card-tag {
             display: inline-block;
-            font-size: 0.7rem;
+            font-size: 0.6rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            padding: 4px 10px;
+            letter-spacing: 0.08em;
+            padding: 2px 8px;
             border-radius: 100px;
-            margin-bottom: 12px;
+            margin-bottom: 4px;
         }
 
         .card h2 {
-            font-size: 1.3rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 8px;
         }
 
-        .card p {
-            color: #888;
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
+        /* Card themes */
+        .card-current .card-preview { background: linear-gradient(135deg, #FAFAF8, #D4714E); }
+        .card-current .card-tag { background: #D4714E22; color: #D4714E; }
+        .card-current .card-preview-label { color: #2D2D2D; text-shadow: none; }
+        .card-current { border-color: #D4714E44; }
+        .card-current:hover { border-color: #D4714E; }
 
-        /* Individual card themes */
         .card-neon .card-preview { background: linear-gradient(135deg, #0a0a0a, #1a0030, #001a2a); }
         .card-neon .card-tag { background: #7C3AED22; color: #A78BFA; }
-        .card-neon .card-preview::after { content: ""; position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+        .card-neon .card-preview::after { content: ""; position: absolute; width: 160px; height: 160px; background: radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
 
         .card-scrapbook .card-preview { background: linear-gradient(135deg, #FFFDF5, #D4A574); }
         .card-scrapbook .card-tag { background: #E6394622; color: #E63946; }
@@ -124,14 +129,8 @@
         .card-ransom .card-preview { background: linear-gradient(135deg, #D2B48C, #E8E0D8); }
         .card-ransom .card-tag { background: #8B002022; color: #E07070; }
 
-        .card-current .card-preview { background: linear-gradient(135deg, #FAFAF8, #D4714E); }
-        .card-current .card-tag { background: #D4714E22; color: #D4714E; }
-        .card-current .card-preview-label { color: #2D2D2D; text-shadow: none; }
-        .card-current { border-color: #D4714E44; }
-        .card-current:hover { border-color: #D4714E; }
-
         .card-preview-label {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.05em;
             text-transform: uppercase;
@@ -141,28 +140,23 @@
         }
 
         .card-scrapbook .card-preview-label,
+        .card-current .card-preview-label,
         .card-ransom .card-preview-label { color: #1a1a1a; text-shadow: none; }
-
-        .section-label {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 24px 0;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: #555;
-        }
 
         .footer {
             text-align: center;
-            padding: 40px 24px;
-            color: #444;
-            font-size: 0.8rem;
-            border-top: 1px solid #1a1a1a;
+            padding: 10px 24px;
+            color: #333;
+            font-size: 0.7rem;
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 900px) {
+            body { overflow: auto; }
+            .grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+            .card-preview { min-height: 120px; }
+        }
+
+        @media (max-width: 500px) {
             .grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -170,7 +164,7 @@
 <body>
     <div class="header">
         <h1>Package Deal — Design Explorations</h1>
-        <p>The current prototype + 7 wildly different design explorations. Each demo has a homepage + PDP.</p>
+        <p>The current prototype + 7 design explorations. Click any card to view.</p>
     </div>
 
     <div class="grid">
@@ -179,7 +173,6 @@
             <div class="card-body">
                 <span class="card-tag">Live Build</span>
                 <h2>Package Deal (Actual Site)</h2>
-                <p>The real React + Tailwind prototype. DM Sans + Playfair Display, terracotta accents, warm and trustworthy.</p>
             </div>
         </a>
         <a href="demo-neon.html" class="card card-neon">
@@ -187,7 +180,6 @@
             <div class="card-body">
                 <span class="card-tag">Dark + Electric</span>
                 <h2>Neon Chaos</h2>
-                <p>Glowing gradients, glassmorphism cards, animated neon pulses. Gaming culture energy meets e-commerce.</p>
             </div>
         </a>
         <a href="demo-scrapbook.html" class="card card-scrapbook">
@@ -195,7 +187,6 @@
             <div class="card-body">
                 <span class="card-tag">Handmade + Warm</span>
                 <h2>Scrapbook Chaos</h2>
-                <p>Polaroid photos, torn paper edges, washi tape, notebook paper, cork boards. Craft table explosion.</p>
             </div>
         </a>
         <a href="demo-comic.html" class="card card-comic">
@@ -203,7 +194,6 @@
             <div class="card-body">
                 <span class="card-tag">Pop Art</span>
                 <h2>Comic Book Pop Art</h2>
-                <p>Ben-Day dots, speech bubbles, KAPOW! bursts, halftone overlays, panel layouts. Lichtenstein vibes.</p>
             </div>
         </a>
         <a href="demo-stickerbomb.html" class="card card-sticker">
@@ -211,7 +201,6 @@
             <div class="card-body">
                 <span class="card-tag">Street Art</span>
                 <h2>Sticker Bomb</h2>
-                <p>Layered stickers, wheat-paste posters, grain texture, Permanent Marker font. Skateboard culture energy.</p>
             </div>
         </a>
         <a href="demo-crimeboard.html" class="card card-crime">
@@ -219,7 +208,6 @@
             <div class="card-body">
                 <span class="card-tag">Detective</span>
                 <h2>Crime Board</h2>
-                <p>Cork board, push pins, red string, polaroid evidence, sticky notes, witness statements. Case file energy.</p>
             </div>
         </a>
         <a href="demo-postoffice.html" class="card card-post">
@@ -227,7 +215,6 @@
             <div class="card-body">
                 <span class="card-tag">Vintage Postal</span>
                 <h2>Post Office Gone Wrong</h2>
-                <p>Airmail stripes, postage stamps, wax seals, kraft paper, postmarks. Postal service gone sideways.</p>
             </div>
         </a>
         <a href="demo-ransom.html" class="card card-ransom">
@@ -235,13 +222,10 @@
             <div class="card-body">
                 <span class="card-tag">Cut-Out Letters</span>
                 <h2>Ransom Note</h2>
-                <p>Every word a different font/size/rotation. Tape strips, wax seals, envelope shapes, fingerprint smudges.</p>
             </div>
         </a>
     </div>
 
-    <div class="footer">
-        Package Deal — Design Explorations &middot; Not a real store (yet)
-    </div>
+    <div class="footer">Package Deal — Design Explorations</div>
 </body>
 </html>
