@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who Deserves One? + Final CTA — Combined V2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F2F0ED;
+      color: #2D2D2D;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section-dark {
+      background: #2D2D2D;
+      padding: 96px 24px 112px;
+    }
+
+    @media (max-width: 767px) {
+      .section-dark { padding: 64px 16px 80px; }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .section-kicker {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #D4714E;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: #FFFFFF;
+      text-align: center;
+      margin-bottom: 56px;
+      line-height: 1.2;
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 1023px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 567px) {
+      .card-grid { grid-template-columns: 1fr; gap: 16px; }
+    }
+
+    /* Cards */
+    .recipient-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 16px;
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .recipient-card:hover {
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 20px;
+      color: #D4714E;
+    }
+
+    .card-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .card-description {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.50);
+      margin-bottom: 24px;
+      flex: 1;
+    }
+
+    .card-link {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: #D4714E;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+    }
+
+    .card-link:hover {
+      color: #C0613F;
+    }
+
+    .card-link svg {
+      width: 16px;
+      height: 16px;
+      transition: transform 0.2s ease;
+    }
+
+    .card-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* Final CTA area */
+    .final-cta {
+      text-align: center;
+      margin-top: 96px;
+    }
+
+    @media (max-width: 767px) {
+      .final-cta { margin-top: 72px; }
+    }
+
+    .final-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .final-subline {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.60);
+      max-width: 560px;
+      margin: 0 auto 36px;
+    }
+
+    .btn-white {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #2D2D2D;
+      background: #FFFFFF;
+      border: none;
+      border-radius: 9999px;
+      padding: 16px 40px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-white:hover {
+      background: #F2F0ED;
+      transform: translateY(-1px);
+    }
+
+    .btn-white:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section-dark">
+    <div class="container">
+
+      <!-- Section header -->
+      <p class="section-kicker">Who Deserves One?</p>
+      <h2 class="section-headline">Everyone knows someone.</h2>
+
+      <!-- Recipient cards -->
+      <div class="card-grid">
+
+        <!-- 1. Coworker -->
+        <div class="recipient-card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><polyline points="16 3 12 7 8 3"/>
+          </svg>
+          <h3 class="card-title">Your Coworker</h3>
+          <p class="card-description">The one who "replies all" to every email. Imagine their face when a tube labeled MicroPenisCure.com arrives at the office — and they have to sign for it.</p>
+          <a href="/products/micropeniscure-prank-mail" class="card-link">
+            Send It
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- 2. Brother-in-Law -->
+        <div class="recipient-card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <h3 class="card-title">Your Brother-in-Law</h3>
+          <p class="card-description">He talks too much at Thanksgiving and always has an opinion. A tube from BigAssDildos.com showing up at his door sends a message words never could.</p>
+          <a href="/products/bigassdildos-prank-mail" class="card-link">
+            Send It
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- 3. College Roommate -->
+        <div class="recipient-card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+          </svg>
+          <h3 class="card-title">Your College Roommate</h3>
+          <p class="card-description">You survived four years together. They still owe you rent. Return the favor with a tube from VaginalOdorHelper.com — anonymously, of course.</p>
+          <a href="/products/vaginalodorhelper-prank-mail" class="card-link">
+            Send It
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <!-- 4. That Friend -->
+        <div class="recipient-card">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+          <h3 class="card-title">That Friend</h3>
+          <p class="card-description">You know the one. The group chat legend who can take a joke. Hit them with BulkCondomDelivery.com and watch the screenshots roll in.</p>
+          <a href="/products/bulkcondomdelivery-prank-mail" class="card-link">
+            Send It
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Final CTA -->
+      <div class="final-cta">
+        <h2 class="final-headline">You already know who you'd send one to.</h2>
+        <p class="final-subline">Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+        <a href="/collection" class="btn-white">See the Pranks</a>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Combined Section V4 — Split Layout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #2D2D2D;
+      background: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      background: #F2F0ED;
+      padding: 80px 24px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* Left side — CTA content */
+    .cta-side {
+      flex: 0 0 40%;
+      max-width: 40%;
+    }
+
+    .kicker {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #D4714E;
+      margin-bottom: 16px;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #2D2D2D;
+      margin-bottom: 16px;
+    }
+
+    .subline {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #6B6B6B;
+      margin-bottom: 32px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #D4714E;
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background: #C0613F;
+    }
+
+    /* Right side — Card grid */
+    .cards-side {
+      flex: 1;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      background: #FFFFFF;
+      border-radius: 12px;
+      padding: 24px;
+      border: 1px solid #E8E5E1;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #F2F0ED;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+
+    .card-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #2D2D2D;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #6B6B6B;
+    }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+      .section {
+        padding: 56px 20px;
+      }
+
+      .container {
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .cta-side {
+        flex: none;
+        max-width: 100%;
+        text-align: center;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .card {
+        padding: 20px 16px;
+      }
+    }
+
+    @media (max-width: 479px) {
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="cta-side">
+        <p class="kicker">Who Deserves One?</p>
+        <h2 class="headline">You already know who you'd send one to.</h2>
+        <p class="subline">Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+        <a href="/collection" class="cta-button">See the Pranks</a>
+      </div>
+
+      <div class="cards-side">
+        <div class="card-grid">
+
+          <div class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4714E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 7V5a4 4 0 0 0-8 0v2"/></svg>
+            </div>
+            <p class="card-title">Your Coworker</p>
+            <p class="card-desc">The one who "replies all" to every email. Imagine their face when a tube labeled MicroPenisCure.com arrives at the office — and they have to sign for it.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4714E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <p class="card-title">Your Brother-in-Law</p>
+            <p class="card-desc">He talks too much at Thanksgiving and always has an opinion. A tube from BigAssDildos.com showing up at his door sends a message words never could.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4714E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            </div>
+            <p class="card-title">Your College Roommate</p>
+            <p class="card-desc">You survived four years together. They still owe you rent. Return the favor with a tube from VaginalOdorHelper.com — anonymously, of course.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4714E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <p class="card-title">That Friend</p>
+            <p class="card-desc">You know the one. The group chat legend who can take a joke. Hit them with BulkCondomDelivery.com and watch the screenshots roll in.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>

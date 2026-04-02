@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proto 5 — Hero Spotlight + Carousel</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --charcoal-deep: #1a1a1a;
+      --terracotta: #D4714E;
+      --section-alt: #F2F0ED;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: var(--charcoal); color: #fff; }
+
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta); color: #fff;
+      text-align: center; padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100; letter-spacing: 0.05em;
+    }
+
+    .section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 80px 24px; margin-top: 40px;
+    }
+
+    /* ── Header ── */
+    .header { margin-bottom: 48px; }
+    .header-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; flex-wrap: wrap; gap: 16px;
+    }
+    .kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: rgba(212,113,78,0.8); margin-bottom: 12px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 600; line-height: 1.2;
+    }
+    .nav-arrows {
+      display: flex; gap: 8px;
+    }
+    .nav-btn {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .nav-btn:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── Featured / Hero split ── */
+    .featured-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 900px) {
+      .featured-layout { grid-template-columns: 1fr; }
+    }
+
+    .featured-video {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background: #111;
+    }
+    .featured-video .placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 80px;
+      background: linear-gradient(135deg, #2a1a12 0%, #1a1a1a 100%);
+    }
+    .featured-video .play-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.1);
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+    .featured-video .play-overlay:hover { background: rgba(0,0,0,0.3); }
+    .featured-video .play-circle {
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(212,113,78,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; color: #fff;
+      box-shadow: 0 8px 40px rgba(212,113,78,0.4);
+      transition: transform 0.3s;
+    }
+    .featured-video .play-overlay:hover .play-circle { transform: scale(1.1); }
+    .featured-badge {
+      position: absolute; top: 16px; left: 16px;
+      padding: 6px 14px;
+      background: var(--terracotta);
+      border-radius: 999px;
+      font-size: 12px; font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    .featured-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 48px 24px 24px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      border-radius: 0 0 20px 20px;
+    }
+    .featured-caption .stars { color: #F59E0B; font-size: 16px; letter-spacing: 2px; margin-bottom: 8px; }
+    .featured-caption .quote {
+      font-size: 20px; font-style: italic; font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── Side stack ── */
+    .side-stack {
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .side-card {
+      display: flex; gap: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 16px;
+      cursor: pointer;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .side-card:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.12);
+      transform: translateX(4px);
+    }
+    .side-card.active {
+      background: rgba(212,113,78,0.08);
+      border-color: rgba(212,113,78,0.3);
+    }
+    .side-thumb {
+      width: 80px;
+      aspect-ratio: 9/16;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px;
+      position: relative;
+    }
+    .side-thumb .mini-play {
+      position: absolute;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: #333;
+    }
+    .side-content { display: flex; flex-direction: column; justify-content: center; }
+    .side-content .stars { color: #F59E0B; font-size: 12px; letter-spacing: 2px; margin-bottom: 4px; }
+    .side-content .quote {
+      font-size: 14px; font-style: italic; font-weight: 500;
+      line-height: 1.5; color: rgba(255,255,255,0.85);
+    }
+    .side-content .meta {
+      font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .side-content .views {
+      display: flex; align-items: center; gap: 4px;
+    }
+    .side-content .duration {
+      background: rgba(255,255,255,0.08);
+      padding: 2px 8px; border-radius: 4px;
+    }
+
+    /* ── Bottom ticker stats ── */
+    .stats-row {
+      display: flex; justify-content: center; gap: 48px;
+      margin-top: 48px; flex-wrap: wrap;
+    }
+    .stat-item { text-align: center; }
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 36px; font-weight: 700;
+      color: var(--terracotta);
+    }
+    .stat-label {
+      font-size: 13px; color: rgba(255,255,255,0.5);
+      font-weight: 500; margin-top: 4px;
+    }
+
+    .supporting {
+      text-align: center; margin-top: 40px;
+      font-size: 18px; color: rgba(255,255,255,0.45);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PROTO 5 — Hero Spotlight + Side Stack (featured video large, others stacked right, YouTube-style)</div>
+
+  <section class="section">
+    <div class="header">
+      <div class="header-top">
+        <div>
+          <div class="kicker">REAL REACTIONS</div>
+          <h2 class="headline">What happens when it arrives.</h2>
+        </div>
+        <div class="nav-arrows">
+          <button class="nav-btn">&#8592;</button>
+          <button class="nav-btn">&#8594;</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="featured-layout">
+
+      <!-- Featured Video (large) -->
+      <div class="featured-video">
+        <div class="placeholder" style="background: linear-gradient(135deg, #2a1a12 0%, #0a0a0a 100%);">
+          <span>&#128561;</span>
+        </div>
+        <div class="play-overlay">
+          <div class="play-circle">&#9654;</div>
+        </div>
+        <div class="featured-badge">&#128293; MOST WATCHED</div>
+        <div class="featured-caption">
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="quote">&ldquo;He called three people trying to figure out who sent it.&rdquo;</p>
+        </div>
+      </div>
+
+      <!-- Side Stack -->
+      <div class="side-stack">
+        <div class="side-card active">
+          <div class="side-thumb" style="background: linear-gradient(135deg, #3a1c1c, #1a1a1a);">
+            <span>&#128561;</span>
+            <div class="mini-play">&#9654;</div>
+          </div>
+          <div class="side-content">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;He called three people trying to figure out who sent it.&rdquo;</p>
+            <div class="meta">
+              <span class="views">&#128065; 5.2k</span>
+              <span class="duration">0:34</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <div class="side-thumb" style="background: linear-gradient(135deg, #1c2a3a, #1a1a1a);">
+            <span>&#128518;</span>
+            <div class="mini-play">&#9654;</div>
+          </div>
+          <div class="side-content">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;She made him open it in front of the whole office.&rdquo;</p>
+            <div class="meta">
+              <span class="views">&#128065; 3.8k</span>
+              <span class="duration">0:22</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <div class="side-thumb" style="background: linear-gradient(135deg, #2a3a1c, #1a1a1a);">
+            <span>&#128556;</span>
+            <div class="mini-play">&#9654;</div>
+          </div>
+          <div class="side-content">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;His mom found it on the porch first.&rdquo;</p>
+            <div class="meta">
+              <span class="views">&#128065; 2.1k</span>
+              <span class="duration">0:18</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="side-card">
+          <div class="side-thumb" style="background: linear-gradient(135deg, #3a2a1c, #1a1a1a);">
+            <span>&#128293;</span>
+            <div class="mini-play">&#9654;</div>
+          </div>
+          <div class="side-content">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;The group chat was on fire for two hours.&rdquo;</p>
+            <div class="meta">
+              <span class="views">&#128065; 4.7k</span>
+              <span class="duration">0:41</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row">
+      <div class="stat-item">
+        <div class="stat-number">2,847</div>
+        <div class="stat-label">Tubes Delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4.8/5</div>
+        <div class="stat-label">Sender Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Anonymous</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">14k+</div>
+        <div class="stat-label">Group Chats Ruined</div>
+      </div>
+    </div>
+
+    <p class="supporting">The best part isn't sending it. It's the group chat after.</p>
+  </section>
+</body>
+</html>

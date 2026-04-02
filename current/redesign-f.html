@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option F — The Guarantee</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+  .section { background: #2D2D2D; width: 100%; padding: 80px 24px; }
+  .inner { max-width: 600px; margin: 0 auto; text-align: center; }
+
+  /* Shield icon */
+  .shield {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(91,140,90,0.1);
+    border: 2px solid rgba(91,140,90,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    color: #5B8C5A;
+  }
+
+  .headline {
+    font-size: 32px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.25;
+    margin-bottom: 16px;
+  }
+  .headline em {
+    font-style: normal;
+    color: #D4714E;
+  }
+
+  .subhead {
+    font-size: 17px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 460px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Divider */
+  .divider-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+  .divider-text {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.25);
+    white-space: nowrap;
+  }
+
+  /* Stats row */
+  .stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+  .stat-label .highlight {
+    color: #E0A644;
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .headline { font-size: 26px; }
+    .stats-row { gap: 32px; flex-wrap: wrap; }
+    .stat-number { font-size: 30px; }
+    .section { padding: 56px 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="section">
+    <div class="inner">
+      <div class="shield">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+      </div>
+
+      <h2 class="headline">If they don't laugh,<br>we'll <em>eat the cost.</em></h2>
+
+      <p class="subhead">
+        60-day return window. No questions, no awkward forms, no guilt trips. We're that confident in the reaction.
+      </p>
+
+      <div class="divider-row">
+        <span class="divider-line"></span>
+        <span class="divider-text">The track record</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-number">1,000+</div>
+          <div class="stat-label">pranks delivered</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">0</div>
+          <div class="stat-label">"didn't laugh" refunds</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4.5</div>
+          <div class="stat-label"><span class="highlight">★</span> on Amazon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

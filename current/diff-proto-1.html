@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Differentiators — Proto 1: Vertical Timeline</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #FAFAF8; color: #2D2D2D; }
+
+  .section { max-width: 900px; margin: 0 auto; padding: 96px 24px; }
+  .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 600; color: #D4714E; text-align: center; margin-bottom: 12px; }
+  .headline { font-size: clamp(24px, 4vw, 36px); font-weight: 600; text-align: center; margin-bottom: 72px; }
+
+  /* Vertical timeline with alternating sides */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, #D4714E 0%, #E8E5E1 100%);
+    transform: translateX(-50%);
+  }
+
+  .tl-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 48px;
+    position: relative;
+  }
+  .tl-item:last-child { margin-bottom: 0; }
+
+  /* Dot on the line */
+  .tl-dot {
+    position: absolute;
+    left: 50%;
+    top: 8px;
+    width: 16px;
+    height: 16px;
+    background: #D4714E;
+    border: 3px solid #FAFAF8;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+
+  .tl-card {
+    width: 44%;
+    background: #fff;
+    border: 1px solid #E8E5E1;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+
+  .tl-item:nth-child(odd) .tl-card { margin-right: auto; }
+  .tl-item:nth-child(even) .tl-card { margin-left: auto; }
+
+  .tl-num {
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(212,113,78,0.12);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .tl-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+  .tl-card p { color: #6B6B6B; font-size: 15px; line-height: 1.6; }
+
+  @media (max-width: 640px) {
+    .timeline::before { left: 20px; }
+    .tl-dot { left: 20px; }
+    .tl-item:nth-child(odd) .tl-card,
+    .tl-item:nth-child(even) .tl-card {
+      width: calc(100% - 52px);
+      margin-left: 52px;
+      margin-right: 0;
+    }
+  }
+</style>
+</head>
+<body>
+<section class="section">
+  <p class="kicker">Why Package Deal</p>
+  <h2 class="headline">Why this isn't like every other prank site.</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-num">01</div>
+        <h3>The URL is the prank.</h3>
+        <p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they'll have to explain it to anyone who sees it. Which is everyone.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-num">02</div>
+        <h3>"Sign For It" delivery.</h3>
+        <p>Upgrade any prank to require a signature. They can't just grab it off the porch — they have to look their mail carrier in the eye and accept it. By name.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-num">03</div>
+        <h3>Actually anonymous.</h3>
+        <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="tl-card">
+        <div class="tl-num">04</div>
+        <h3>Free shipping. Free returns.</h3>
+        <p>We ship it free. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

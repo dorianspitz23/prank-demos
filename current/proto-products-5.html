@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products Proto 5 — Bento Grid</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --terracotta: #D4714E;
+      --terracotta-hover: #C0613F;
+      --section-alt: #F2F0ED;
+      --border: #E8E5E1;
+      --text-secondary: #6B6B6B;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: var(--section-alt); color: var(--charcoal); }
+
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta); color: #fff;
+      text-align: center; padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100; letter-spacing: 0.05em;
+    }
+
+    .section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 80px 24px; margin-top: 40px;
+    }
+
+    .header { text-align: center; margin-bottom: 48px; }
+    .kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 600; line-height: 1.25;
+    }
+
+    /* ── Bento Grid ── */
+    .bento {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: minmax(80px, auto);
+      gap: 16px;
+    }
+
+    .bento-cell {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+    .bento-cell:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.1);
+    }
+
+    /* Cell sizes */
+    .cell-hero {
+      grid-column: span 7;
+      grid-row: span 4;
+    }
+    .cell-medium {
+      grid-column: span 5;
+      grid-row: span 4;
+    }
+    .cell-third {
+      grid-column: span 4;
+      grid-row: span 3;
+    }
+    .cell-stat {
+      grid-column: span 4;
+      grid-row: span 3;
+    }
+
+    /* ── Image cell ── */
+    .cell-product {
+      background: #fff;
+      border: 1px solid var(--border);
+    }
+    .cell-product img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+
+    /* Overlay */
+    .cell-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      opacity: 1;
+    }
+    .cell-overlay .badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--terracotta); color: #fff;
+      font-size: 12px; font-weight: 700;
+      padding: 5px 14px; border-radius: 999px;
+    }
+    .cell-overlay h3 {
+      color: #fff; font-size: 20px; font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .cell-hero .cell-overlay h3 { font-size: 26px; }
+    .cell-overlay .teaser {
+      color: rgba(255,255,255,0.7); font-size: 13px;
+      line-height: 1.5; margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .cell-hero .cell-overlay .teaser {
+      -webkit-line-clamp: 3;
+      font-size: 14px;
+    }
+    .cell-overlay .price-row {
+      display: flex; align-items: center; gap: 16px;
+    }
+    .cell-overlay .price {
+      color: #fff; font-size: 18px; font-weight: 700;
+    }
+    .cell-overlay .link {
+      color: var(--terracotta); font-weight: 600; font-size: 13px;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 4px;
+      background: rgba(255,255,255,0.9);
+      padding: 6px 14px;
+      border-radius: 999px;
+      transition: background 0.2s;
+    }
+    .cell-overlay .link:hover { background: #fff; }
+
+    /* ── Stat cells ── */
+    .cell-stat-content {
+      height: 100%;
+      background: var(--charcoal);
+      border-radius: 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .cell-stat-content .number {
+      font-family: var(--font-display);
+      font-size: 42px; font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 4px;
+    }
+    .cell-stat-content .label {
+      font-size: 14px; color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+
+    /* ── CTA cell ── */
+    .cell-cta-content {
+      height: 100%;
+      background: var(--terracotta);
+      border-radius: 20px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 24px;
+    }
+    .cell-cta-content h3 {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 600;
+      color: #fff; margin-bottom: 16px;
+    }
+    .cell-cta-content a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      background: #fff; color: var(--charcoal);
+      border-radius: 999px; font-weight: 600; font-size: 14px;
+      text-decoration: none;
+      transition: transform 0.2s;
+    }
+    .cell-cta-content a:hover { transform: translateY(-2px); }
+
+    @media (max-width: 900px) {
+      .bento { grid-template-columns: repeat(6, 1fr); }
+      .cell-hero { grid-column: span 6; grid-row: span 3; }
+      .cell-medium { grid-column: span 6; grid-row: span 3; }
+      .cell-third { grid-column: span 3; grid-row: span 3; }
+      .cell-stat { grid-column: span 3; }
+    }
+    @media (max-width: 560px) {
+      .bento { grid-template-columns: 1fr; }
+      .cell-hero, .cell-medium, .cell-third, .cell-stat {
+        grid-column: span 1; grid-row: span 1;
+      }
+      .cell-product img { aspect-ratio: 4/3; }
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PRODUCTS PROTO 5 — Bento Grid (Apple-style asymmetric grid, mixed product + stat cells)</div>
+
+  <section class="section">
+    <div class="header">
+      <div class="kicker">THE LINEUP</div>
+      <h2 class="headline">Four tubes. Four mortifying URLs.<br>One very confused recipient.</h2>
+    </div>
+
+    <div class="bento">
+      <!-- Hero: MicroPenisCure (large) -->
+      <div class="bento-cell cell-hero cell-product">
+        <img src="/images/micropenis1.webp" alt="MicroPenisCure.com" />
+        <div class="cell-overlay">
+          <span class="badge">Bestseller</span>
+          <h3>MicroPenisCure.com</h3>
+          <p class="teaser">A mailing tube with MicroPenisCure.com printed on every side. Handed to them by a mail carrier who definitely read it. The prank that's made grown adults call their mothers for answers.</p>
+          <div class="price-row">
+            <span class="price">From $14.99</span>
+            <a href="#" class="link">See Prank &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- BigAssDildos (medium) -->
+      <div class="bento-cell cell-medium cell-product">
+        <img src="/images/bigassdildos2.webp" alt="BigAssDildos.com" />
+        <div class="cell-overlay">
+          <h3>BigAssDildos.com</h3>
+          <p class="teaser">The tube that turns a quiet afternoon into an HR conversation. Upgrade to the version that actually has one inside.</p>
+          <div class="price-row">
+            <span class="price">From $14.99</span>
+            <a href="#" class="link">See Prank &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VaginalOdorHelper -->
+      <div class="bento-cell cell-third cell-product">
+        <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com" />
+        <div class="cell-overlay">
+          <h3>VaginalOdorHelper.com</h3>
+          <p class="teaser">Nothing says "I care" like a medical-looking tube that raises concerns nobody asked to have.</p>
+          <div class="price-row">
+            <span class="price">From $14.99</span>
+            <a href="#" class="link">See Prank &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat: tubes delivered -->
+      <div class="bento-cell cell-stat">
+        <div class="cell-stat-content">
+          <div class="number">2,847</div>
+          <div class="label">tubes delivered this month</div>
+        </div>
+      </div>
+
+      <!-- BulkCondomDelivery -->
+      <div class="bento-cell cell-third cell-product">
+        <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com" />
+        <div class="cell-overlay">
+          <h3>BulkCondomDelivery.com</h3>
+          <p class="teaser">A mailing tube that implies your friend has a lifestyle their parents didn't plan for.</p>
+          <div class="price-row">
+            <span class="price">From $12.99</span>
+            <a href="#" class="link">See Prank &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA cell -->
+      <div class="bento-cell cell-stat">
+        <div class="cell-cta-content">
+          <h3>Can't decide?<br>Take the quiz.</h3>
+          <a href="#">Find Your Prank &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option B — Testimonial Stack</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+  .section { background: #2D2D2D; width: 100%; padding: 80px 24px; }
+  .inner { max-width: 960px; margin: 0 auto; }
+
+  .section-label {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #D4714E;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 48px;
+  }
+
+  /* Testimonial cards */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px 24px;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .testimonial-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212,113,78,0.3);
+  }
+  .card-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 16px;
+  }
+  .card-stars svg { color: #E0A644; }
+  .card-quote {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .card-author {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+  }
+  .card-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #E0A644;
+    background: rgba(224,166,68,0.1);
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  /* Trust pills */
+  .trust-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .trust-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+  }
+  .trust-pill .pill-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .trust-pill .pill-icon.terracotta { color: #D4714E; }
+  .trust-pill .pill-icon.gold { color: #E0A644; }
+  .trust-pill .pill-icon.green { color: #5B8C5A; }
+
+  @media (max-width: 768px) {
+    .testimonials { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .section { padding: 56px 20px; }
+    .trust-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+  <div class="section">
+    <div class="inner">
+      <p class="section-label">What senders are saying</p>
+      <h2 class="section-title">Real reactions from real people</h2>
+
+      <div class="testimonials">
+        <div class="testimonial-card">
+          <div class="card-stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="card-quote">"I've been giggling about this for days. My buddy had to sign for it at work and his face was PRICELESS."</p>
+          <div class="card-footer">
+            <span class="card-author">Jake M.</span>
+            <span class="card-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Amazon Verified
+            </span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="card-stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="card-quote">"Sent this to my brother for his birthday. He called me immediately — couldn't stop laughing. Worth every penny."</p>
+          <div class="card-footer">
+            <span class="card-author">Sarah K.</span>
+            <span class="card-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Amazon Verified
+            </span>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="card-stars">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="card-quote">"The packaging is so convincing. My roommate thought it was a real delivery. 10/10 would prank again."</p>
+          <div class="card-footer">
+            <span class="card-author">Marcus T.</span>
+            <span class="card-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Amazon Verified
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-pill">
+          <svg class="pill-icon terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+          1,000+ pranks shipped
+        </div>
+        <div class="trust-pill">
+          <svg class="pill-icon gold" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          4.5/5 on Amazon
+        </div>
+        <div class="trust-pill">
+          <svg class="pill-icon green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          60-day free returns
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

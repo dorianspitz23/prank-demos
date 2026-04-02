@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MicroPenisCure.com — Embarrassing Prank Mail | Package Deal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET & TOKENS
+       ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-primary: #2D2D2D;
+      --color-primary-light: #3D3D3D;
+      --color-accent: #D4714E;
+      --color-accent-hover: #C0613F;
+      --color-accent-active: #ad5a38;
+      --color-gold: #E0A644;
+      --color-cream: #F9F5ED;
+      --color-cream-deep: #F2E6CE;
+      --color-warm: #F2F0ED;
+      --color-canvas: #FFFFFF;
+      --color-text: #2D2D2D;
+      --color-text-secondary: #6B6B6B;
+      --color-border: #E8E5E1;
+      --color-success: #5B8C5A;
+      --color-error: #C4453C;
+      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --max-width: 1280px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-sans); color: var(--color-text); background: var(--color-canvas); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+    /* ═══════════════════════════════════════════
+       ANNOUNCEMENT BAR
+       ═══════════════════════════════════════════ */
+    .announcement-bar {
+      background: var(--color-primary);
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .announcement-bar span { color: var(--color-accent); }
+
+    /* ═══════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════ */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--color-cream);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 24px; max-width: var(--max-width); margin: 0 auto;
+    }
+    .header-left { display: flex; align-items: center; gap: 32px; }
+    .header-left nav { display: flex; gap: 24px; }
+    .header-left nav a { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); transition: color 0.2s; }
+    .header-left nav a:hover { color: var(--color-accent); }
+    .logo { font-family: var(--font-serif); font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+    .logo em { font-style: italic; color: var(--color-accent); font-weight: 500; }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-right a { font-size: 14px; font-weight: 500; color: var(--color-text-secondary); transition: color 0.2s; }
+    .header-right a:hover { color: var(--color-accent); }
+    .cart-icon { position: relative; width: 24px; height: 24px; }
+    .cart-icon svg { width: 24px; height: 24px; stroke: var(--color-text); }
+    .cart-badge { position: absolute; top: -6px; right: -8px; background: var(--color-accent); color: #fff; font-size: 10px; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+    /* ═══════════════════════════════════════════
+       BREADCRUMB
+       ═══════════════════════════════════════════ */
+    .breadcrumb {
+      padding: 16px 0;
+      font-size: 13px;
+      color: var(--color-text-secondary);
+    }
+    .breadcrumb a { color: var(--color-text-secondary); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--color-accent); }
+    .breadcrumb span { margin: 0 8px; opacity: 0.4; }
+
+    /* ═══════════════════════════════════════════
+       PDP HERO — TWO-COLUMN (Four Sigmatic style)
+       ═══════════════════════════════════════════ */
+    .pdp-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      padding: 0 0 64px;
+      align-items: start;
+    }
+
+    /* Image gallery */
+    .pdp-gallery { position: sticky; top: 100px; }
+    .pdp-main-image {
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--color-cream);
+      margin-bottom: 16px;
+      cursor: zoom-in;
+      position: relative;
+    }
+    .pdp-main-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .pdp-main-image:hover img { transform: scale(1.05); }
+    .pdp-main-image .image-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--color-accent); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 6px 14px; border-radius: var(--radius-pill);
+    }
+    .pdp-thumbs { display: flex; gap: 12px; }
+    .pdp-thumb {
+      width: 80px; height: 80px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: var(--color-cream);
+    }
+    .pdp-thumb.active, .pdp-thumb:hover { border-color: var(--color-accent); }
+    .pdp-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Buy box */
+    .pdp-buybox { padding-top: 8px; }
+    .pdp-kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--color-accent); margin-bottom: 8px;
+    }
+    .pdp-title {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 700; line-height: 1.15; margin-bottom: 12px;
+    }
+    .pdp-title em { font-style: italic; color: var(--color-accent); }
+    .pdp-short-desc {
+      font-size: 16px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 20px;
+    }
+
+    /* Rating badge (Four Sigmatic Yotpo-style inline rating) */
+    .pdp-rating {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 24px; padding-bottom: 24px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .pdp-stars { color: var(--color-gold); font-size: 16px; letter-spacing: 2px; }
+    .pdp-rating-text { font-size: 13px; color: var(--color-text-secondary); }
+    .pdp-amazon-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: #FFF8E7; border: 1px solid #E0A644;
+      padding: 4px 10px; border-radius: var(--radius-pill);
+      font-size: 12px; font-weight: 600; color: #8B6914;
+    }
+
+    /* Price */
+    .pdp-price-row {
+      display: flex; align-items: baseline; gap: 12px;
+      margin-bottom: 24px;
+    }
+    .pdp-price {
+      font-family: var(--font-serif);
+      font-size: 32px; font-weight: 700; color: var(--color-text);
+    }
+    .pdp-compare-price {
+      font-size: 16px; color: var(--color-text-secondary);
+      text-decoration: line-through; opacity: 0.6;
+    }
+
+    /* Variant selector — Four Sigmatic radio-card style */
+    .variant-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-text-secondary); margin-bottom: 12px;
+    }
+    .variant-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+    .variant-card {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 18px;
+      border: 2px solid var(--color-border);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.2s;
+      position: relative;
+    }
+    .variant-card:hover { border-color: #ccc; }
+    .variant-card.active { border-color: var(--color-accent); background: rgba(212,113,78,0.04); }
+    .variant-card.sold-out { opacity: 0.5; cursor: not-allowed; }
+    .variant-radio {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 2px solid var(--color-border); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .variant-card.active .variant-radio { border-color: var(--color-accent); }
+    .variant-card.active .variant-radio::after {
+      content: ''; width: 10px; height: 10px; border-radius: 50%;
+      background: var(--color-accent);
+    }
+    .variant-info { flex: 1; }
+    .variant-name { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+    .variant-desc { font-size: 13px; color: var(--color-text-secondary); }
+    .variant-price-col { text-align: right; }
+    .variant-price { font-size: 16px; font-weight: 700; }
+    .variant-badge {
+      display: inline-block; margin-top: 2px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--color-accent); background: rgba(212,113,78,0.1);
+      padding: 3px 8px; border-radius: var(--radius-pill);
+    }
+    .variant-sold-out-tag {
+      font-size: 11px; font-weight: 600; color: var(--color-error);
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+
+    /* Add to cart */
+    .atc-button {
+      width: 100%;
+      padding: 18px 32px;
+      background: var(--color-accent);
+      color: #fff;
+      font-size: 16px; font-weight: 700;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.03em;
+      transition: all 0.3s;
+      box-shadow: 0 4px 20px rgba(212,113,78,0.35);
+      margin-bottom: 16px;
+    }
+    .atc-button:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(212,113,78,0.45);
+    }
+    .atc-button:active { transform: translateY(0); }
+    .atc-button.disabled {
+      background: #ccc; color: #999; box-shadow: none; cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* Trust strip below ATC */
+    .trust-strip {
+      display: flex; justify-content: center; gap: 24px;
+      padding: 16px 0;
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: 24px;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: var(--color-text-secondary);
+      letter-spacing: 0.02em;
+    }
+    .trust-item svg { width: 16px; height: 16px; stroke: var(--color-accent); fill: none; stroke-width: 2; }
+
+    /* Above-fold FAQ accordion (Four Sigmatic style) */
+    .buybox-faq { margin-top: 8px; }
+    .buybox-faq-item { border-bottom: 1px solid var(--color-border); }
+    .buybox-faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; text-align: left;
+      padding: 14px 0; font-size: 14px; font-weight: 500;
+      transition: color 0.2s;
+    }
+    .buybox-faq-q:hover { color: var(--color-accent); }
+    .buybox-faq-toggle {
+      width: 22px; height: 22px; border-radius: 50%;
+      border: 1.5px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-left: 12px; transition: all 0.3s;
+    }
+    .buybox-faq-toggle svg { width: 12px; height: 12px; stroke: var(--color-text-secondary); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .buybox-faq-item.open .buybox-faq-toggle { background: var(--color-accent); border-color: var(--color-accent); }
+    .buybox-faq-item.open .buybox-faq-toggle svg { stroke: #fff; transform: rotate(45deg); }
+    .buybox-faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .buybox-faq-item.open .buybox-faq-a { max-height: 200px; }
+    .buybox-faq-a-inner { padding: 0 0 14px; font-size: 13px; color: var(--color-text-secondary); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════════
+       BENEFIT TICKER (below hero)
+       ═══════════════════════════════════════════ */
+    .benefit-ticker {
+      background: var(--color-cream-deep);
+      padding: 14px 0; overflow: hidden;
+      border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);
+    }
+    .benefit-ticker-track {
+      display: flex; animation: marquee 35s linear infinite; width: max-content;
+    }
+    .benefit-ticker-item {
+      display: flex; align-items: center; gap: 8px; padding: 0 28px;
+      white-space: nowrap; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-text);
+    }
+    .benefit-ticker-item svg { width: 15px; height: 15px; stroke: var(--color-accent); fill: none; stroke-width: 2; }
+    .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--color-accent); flex-shrink: 0; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ═══════════════════════════════════════════
+       SECTIONS — SHARED
+       ═══════════════════════════════════════════ */
+    .section { padding: 80px 0; }
+    .section--cream { background: var(--color-cream); }
+    .section--deep { background: var(--color-cream-deep); }
+    .section--dark { background: var(--color-primary); color: #fff; }
+    .section--warm { background: var(--color-warm); }
+    .section-kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--color-accent); margin-bottom: 12px;
+    }
+    .section--dark .section-kicker { color: var(--color-gold); }
+    .section-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 600; line-height: 1.15; margin-bottom: 16px;
+    }
+    .section-heading em { font-style: italic; color: var(--color-accent); }
+    .section--dark .section-heading em { color: var(--color-gold); }
+    .section-subtext { font-size: 17px; color: var(--color-text-secondary); max-width: 560px; line-height: 1.7; }
+    .section--dark .section-subtext { color: rgba(255,255,255,0.65); }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header .section-subtext { margin: 0 auto; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-size: 15px; font-weight: 600; padding: 14px 32px;
+      border-radius: var(--radius-pill); transition: all 0.3s; letter-spacing: 0.02em;
+    }
+    .btn--primary { background: var(--color-accent); color: #fff; box-shadow: 0 2px 12px rgba(212,113,78,0.3); }
+    .btn--primary:hover { background: var(--color-accent-hover); transform: translateY(-1px); }
+    .btn--outline { background: transparent; color: var(--color-accent); border: 2px solid var(--color-accent); }
+    .btn--outline:hover { background: var(--color-accent); color: #fff; }
+    .btn--white { background: #fff; color: var(--color-accent); }
+    .btn--white:hover { background: var(--color-cream); }
+
+    /* ═══════════════════════════════════════════
+       PRANK EXPERIENCE (Four Sigmatic product description split)
+       ═══════════════════════════════════════════ */
+    .experience-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .experience-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 600; line-height: 1.2; margin-bottom: 24px;
+    }
+    .experience-text h2 em { font-style: italic; color: var(--color-accent); }
+    .experience-text p {
+      font-size: 16px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 16px;
+    }
+    .experience-text p:last-of-type { margin-bottom: 0; }
+    .experience-image {
+      border-radius: var(--radius-lg); overflow: hidden;
+      background: var(--color-cream); aspect-ratio: 4/5;
+      position: sticky; top: 100px;
+    }
+    .experience-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ═══════════════════════════════════════════
+       VALUE PROP BULLETS
+       ═══════════════════════════════════════════ */
+    .value-props {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .value-prop {
+      text-align: center; padding: 28px 20px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      transition: all 0.3s;
+    }
+    .value-prop:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .value-prop-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .value-prop-icon svg { width: 22px; height: 22px; stroke: var(--color-gold); fill: none; stroke-width: 2; }
+    .value-prop h3 { font-size: 14px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .value-prop p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.5; }
+
+    /* ═══════════════════════════════════════════
+       SIGN FOR IT SCENARIO SECTION
+       ═══════════════════════════════════════════ */
+    .scenario-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .scenario-text .section-kicker { margin-bottom: 12px; }
+    .scenario-text h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 600; line-height: 1.2; margin-bottom: 24px;
+    }
+    .scenario-text h2 em { font-style: italic; color: var(--color-accent); }
+    .scenario-text p {
+      font-size: 16px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 20px;
+    }
+    .scenario-image {
+      border-radius: var(--radius-lg); overflow: hidden;
+      background: var(--color-cream-deep); aspect-ratio: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .scenario-image img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ═══════════════════════════════════════════
+       DIFFERENTIATORS
+       ═══════════════════════════════════════════ */
+    .diff-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .diff-card {
+      background: #fff; border-radius: var(--radius-md); padding: 32px 24px;
+      border: 1px solid var(--color-border); transition: all 0.3s; text-align: center;
+    }
+    .diff-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .diff-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--color-cream); display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .diff-icon svg { width: 24px; height: 24px; stroke: var(--color-accent); fill: none; stroke-width: 2; }
+    .diff-card h3 { font-family: var(--font-serif); font-size: 18px; font-weight: 600; margin-bottom: 10px; }
+    .diff-card p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.6; }
+
+    /* ═══════════════════════════════════════════
+       OCCASIONS
+       ═══════════════════════════════════════════ */
+    .occasion-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .occasion-card {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md); padding: 28px 24px; text-align: center;
+      transition: all 0.3s;
+    }
+    .occasion-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+    .occasion-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: rgba(212,113,78,0.15);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .occasion-icon svg { width: 24px; height: 24px; stroke: var(--color-accent); fill: none; stroke-width: 2; }
+    .occasion-card h3 { font-family: var(--font-serif); font-size: 18px; font-weight: 600; margin-bottom: 8px; color: #fff; }
+    .occasion-card p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 16px; }
+    .occasion-cta {
+      font-size: 13px; font-weight: 600; color: var(--color-accent);
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+
+    /* ═══════════════════════════════════════════
+       CROSS-SELL
+       ═══════════════════════════════════════════ */
+    .crosssell-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .crosssell-card {
+      background: #fff; border-radius: var(--radius-md); overflow: hidden;
+      border: 1px solid var(--color-border); transition: all 0.3s;
+    }
+    .crosssell-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .crosssell-img {
+      aspect-ratio: 1; background: var(--color-cream); overflow: hidden;
+    }
+    .crosssell-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .crosssell-card:hover .crosssell-img img { transform: scale(1.05); }
+    .crosssell-body { padding: 20px; }
+    .crosssell-name { font-family: var(--font-serif); font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .crosssell-hook { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 14px; }
+    .crosssell-footer { display: flex; align-items: center; justify-content: space-between; }
+    .crosssell-price { font-size: 15px; font-weight: 700; }
+    .crosssell-cta { font-size: 13px; font-weight: 600; color: var(--color-accent); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* ═══════════════════════════════════════════
+       PDP FAQ SECTION
+       ═══════════════════════════════════════════ */
+    .faq-grid { max-width: 720px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--color-border); }
+    .faq-question {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0; cursor: pointer; font-size: 17px; font-weight: 500;
+      width: 100%; text-align: left; transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--color-accent); }
+    .faq-toggle {
+      width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--color-border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-left: 16px; transition: all 0.3s;
+    }
+    .faq-toggle svg { width: 14px; height: 14px; stroke: var(--color-text-secondary); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .faq-item.open .faq-toggle { background: var(--color-accent); border-color: var(--color-accent); }
+    .faq-item.open .faq-toggle svg { stroke: #fff; transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner { padding: 0 0 20px; font-size: 15px; color: var(--color-text-secondary); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════════
+       GUARANTEE
+       ═══════════════════════════════════════════ */
+    .guarantee-content { text-align: center; max-width: 640px; margin: 0 auto; }
+    .guarantee-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: rgba(212,113,78,0.1);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .guarantee-icon svg { width: 36px; height: 36px; stroke: var(--color-accent); fill: none; stroke-width: 2; }
+    .guarantee-content p { font-size: 17px; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 28px; }
+
+    /* ═══════════════════════════════════════════
+       STICKY ATC BAR (appears on scroll)
+       ═══════════════════════════════════════════ */
+    .sticky-atc {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid var(--color-border);
+      padding: 12px 24px;
+      z-index: 90;
+      transform: translateY(100%);
+      transition: transform 0.3s;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+    .sticky-atc.visible { transform: translateY(0); }
+    .sticky-atc-inner {
+      max-width: var(--max-width); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .sticky-atc-info { display: flex; align-items: center; gap: 16px; }
+    .sticky-atc-thumb { width: 48px; height: 48px; border-radius: var(--radius-sm); overflow: hidden; background: var(--color-cream); flex-shrink: 0; }
+    .sticky-atc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .sticky-atc-name { font-family: var(--font-serif); font-size: 16px; font-weight: 600; }
+    .sticky-atc-variant { font-size: 13px; color: var(--color-text-secondary); }
+    .sticky-atc-price { font-family: var(--font-serif); font-size: 20px; font-weight: 700; }
+    .sticky-atc-btn {
+      padding: 14px 36px; background: var(--color-accent); color: #fff;
+      font-size: 15px; font-weight: 700; border-radius: var(--radius-pill);
+      transition: all 0.3s; box-shadow: 0 2px 12px rgba(212,113,78,0.3);
+      white-space: nowrap;
+    }
+    .sticky-atc-btn:hover { background: var(--color-accent-hover); }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer { background: var(--color-primary); color: #fff; padding: 64px 0 32px; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand .logo { color: #fff; margin-bottom: 16px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 300px; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 16px; }
+    .footer-social a {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+    }
+    .footer-social a:hover { border-color: var(--color-accent); background: rgba(212,113,78,0.15); }
+    .footer-social svg { width: 18px; height: 18px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; }
+    .footer-col h4 { font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; color: rgba(255,255,255,0.5); }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.7); padding: 6px 0; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--color-accent); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; font-size: 13px; color: rgba(255,255,255,0.3);
+    }
+    .footer-payments { display: flex; gap: 12px; align-items: center; }
+    .footer-payment-icon {
+      width: 40px; height: 26px; border-radius: 4px; background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.4);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .pdp-hero { grid-template-columns: 1fr; gap: 40px; }
+      .pdp-gallery { position: static; }
+      .experience-split, .scenario-split { grid-template-columns: 1fr; gap: 40px; }
+      .value-props, .occasion-grid { grid-template-columns: repeat(2, 1fr); }
+      .crosssell-grid { grid-template-columns: repeat(2, 1fr); }
+      .diff-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 56px 0; }
+      .value-props, .occasion-grid, .diff-grid { grid-template-columns: 1fr; }
+      .crosssell-grid { grid-template-columns: 1fr; }
+      .trust-strip { flex-wrap: wrap; gap: 12px; justify-content: center; }
+      .sticky-atc-inner { flex-wrap: wrap; }
+      .sticky-atc-info { flex: 1; min-width: 0; }
+      .sticky-atc-btn { width: 100%; text-align: center; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
+      .header-left nav { display: none; }
+    }
+    @media (max-width: 480px) {
+      .pdp-thumbs { gap: 8px; }
+      .pdp-thumb { width: 64px; height: 64px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    <span>Free shipping</span> on every order &bull; 60-day free returns &bull; 100% anonymous delivery
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/foursigmatic-inspired.html" class="logo">Package <em>Deal</em></a>
+        <nav>
+          <a href="/foursigmatic-inspired.html#products">Shop</a>
+          <a href="/foursigmatic-inspired.html#how-it-works">How It Works</a>
+          <a href="/foursigmatic-inspired.html#quiz">Quiz</a>
+          <a href="/foursigmatic-inspired.html#faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a href="#">About</a>
+        <a href="#" class="cart-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/foursigmatic-inspired.html">Home</a>
+      <span>/</span>
+      <a href="/foursigmatic-inspired.html#products">All Pranks</a>
+      <span>/</span>
+      MicroPenisCure.com
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PDP HERO: GALLERY + BUY BOX
+       ═══════════════════════════════════════════ -->
+  <section class="container" style="padding-bottom: 0;">
+    <div class="pdp-hero" id="pdp-top">
+      <!-- Gallery -->
+      <div class="pdp-gallery">
+        <div class="pdp-main-image">
+          <span class="image-badge">Bestseller</span>
+          <img id="mainImage" src="/images/micropenis1.webp" alt="MicroPenisCure.com prank mail tube" onerror="this.style.display='none'" />
+        </div>
+        <div class="pdp-thumbs">
+          <div class="pdp-thumb active" onclick="switchImage(this, '/images/micropenis1.webp')">
+            <img src="/images/micropenis1.webp" alt="Thumbnail 1" onerror="this.parentElement.innerHTML='<div style=\'padding:16px;text-align:center;font-size:10px;color:#999\'>1</div>'" />
+          </div>
+          <div class="pdp-thumb" onclick="switchImage(this, '/images/micropenis2.webp')">
+            <img src="/images/micropenis2.webp" alt="Thumbnail 2" onerror="this.parentElement.innerHTML='<div style=\'padding:16px;text-align:center;font-size:10px;color:#999\'>2</div>'" />
+          </div>
+          <div class="pdp-thumb" onclick="switchImage(this, '/images/micropenis3.webp')">
+            <img src="/images/micropenis3.webp" alt="Thumbnail 3" onerror="this.parentElement.innerHTML='<div style=\'padding:16px;text-align:center;font-size:10px;color:#999\'>3</div>'" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Buy Box -->
+      <div class="pdp-buybox">
+        <div class="pdp-kicker">PRANK MAIL</div>
+        <h1 class="pdp-title">The Package They'll Have to Explain to <em>Everyone</em></h1>
+        <p class="pdp-short-desc">A mailing tube with MicroPenisCure.com printed on every side, delivered anonymously to their door. The mail carrier reads it. The coworkers read it. Nobody forgets.</p>
+
+        <!-- Rating -->
+        <div class="pdp-rating">
+          <span class="pdp-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+          <span class="pdp-rating-text">4.5/5 rating</span>
+          <span class="pdp-amazon-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Rated 4.5/5 on Amazon
+          </span>
+        </div>
+
+        <!-- Price -->
+        <div class="pdp-price-row">
+          <span class="pdp-price" id="currentPrice">$21.99</span>
+        </div>
+
+        <!-- Variant Selector -->
+        <div class="variant-label">Choose Your Chaos Level</div>
+        <div class="variant-options" id="variantOptions">
+          <div class="variant-card" data-price="$14.99" data-variant="No Signature Required" onclick="selectVariant(this)">
+            <div class="variant-radio"></div>
+            <div class="variant-info">
+              <div class="variant-name">No Signature Required</div>
+              <div class="variant-desc">Delivered to their door. Everyone reads it. Nobody says a word.</div>
+            </div>
+            <div class="variant-price-col">
+              <div class="variant-price">$14.99</div>
+            </div>
+          </div>
+          <div class="variant-card active" data-price="$21.99" data-variant="Make Them Sign For It" onclick="selectVariant(this)">
+            <div class="variant-radio"></div>
+            <div class="variant-info">
+              <div class="variant-name">Make Them Sign For It</div>
+              <div class="variant-desc">They sign for it in person. The mail carrier watches.</div>
+            </div>
+            <div class="variant-price-col">
+              <div class="variant-price">$21.99</div>
+              <div class="variant-badge">Most Popular</div>
+            </div>
+          </div>
+          <div class="variant-card sold-out" data-price="$34.99" data-variant="Penis Confetti Bomb + Sign For It">
+            <div class="variant-radio"></div>
+            <div class="variant-info">
+              <div class="variant-name">Penis Confetti Bomb + Sign For It</div>
+              <div class="variant-desc">Forced signature plus confetti explosion on open.</div>
+            </div>
+            <div class="variant-price-col">
+              <div class="variant-price">$34.99</div>
+              <div class="variant-sold-out-tag">Sold Out</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add to Cart -->
+        <button class="atc-button" id="atcButton">Add to Cart &mdash; $21.99</button>
+
+        <!-- Trust Strip -->
+        <div class="trust-strip">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Free Returns
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Free Shipping
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            60-Day Guarantee
+          </div>
+        </div>
+
+        <!-- Buybox FAQ -->
+        <div class="buybox-faq">
+          <div class="buybox-faq-item">
+            <button class="buybox-faq-q">
+              Is the shipping actually anonymous?
+              <span class="buybox-faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="buybox-faq-a"><div class="buybox-faq-a-inner">Completely. No return address, no sender info, no way for them to trace it back to you. The only thing on the package is the embarrassing URL.</div></div>
+          </div>
+          <div class="buybox-faq-item">
+            <button class="buybox-faq-q">
+              Will they know who sent it?
+              <span class="buybox-faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="buybox-faq-a"><div class="buybox-faq-a-inner">Only if you tell them. Most recipients spend days texting everyone they know trying to figure it out. Some senders hold out for weeks. Some never tell.</div></div>
+          </div>
+          <div class="buybox-faq-item">
+            <button class="buybox-faq-q">
+              How long does shipping take?
+              <span class="buybox-faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="buybox-faq-a"><div class="buybox-faq-a-inner">Orders ship within 1-2 business days and arrive in 3-5 business days within the US. You get tracking; the recipient does not.</div></div>
+          </div>
+          <div class="buybox-faq-item">
+            <button class="buybox-faq-q">
+              What's the return policy?
+              <span class="buybox-faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+            </button>
+            <div class="buybox-faq-a"><div class="buybox-faq-a-inner">60-day free returns, no questions asked. If the prank didn't land, the tube arrived damaged, or you just changed your mind — we'll make it right.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFIT TICKER -->
+  <div class="benefit-ticker">
+    <div class="benefit-ticker-track">
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>Anonymous</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free Shipping</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>3-5 Day Delivery</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>60-Day Returns</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Discreet Packaging</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Track Your Prank</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>Real Reactions</span>
+      <span class="ticker-dot"></span>
+      <!-- duplicate for loop -->
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>Anonymous</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free Shipping</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>3-5 Day Delivery</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>60-Day Returns</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Discreet Packaging</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Track Your Prank</span>
+      <span class="ticker-dot"></span>
+      <span class="benefit-ticker-item"><svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>Real Reactions</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PRANK EXPERIENCE (product description)
+       ═══════════════════════════════════════════ -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="experience-split">
+        <div class="experience-text">
+          <div class="section-kicker">THE EXPERIENCE</div>
+          <h2>The tube that turns a quiet day into an <em>office legend.</em></h2>
+          <p>Your friend is at work. Normal day. Then someone from the mailroom walks over holding a tube. They can see the label from ten feet away. So can everyone between the mailroom and their desk. By the time it's in their hands, three people have already read it, and one of them is trying very hard not to say anything.</p>
+          <p>They sit there holding a tube that says MicroPenisCure.com in letters large enough to read from across the room. There's no return address. There's no explanation. They open it and find a letter confirming what they already suspect — someone did this on purpose.</p>
+          <p>The confetti variant adds penis-shaped confetti that springs out of the tube, which is a nice touch if you want to make sure the story gets retold at every office happy hour for the next six months.</p>
+          <p>The best part happens after. The group chat lights up. They text everyone they know trying to figure out who sent it. Nobody confesses. It becomes the kind of story that resurfaces every time someone new joins the team — "oh, you haven't heard about the MicroPenisCure incident?" You'll know. They won't.</p>
+        </div>
+        <div class="experience-image">
+          <img src="/images/micropenis2.webp" alt="Prank tube in action" onerror="this.style.display='none'" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       VALUE PROPS (dark section)
+       ═══════════════════════════════════════════ -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">WHY THIS PRANK WORKS</div>
+        <h2 class="section-heading" style="color:#fff;">Built for maximum <em>embarrassment.</em></h2>
+      </div>
+      <div class="value-props">
+        <div class="value-prop">
+          <div class="value-prop-icon">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>URL printed large enough to read from ten feet away</h3>
+        </div>
+        <div class="value-prop">
+          <div class="value-prop-icon">
+            <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </div>
+          <h3>No return address — completely untraceable</h3>
+        </div>
+        <div class="value-prop">
+          <div class="value-prop-icon">
+            <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          </div>
+          <h3>Ships via real USPS mail in 3-5 days</h3>
+        </div>
+        <div class="value-prop">
+          <div class="value-prop-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+          </div>
+          <h3>Upgrade to forced signature for a witness</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SIGN FOR IT SCENARIO
+       ═══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="scenario-split">
+        <div class="scenario-image">
+          <img src="/images/micropenis3.webp" alt="Sign For It delivery scenario" onerror="this.style.display='none'" />
+        </div>
+        <div class="scenario-text">
+          <div class="section-kicker">UPGRADE</div>
+          <h2>"Sign For It" <em>delivery.</em></h2>
+          <p>Standard delivery is private. The "Sign For It" upgrade means a mail carrier hands them a package labeled MicroPenisCure.com — and waits while they sign for it.</p>
+          <p>The signature creates a witness. Witnesses create stories.</p>
+          <a href="#" class="btn btn--primary" onclick="selectVariantByName('Make Them Sign For It'); window.scrollTo({top:0,behavior:'smooth'}); return false;">
+            Upgrade to Sign For It — $21.99
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       OCCASIONS (dark)
+       ═══════════════════════════════════════════ -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">PERFECT FOR</div>
+        <h2 class="section-heading" style="color:#fff;">Send it for <em>any occasion.</em></h2>
+        <p class="section-subtext">Or no occasion at all. That's kind of the point.</p>
+      </div>
+      <div class="occasion-grid">
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <h3>Birthday</h3>
+          <p>Send it before the party and let it become the centerpiece. Nothing says "happy birthday" like a tube that makes the whole room stop and read the label.</p>
+          <a href="#" class="occasion-cta">Shop Now &rarr;</a>
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
+          </div>
+          <h3>Bachelor / Bachelorette</h3>
+          <p>The one gift that guarantees a story for the rehearsal dinner. Works best when they have to open it in front of the group.</p>
+          <a href="#" class="occasion-cta">Shop Now &rarr;</a>
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Office</h3>
+          <p>Workplace deliveries are where these tubes do their best work. The mailroom sees it first. Then the front desk. Then everyone between there and their desk.</p>
+          <a href="#" class="occasion-cta">Shop Now &rarr;</a>
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Just Because</h3>
+          <p>No occasion necessary. Sometimes you just think of someone and want to make their day slightly worse in the best possible way.</p>
+          <a href="#" class="occasion-cta">Shop Now &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       DIFFERENTIATORS
+       ═══════════════════════════════════════════ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">WHY PACKAGE DEAL</div>
+        <h2 class="section-heading">Not your average <em>prank.</em></h2>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <h3>The URL is the prank.</h3>
+          <p>Not glitter, not a letter. A mailing tube branded with a URL so embarrassing, they have to explain it to anyone who sees it.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></div>
+          <h3>"Sign For It" delivery.</h3>
+          <p>Upgrade any prank to require a forced signature. They can't grab it off the porch quietly. A real mail carrier hands it to them.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+          <h3>Actually anonymous.</h3>
+          <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+          <h3>Premium packaging.</h3>
+          <p>Real, sturdy mailing tubes — not flimsy novelty packaging. The URL is printed large enough to read from across a room.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+          <h3>Free shipping. Free returns.</h3>
+          <p>Every order ships free within the US. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3>Real reactions guaranteed.</h3>
+          <p>If the prank doesn't land, we'll refund your purchase. No asterisks, no fine print.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CROSS-SELL
+       ═══════════════════════════════════════════ -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">MORE PRANKS</div>
+        <h2 class="section-heading">Why stop at <em>one?</em></h2>
+        <p class="section-subtext">Send a follow-up a week later. Let the confusion compound.</p>
+      </div>
+      <div class="crosssell-grid">
+        <div class="crosssell-card">
+          <div class="crosssell-img">
+            <img src="/images/bigassdildos2.webp" alt="BigAssDildos.com" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999;font-size:13px\'>BigAssDildos.com</div>'" />
+          </div>
+          <div class="crosssell-body">
+            <div class="crosssell-name">BigAssDildos.com</div>
+            <p class="crosssell-hook">Ready to escalate? A tube that says BigAssDildos.com — and one variant that actually delivers on the promise.</p>
+            <div class="crosssell-footer">
+              <span class="crosssell-price">From $14.99</span>
+              <a href="#" class="crosssell-cta">See This Prank &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="crosssell-card">
+          <div class="crosssell-img">
+            <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999;font-size:13px\'>VaginalOdorHelper.com</div>'" />
+          </div>
+          <div class="crosssell-body">
+            <div class="crosssell-name">VaginalOdorHelper.com</div>
+            <p class="crosssell-hook">The one that started it all. The URL alone has made grown adults call their mothers for answers.</p>
+            <div class="crosssell-footer">
+              <span class="crosssell-price">From $14.99</span>
+              <a href="#" class="crosssell-cta">See This Prank &rarr;</a>
+            </div>
+          </div>
+        </div>
+        <div class="crosssell-card">
+          <div class="crosssell-img">
+            <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999;font-size:13px\'>BulkCondomDelivery.com</div>'" />
+          </div>
+          <div class="crosssell-body">
+            <div class="crosssell-name">BulkCondomDelivery.com</div>
+            <p class="crosssell-hook">The bestseller for a reason. MicroPenisCure.com — the prank that turns a quiet mailbox into a crime scene of confusion.</p>
+            <div class="crosssell-footer">
+              <span class="crosssell-price">From $12.99</span>
+              <a href="#" class="crosssell-cta">See This Prank &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PDP FAQ
+       ═══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">COMMON QUESTIONS</div>
+        <h2 class="section-heading">Questions people <em>actually ask.</em></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <button class="faq-question">Is the shipping really anonymous?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Completely. No return address, no sender info, no way for them to trace it back to you. The only thing on the package is the embarrassing URL — which is the whole point.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Will they know who sent it?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Not unless you tell them. The package ships from Package Deal — no sender name, no return address that traces back to you. Most recipients spend days texting everyone they know trying to figure it out.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What if I need to cancel or return?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">60-day free returns, no questions asked. If you catch a cancellation before it ships (1-2 business days), we'll cancel it. Otherwise, use the return process — still free, still painless.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How long does shipping take?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Orders ship within 1-2 business days and arrive in 3-5 business days within the US. You get a tracking email; the recipient does not.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is this actually funny?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">Our bestseller is rated 4.5 out of 5 on Amazon. The most common review theme is "I've been giggling about this for days." It's funny in person. It's funnier when other people see it first.</div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Could this actually offend someone?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button>
+          <div class="faq-answer"><div class="faq-answer-inner">These pranks work best between people who already give each other a hard time. If your recipient would laugh at a well-timed joke at their expense, they'll love this. If they wouldn't — maybe send a candle.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       GUARANTEE
+       ═══════════════════════════════════════════ -->
+  <section class="section section--warm">
+    <div class="container">
+      <div class="guarantee-content">
+        <div class="guarantee-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="section-kicker" style="text-align:center;">OUR PROMISE</div>
+        <h2 class="section-heading" style="text-align:center;">If it's not funny, <em>it's free.</em></h2>
+        <p>We'll refund your full purchase within 60 days, no questions asked. If the tube shows up damaged, the prank falls flat, or you just change your mind — we'll make it right. We're in the business of making people laugh, not making returns difficult.</p>
+        <a href="#" class="btn btn--outline">Read Our Return Policy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA
+       ═══════════════════════════════════════════ -->
+  <section class="section section--dark" style="padding: 80px 0;">
+    <div class="container" style="text-align:center;">
+      <div class="section-kicker" style="text-align:center;">READY?</div>
+      <h2 class="section-heading" style="color:#fff; max-width:500px; margin:0 auto 16px;">You already know who you'd <em>send this to.</em></h2>
+      <p style="font-size:17px; color:rgba(255,255,255,0.6); margin-bottom:32px;">Pick a chaos level. We'll handle the rest — anonymously.</p>
+      <a href="#pdp-top" class="btn btn--primary" style="font-size:17px; padding:16px 40px;">Add to Cart</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo" style="color:#fff;">Package <em>Deal</em></div>
+          <p>Anonymous prank mail tubes with embarrassing URLs, delivered to their door. No explanation included.</p>
+          <div class="footer-social">
+            <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#">All Pranks</a>
+          <a href="#">MicroPenisCure.com</a>
+          <a href="#">BigAssDildos.com</a>
+          <a href="#">VaginalOdorHelper.com</a>
+          <a href="#">BulkCondomDelivery.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Track Your Order</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Package Deal. All rights reserved.</span>
+        <div class="footer-payments">
+          <div class="footer-payment-icon">VISA</div>
+          <div class="footer-payment-icon">MC</div>
+          <div class="footer-payment-icon">AMEX</div>
+          <div class="footer-payment-icon">PYPL</div>
+          <div class="footer-payment-icon">GPay</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       STICKY ADD TO CART BAR
+       ═══════════════════════════════════════════ -->
+  <div class="sticky-atc" id="stickyAtc">
+    <div class="sticky-atc-inner">
+      <div class="sticky-atc-info">
+        <div class="sticky-atc-thumb">
+          <img src="/images/micropenis1.webp" alt="" onerror="this.style.display='none'" />
+        </div>
+        <div>
+          <div class="sticky-atc-name">MicroPenisCure.com</div>
+          <div class="sticky-atc-variant" id="stickyVariant">Make Them Sign For It</div>
+        </div>
+      </div>
+      <div class="sticky-atc-price" id="stickyPrice">$21.99</div>
+      <button class="sticky-atc-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════ -->
+  <script>
+    // Image gallery
+    function switchImage(thumb, src) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+    // Variant selector
+    function selectVariant(card) {
+      if (card.classList.contains('sold-out')) return;
+      document.querySelectorAll('.variant-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+      const price = card.dataset.price;
+      const variant = card.dataset.variant;
+      document.getElementById('currentPrice').textContent = price;
+      document.getElementById('atcButton').textContent = `Add to Cart — ${price}`;
+      document.getElementById('stickyPrice').textContent = price;
+      document.getElementById('stickyVariant').textContent = variant;
+    }
+
+    function selectVariantByName(name) {
+      document.querySelectorAll('.variant-card').forEach(c => {
+        if (c.dataset.variant === name) selectVariant(c);
+      });
+    }
+
+    // FAQ accordions (both buybox and section)
+    document.querySelectorAll('.buybox-faq-q, .faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const container = item.parentElement;
+        const wasOpen = item.classList.contains('open');
+        container.querySelectorAll('.buybox-faq-item, .faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // Sticky ATC bar — show when main ATC scrolls out of view
+    const atcButton = document.getElementById('atcButton');
+    const stickyAtc = document.getElementById('stickyAtc');
+    const observer = new IntersectionObserver(([entry]) => {
+      stickyAtc.classList.toggle('visible', !entry.isIntersecting);
+    }, { threshold: 0 });
+    observer.observe(atcButton);
+  </script>
+
+</body>
+</html>

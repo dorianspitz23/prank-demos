@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option H — The Inbox</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+  .section { background: #2D2D2D; width: 100%; padding: 72px 24px; }
+  .inner { max-width: 520px; margin: 0 auto; }
+
+  .section-kicker {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #D4714E;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .section-sub {
+    text-align: center;
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 36px;
+  }
+
+  /* Live indicator */
+  .live-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.35);
+  }
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #5B8C5A;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(91,140,90,0.4); }
+    50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(91,140,90,0); }
+  }
+
+  /* Notification stack */
+  .notif-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .notif {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    animation: slideIn 0.5s ease both;
+    transition: background 0.2s;
+  }
+  .notif:hover { background: rgba(255,255,255,0.07); }
+  .notif:nth-child(1) { animation-delay: 0.1s; }
+  .notif:nth-child(2) { animation-delay: 0.3s; }
+  .notif:nth-child(3) { animation-delay: 0.5s; }
+  .notif:nth-child(4) { animation-delay: 0.7s; }
+  .notif:nth-child(5) { animation-delay: 0.9s; }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateX(-16px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .notif-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+    background: rgba(212,113,78,0.1);
+  }
+
+  .notif-body { flex: 1; min-width: 0; }
+  .notif-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.45;
+  }
+  .notif-text strong {
+    color: #fff;
+    font-weight: 600;
+  }
+  .notif-text .url {
+    color: #D4714E;
+    font-weight: 600;
+  }
+  .notif-time {
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 4px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-stat {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 4px;
+  }
+  .footer-stat strong {
+    color: rgba(255,255,255,0.7);
+    font-weight: 600;
+  }
+  .footer-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .footer-sub .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+
+  @media (max-width: 640px) {
+    .section { padding: 56px 16px; }
+    .notif { padding: 14px 14px; }
+  }
+</style>
+</head>
+<body>
+  <div class="section">
+    <div class="inner">
+      <p class="section-kicker">Live from the field</p>
+      <h2 class="section-title">Chaos, delivered daily</h2>
+      <p class="section-sub">Real deliveries. Real reactions. Names changed to protect the guilty.</p>
+
+      <div class="live-bar">
+        <span class="live-dot"></span>
+        Recently delivered
+      </div>
+
+      <div class="notif-stack">
+        <div class="notif">
+          <div class="notif-icon">📦</div>
+          <div class="notif-body">
+            <p class="notif-text"><strong>Jake M.</strong> signed for <span class="url">MicroPenisCure.com</span> at his office front desk</p>
+            <p class="notif-time">2 hours ago · Austin, TX</p>
+          </div>
+        </div>
+
+        <div class="notif">
+          <div class="notif-icon">😂</div>
+          <div class="notif-body">
+            <p class="notif-text"><strong>Sarah's roommate</strong> opened <span class="url">BigAssDildos.com</span> in front of dinner guests</p>
+            <p class="notif-time">5 hours ago · Portland, OR</p>
+          </div>
+        </div>
+
+        <div class="notif">
+          <div class="notif-icon">📞</div>
+          <div class="notif-body">
+            <p class="notif-text"><strong>Marcus</strong> called his best friend 14 seconds after opening <span class="url">VaginalOdorHelper.com</span></p>
+            <p class="notif-time">Yesterday · Chicago, IL</p>
+          </div>
+        </div>
+
+        <div class="notif">
+          <div class="notif-icon">🤦</div>
+          <div class="notif-body">
+            <p class="notif-text"><strong>Tyler's mailman</strong> left a <span class="url">BulkCondomDelivery.com</span> tube on the porch. Neighbors saw.</p>
+            <p class="notif-time">Yesterday · Denver, CO</p>
+          </div>
+        </div>
+
+        <div class="notif">
+          <div class="notif-icon">💀</div>
+          <div class="notif-body">
+            <p class="notif-text"><strong>Emily</strong> had to explain <span class="url">MicroPenisCure.com</span> to her husband. He didn't order it. She knows.</p>
+            <p class="notif-time">2 days ago · Nashville, TN</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p class="footer-stat"><strong>1,000+</strong> pranks delivered · <strong>4.5/5</strong> ★ on Amazon</p>
+        <p class="footer-sub">
+          <span>100% anonymous</span>
+          <span class="dot"></span>
+          <span>60-day free returns</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who Deserves One? — Package Deal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #2D2D2D;
+      background: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      background: #F2F0ED;
+      padding: 80px 24px;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 96px 24px;
+      }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      text-align: center;
+      line-height: 1.2;
+      margin-bottom: 40px;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .tab-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 9999px;
+      border: 2px solid #E8E5E1;
+      background: #FFFFFF;
+      color: #6B6B6B;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      border-color: #D4714E;
+      color: #2D2D2D;
+    }
+
+    .tab-btn.active {
+      background: #2D2D2D;
+      border-color: #2D2D2D;
+      color: #FFFFFF;
+    }
+
+    /* Tab content */
+    .tab-panels {
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+
+    .tab-panel {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-description {
+      font-size: 17px;
+      line-height: 1.65;
+      color: #2D2D2D;
+      margin-bottom: 20px;
+    }
+
+    .panel-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #D4714E;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .panel-link:hover {
+      color: #C0613F;
+    }
+
+    /* Divider */
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: #E8E5E1;
+      margin: 0 auto 40px;
+    }
+
+    /* Bottom CTA area */
+    .cta-area {
+      text-align: center;
+    }
+
+    .subline {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #6B6B6B;
+      max-width: 520px;
+      margin: 0 auto 28px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      padding: 16px 40px;
+      border-radius: 9999px;
+      background: #D4714E;
+      color: #FFFFFF;
+      text-decoration: none;
+      transition: background 0.2s ease;
+      box-shadow: 0 4px 14px rgba(212, 113, 78, 0.3);
+    }
+
+    .cta-btn:hover {
+      background: #C0613F;
+    }
+
+    @media (max-width: 480px) {
+      .tab-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+      }
+
+      .panel-description {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="section">
+  <div class="container">
+    <h2 class="headline">You already know who you'd send one to.</h2>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-0" data-tab="0">Your Coworker</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-1" data-tab="1">Your Brother-in-Law</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-2" data-tab="2">Your College Roommate</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-3" data-tab="3">That Friend</button>
+    </div>
+
+    <div class="tab-panels">
+      <div class="tab-panel active" id="panel-0" role="tabpanel">
+        <p class="panel-description">The one who "replies all" to every email. Imagine their face when a tube labeled MicroPenisCure.com arrives at the office — and they have to sign for it.</p>
+        <a href="/products/micropeniscure-prank-mail" class="panel-link">Send It &rarr;</a>
+      </div>
+      <div class="tab-panel" id="panel-1" role="tabpanel">
+        <p class="panel-description">He talks too much at Thanksgiving and always has an opinion. A tube from BigAssDildos.com showing up at his door sends a message words never could.</p>
+        <a href="/products/bigassdildos-prank-mail" class="panel-link">Send It &rarr;</a>
+      </div>
+      <div class="tab-panel" id="panel-2" role="tabpanel">
+        <p class="panel-description">You survived four years together. They still owe you rent. Return the favor with a tube from VaginalOdorHelper.com — anonymously, of course.</p>
+        <a href="/products/vaginalodorhelper-prank-mail" class="panel-link">Send It &rarr;</a>
+      </div>
+      <div class="tab-panel" id="panel-3" role="tabpanel">
+        <p class="panel-description">You know the one. The group chat legend who can take a joke. Hit them with BulkCondomDelivery.com and watch the screenshots roll in.</p>
+        <a href="/products/bulkcondomdelivery-prank-mail" class="panel-link">Send It &rarr;</a>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="cta-area">
+      <p class="subline">Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+      <a href="/collection" class="cta-btn">See the Pranks</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.tab-panel');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const index = tab.dataset.tab;
+
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+
+      panels.forEach(p => p.classList.remove('active'));
+      panels[index].classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>

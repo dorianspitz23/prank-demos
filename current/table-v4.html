@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparison Table V4 — Scorecard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F2F0ED;
+      color: #2D2D2D;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      padding: 64px 24px;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 96px 24px;
+      }
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Dark card */
+    .scorecard {
+      background: #2D2D2D;
+      border-radius: 16px;
+      overflow: hidden;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Header area */
+    .scorecard-header {
+      padding: 40px 24px 32px;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .scorecard-header {
+        padding: 56px 40px 40px;
+      }
+    }
+
+    .kicker {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #D4714E;
+      margin-bottom: 12px;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.15;
+      margin-bottom: 40px;
+    }
+
+    /* Score display */
+    .scores {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .scores {
+        gap: 40px;
+      }
+    }
+
+    .score-column {
+      text-align: center;
+      flex: 0 0 auto;
+    }
+
+    .score-number {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(48px, 10vw, 72px);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .score-number.ours {
+      color: #D4714E;
+    }
+
+    .score-number.theirs {
+      color: #6B6B6B;
+    }
+
+    .score-label {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .score-label.ours {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .vs-divider {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.25);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      flex-shrink: 0;
+      position: relative;
+      top: -6px;
+    }
+
+    /* Table */
+    .feature-table {
+      width: 100%;
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 72px 72px;
+      align-items: center;
+      padding: 14px 24px;
+    }
+
+    @media (min-width: 768px) {
+      .feature-row {
+        grid-template-columns: 1fr 100px 100px;
+        padding: 16px 40px;
+      }
+    }
+
+    .feature-row:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .feature-row:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Column headers row */
+    .feature-row.header-row {
+      background: transparent;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 0;
+    }
+
+    .col-header {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255, 255, 255, 0.4);
+      text-align: center;
+    }
+
+    .col-header.us {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .feature-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      line-height: 1.35;
+    }
+
+    @media (min-width: 768px) {
+      .feature-name {
+        font-size: 16px;
+      }
+    }
+
+    .check, .cross {
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .check {
+      color: #5B8C5A;
+    }
+
+    .cross {
+      color: #6B6B6B;
+    }
+
+    /* CTA area */
+    .scorecard-footer {
+      padding: 32px 24px 40px;
+      text-align: center;
+    }
+
+    @media (min-width: 768px) {
+      .scorecard-footer {
+        padding: 40px 40px 56px;
+      }
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #D4714E;
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 40px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 16px rgba(212, 113, 78, 0.3);
+    }
+
+    .cta-button:hover {
+      background: #C0613F;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(212, 113, 78, 0.4);
+    }
+
+    .cta-button:active {
+      background: #ad5a38;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="scorecard">
+        <div class="scorecard-header">
+          <div class="kicker">The Competition</div>
+          <h2 class="headline">Other prank sites wish.</h2>
+
+          <div class="scores">
+            <div class="score-column">
+              <div class="score-number ours">7 / 7</div>
+              <div class="score-label ours">Package Deal</div>
+            </div>
+            <div class="vs-divider">VS</div>
+            <div class="score-column">
+              <div class="score-number theirs">0 / 7</div>
+              <div class="score-label">Everyone Else</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="feature-table">
+          <div class="feature-row header-row">
+            <span></span>
+            <span class="col-header us">Us</span>
+            <span class="col-header">Them</span>
+          </div>
+
+          <div class="feature-row">
+            <span class="feature-name">The URL IS the prank</span>
+            <span class="check">&#10003;</span>
+            <span class="cross">&#10005;</span>
+          </div>
+          <div class="feature-row">
+            <span class="feature-name">Forced signature delivery</span>
+            <span class="check">&#10003;</span>
+            <span class="cross">&#10005;</span>
+          </div>
+          <div class="feature-row">
+            <span class="feature-name">Actually anonymous (no return address)</span>
+            <span class="check">&#10003;</span>
+            <span class="cross">&#10005;</span>
+          </div>
+          <div class="feature-row">
+            <span class="feature-name">Premium mailing tubes (not flimsy novelty)</span>
+            <span class="check">&#10003;</span>
+            <span class="cross">&#10005;</span>
+          </div>
+          <div class="feature-row">
+            <span class="feature-name">Free shipping</span>
+            <span class="check">&#10003;</span>
+            <span class="cross">&#10005;</span>
+          </div>
+          <div class="feature-row">
+            <span class="feature-name">60-day free returns</span>
+            <span class="check">&#10003;</span>
+            <span class="cross">&#10005;</span>
+          </div>
+          <div class="feature-row">
+            <span class="feature-name">Confetti bomb upgrade</span>
+            <span class="check">&#10003;</span>
+            <span class="cross">&#10005;</span>
+          </div>
+        </div>
+
+        <div class="scorecard-footer">
+          <a href="/collection" class="cta-button">Shop All Pranks</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

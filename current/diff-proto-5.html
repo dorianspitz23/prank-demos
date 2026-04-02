@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Differentiators — Proto 5: Icon-Led Accordion Stack</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: #2D2D2D; }
+
+  .section { max-width: 800px; margin: 0 auto; padding: 96px 24px; }
+  .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 600; color: #D4714E; text-align: center; margin-bottom: 12px; }
+  .headline { font-size: clamp(24px, 4vw, 36px); font-weight: 600; text-align: center; margin-bottom: 64px; }
+
+  /* Expandable accordion-style stack */
+  .stack { display: flex; flex-direction: column; gap: 0; }
+
+  .stack-item {
+    border-bottom: 1px solid #E8E5E1;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .stack-item:first-child { border-top: 1px solid #E8E5E1; }
+  .stack-item:hover { background: #FAFAF8; }
+  .stack-item.active { background: #FAFAF8; }
+
+  .stack-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 24px 8px;
+  }
+
+  .stack-icon {
+    width: 48px;
+    height: 48px;
+    background: rgba(212,113,78,0.1);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .active .stack-icon { background: #D4714E; transform: scale(1.05); }
+  .stack-icon svg { width: 22px; height: 22px; stroke: #D4714E; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s; }
+  .active .stack-icon svg { stroke: #fff; }
+
+  .stack-title { font-size: 18px; font-weight: 600; flex-grow: 1; }
+
+  .stack-chevron {
+    width: 20px; height: 20px;
+    transition: transform 0.3s;
+    color: #6B6B6B;
+  }
+  .active .stack-chevron { transform: rotate(180deg); color: #D4714E; }
+
+  .stack-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+    padding: 0 8px 0 76px;
+  }
+  .active .stack-body {
+    max-height: 200px;
+    padding: 0 8px 24px 76px;
+  }
+
+  .stack-body p {
+    color: #6B6B6B;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<section class="section">
+  <p class="kicker">Why Package Deal</p>
+  <h2 class="headline">Why this isn't like every other prank site.</h2>
+
+  <div class="stack">
+    <div class="stack-item active" onclick="toggle(this)">
+      <div class="stack-header">
+        <div class="stack-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 5 10-5"/></svg>
+        </div>
+        <span class="stack-title">The URL is the prank.</span>
+        <svg class="stack-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="stack-body">
+        <p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they'll have to explain it to anyone who sees it. Which is everyone.</p>
+      </div>
+    </div>
+
+    <div class="stack-item" onclick="toggle(this)">
+      <div class="stack-header">
+        <div class="stack-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+        </div>
+        <span class="stack-title">"Sign For It" delivery.</span>
+        <svg class="stack-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="stack-body">
+        <p>Upgrade any prank to require a signature. They can't just grab it off the porch — they have to look their mail carrier in the eye and accept it. By name.</p>
+      </div>
+    </div>
+
+    <div class="stack-item" onclick="toggle(this)">
+      <div class="stack-header">
+        <div class="stack-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </div>
+        <span class="stack-title">Actually anonymous.</span>
+        <svg class="stack-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="stack-body">
+        <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+      </div>
+    </div>
+
+    <div class="stack-item" onclick="toggle(this)">
+      <div class="stack-header">
+        <div class="stack-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <span class="stack-title">Free shipping. Free returns.</span>
+        <svg class="stack-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="stack-body">
+        <p>We ship it free. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggle(el) {
+  const wasActive = el.classList.contains('active');
+  document.querySelectorAll('.stack-item').forEach(item => item.classList.remove('active'));
+  if (!wasActive) el.classList.add('active');
+}
+</script>
+</body>
+</html>

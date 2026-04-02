@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal — Prototype A2 (Midnight Navy)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A1628;
+    --navy-mid: #142640;
+    --navy-light: #1C3355;
+    --terracotta: #D4714E;
+    --terracotta-hover: #C0613F;
+    --white: #FFFFFF;
+    --light-gray: #F8F9FA;
+    --charcoal: #2D2D2D;
+    --text-secondary: #6B6B6B;
+    --border-dark: rgba(255,255,255,0.1);
+    --border-light: #E8E5E1;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--charcoal);
+    background: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+  }
+
+  /* ---- ANIMATIONS ---- */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+  /* ---- MARQUEE ---- */
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-bar {
+    background: var(--navy);
+    overflow: hidden;
+    padding: 10px 0;
+  }
+  .marquee-track {
+    display: flex;
+    gap: 48px;
+    animation: marquee 25s linear infinite;
+    width: max-content;
+  }
+  .marquee-track span {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .marquee-track span::before {
+    content: '';
+    width: 5px;
+    height: 5px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ---- PILL BUTTON ---- */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 36px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  .btn-pill:hover { transform: translateY(-2px); }
+  .btn-terracotta {
+    background: var(--terracotta);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(212,113,78,0.3);
+  }
+  .btn-terracotta:hover { background: var(--terracotta-hover); box-shadow: 0 8px 30px rgba(212,113,78,0.4); }
+  .btn-white {
+    background: #fff;
+    color: var(--navy);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  .btn-white:hover { background: var(--light-gray); }
+
+  /* ---- LAYOUT ---- */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+  @media (min-width: 768px) { .container { padding: 0 40px; } }
+
+  /* ---- HEADER ---- */
+  .header {
+    background: var(--navy);
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--border-dark);
+  }
+  @media (min-width: 768px) { .header { padding: 0 40px; } }
+  .header-logo {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .header-logo em {
+    font-style: normal;
+    color: var(--terracotta);
+  }
+  .header-nav { display: flex; gap: 28px; align-items: center; }
+  .header-nav a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: #fff; }
+  .header-cart {
+    background: var(--terracotta);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .header-cart:hover { background: var(--terracotta-hover); }
+  .nav-desktop { display: none; }
+  @media (min-width: 768px) { .nav-desktop { display: flex; } }
+
+  /* ---- HERO ---- */
+  .hero {
+    background: linear-gradient(170deg, var(--navy) 0%, var(--navy-mid) 100%);
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 0 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -20%;
+    width: 70%;
+    height: 120%;
+    background: radial-gradient(ellipse, rgba(20,38,64,0.8) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+  }
+  @media (min-width: 1024px) {
+    .hero-inner { flex-direction: row; text-align: left; gap: 60px; }
+  }
+  .hero-copy { flex: 1; }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(212,113,78,0.15);
+    color: var(--terracotta);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 999px;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255,255,255,0.65);
+    max-width: 500px;
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  @media (max-width: 1023px) { .hero p { margin-left: auto; margin-right: auto; } }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  @media (min-width: 1024px) { .hero-actions { justify-content: flex-start; } }
+  .hero-img {
+    flex: 1;
+    max-width: 520px;
+    position: relative;
+  }
+  .hero-img img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 60px rgba(212,113,78,0.08);
+  }
+
+  /* ---- TRUST TICKER ---- */
+  .trust-ticker {
+    background: var(--terracotta);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+  .trust-ticker .marquee-track span {
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+  .trust-ticker .marquee-track span::before { background: #fff; }
+
+  /* ---- SECTION HELPERS ---- */
+  .section-dark {
+    background: var(--navy);
+    color: #fff;
+    padding: 72px 0;
+  }
+  .section-mid {
+    background: var(--navy-mid);
+    color: #fff;
+    padding: 72px 0;
+  }
+  .section-light {
+    background: var(--white);
+    color: var(--charcoal);
+    padding: 72px 0;
+  }
+  .section-gray {
+    background: var(--light-gray);
+    color: var(--charcoal);
+    padding: 72px 0;
+  }
+  @media (min-width: 768px) {
+    .section-dark, .section-mid, .section-light, .section-gray { padding: 96px 0; }
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--terracotta);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+  .section-subtitle-light { color: rgba(255,255,255,0.6); }
+  .section-subtitle-dark { color: var(--text-secondary); }
+  .text-center { text-align: center; margin-left: auto; margin-right: auto; }
+
+  /* ---- PRODUCTS ---- */
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (min-width: 640px) { .products-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .products-grid { grid-template-columns: repeat(4, 1fr); } }
+  .product-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    border-color: var(--terracotta);
+  }
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: var(--light-gray);
+  }
+  .product-card-body { padding: 20px; }
+  .product-card-body h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    margin-bottom: 4px;
+  }
+  .product-card-body .price {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .product-card-body .price strong {
+    color: var(--charcoal);
+    font-weight: 600;
+  }
+  .product-card-body .card-cta {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 999px;
+    background: var(--terracotta);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .product-card-body .card-cta:hover { background: var(--terracotta-hover); }
+
+  /* ---- SOCIAL PROOF ---- */
+  .proof-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (min-width: 768px) { .proof-grid { grid-template-columns: repeat(3, 1fr); } }
+  .proof-card {
+    background: var(--navy-mid);
+    border-radius: 16px;
+    padding: 32px;
+    border: 1px solid var(--border-dark);
+  }
+  .proof-stars { color: #F5C451; font-size: 1rem; margin-bottom: 12px; }
+  .proof-card p { color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px; }
+  .proof-author { font-size: 0.8rem; color: rgba(255,255,255,0.5); font-weight: 500; }
+
+  /* ---- STATS ---- */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 48px;
+    text-align: center;
+  }
+  @media (min-width: 768px) { .stats-row { grid-template-columns: repeat(4, 1fr); } }
+  .stat-num {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num em { font-style: normal; color: var(--terracotta); }
+  .stat-label { font-size: 0.85rem; color: rgba(255,255,255,0.5); font-weight: 500; }
+
+  /* ---- HOW IT WORKS ---- */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 48px;
+  }
+  @media (min-width: 768px) { .steps-grid { grid-template-columns: repeat(3, 1fr); } }
+  .step { text-align: center; }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--terracotta);
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+  .step h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; }
+  .step p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; max-width: 300px; margin: 0 auto; }
+
+  /* ---- COMPARISON TABLE ---- */
+  .comparison-wrap { overflow-x: auto; margin-top: 48px; }
+  .comparison-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .comparison-table th,
+  .comparison-table td {
+    padding: 16px 20px;
+    font-size: 0.9rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-dark);
+  }
+  .comparison-table thead th {
+    background: var(--navy-light);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .comparison-table tbody td { color: rgba(255,255,255,0.8); }
+  .comparison-table tbody tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .comparison-table .check { color: var(--terracotta); font-weight: 700; }
+  .comparison-table .cross { color: rgba(255,255,255,0.25); }
+
+  /* ---- GUARANTEE ---- */
+  .guarantee-box {
+    background: var(--light-gray);
+    border-radius: 20px;
+    padding: 48px 32px;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .guarantee-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--terracotta);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  .guarantee-box h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+  .guarantee-box p { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; max-width: 500px; margin: 0 auto; }
+
+  /* ---- FAQ ---- */
+  .faq-list { max-width: 720px; margin: 48px auto 0; }
+  .faq-item {
+    border-bottom: 1px solid var(--border-light);
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--charcoal);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-q::after {
+    content: '+';
+    font-size: 1.3rem;
+    color: var(--terracotta);
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .faq-item.open .faq-q::after { content: '\2212'; }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+  }
+  .faq-item.open .faq-a { max-height: 200px; }
+  .faq-a p {
+    padding: 0 0 20px;
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* ---- FINAL CTA ---- */
+  .final-cta {
+    background: linear-gradient(170deg, var(--navy) 0%, var(--navy-mid) 100%);
+    padding: 96px 0;
+    text-align: center;
+    position: relative;
+  }
+  .final-cta h2 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+  }
+  .final-cta p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    margin-bottom: 32px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    background: #060E1A;
+    padding: 48px 0 24px;
+    color: rgba(255,255,255,0.4);
+  }
+  .footer-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+  }
+  .footer-logo { font-size: 1rem; font-weight: 700; color: #fff; }
+  .footer-logo em { font-style: normal; color: var(--terracotta); }
+  .footer-links { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+  .footer-links a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-copy { font-size: 0.8rem; text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08); }
+</style>
+</head>
+<body>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-bar">
+  <div class="marquee-track">
+    <span>Free Shipping Over $25</span>
+    <span>100% Anonymous Delivery</span>
+    <span>They'll Never Know It Was You</span>
+    <span>Embarrassment Guaranteed</span>
+    <span>Rated 4.5/5 on Amazon</span>
+    <span>Free Shipping Over $25</span>
+    <span>100% Anonymous Delivery</span>
+    <span>They'll Never Know It Was You</span>
+    <span>Embarrassment Guaranteed</span>
+    <span>Rated 4.5/5 on Amazon</span>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-logo">Package<em>Deal</em></div>
+  <nav class="header-nav nav-desktop">
+    <a href="#products">Products</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#faq">FAQ</a>
+  </nav>
+  <a href="#" class="header-cart">Cart (0)</a>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy fade-up">
+      <div class="hero-badge">&#x1f4e6; Prank Mail, Perfected</div>
+      <h1>Send someone you love something deeply embarrassing.</h1>
+      <p>Cardboard mailing tubes printed with hilariously awful URLs. Shipped anonymously. They have to sign for it. You get to watch from a safe distance.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-pill btn-terracotta">Shop All Pranks &rarr;</a>
+        <a href="#how-it-works" class="btn-pill btn-white">How It Works</a>
+      </div>
+    </div>
+    <div class="hero-img fade-up">
+      <img src="/images/all-variants.webp" alt="Package Deal prank mail tubes" loading="eager">
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST TICKER ===== -->
+<div class="trust-ticker">
+  <div class="marquee-track" style="animation-duration: 18s;">
+    <span>&#x2713; Ships in Discreet Plain Box</span>
+    <span>&#x2713; 100% Anonymous</span>
+    <span>&#x2713; Real USPS Tracking</span>
+    <span>&#x2713; Recipient Must Sign</span>
+    <span>&#x2713; No Return Address</span>
+    <span>&#x2713; Ships in Discreet Plain Box</span>
+    <span>&#x2713; 100% Anonymous</span>
+    <span>&#x2713; Real USPS Tracking</span>
+    <span>&#x2713; Recipient Must Sign</span>
+    <span>&#x2713; No Return Address</span>
+  </div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<section id="products" class="section-dark">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">The Collection</div>
+      <h2 class="section-title" style="color: #fff;">Four Ways to Ruin Someone's Day</h2>
+      <p class="section-subtitle section-subtitle-light text-center">Each tube ships with a hilariously embarrassing URL printed right on the outside. Choose your weapon.</p>
+    </div>
+    <div class="products-grid">
+      <div class="product-card fade-up">
+        <img src="/images/micropenis1.webp" alt="MicroPenisCure.com prank tube" loading="lazy">
+        <div class="product-card-body">
+          <h3>MicroPenisCure.com</h3>
+          <p class="price">From <strong>$14.99</strong></p>
+          <a href="#" class="card-cta">View Prank</a>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <img src="/images/bigassdildos1.webp" alt="BigAssDildos.com prank tube" loading="lazy">
+        <div class="product-card-body">
+          <h3>BigAssDildos.com</h3>
+          <p class="price">From <strong>$14.99</strong></p>
+          <a href="#" class="card-cta">View Prank</a>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com prank tube" loading="lazy">
+        <div class="product-card-body">
+          <h3>VaginalOdorHelper.com</h3>
+          <p class="price">From <strong>$14.99</strong></p>
+          <a href="#" class="card-cta">View Prank</a>
+        </div>
+      </div>
+      <div class="product-card fade-up">
+        <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com prank tube" loading="lazy">
+        <div class="product-card-body">
+          <h3>BulkCondomDelivery.com</h3>
+          <p class="price"><strong>$12.99</strong></p>
+          <a href="#" class="card-cta">View Prank</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SOCIAL PROOF ===== -->
+<section class="section-mid">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">What People Are Saying</div>
+      <h2 class="section-title" style="color: #fff;">Thousands of Friendships Tested</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card fade-up">
+        <div class="proof-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <p>"My roommate had to sign for it in front of his girlfriend. I could hear the silence from three states away."</p>
+        <div class="proof-author">Jake M. &mdash; Verified Buyer</div>
+      </div>
+      <div class="proof-card fade-up">
+        <div class="proof-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <p>"Sent the MicroPenisCure to my brother for his birthday. He called me 14 times. Worth every penny."</p>
+        <div class="proof-author">Sarah K. &mdash; Verified Buyer</div>
+      </div>
+      <div class="proof-card fade-up">
+        <div class="proof-stars">&starf;&starf;&starf;&starf;&starf;</div>
+        <p>"The delivery guy made him sign for a package labeled BigAssDildos.com. I have the doorbell cam footage."</p>
+        <div class="proof-author">Marcus T. &mdash; Verified Buyer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="section-dark">
+  <div class="container">
+    <div class="stats-row fade-up">
+      <div>
+        <div class="stat-num">50<em>K+</em></div>
+        <div class="stat-label">Tubes Shipped</div>
+      </div>
+      <div>
+        <div class="stat-num">4.5<em>/5</em></div>
+        <div class="stat-label">Amazon Rating</div>
+      </div>
+      <div>
+        <div class="stat-num">100<em>%</em></div>
+        <div class="stat-label">Anonymous</div>
+      </div>
+      <div>
+        <div class="stat-num">0<em>x</em></div>
+        <div class="stat-label">Caught So Far</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how-it-works" class="section-light">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">Three Steps to Sweet, Anonymous Chaos</h2>
+      <p class="section-subtitle section-subtitle-dark text-center">It takes about 90 seconds. The aftermath lasts forever.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step fade-up">
+        <div class="step-num">1</div>
+        <h3>Pick Your Prank</h3>
+        <p>Choose from four embarrassing URLs. Upgrade to "Sign For It" so they can't hide from the mailman.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">2</div>
+        <h3>Enter Their Address</h3>
+        <p>We ship it with zero return address and zero trace back to you. Complete anonymity.</p>
+      </div>
+      <div class="step fade-up">
+        <div class="step-num">3</div>
+        <h3>Wait &amp; Enjoy</h3>
+        <p>Track the package. Wait for the call. Deny everything. Repeat as necessary.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARISON TABLE ===== -->
+<section class="section-mid">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">Compare Options</div>
+      <h2 class="section-title" style="color: #fff;">Choose Your Level of Chaos</h2>
+    </div>
+    <div class="comparison-wrap fade-up">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Standard</th>
+            <th>Sign For It</th>
+            <th>Confetti Bomb</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Embarrassing URL on tube</td>
+            <td class="check">&check;</td>
+            <td class="check">&check;</td>
+            <td class="check">&check;</td>
+          </tr>
+          <tr>
+            <td>Anonymous delivery</td>
+            <td class="check">&check;</td>
+            <td class="check">&check;</td>
+            <td class="check">&check;</td>
+          </tr>
+          <tr>
+            <td>Must sign at the door</td>
+            <td class="cross">&times;</td>
+            <td class="check">&check;</td>
+            <td class="check">&check;</td>
+          </tr>
+          <tr>
+            <td>Confetti explosion on open</td>
+            <td class="cross">&times;</td>
+            <td class="cross">&times;</td>
+            <td class="check">&check;</td>
+          </tr>
+          <tr>
+            <td>Starting price</td>
+            <td>$14.99</td>
+            <td>$21.99</td>
+            <td>$34.99</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GUARANTEE ===== -->
+<section class="section-light">
+  <div class="container">
+    <div class="guarantee-box fade-up">
+      <div class="guarantee-icon">&#x1f6e1;</div>
+      <h3>100% Anonymity Guarantee</h3>
+      <p>Every package ships with zero return address, zero sender info, and zero way to trace it back to you. If your buddy figures out it was you, that's on your poker face — not ours.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section-gray">
+  <div class="container">
+    <div class="text-center fade-up">
+      <div class="section-label">FAQ</div>
+      <h2 class="section-title">Questions We Get Asked a Lot</h2>
+    </div>
+    <div class="faq-list fade-up">
+      <div class="faq-item">
+        <button class="faq-q">Is this actually anonymous?</button>
+        <div class="faq-a"><p>Completely. No return address, no sender name, no packing slip. The only clue is the hilariously embarrassing URL printed on the outside of the tube. Good luck explaining that to the mailman.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What does "Sign For It" mean?</button>
+        <div class="faq-a"><p>It means the recipient has to physically sign for the package at their door — in front of the delivery person, their roommate, their partner, or whoever happens to be standing there. It's the upgrade that turns a good prank into a legendary one.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is this legal?</button>
+        <div class="faq-a"><p>Yes. You're mailing a cardboard tube. It's not threatening, not obscene by USPS standards, and not harmful. It's just deeply, profoundly embarrassing. Perfectly legal in all 50 states.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How long does shipping take?</button>
+        <div class="faq-a"><p>Most orders ship within 1-2 business days and arrive in 3-5 business days via USPS. You'll get real tracking so you can count down to the moment of impact.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I send it to myself as a test?</button>
+        <div class="faq-a"><p>You can, but we'd recommend just trusting the process. Over 50,000 tubes shipped and counting. Save your money for someone who deserves it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+  <div class="container">
+    <div class="fade-up">
+      <h2>Ready to make someone deeply uncomfortable?</h2>
+      <p>Pick a prank, enter their address, and let USPS do the rest. They'll never know it was you.</p>
+      <a href="#products" class="btn-pill btn-terracotta">Shop All Pranks &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">Package<em>Deal</em></div>
+      <div class="footer-links">
+        <a href="#">Products</a>
+        <a href="#">About</a>
+        <a href="#">FAQ</a>
+        <a href="#">Shipping &amp; Returns</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Package Deal. All rights reserved. Friendships are not.</p>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+  // IntersectionObserver fade-up
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

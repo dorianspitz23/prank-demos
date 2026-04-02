@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MicroPenisCure.com — Prank Mail | Package Deal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #14433D;
+      --green-light: #1a5a52;
+      --green-dark: #0e2f2b;
+      --cream: #FDF8F0;
+      --white: #FFFFFF;
+      --off-white: #FAFAF8;
+      --text: #2D2D2D;
+      --text-light: #6B6B6B;
+      --border: #E8E5E1;
+      --lemon: #F5D76E;
+      --coral: #E8735A;
+      --peach: #F4A583;
+      --error: #fa4545;
+      --success: #1F873D;
+
+      /* Flavor theme — MicroPenisCure (warm pink/coral) */
+      --flavor-bg: #FDE8E0;
+      --flavor-accent: #E8735A;
+      --flavor-light: #FDF0EC;
+      --flavor-mid: #F4A583;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', Helvetica, Arial, sans-serif;
+      --max-width: 1200px;
+      --gutter: 55px;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --radius-pill: 999px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ═══════════════════════════════════════════
+       ANNOUNCEMENT
+       ═══════════════════════════════════════════ */
+    .announcement {
+      background: var(--green); color: #fff;
+      text-align: center; padding: 10px 16px;
+      font-size: 13px; font-weight: 500; letter-spacing: 0.03em;
+    }
+    .announcement strong { color: var(--lemon); }
+
+    /* ═══════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════ */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white); border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s;
+    }
+    .header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px var(--gutter); max-width: var(--max-width); margin: 0 auto;
+    }
+    .header-left { display: flex; align-items: center; gap: 40px; }
+    .header-left nav { display: flex; gap: 28px; }
+    .header-left nav a { font-size: 15px; font-weight: 500; color: var(--text); transition: opacity 0.2s; }
+    .header-left nav a:hover { opacity: 0.6; }
+    .logo { font-family: var(--font-display); font-size: 28px; color: var(--green); }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-right a { font-size: 14px; font-weight: 500; color: var(--text); transition: opacity 0.2s; }
+    .header-right a:hover { opacity: 0.6; }
+    .cart-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--green); color: #fff;
+      padding: 8px 16px; border-radius: 2px;
+      font-size: 14px; font-weight: 600; transition: background 0.2s;
+    }
+    .cart-btn:hover { background: var(--green-light); }
+    .cart-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+
+    /* ═══════════════════════════════════════════
+       BREADCRUMB
+       ═══════════════════════════════════════════ */
+    .breadcrumb {
+      padding: 16px 0; font-size: 13px; color: var(--text-light);
+    }
+    .breadcrumb a { transition: opacity 0.2s; }
+    .breadcrumb a:hover { opacity: 0.6; }
+    .breadcrumb span { margin: 0 8px; opacity: 0.4; }
+
+    /* ═══════════════════════════════════════════
+       PDP HERO — Olipop two-column with flavor bg
+       ═══════════════════════════════════════════ */
+    .pdp-hero {
+      display: grid; grid-template-columns: 55% 45%;
+      gap: 0; min-height: 600px;
+    }
+
+    /* Gallery with flavor-colored background */
+    .pdp-gallery {
+      background: var(--flavor-bg);
+      padding: 40px;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      position: relative;
+    }
+    .gallery-badge {
+      position: absolute; top: 24px; left: 24px;
+      background: var(--flavor-accent); color: #fff;
+      font-size: 12px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 6px 16px;
+      border-radius: var(--radius-pill);
+    }
+    .gallery-main {
+      width: 100%; max-width: 440px;
+      aspect-ratio: 1; border-radius: var(--radius);
+      overflow: hidden; cursor: zoom-in;
+      margin-bottom: 20px;
+    }
+    .gallery-main img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .gallery-main:hover img { transform: scale(1.06); }
+    .gallery-thumbs { display: flex; gap: 12px; }
+    .gallery-thumb {
+      width: 72px; height: 72px; border-radius: var(--radius-sm);
+      overflow: hidden; cursor: pointer;
+      border: 2px solid transparent; transition: all 0.2s;
+      background: var(--flavor-light);
+    }
+    .gallery-thumb.active { border-color: var(--flavor-accent); }
+    .gallery-thumb:hover { border-color: var(--flavor-mid); }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Buy box */
+    .pdp-buybox {
+      padding: 48px 48px 48px 40px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .pdp-kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--flavor-accent); margin-bottom: 8px;
+    }
+    .pdp-title {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400; line-height: 1.1; margin-bottom: 8px;
+      color: var(--text);
+    }
+    .pdp-tagline {
+      font-family: var(--font-display);
+      font-size: 18px; font-style: italic;
+      color: var(--text-light); margin-bottom: 20px;
+    }
+
+    /* Rating row */
+    .pdp-rating {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 24px;
+    }
+    .pdp-stars { color: var(--lemon); font-size: 18px; letter-spacing: 2px; }
+    .pdp-rating-text { font-size: 14px; color: var(--text-light); }
+    .pdp-amazon {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: #FFF8E7; border: 1px solid var(--lemon);
+      padding: 3px 10px; border-radius: var(--radius-pill);
+      font-size: 11px; font-weight: 600; color: #8B6914;
+    }
+
+    /* Variant pills (Olipop pack-size button style) */
+    .variant-label {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--text-light); margin-bottom: 10px;
+    }
+    .variant-pills {
+      display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .variant-pill {
+      padding: 12px 20px; border: 2px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 14px; font-weight: 600;
+      cursor: pointer; transition: all 0.2s; background: var(--white);
+      display: flex; flex-direction: column; align-items: center; gap: 2px;
+      min-width: 120px; text-align: center;
+    }
+    .variant-pill:hover { border-color: #ccc; }
+    .variant-pill.active {
+      border-color: var(--green); background: rgba(20,67,61,0.04);
+    }
+    .variant-pill .vp-name { font-size: 14px; font-weight: 600; }
+    .variant-pill .vp-price { font-size: 13px; color: var(--text-light); font-weight: 400; }
+    .variant-pill .vp-badge {
+      font-size: 10px; font-weight: 700; color: var(--flavor-accent);
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .variant-pill.sold-out {
+      opacity: 0.45; cursor: not-allowed;
+    }
+
+    /* Delivery toggle (Olipop subscription style) */
+    .delivery-toggle {
+      display: flex; gap: 0; margin-bottom: 20px;
+      border: 2px solid var(--border); border-radius: var(--radius-sm);
+      overflow: hidden;
+    }
+    .delivery-option {
+      flex: 1; padding: 14px 16px; text-align: center;
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: all 0.2s; background: var(--white);
+      border-right: 1px solid var(--border);
+    }
+    .delivery-option:last-child { border-right: none; }
+    .delivery-option.active {
+      background: var(--green); color: #fff;
+    }
+    .delivery-option .do-sub {
+      font-size: 11px; font-weight: 500;
+      display: block; margin-top: 2px;
+    }
+    .delivery-option.active .do-sub { color: rgba(255,255,255,0.7); }
+    .delivery-option:not(.active) .do-sub { color: var(--text-light); }
+
+    /* Price display */
+    .pdp-price-row {
+      display: flex; align-items: baseline; gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pdp-price {
+      font-family: var(--font-display);
+      font-size: 32px; color: var(--text);
+    }
+
+    /* ATC button */
+    .atc-btn {
+      width: 100%; padding: 18px 32px;
+      background: var(--green); color: #fff;
+      font-size: 16px; font-weight: 700;
+      border-radius: 2px; transition: all 0.2s;
+      letter-spacing: 0.02em; margin-bottom: 16px;
+    }
+    .atc-btn:hover { background: var(--green-light); }
+    .atc-btn.disabled { background: #ccc; color: #999; cursor: not-allowed; }
+
+    /* Trust row below ATC */
+    .trust-row {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      padding: 16px 0; border-top: 1px solid var(--border);
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 600; color: var(--text-light);
+    }
+    .trust-item svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+    /* Buybox mini FAQ */
+    .bb-faq { margin-top: 20px; }
+    .bb-faq-item { border-bottom: 1px solid var(--border); }
+    .bb-faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; text-align: left; padding: 12px 0;
+      font-size: 14px; font-weight: 500; transition: color 0.2s;
+    }
+    .bb-faq-q:hover { color: var(--green); }
+    .bb-faq-icon {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.3s;
+    }
+    .bb-faq-icon svg { width: 10px; height: 10px; stroke: var(--text-light); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .bb-faq-item.open .bb-faq-icon { background: var(--green); border-color: var(--green); }
+    .bb-faq-item.open .bb-faq-icon svg { stroke: #fff; transform: rotate(45deg); }
+    .bb-faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s; }
+    .bb-faq-item.open .bb-faq-a { max-height: 200px; }
+    .bb-faq-a-inner { padding: 0 0 12px; font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════════
+       BENEFIT STRIP
+       ═══════════════════════════════════════════ */
+    .benefit-strip {
+      background: var(--flavor-light); padding: 14px 0;
+      overflow: hidden; border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .benefit-track {
+      display: flex; animation: marquee 35s linear infinite; width: max-content;
+    }
+    .benefit-item {
+      display: flex; align-items: center; gap: 8px; padding: 0 28px;
+      white-space: nowrap; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .benefit-item svg { width: 15px; height: 15px; stroke: var(--flavor-accent); fill: none; stroke-width: 2; }
+    .benefit-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--flavor-accent); flex-shrink: 0; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ═══════════════════════════════════════════
+       SECTIONS
+       ═══════════════════════════════════════════ */
+    .section { padding: 80px 0; }
+    .section--cream { background: var(--cream); }
+    .section--dark { background: var(--green); color: #fff; }
+    .section--flavor { background: var(--flavor-light); }
+    .section--off { background: var(--off-white); }
+    .section-kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--flavor-accent); margin-bottom: 12px;
+    }
+    .section--dark .section-kicker { color: var(--lemon); }
+    .section-heading {
+      font-family: var(--font-display); font-size: clamp(28px, 4vw, 44px);
+      font-weight: 400; line-height: 1.15; margin-bottom: 16px;
+    }
+    .section-heading em { font-style: italic; }
+    .section--dark .section-heading { color: #fff; }
+    .section-subtext { font-size: 17px; color: var(--text-light); max-width: 560px; line-height: 1.7; }
+    .section--dark .section-subtext { color: rgba(255,255,255,0.65); }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header .section-subtext { margin: 0 auto; }
+    .btn-green {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: #fff;
+      padding: 14px 32px; border-radius: 2px;
+      font-size: 15px; font-weight: 700; transition: background 0.2s;
+    }
+    .btn-green:hover { background: var(--green-light); }
+    .btn-white {
+      display: inline-flex; align-items: center;
+      background: #fff; color: var(--green);
+      padding: 14px 32px; border-radius: 2px;
+      font-size: 15px; font-weight: 700; transition: background 0.2s;
+    }
+    .btn-white:hover { background: var(--cream); }
+    .btn-outline {
+      display: inline-flex; align-items: center;
+      background: transparent; color: var(--green); border: 2px solid var(--green);
+      padding: 12px 28px; border-radius: 2px; font-size: 15px; font-weight: 700;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: var(--green); color: #fff; }
+
+    /* ═══════════════════════════════════════════
+       PRANK EXPERIENCE — Full-bleed split
+       ═══════════════════════════════════════════ */
+    .experience-split {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 500px;
+    }
+    .experience-img {
+      background: var(--flavor-bg); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .experience-img img { width: 100%; height: 100%; object-fit: cover; }
+    .experience-text {
+      padding: 60px 56px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .experience-text p {
+      font-size: 16px; color: var(--text-light); line-height: 1.8; margin-bottom: 16px;
+    }
+
+    /* ═══════════════════════════════════════════
+       VALUE PROPS — Icon cards
+       ═══════════════════════════════════════════ */
+    .vp-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .vp-card {
+      text-align: center; padding: 28px 20px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius); transition: all 0.3s;
+    }
+    .vp-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+    .vp-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+    }
+    .vp-icon svg { width: 22px; height: 22px; stroke: var(--lemon); fill: none; stroke-width: 2; }
+    .vp-card h3 { font-size: 14px; font-weight: 600; color: #fff; }
+
+    /* ═══════════════════════════════════════════
+       SIGN FOR IT — Reverse split
+       ═══════════════════════════════════════════ */
+    .sign-split {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 480px;
+    }
+    .sign-split-img {
+      background: var(--cream); overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .sign-split-img img { width: 100%; height: 100%; object-fit: cover; }
+    .sign-split-text {
+      background: var(--green); color: #fff;
+      padding: 60px 56px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .sign-split-text .section-kicker { color: var(--lemon); }
+    .sign-split-text h2 { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px); font-weight: 400; line-height: 1.15; color: #fff; margin-bottom: 20px; }
+    .sign-split-text h2 em { font-style: italic; }
+    .sign-split-text p { font-size: 16px; color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 20px; }
+
+    /* ═══════════════════════════════════════════
+       OCCASIONS
+       ═══════════════════════════════════════════ */
+    .occasion-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .occasion-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 28px 24px; border: 1px solid var(--border);
+      text-align: center; transition: all 0.3s;
+    }
+    .occasion-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.06); }
+    .occasion-card .oc-emoji { font-size: 32px; margin-bottom: 12px; }
+    .occasion-card h3 { font-family: var(--font-display); font-size: 18px; font-weight: 400; margin-bottom: 8px; }
+    .occasion-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 14px; }
+    .occasion-card .oc-link { font-size: 13px; font-weight: 700; color: var(--green); }
+    .occasion-card .oc-link:hover { opacity: 0.6; }
+
+    /* ═══════════════════════════════════════════
+       CROSS-SELL
+       ═══════════════════════════════════════════ */
+    .crosssell-track {
+      display: flex; gap: 24px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 0 var(--gutter) 20px;
+      scrollbar-width: none;
+    }
+    .crosssell-track::-webkit-scrollbar { display: none; }
+    .crosssell-card {
+      flex: 0 0 280px; scroll-snap-align: start;
+      border-radius: var(--radius); overflow: hidden;
+      background: var(--white); border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .crosssell-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .crosssell-img { aspect-ratio: 1; overflow: hidden; }
+    .crosssell-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .crosssell-card:hover .crosssell-img img { transform: scale(1.05); }
+    .crosssell-body { padding: 18px 20px; }
+    .crosssell-name { font-family: var(--font-display); font-size: 17px; margin-bottom: 4px; }
+    .crosssell-hook { font-size: 13px; color: var(--text-light); line-height: 1.5; margin-bottom: 12px; }
+    .crosssell-footer { display: flex; align-items: center; justify-content: space-between; }
+    .crosssell-price { font-size: 15px; font-weight: 700; }
+    .crosssell-cta { font-size: 13px; font-weight: 700; color: var(--green); }
+    .crosssell-cta:hover { opacity: 0.6; }
+
+    /* ═══════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════ */
+    .faq-grid { max-width: 720px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; text-align: left; padding: 20px 0;
+      font-size: 17px; font-weight: 500; transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--green); }
+    .faq-toggle {
+      width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-left: 16px; transition: all 0.3s;
+    }
+    .faq-toggle svg { width: 14px; height: 14px; stroke: var(--text-light); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .faq-item.open .faq-toggle { background: var(--green); border-color: var(--green); }
+    .faq-item.open .faq-toggle svg { stroke: #fff; transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a-inner { padding: 0 0 20px; font-size: 15px; color: var(--text-light); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════════
+       GUARANTEE
+       ═══════════════════════════════════════════ */
+    .guarantee { text-align: center; max-width: 600px; margin: 0 auto; }
+    .guarantee-icon {
+      width: 80px; height: 80px; border-radius: 50%; background: var(--cream);
+      display: flex; align-items: center; justify-content: center; margin: 0 auto 24px;
+    }
+    .guarantee-icon svg { width: 36px; height: 36px; stroke: var(--green); fill: none; stroke-width: 2; }
+    .guarantee h2 { font-family: var(--font-display); font-size: clamp(28px, 3.5vw, 40px); color: var(--green); margin-bottom: 16px; }
+    .guarantee h2 em { font-style: italic; }
+    .guarantee p { font-size: 17px; color: var(--text-light); line-height: 1.7; margin-bottom: 28px; }
+
+    /* ═══════════════════════════════════════════
+       STICKY ATC
+       ═══════════════════════════════════════════ */
+    .sticky-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--white); border-top: 1px solid var(--border);
+      padding: 12px 24px; z-index: 90;
+      transform: translateY(100%); transition: transform 0.3s;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
+    }
+    .sticky-bar.visible { transform: translateY(0); }
+    .sticky-inner {
+      max-width: var(--max-width); margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .sticky-info { display: flex; align-items: center; gap: 14px; }
+    .sticky-thumb {
+      width: 44px; height: 44px; border-radius: var(--radius-sm);
+      overflow: hidden; background: var(--flavor-bg); flex-shrink: 0;
+    }
+    .sticky-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .sticky-name { font-family: var(--font-display); font-size: 16px; }
+    .sticky-variant { font-size: 12px; color: var(--text-light); }
+    .sticky-price { font-family: var(--font-display); font-size: 20px; }
+    .sticky-btn {
+      padding: 12px 32px; background: var(--green); color: #fff;
+      font-size: 14px; font-weight: 700; border-radius: 2px;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .sticky-btn:hover { background: var(--green-light); }
+
+    /* ═══════════════════════════════════════════
+       FINAL CTA
+       ═══════════════════════════════════════════ */
+    .final-cta {
+      background: var(--green); color: #fff; padding: 80px 0; text-align: center;
+    }
+    .final-cta h2 { font-family: var(--font-display); font-size: clamp(32px, 4.5vw, 52px); margin-bottom: 16px; }
+    .final-cta h2 em { font-style: italic; color: var(--lemon); }
+    .final-cta p { font-size: 17px; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer { background: var(--green-dark); color: #fff; padding: 64px 0 32px; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand .logo { color: #fff; margin-bottom: 16px; font-size: 24px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 300px; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 14px; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+    }
+    .footer-social a:hover { border-color: var(--lemon); background: rgba(245,215,110,0.1); }
+    .footer-social svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; }
+    .footer-col h4 { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; color: rgba(255,255,255,0.4); }
+    .footer-col a { display: block; font-size: 14px; color: rgba(255,255,255,0.65); padding: 5px 0; transition: color 0.2s; }
+    .footer-col a:hover { color: var(--lemon); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; font-size: 13px; color: rgba(255,255,255,0.25);
+    }
+    .footer-payments { display: flex; gap: 10px; }
+    .footer-pay {
+      width: 40px; height: 26px; border-radius: 4px; background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 990px) {
+      :root { --gutter: 32px; }
+      .pdp-hero { grid-template-columns: 1fr; }
+      .pdp-gallery { padding: 32px 24px; }
+      .pdp-buybox { padding: 32px 24px; }
+      .experience-split, .sign-split { grid-template-columns: 1fr; }
+      .sign-split-text, .experience-text { padding: 48px 32px; }
+      .vp-grid, .occasion-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 750px) {
+      :root { --gutter: 22px; }
+      .header-left nav { display: none; }
+      .vp-grid, .occasion-grid { grid-template-columns: 1fr; }
+      .variant-pills { flex-direction: column; }
+      .variant-pill { min-width: 0; }
+      .sticky-inner { flex-wrap: wrap; }
+      .sticky-btn { width: 100%; text-align: center; }
+      .crosssell-card { flex: 0 0 260px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement">
+    <strong>Free shipping</strong> on every order &bull; 100% anonymous &bull; 60-day money-back guarantee
+  </div>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="/olipop-inspired.html" class="logo">Package Deal</a>
+        <nav>
+          <a href="/olipop-inspired.html#products">Shop</a>
+          <a href="/olipop-inspired.html#how">How It Works</a>
+          <a href="/olipop-inspired.html#quiz-cta">Quiz</a>
+          <a href="/olipop-inspired.html#faq">FAQ</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a href="#">Track Order</a>
+        <a href="#" class="cart-btn">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart (0)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/olipop-inspired.html">Home</a><span>/</span>
+      <a href="/olipop-inspired.html#products">All Pranks</a><span>/</span>
+      MicroPenisCure.com
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       PDP HERO
+       ═══════════════════════════════════════════ -->
+  <section class="pdp-hero" id="pdp-top">
+    <!-- Gallery -->
+    <div class="pdp-gallery">
+      <span class="gallery-badge">Bestseller</span>
+      <div class="gallery-main">
+        <img id="mainImg" src="/images/micropenis1.webp" alt="MicroPenisCure.com prank tube" onerror="this.style.display='none'" />
+      </div>
+      <div class="gallery-thumbs">
+        <div class="gallery-thumb active" onclick="swapImg(this,'/images/micropenis1.webp')">
+          <img src="/images/micropenis1.webp" alt="Thumb 1" onerror="this.parentElement.innerHTML='<div style=\'padding:16px;text-align:center;font-size:10px;color:#999\'>1</div>'" />
+        </div>
+        <div class="gallery-thumb" onclick="swapImg(this,'/images/micropenis2.webp')">
+          <img src="/images/micropenis2.webp" alt="Thumb 2" onerror="this.parentElement.innerHTML='<div style=\'padding:16px;text-align:center;font-size:10px;color:#999\'>2</div>'" />
+        </div>
+        <div class="gallery-thumb" onclick="swapImg(this,'/images/micropenis3.webp')">
+          <img src="/images/micropenis3.webp" alt="Thumb 3" onerror="this.parentElement.innerHTML='<div style=\'padding:16px;text-align:center;font-size:10px;color:#999\'>3</div>'" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Buy Box -->
+    <div class="pdp-buybox">
+      <div class="pdp-kicker">PRANK MAIL</div>
+      <h1 class="pdp-title">MicroPenisCure.com</h1>
+      <p class="pdp-tagline">The package they'll have to explain to everyone.</p>
+
+      <div class="pdp-rating">
+        <span class="pdp-stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+        <span class="pdp-rating-text">4.5/5</span>
+        <span class="pdp-amazon">&#9733; Rated 4.5/5 on Amazon</span>
+      </div>
+
+      <!-- Variant pills (Olipop pack-size style) -->
+      <div class="variant-label">Choose Your Chaos Level</div>
+      <div class="variant-pills" id="variantPills">
+        <div class="variant-pill" data-price="14.99" data-name="No Signature Required" onclick="pickVariant(this)">
+          <span class="vp-name">No Signature</span>
+          <span class="vp-price">$14.99</span>
+        </div>
+        <div class="variant-pill active" data-price="21.99" data-name="Make Them Sign For It" onclick="pickVariant(this)">
+          <span class="vp-name">Sign For It</span>
+          <span class="vp-price">$21.99</span>
+          <span class="vp-badge">Most Popular</span>
+        </div>
+        <div class="variant-pill sold-out" data-price="34.99" data-name="Confetti Bomb">
+          <span class="vp-name">Confetti Bomb</span>
+          <span class="vp-price">$34.99</span>
+          <span class="vp-badge" style="color:var(--error);">Sold Out</span>
+        </div>
+      </div>
+
+      <!-- Delivery toggle (Olipop subscription style — repurposed as delivery type) -->
+      <div class="delivery-toggle">
+        <div class="delivery-option active" onclick="pickDelivery(this)">
+          One-Time
+          <span class="do-sub">Delivered once</span>
+        </div>
+        <div class="delivery-option" onclick="pickDelivery(this)">
+          Send Two
+          <span class="do-sub">Save $5 — Double Trouble</span>
+        </div>
+      </div>
+
+      <!-- Price -->
+      <div class="pdp-price-row">
+        <span class="pdp-price" id="pdpPrice">$21.99</span>
+      </div>
+
+      <!-- ATC -->
+      <button class="atc-btn" id="atcBtn">Add to Cart &mdash; $21.99</button>
+
+      <!-- Trust -->
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Free Returns
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          Free Shipping
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          60-Day Guarantee
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          100% Anonymous
+        </div>
+      </div>
+
+      <!-- Mini FAQ -->
+      <div class="bb-faq">
+        <div class="bb-faq-item"><button class="bb-faq-q">Is the shipping anonymous?<span class="bb-faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="bb-faq-a"><div class="bb-faq-a-inner">Completely. No return address, no sender info. The only thing on the package is the embarrassing URL.</div></div></div>
+        <div class="bb-faq-item"><button class="bb-faq-q">Will they know who sent it?<span class="bb-faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="bb-faq-a"><div class="bb-faq-a-inner">Only if you tell them. Most recipients spend days texting everyone trying to figure it out.</div></div></div>
+        <div class="bb-faq-item"><button class="bb-faq-q">How long does shipping take?<span class="bb-faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="bb-faq-a"><div class="bb-faq-a-inner">Ships in 1-2 business days, arrives in 3-5 days. You get tracking; the recipient does not.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFIT STRIP -->
+  <div class="benefit-strip">
+    <div class="benefit-track">
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><line x1="1" y1="1" x2="23" y2="23"/></svg>Anonymous</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free Shipping</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>3-5 Day Delivery</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>60-Day Returns</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Discreet Outer Packaging</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>Real Reactions</span><span class="benefit-dot"></span>
+      <!-- duplicate -->
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><line x1="1" y1="1" x2="23" y2="23"/></svg>Anonymous</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free Shipping</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>3-5 Day Delivery</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>60-Day Returns</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Discreet Outer Packaging</span><span class="benefit-dot"></span>
+      <span class="benefit-item"><svg viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>Real Reactions</span>
+    </div>
+  </div>
+
+  <!-- PRANK EXPERIENCE — Full-bleed split -->
+  <section class="experience-split">
+    <div class="experience-img">
+      <img src="/images/micropenis2.webp" alt="Prank in action" onerror="this.style.display='none'" />
+    </div>
+    <div class="experience-text" style="background: var(--cream);">
+      <div class="section-kicker">THE EXPERIENCE</div>
+      <h2 class="section-heading">The tube that turns a quiet day into an <em>office legend.</em></h2>
+      <p>Your friend is at work. Normal day. Then someone from the mailroom walks over holding a tube. They can see the label from ten feet away. So can everyone between the mailroom and their desk.</p>
+      <p>They sit there holding a tube that says MicroPenisCure.com in letters large enough to read from across the room. There's no return address. There's no explanation.</p>
+      <p>The best part happens after. The group chat lights up. Nobody confesses. It becomes the kind of story that resurfaces every time someone new joins the team.</p>
+    </div>
+  </section>
+
+  <!-- VALUE PROPS — Dark -->
+  <section class="section section--dark">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">WHY THIS PRANK WORKS</div>
+        <h2 class="section-heading" style="color:#fff;">Built for maximum <em>embarrassment.</em></h2>
+      </div>
+      <div class="vp-grid">
+        <div class="vp-card"><div class="vp-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><h3>URL readable from 10 feet</h3></div>
+        <div class="vp-card"><div class="vp-icon"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div><h3>No return address</h3></div>
+        <div class="vp-card"><div class="vp-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><h3>Ships USPS in 3-5 days</h3></div>
+        <div class="vp-card"><div class="vp-icon"><svg viewBox="0 0 24 24"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg></div><h3>Forced signature upgrade</h3></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGN FOR IT — Reverse split -->
+  <section class="sign-split">
+    <div class="sign-split-text">
+      <div class="section-kicker">UPGRADE</div>
+      <h2>"Sign For It" <em>delivery.</em></h2>
+      <p>Standard delivery is private. The "Sign For It" upgrade means a mail carrier hands them a package labeled MicroPenisCure.com — and waits while they sign for it.</p>
+      <p>The signature creates a witness. Witnesses create stories.</p>
+      <a href="#pdp-top" class="btn-white" onclick="pickVariantByName('Make Them Sign For It'); return true;">Upgrade &mdash; $21.99</a>
+    </div>
+    <div class="sign-split-img">
+      <img src="/images/micropenis3.webp" alt="Sign For It" onerror="this.style.display='none'" />
+    </div>
+  </section>
+
+  <!-- OCCASIONS -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">PERFECT FOR</div>
+        <h2 class="section-heading">Send it for <em>any occasion.</em></h2>
+      </div>
+      <div class="occasion-grid">
+        <div class="occasion-card"><div class="oc-emoji">&#127874;</div><h3>Birthday</h3><p>Send it before the party and let it become the centerpiece.</p><a href="#" class="oc-link">Shop Now &rarr;</a></div>
+        <div class="occasion-card"><div class="oc-emoji">&#127881;</div><h3>Bachelor Party</h3><p>The one gift that guarantees a story for the rehearsal dinner.</p><a href="#" class="oc-link">Shop Now &rarr;</a></div>
+        <div class="occasion-card"><div class="oc-emoji">&#128188;</div><h3>Office</h3><p>Workplace deliveries are where these tubes do their best work.</p><a href="#" class="oc-link">Shop Now &rarr;</a></div>
+        <div class="occasion-card"><div class="oc-emoji">&#128156;</div><h3>Just Because</h3><p>No occasion necessary. Make their day slightly worse in the best way.</p><a href="#" class="oc-link">Shop Now &rarr;</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS-SELL CAROUSEL -->
+  <section class="section">
+    <div class="section-header container">
+      <div class="section-kicker">MORE PRANKS</div>
+      <h2 class="section-heading">Why stop at <em>one?</em></h2>
+    </div>
+    <div class="crosssell-track">
+      <div class="crosssell-card"><div class="crosssell-img" style="background:#E8E0F0;"><img src="/images/bigassdildos2.webp" alt="BigAssDildos.com" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999\'>BigAssDildos.com</div>'" /></div><div class="crosssell-body"><div class="crosssell-name">BigAssDildos.com</div><p class="crosssell-hook">The tube that turns a quiet afternoon into an HR conversation.</p><div class="crosssell-footer"><span class="crosssell-price">From $14.99</span><a href="#" class="crosssell-cta">+ See Prank</a></div></div></div>
+      <div class="crosssell-card"><div class="crosssell-img" style="background:#DFF0ED;"><img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999\'>VaginalOdorHelper.com</div>'" /></div><div class="crosssell-body"><div class="crosssell-name">VaginalOdorHelper.com</div><p class="crosssell-hook">The URL alone has made grown adults call their mothers for answers.</p><div class="crosssell-footer"><span class="crosssell-price">From $14.99</span><a href="#" class="crosssell-cta">+ See Prank</a></div></div></div>
+      <div class="crosssell-card"><div class="crosssell-img" style="background:#FDF5E0;"><img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com" onerror="this.parentElement.innerHTML='<div style=\'padding:40px;text-align:center;color:#999\'>BulkCondomDelivery.com</div>'" /></div><div class="crosssell-body"><div class="crosssell-name">BulkCondomDelivery.com</div><p class="crosssell-hook">The mildest prank we sell. Best delivered to a family home.</p><div class="crosssell-footer"><span class="crosssell-price">$12.99</span><a href="#" class="crosssell-cta">+ See Prank</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--off" id="faq">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-heading" style="color:var(--green);">Questions people <em>actually ask.</em></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q">Is the shipping really anonymous?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Completely. No return address, no sender info, no way for them to trace it back to you. The only thing on the package is the embarrassing URL — which is the whole point.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Will they know who sent it?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Not unless you tell them. Most recipients spend days texting everyone they know trying to figure it out. Some senders hold out for weeks. Some never tell.</div></div></div>
+        <div class="faq-item"><button class="faq-q">What if I need to cancel or return?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">60-day free returns, no questions asked. If you catch a cancellation before it ships, we'll cancel it. Otherwise, use the return process — still free.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Is this actually funny?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Rated 4.5 out of 5 on Amazon. The most common review theme is "I've been giggling about this for days." It's funny in person. It's funnier when other people see it first.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Could this actually offend someone?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">These pranks work best between people who already give each other a hard time. If your recipient would laugh at a well-timed joke, they'll love this. If not — maybe send a candle.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUARANTEE -->
+  <section class="section">
+    <div class="container">
+      <div class="guarantee">
+        <div class="guarantee-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h2>If it's not funny, <em>it's free.</em></h2>
+        <p>We'll refund your full purchase within 60 days, no questions asked. We're in the business of making people laugh, not making returns difficult.</p>
+        <a href="#" class="btn-outline">Read Our Return Policy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <h2>You know who you'd <em>send this to.</em></h2>
+    <p>Pick a chaos level. We'll handle the rest — anonymously.</p>
+    <a href="#pdp-top" class="btn-white">Add to Cart</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">Package Deal</div>
+          <p>Anonymous prank mail tubes with embarrassing URLs, delivered to their door.</p>
+          <div class="footer-social">
+            <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Shop</h4><a href="#">All Pranks</a><a href="#">MicroPenisCure.com</a><a href="#">BigAssDildos.com</a><a href="#">VaginalOdorHelper.com</a><a href="#">BulkCondomDelivery.com</a></div>
+        <div class="footer-col"><h4>Help</h4><a href="#">FAQ</a><a href="#">Shipping & Returns</a><a href="#">Track Your Order</a><a href="#">Contact Us</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="#">About Us</a><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Package Deal. All rights reserved.</span>
+        <div class="footer-payments"><div class="footer-pay">VISA</div><div class="footer-pay">MC</div><div class="footer-pay">AMEX</div><div class="footer-pay">PYPL</div><div class="footer-pay">GPay</div></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- STICKY BAR -->
+  <div class="sticky-bar" id="stickyBar">
+    <div class="sticky-inner">
+      <div class="sticky-info">
+        <div class="sticky-thumb"><img src="/images/micropenis1.webp" alt="" onerror="this.style.display='none'" /></div>
+        <div><div class="sticky-name">MicroPenisCure.com</div><div class="sticky-variant" id="stickyVar">Sign For It</div></div>
+      </div>
+      <div class="sticky-price" id="stickyPrice">$21.99</div>
+      <button class="sticky-btn">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Header scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+    });
+
+    // Gallery
+    function swapImg(thumb, src) {
+      document.getElementById('mainImg').src = src;
+      document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+      thumb.classList.add('active');
+    }
+
+    // Variant pills
+    function pickVariant(pill) {
+      if (pill.classList.contains('sold-out')) return;
+      document.querySelectorAll('.variant-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const price = '$' + pill.dataset.price;
+      const name = pill.dataset.name;
+      document.getElementById('pdpPrice').textContent = price;
+      document.getElementById('atcBtn').textContent = 'Add to Cart \u2014 ' + price;
+      document.getElementById('stickyPrice').textContent = price;
+      document.getElementById('stickyVar').textContent = name;
+    }
+    function pickVariantByName(name) {
+      document.querySelectorAll('.variant-pill').forEach(p => {
+        if (p.dataset.name === name) pickVariant(p);
+      });
+    }
+
+    // Delivery toggle
+    function pickDelivery(opt) {
+      document.querySelectorAll('.delivery-option').forEach(o => o.classList.remove('active'));
+      opt.classList.add('active');
+    }
+
+    // FAQ
+    document.querySelectorAll('.bb-faq-q, .faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const container = item.parentElement;
+        const wasOpen = item.classList.contains('open');
+        container.querySelectorAll('.bb-faq-item, .faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // Sticky bar
+    const atcBtn = document.getElementById('atcBtn');
+    const stickyBar = document.getElementById('stickyBar');
+    new IntersectionObserver(([e]) => {
+      stickyBar.classList.toggle('visible', !e.isIntersecting);
+    }, { threshold: 0 }).observe(atcBtn);
+  </script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proto 2 — Masonry Testimonial Wall</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --charcoal-deep: #1a1a1a;
+      --terracotta: #D4714E;
+      --section-alt: #F2F0ED;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: var(--section-alt); color: var(--charcoal); }
+
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta); color: #fff;
+      text-align: center; padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100; letter-spacing: 0.05em;
+    }
+
+    .section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 80px 24px; margin-top: 40px;
+    }
+
+    /* ── Header ── */
+    .header { text-align: center; margin-bottom: 56px; }
+    .kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 600; line-height: 1.2; color: var(--charcoal);
+    }
+    .subtitle {
+      font-size: 16px; color: #6B6B6B; margin-top: 12px; font-weight: 500;
+    }
+
+    /* ── Masonry Grid ── */
+    .masonry {
+      columns: 3;
+      column-gap: 20px;
+    }
+    @media (max-width: 900px) { .masonry { columns: 2; } }
+    @media (max-width: 600px) { .masonry { columns: 1; } }
+
+    /* ── Card ── */
+    .card {
+      break-inside: avoid;
+      margin-bottom: 20px;
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    }
+
+    /* Video cards (tall) */
+    .card--video .card-media {
+      position: relative;
+      background: #111;
+    }
+    .card--video .card-media .placeholder {
+      width: 100%;
+      aspect-ratio: 9/16;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px;
+    }
+    .card--video .play-btn {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: rgba(212,113,78,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; color: #fff;
+      box-shadow: 0 4px 20px rgba(212,113,78,0.4);
+      transition: transform 0.2s;
+    }
+    .card--video .play-btn:hover { transform: translate(-50%,-50%) scale(1.1); }
+    .card--video .card-media .duration {
+      position: absolute; bottom: 8px; right: 8px;
+      background: rgba(0,0,0,0.7); color: #fff;
+      padding: 2px 8px; border-radius: 4px;
+      font-size: 12px; font-weight: 500;
+    }
+
+    /* Quote-only cards */
+    .card--quote {
+      padding: 32px 24px;
+      border-left: 4px solid var(--terracotta);
+    }
+    .card--quote .quote-mark {
+      font-family: var(--font-display);
+      font-size: 48px; line-height: 1;
+      color: var(--terracotta); opacity: 0.3;
+      margin-bottom: -12px;
+    }
+    .card--quote .quote-text {
+      font-size: 18px; font-style: italic;
+      line-height: 1.6; color: var(--charcoal);
+      font-weight: 500;
+    }
+
+    /* Stat cards */
+    .card--stat {
+      padding: 32px 24px;
+      background: var(--charcoal);
+      color: #fff;
+      text-align: center;
+    }
+    .card--stat .stat-number {
+      font-family: var(--font-display);
+      font-size: 48px; font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 4px;
+    }
+    .card--stat .stat-label {
+      font-size: 14px; color: rgba(255,255,255,0.6);
+      font-weight: 500;
+    }
+
+    /* ── Card body ── */
+    .card-body { padding: 16px 20px; }
+    .card-stars { color: #F59E0B; font-size: 14px; letter-spacing: 2px; margin-bottom: 6px; }
+    .card-caption {
+      font-size: 14px; font-weight: 500; font-style: italic;
+      color: #444; line-height: 1.5;
+    }
+    .card-meta {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 10px; font-size: 12px; color: #999;
+    }
+    .card-avatar {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--section-alt); display: flex;
+      align-items: center; justify-content: center;
+      font-size: 12px;
+    }
+
+    /* ── Supporting ── */
+    .supporting {
+      text-align: center; margin-top: 48px;
+      font-size: 18px; color: #6B6B6B; font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PROTO 2 — Masonry Testimonial Wall (mixed media: videos, pull-quotes, stats on warm background)</div>
+
+  <section class="section">
+    <div class="header">
+      <div class="kicker">REAL REACTIONS</div>
+      <h2 class="headline">What happens when it arrives.</h2>
+      <p class="subtitle">Real stories. Real panic. Real laughter.</p>
+    </div>
+
+    <div class="masonry">
+
+      <!-- Video Card 1 (tall) -->
+      <div class="card card--video">
+        <div class="card-media">
+          <div class="placeholder" style="background: linear-gradient(135deg, #3a1c1c 0%, #1a1a1a 100%);">&#128561;</div>
+          <div class="play-btn">&#9654;</div>
+          <div class="duration">0:34</div>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="card-caption">&ldquo;He called three people trying to figure out who sent it.&rdquo;</p>
+          <div class="card-meta">
+            <div class="card-avatar">M</div>
+            <span>Verified Sender</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote Card -->
+      <div class="card card--quote">
+        <div class="quote-mark">&ldquo;</div>
+        <p class="quote-text">His face when he realized the mailman watched him sign for BigAssDildos.com. I wish I had a camera.</p>
+      </div>
+
+      <!-- Video Card 2 -->
+      <div class="card card--video">
+        <div class="card-media">
+          <div class="placeholder" style="background: linear-gradient(135deg, #1c2a3a 0%, #1a1a1a 100%); aspect-ratio: 4/5;">&#128518;</div>
+          <div class="play-btn">&#9654;</div>
+          <div class="duration">0:22</div>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="card-caption">&ldquo;She made him open it in front of the whole office.&rdquo;</p>
+          <div class="card-meta">
+            <div class="card-avatar">S</div>
+            <span>Verified Sender</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat Card -->
+      <div class="card card--stat" style="border-radius: 16px;">
+        <div class="stat-number">2,847</div>
+        <div class="stat-label">tubes delivered this month</div>
+      </div>
+
+      <!-- Quote Card 2 -->
+      <div class="card card--quote">
+        <div class="quote-mark">&ldquo;</div>
+        <p class="quote-text">The group chat was on fire for two hours. Best $15 I've ever spent.</p>
+      </div>
+
+      <!-- Video Card 3 -->
+      <div class="card card--video">
+        <div class="card-media">
+          <div class="placeholder" style="background: linear-gradient(135deg, #2a3a1c 0%, #1a1a1a 100%);">&#128556;</div>
+          <div class="play-btn">&#9654;</div>
+          <div class="duration">0:18</div>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="card-caption">&ldquo;His mom found it on the porch first.&rdquo;</p>
+          <div class="card-meta">
+            <div class="card-avatar">J</div>
+            <span>Verified Sender</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stat Card 2 -->
+      <div class="card card--stat" style="border-radius: 16px;">
+        <div class="stat-number">4.8<span style="font-size: 24px;">/5</span></div>
+        <div class="stat-label">average sender satisfaction</div>
+      </div>
+
+      <!-- Video Card 4 -->
+      <div class="card card--video">
+        <div class="card-media">
+          <div class="placeholder" style="background: linear-gradient(135deg, #3a2a1c 0%, #1a1a1a 100%); aspect-ratio: 4/5;">&#128293;</div>
+          <div class="play-btn">&#9654;</div>
+          <div class="duration">0:41</div>
+        </div>
+        <div class="card-body">
+          <div class="card-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="card-caption">&ldquo;The group chat was on fire for two hours.&rdquo;</p>
+          <div class="card-meta">
+            <div class="card-avatar">K</div>
+            <span>Verified Sender</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote Card 3 -->
+      <div class="card card--quote">
+        <div class="quote-mark">&ldquo;</div>
+        <p class="quote-text">She opened VaginalOdorHelper.com at Thanksgiving dinner. In front of grandma. Worth every penny.</p>
+      </div>
+
+    </div>
+
+    <p class="supporting">The best part isn't sending it. It's the group chat after.</p>
+  </section>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proto 1 — Phone Mockup Carousel</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --charcoal-deep: #1a1a1a;
+      --terracotta: #D4714E;
+      --terracotta-hover: #C0613F;
+      --section-alt: #F2F0ED;
+      --text-secondary: #6B6B6B;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: var(--charcoal-deep); color: #fff; }
+
+    /* ── Section ── */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+
+    /* ── Header ── */
+    .header { text-align: center; margin-bottom: 56px; }
+    .kicker {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(212,113,78,0.8);
+      margin-bottom: 12px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+
+    /* ── Stars ── */
+    .stars { color: #F59E0B; font-size: 18px; margin-bottom: 12px; letter-spacing: 2px; }
+
+    /* ── Phone Carousel ── */
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── Phone Frame ── */
+    .phone-frame {
+      width: 260px;
+      flex-shrink: 0;
+      position: relative;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .phone-frame:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+    .phone-bezel {
+      background: #000;
+      border-radius: 36px;
+      padding: 12px;
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.08),
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 40px rgba(212,113,78,0.08);
+      position: relative;
+    }
+    .phone-notch {
+      width: 100px;
+      height: 24px;
+      background: #000;
+      border-radius: 0 0 16px 16px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+    .phone-screen {
+      border-radius: 24px;
+      overflow: hidden;
+      position: relative;
+      background: #111;
+    }
+    .phone-screen video {
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      display: block;
+    }
+    .phone-screen .placeholder-video {
+      width: 100%;
+      aspect-ratio: 9/16;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      background: linear-gradient(135deg, #2a1a12 0%, #1a1a1a 100%);
+    }
+
+    /* ── Overlay UI (TikTok-like) ── */
+    .video-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px 16px 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      border-radius: 0 0 24px 24px;
+    }
+    .overlay-username {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .overlay-caption {
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+      font-style: italic;
+    }
+    .overlay-actions {
+      position: absolute;
+      right: 12px;
+      bottom: 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    .action-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      backdrop-filter: blur(4px);
+    }
+    .action-count {
+      font-size: 10px;
+      color: rgba(255,255,255,0.7);
+      margin-top: -8px;
+    }
+
+    /* ── Caption Card (below phone) ── */
+    .caption-card {
+      text-align: center;
+      margin-top: 20px;
+      padding: 0 8px;
+    }
+    .caption-stars { color: #F59E0B; font-size: 14px; letter-spacing: 2px; margin-bottom: 6px; }
+    .caption-text {
+      font-size: 14px;
+      font-weight: 500;
+      font-style: italic;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.5;
+    }
+
+    /* ── Supporting line ── */
+    .supporting {
+      text-align: center;
+      margin-top: 48px;
+      font-size: 18px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+    }
+
+    /* ── Badge ── */
+    .badge-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+    }
+
+    /* ── Label ── */
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta);
+      color: #fff; text-align: center;
+      padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100;
+      letter-spacing: 0.05em;
+    }
+    .section { margin-top: 40px; }
+
+    @media (max-width: 768px) {
+      .carousel-track { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PROTO 1 — Phone Mockup Carousel (TikTok-style frames with social engagement UI)</div>
+
+  <section class="section">
+    <div class="header">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="kicker">REAL REACTIONS</div>
+      <h2 class="headline">What happens when it arrives.</h2>
+    </div>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track">
+
+        <!-- Phone 1 -->
+        <div class="phone-frame">
+          <div class="phone-bezel">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="placeholder-video" style="background: linear-gradient(135deg, #3a1c1c 0%, #1a1a1a 100%);">
+                <span>&#128561;</span>
+              </div>
+              <div class="overlay-actions">
+                <div class="action-btn">&#10084;</div>
+                <div class="action-count">2.4k</div>
+                <div class="action-btn">&#128172;</div>
+                <div class="action-count">89</div>
+                <div class="action-btn">&#8599;</div>
+              </div>
+              <div class="video-overlay">
+                <div class="overlay-username">@surprisedmike</div>
+                <div class="overlay-caption">He had NO idea what was coming</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-card">
+            <div class="caption-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="caption-text">&ldquo;He called three people trying to figure out who sent it.&rdquo;</p>
+          </div>
+        </div>
+
+        <!-- Phone 2 -->
+        <div class="phone-frame">
+          <div class="phone-bezel">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="placeholder-video" style="background: linear-gradient(135deg, #1c2a3a 0%, #1a1a1a 100%);">
+                <span>&#128518;</span>
+              </div>
+              <div class="overlay-actions">
+                <div class="action-btn">&#10084;</div>
+                <div class="action-count">5.1k</div>
+                <div class="action-btn">&#128172;</div>
+                <div class="action-count">203</div>
+                <div class="action-btn">&#8599;</div>
+              </div>
+              <div class="video-overlay">
+                <div class="overlay-username">@officepranks</div>
+                <div class="overlay-caption">The whole floor was watching</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-card">
+            <div class="caption-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="caption-text">&ldquo;She made him open it in front of the whole office.&rdquo;</p>
+          </div>
+        </div>
+
+        <!-- Phone 3 -->
+        <div class="phone-frame">
+          <div class="phone-bezel">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="placeholder-video" style="background: linear-gradient(135deg, #2a3a1c 0%, #1a1a1a 100%);">
+                <span>&#128556;</span>
+              </div>
+              <div class="overlay-actions">
+                <div class="action-btn">&#10084;</div>
+                <div class="action-count">1.8k</div>
+                <div class="action-btn">&#128172;</div>
+                <div class="action-count">67</div>
+                <div class="action-btn">&#8599;</div>
+              </div>
+              <div class="video-overlay">
+                <div class="overlay-username">@porchdelivery</div>
+                <div class="overlay-caption">Mom got to it first...</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-card">
+            <div class="caption-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="caption-text">&ldquo;His mom found it on the porch first.&rdquo;</p>
+          </div>
+        </div>
+
+        <!-- Phone 4 -->
+        <div class="phone-frame">
+          <div class="phone-bezel">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="placeholder-video" style="background: linear-gradient(135deg, #3a2a1c 0%, #1a1a1a 100%);">
+                <span>&#128293;</span>
+              </div>
+              <div class="overlay-actions">
+                <div class="action-btn">&#10084;</div>
+                <div class="action-count">3.7k</div>
+                <div class="action-btn">&#128172;</div>
+                <div class="action-count">412</div>
+                <div class="action-btn">&#8599;</div>
+              </div>
+              <div class="video-overlay">
+                <div class="overlay-username">@groupchatchaos</div>
+                <div class="overlay-caption">The texts wouldn't stop</div>
+              </div>
+            </div>
+          </div>
+          <div class="caption-card">
+            <div class="caption-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="caption-text">&ldquo;The group chat was on fire for two hours.&rdquo;</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <p class="supporting">The best part isn't sending it. It's the group chat after.</p>
+
+    <div class="badge-row">
+      <span class="badge">&#127916; Real UGC videos</span>
+      <span class="badge">&#128274; Names changed for anonymity</span>
+      <span class="badge">&#9733; 4.8 avg rating from senders</span>
+    </div>
+  </section>
+</body>
+</html>

@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal — Prototype B (Frey / MBG)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAFAF8;
+    --warm-gray: #F2F0ED;
+    --white: #FFFFFF;
+    --charcoal: #2D2D2D;
+    --text-secondary: #6B6B6B;
+    --terracotta: #D4714E;
+    --terracotta-hover: #C0613F;
+    --border: #E8E5E1;
+    --font-sans: 'DM Sans', sans-serif;
+    --font-serif: 'DM Serif Display', serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--charcoal);
+    background: var(--cream);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* --- Fade-in animation --- */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- Announcement Marquee --- */
+  .announcement {
+    background: var(--warm-gray);
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 64px;
+    animation: marquee 30s linear infinite;
+    width: max-content;
+  }
+  .marquee-track span {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .marquee-track span::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* --- Header --- */
+  .header {
+    background: var(--white);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-logo {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  .header-nav a {
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: var(--charcoal); }
+  .cart-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--charcoal);
+    stroke-width: 1.5;
+    fill: none;
+  }
+
+  /* --- Hero --- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: url('/images/all-variants.webp') center/cover no-repeat;
+  }
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(20, 18, 16, 0.75) 0%,
+      rgba(20, 18, 16, 0.35) 40%,
+      rgba(20, 18, 16, 0.15) 100%
+    );
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 80px 48px;
+    max-width: 720px;
+  }
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1.1;
+    color: #fff;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+  }
+  .hero p {
+    font-family: var(--font-sans);
+    font-size: clamp(15px, 1.6vw, 18px);
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .btn-pill-outline {
+    display: inline-block;
+    padding: 14px 36px;
+    border: 1.5px solid #fff;
+    border-radius: 999px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, color 0.3s;
+  }
+  .btn-pill-outline:hover {
+    background: #fff;
+    color: var(--charcoal);
+  }
+  .btn-pill-outline.dark {
+    border-color: var(--charcoal);
+    color: var(--charcoal);
+  }
+  .btn-pill-outline.dark:hover {
+    background: var(--charcoal);
+    color: #fff;
+  }
+  .btn-pill-filled {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--terracotta);
+    border: 1.5px solid var(--terracotta);
+    border-radius: 999px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .btn-pill-filled:hover {
+    background: var(--terracotta-hover);
+    border-color: var(--terracotta-hover);
+  }
+
+  /* --- Trust Strip --- */
+  .trust-strip {
+    background: var(--warm-gray);
+    padding: 20px 0;
+    overflow: hidden;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .trust-track {
+    display: flex;
+    gap: 56px;
+    animation: marquee 40s linear infinite;
+    width: max-content;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--charcoal);
+  }
+  .trust-item svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--terracotta);
+    stroke-width: 1.5;
+    fill: none;
+    flex-shrink: 0;
+  }
+
+  /* --- Editorial Intro --- */
+  .editorial-intro {
+    background: var(--cream);
+    padding: 120px 24px;
+    text-align: center;
+  }
+  .editorial-intro .inner {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .editorial-intro .label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 32px;
+  }
+  .editorial-intro h2 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.25;
+    color: var(--charcoal);
+    margin-bottom: 28px;
+  }
+  .editorial-intro p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* --- Product Grid --- */
+  .product-section {
+    background: var(--white);
+    padding: 96px 24px;
+  }
+  .product-section .section-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+  .product-section h2 {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 38px);
+    margin-bottom: 64px;
+    color: var(--charcoal);
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  .product-card {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+    padding: 4px;
+  }
+  .product-card:hover {
+    border-color: var(--border);
+  }
+  .product-card img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 3px;
+    background: var(--warm-gray);
+  }
+  .product-card .card-info {
+    padding: 20px 4px 8px;
+  }
+  .product-card h3 {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    margin-bottom: 6px;
+  }
+  .product-card .price {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+  .product-card .view-link {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--terracotta);
+    letter-spacing: 0.02em;
+  }
+
+  /* --- How It Works --- */
+  .how-it-works {
+    background: var(--cream);
+    padding: 112px 24px;
+  }
+  .how-it-works .section-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+  .how-it-works h2 {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 38px);
+    margin-bottom: 72px;
+    color: var(--charcoal);
+  }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    max-width: 880px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .step-icon {
+    width: 48px;
+    height: 48px;
+    stroke: var(--charcoal);
+    stroke-width: 1;
+    fill: none;
+    margin: 0 auto 24px;
+  }
+  .step h3 {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    color: var(--charcoal);
+  }
+  .step p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  /* --- Pull Quote --- */
+  .pull-quote-section {
+    background: var(--cream);
+    padding: 112px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .pull-quote-section .inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .pull-quote-section blockquote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3.5vw, 40px);
+    line-height: 1.3;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+  }
+  .pull-quote-section .attribution {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+  }
+
+  /* --- Guarantee --- */
+  .guarantee {
+    background: var(--white);
+    padding: 96px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .guarantee .inner {
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .guarantee svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--charcoal);
+    stroke-width: 1;
+    fill: none;
+    margin-bottom: 28px;
+  }
+  .guarantee h2 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(24px, 3vw, 34px);
+    margin-bottom: 20px;
+    color: var(--charcoal);
+  }
+  .guarantee p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.8;
+  }
+
+  /* --- FAQ --- */
+  .faq-section {
+    background: var(--white);
+    padding: 96px 24px;
+    border-top: 1px solid var(--border);
+  }
+  .faq-section .section-label {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+  .faq-section h2 {
+    text-align: center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(26px, 3.2vw, 38px);
+    margin-bottom: 64px;
+    color: var(--charcoal);
+  }
+  .faq-list {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .faq-item {
+    border-top: 1px solid var(--border);
+  }
+  .faq-item:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 24px 0;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--charcoal);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-question:hover { color: var(--terracotta); }
+  .faq-question .icon {
+    font-size: 20px;
+    font-weight: 300;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    color: var(--text-secondary);
+  }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 200px;
+    padding-bottom: 24px;
+  }
+  .faq-item.open .icon {
+    transform: rotate(45deg);
+  }
+  .faq-answer p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* --- Final CTA --- */
+  .final-cta {
+    background: var(--cream);
+    padding: 120px 24px;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+  .final-cta h2 {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.2;
+    color: var(--charcoal);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    background: var(--warm-gray);
+    padding: 64px 40px 40px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .footer-brand {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+  }
+  .footer-tagline {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    max-width: 280px;
+    line-height: 1.6;
+  }
+  .footer-links {
+    display: flex;
+    gap: 40px;
+  }
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--charcoal); }
+  .footer-bottom {
+    max-width: 1080px;
+    margin: 40px auto 0;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-secondary);
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 768px) {
+    .header { padding: 0 20px; }
+    .header-nav a.hide-mobile { display: none; }
+    .hero-content { padding: 48px 24px; }
+    .product-grid { grid-template-columns: 1fr; gap: 40px; max-width: 420px; }
+    .steps { grid-template-columns: 1fr; gap: 56px; }
+    .footer-inner { flex-direction: column; }
+    .footer-links { gap: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. Announcement Marquee -->
+<div class="announcement">
+  <div class="marquee-track">
+    <span>Free shipping on orders over $30</span>
+    <span>100% anonymous delivery</span>
+    <span>Thousands of confused recipients served</span>
+    <span>No return address. No mercy.</span>
+    <span>Free shipping on orders over $30</span>
+    <span>100% anonymous delivery</span>
+    <span>Thousands of confused recipients served</span>
+    <span>No return address. No mercy.</span>
+  </div>
+</div>
+
+<!-- 2. Header -->
+<header class="header">
+  <a href="#" class="header-logo">Package Deal</a>
+  <nav class="header-nav">
+    <a href="#products" class="hide-mobile">Shop</a>
+    <a href="#how" class="hide-mobile">How It Works</a>
+    <a href="#faq" class="hide-mobile">FAQ</a>
+    <a href="#" aria-label="Cart">
+      <svg class="cart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+    </a>
+  </nav>
+</header>
+
+<!-- 3. Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content fade-in">
+    <h1>Send someone you love something <em>deeply</em> embarrassing.</h1>
+    <p>Anonymous prank mail tubes branded with URLs like MicroPenisCure.com &mdash; delivered to their door with zero explanation.</p>
+    <a href="#products" class="btn-pill-outline">Shop the collection</a>
+  </div>
+</section>
+
+<!-- 4. Trust Strip -->
+<div class="trust-strip">
+  <div class="trust-track">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      100% anonymous
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><rect x="1" y="3" width="22" height="18" rx="2"/><line x1="1" y1="9" x2="23" y2="9"/></svg>
+      Secure checkout
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      No return address
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+      Discreet packaging
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+      Rated 4.5/5 on Amazon
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      100% anonymous
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><rect x="1" y="3" width="22" height="18" rx="2"/><line x1="1" y1="9" x2="23" y2="9"/></svg>
+      Secure checkout
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      No return address
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a4 4 0 00-8 0v2"/></svg>
+      Discreet packaging
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+      Rated 4.5/5 on Amazon
+    </div>
+  </div>
+</div>
+
+<!-- 5. Editorial Intro -->
+<section class="editorial-intro">
+  <div class="inner fade-in">
+    <div class="label">Our mission</div>
+    <h2>Everyday, we help people send <em>deeply</em> confusing mail.</h2>
+    <p>A branded cardboard tube shows up at their door. No note. No return address. Just a URL they'll never, ever want to Google at work. You watch from a safe distance.</p>
+  </div>
+</section>
+
+<!-- 6. Product Grid -->
+<section class="product-section" id="products">
+  <div class="section-label">The collection</div>
+  <h2>Choose your weapon</h2>
+  <div class="product-grid fade-in">
+    <a href="#" class="product-card">
+      <img src="/images/micropenis1.webp" alt="MicroPenisCure.com prank mail tube" loading="lazy">
+      <div class="card-info">
+        <h3>MicroPenisCure.com</h3>
+        <div class="price">From $14.99</div>
+        <span class="view-link">View &rarr;</span>
+      </div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="/images/bigassdildos1.webp" alt="BigAssDildos.com prank mail tube" loading="lazy">
+      <div class="card-info">
+        <h3>BigAssDildos.com</h3>
+        <div class="price">From $14.99</div>
+        <span class="view-link">View &rarr;</span>
+      </div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com prank mail tube" loading="lazy">
+      <div class="card-info">
+        <h3>VaginalOdorHelper.com</h3>
+        <div class="price">From $14.99</div>
+        <span class="view-link">View &rarr;</span>
+      </div>
+    </a>
+    <a href="#" class="product-card">
+      <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com prank mail tube" loading="lazy">
+      <div class="card-info">
+        <h3>BulkCondomDelivery.com</h3>
+        <div class="price">$12.99</div>
+        <span class="view-link">View &rarr;</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- 7. How It Works -->
+<section class="how-it-works" id="how">
+  <div class="section-label">Effortlessly cruel</div>
+  <h2>How it works</h2>
+  <div class="steps fade-in">
+    <div class="step">
+      <svg class="step-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="20"/>
+        <path d="M18 24h12M24 18v12"/>
+      </svg>
+      <h3>Pick a tube</h3>
+      <p>Choose the URL most likely to make them question every life decision they've ever made.</p>
+    </div>
+    <div class="step">
+      <svg class="step-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="12" width="32" height="24" rx="3"/>
+        <polyline points="8 16 24 28 40 16"/>
+      </svg>
+      <h3>Enter their address</h3>
+      <p>We ship it directly to their door. No return address. No explanation. Just confusion.</p>
+    </div>
+    <div class="step">
+      <svg class="step-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="20" r="10"/>
+        <path d="M16 42c0-6 3.6-10 8-10s8 4 8 10"/>
+        <path d="M20 18l3 3 5-6"/>
+      </svg>
+      <h3>Watch the chaos</h3>
+      <p>They sign for a tube branded MicroPenisCure.com in front of whoever happens to be home.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Pull Quote -->
+<section class="pull-quote-section">
+  <div class="inner fade-in">
+    <blockquote>&ldquo;He had to sign for it in front of his entire office. The delivery guy read the label out loud.&rdquo;</blockquote>
+    <div class="attribution">&mdash; Verified buyer, MicroPenisCure.com (Sign For It)</div>
+  </div>
+</section>
+
+<!-- 9. Guarantee -->
+<section class="guarantee">
+  <div class="inner fade-in">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+      <polyline points="9 12 11 14 15 10"/>
+    </svg>
+    <h2>Our guarantee</h2>
+    <p>If your tube arrives damaged or doesn't arrive at all, we'll replace it or refund you. No questions asked. We stand behind every deeply uncomfortable delivery we make.</p>
+  </div>
+</section>
+
+<!-- 10. FAQ -->
+<section class="faq-section" id="faq">
+  <div class="section-label">Questions</div>
+  <h2>Frequently asked</h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        Is this actually anonymous?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Completely. No return address, no sender info, no note inside. Just a branded tube and a lifetime of questions.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        What's inside the tube?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>Nothing. That's the point. It's a cardboard mailing tube with an embarrassing URL printed on it. The outside IS the prank.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        What does "Sign For It" mean?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>We ship it with signature confirmation. That means they have to physically sign for a tube branded MicroPenisCure.com in front of the delivery driver. It's worth every penny.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        Is this mean?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>It's for friends who can take a joke. If you're picturing their face and laughing, not cringing, you've got the right person.</p>
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+        How long does shipping take?
+        <span class="icon">+</span>
+      </button>
+      <div class="faq-answer">
+        <p>3-5 business days within the US. We also offer expedited shipping if you need the embarrassment to arrive on a deadline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Final CTA -->
+<section class="final-cta">
+  <div class="fade-in">
+    <h2>Someone in your life deserves this. You know exactly who.</h2>
+    <a href="#products" class="btn-pill-outline dark">Shop now</a>
+  </div>
+</section>
+
+<!-- 12. Footer -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Package Deal</div>
+      <p class="footer-tagline">Anonymous prank mail tubes. Delivered with zero explanation.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <a href="#">All Products</a>
+        <a href="#">MicroPenisCure.com</a>
+        <a href="#">BigAssDildos.com</a>
+        <a href="#">VaginalOdorHelper.com</a>
+        <a href="#">BulkCondomDelivery.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <a href="#">FAQ</a>
+        <a href="#">Shipping &amp; Returns</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Package Deal. All rights reserved. Prototype B &mdash; Frey / MBG Direction.
+  </div>
+</footer>
+
+<script>
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Trigger hero fade-in immediately
+window.addEventListener('load', () => {
+  document.querySelector('.hero .fade-in')?.classList.add('visible');
+});
+</script>
+
+</body>
+</html>

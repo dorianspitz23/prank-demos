@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Differentiators — Proto 6: Split Headline + Stacked Blocks</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: #2D2D2D; }
+
+  .section { max-width: 1280px; margin: 0 auto; padding: 96px 24px; }
+
+  /* Two-column layout: sticky headline left, cards right */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .left {
+    position: sticky;
+    top: 96px;
+  }
+  .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 600; color: #D4714E; margin-bottom: 16px; }
+  .headline { font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+  .subtext { color: #6B6B6B; font-size: 16px; line-height: 1.7; max-width: 400px; }
+
+  /* Right side: stacked blocks */
+  .blocks { display: flex; flex-direction: column; gap: 16px; }
+
+  .block {
+    background: #FAFAF8;
+    border-radius: 16px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 20px;
+    align-items: start;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid transparent;
+  }
+  .block:hover {
+    transform: translateX(4px);
+    border-color: #E8E5E1;
+    box-shadow: -4px 0 0 #D4714E;
+  }
+
+  .block-icon {
+    width: 56px;
+    height: 56px;
+    background: #fff;
+    border: 1px solid #E8E5E1;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .block-icon svg { width: 24px; height: 24px; stroke: #D4714E; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .block h3 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .block p { color: #6B6B6B; font-size: 15px; line-height: 1.6; }
+
+  @media (max-width: 768px) {
+    .split { grid-template-columns: 1fr; gap: 40px; }
+    .left { position: static; text-align: center; }
+    .subtext { margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="split">
+    <div class="left">
+      <p class="kicker">Why Package Deal</p>
+      <h2 class="headline">Why this isn't like every other prank site.</h2>
+      <p class="subtext">Four things we do differently — and why 50,000+ senders keep coming back.</p>
+    </div>
+
+    <div class="blocks">
+      <div class="block">
+        <div class="block-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 5 10-5"/></svg>
+        </div>
+        <div>
+          <h3>The URL is the prank.</h3>
+          <p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they'll have to explain it to anyone who sees it. Which is everyone.</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+        </div>
+        <div>
+          <h3>"Sign For It" delivery.</h3>
+          <p>Upgrade any prank to require a signature. They can't just grab it off the porch — they have to look their mail carrier in the eye and accept it. By name.</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-icon">
+          <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </div>
+        <div>
+          <h3>Actually anonymous.</h3>
+          <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+        </div>
+      </div>
+
+      <div class="block">
+        <div class="block-icon">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div>
+          <h3>Free shipping. Free returns.</h3>
+          <p>We ship it free. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

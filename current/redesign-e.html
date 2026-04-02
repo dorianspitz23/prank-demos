@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option E — The Text Back</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #2D2D2D; color: #fff; }
+
+  /* Spacer so user has room to scroll into the section */
+  .spacer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.15);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+  }
+  .spacer::after { content: '↓ scroll down ↓'; }
+
+  .section { width: 100%; padding: 72px 24px 120px; }
+  .inner { max-width: 480px; margin: 0 auto; }
+
+  .section-kicker {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #D4714E;
+    margin-bottom: 8px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .section-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+  }
+
+  /* iMessage-style chat */
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+
+  .bubble {
+    max-width: 80%;
+    padding: 12px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 1.45;
+    position: relative;
+    /* Start hidden — revealed by scroll */
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  /* Stagger: each bubble gets a longer transition-delay once visible */
+  .bubble.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Received (left, gray) */
+  .bubble.received {
+    align-self: flex-start;
+    background: #3A3A3C;
+    color: #fff;
+    border-bottom-left-radius: 6px;
+  }
+
+  /* Sent (right, terracotta) */
+  .bubble.sent {
+    align-self: flex-end;
+    background: #D4714E;
+    color: #fff;
+    border-bottom-right-radius: 6px;
+  }
+
+  .bubble .sender-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  .time-stamp {
+    text-align: center;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 8px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Typing indicator */
+  .typing {
+    align-self: flex-start;
+    display: flex;
+    gap: 4px;
+    padding: 14px 18px;
+    background: #3A3A3C;
+    border-radius: 20px;
+    border-bottom-left-radius: 6px;
+    opacity: 0;
+    transform: translateY(24px) scale(0.95);
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .typing.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  .typing .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.4);
+    animation: typingBounce 1.4s infinite ease-in-out;
+  }
+  .typing .dot:nth-child(2) { animation-delay: 0.2s; }
+  .typing .dot:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes typingBounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .footer.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .footer-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+  .footer-text strong {
+    color: rgba(255,255,255,0.65);
+    font-weight: 600;
+  }
+
+  /* Visible state for header elements */
+  .section-kicker.is-visible,
+  .section-title.is-visible,
+  .time-stamp.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Bottom spacer so last elements have scroll room */
+  .spacer-bottom { height: 50vh; }
+
+  @media (max-width: 640px) {
+    .section { padding: 56px 16px 100px; }
+    .bubble { font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="spacer"></div>
+
+  <div class="section">
+    <div class="inner">
+      <p class="section-kicker" data-reveal>Actual reactions</p>
+      <h2 class="section-title" data-reveal>What happens after delivery</h2>
+
+      <div class="chat">
+        <div class="time-stamp" data-reveal>After delivery</div>
+
+        <div class="bubble received" data-reveal>
+          <span class="sender-name">Your buddy</span>
+          Bro. WHAT did you just send me.
+        </div>
+
+        <div class="bubble received" data-reveal>
+          I had to SIGN for this. At WORK. In front of Karen from accounting.
+        </div>
+
+        <div class="bubble sent" data-reveal>
+          😂😂😂
+        </div>
+
+        <div class="bubble received" data-reveal>
+          My mailman made eye contact. He KNOWS.
+        </div>
+
+        <div class="bubble sent" data-reveal>
+          Worth every penny
+        </div>
+
+        <div class="typing" data-reveal>
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+
+      <div class="footer" data-reveal>
+        <p class="footer-text"><strong>1,000+</strong> of these conversations and counting</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer-bottom"></div>
+
+<script>
+  (() => {
+    const items = document.querySelectorAll('[data-reveal]');
+    // Queue: items revealed one-by-one as they enter the viewport,
+    // with a staggered delay between each so they "type in" sequentially.
+    let lastRevealTime = 0;
+    const MIN_GAP = 350; // ms between each bubble appearing
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        if (entry.target.classList.contains('is-visible')) return;
+
+        const now = Date.now();
+        const delay = Math.max(0, (lastRevealTime + MIN_GAP) - now);
+        lastRevealTime = now + delay;
+
+        setTimeout(() => {
+          entry.target.classList.add('is-visible');
+        }, delay);
+
+        // Stop observing once revealed
+        observer.unobserve(entry.target);
+      });
+    }, {
+      // Trigger when element is 15% into the viewport from the bottom
+      rootMargin: '0px 0px -15% 0px',
+      threshold: 0.1
+    });
+
+    items.forEach(el => observer.observe(el));
+  })();
+</script>
+
+</body>
+</html>

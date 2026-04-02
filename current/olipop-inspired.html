@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package Deal — Anonymous Prank Mail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════
+       RESET & TOKENS — OLIPOP-INSPIRED
+       ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      /* Olipop-inspired: hunter green + white + warm accents */
+      --green: #14433D;
+      --green-light: #1a5a52;
+      --green-dark: #0e2f2b;
+      --cream: #FDF8F0;
+      --peach: #F4A583;
+      --coral: #E8735A;
+      --lavender: #C5A3CF;
+      --sky: #7EC8D9;
+      --lemon: #F5D76E;
+      --mint: #A8DBC5;
+      --grape: #8B6BAE;
+      --cola: #5C3D2E;
+      --white: #FFFFFF;
+      --off-white: #FAFAF8;
+      --text: #2D2D2D;
+      --text-light: #6B6B6B;
+      --border: #E8E5E1;
+      --error: #fa4545;
+
+      --font-display: 'DM Serif Display', Georgia, serif;
+      --font-body: 'DM Sans', Helvetica, Arial, sans-serif;
+      --max-width: 1200px;
+      --gutter: 55px;
+      --gutter-mobile: 22px;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --radius-pill: 999px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; }
+    ul { list-style: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+
+    /* ═══════════════════════════════════════════
+       ANNOUNCEMENT BARS (stacked, Olipop style)
+       ═══════════════════════════════════════════ */
+    .announcements {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    .announcement-slide {
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .announcement-slide strong { font-weight: 700; }
+    .announcement-slide .ann-highlight { color: var(--lemon); font-weight: 700; }
+
+    /* ═══════════════════════════════════════════
+       HEADER — Clean white, Olipop style
+       ═══════════════════════════════════════════ */
+    .header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: box-shadow 0.3s;
+    }
+    .header.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0; max-width: var(--max-width); margin: 0 auto;
+      padding-left: var(--gutter); padding-right: var(--gutter);
+    }
+    .header-left { display: flex; align-items: center; gap: 40px; }
+    .header-left nav { display: flex; gap: 28px; }
+    .header-left nav a {
+      font-size: 15px; font-weight: 500; color: var(--text);
+      transition: opacity 0.2s; letter-spacing: 0.01em;
+    }
+    .header-left nav a:hover { opacity: 0.6; }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px; font-weight: 400;
+      letter-spacing: -0.02em; color: var(--green);
+    }
+    .header-right { display: flex; align-items: center; gap: 20px; }
+    .header-right a {
+      font-size: 14px; font-weight: 500; color: var(--text);
+      transition: opacity 0.2s;
+    }
+    .header-right a:hover { opacity: 0.6; }
+    .cart-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--green); color: #fff;
+      padding: 8px 16px; border-radius: 2px;
+      font-size: 14px; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .cart-btn:hover { background: var(--green-light); }
+    .cart-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+
+    /* ═══════════════════════════════════════════
+       HERO — Bold, full-width, Olipop style
+       ═══════════════════════════════════════════ */
+    .hero {
+      background: var(--cream);
+      min-height: 80vh;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-inner {
+      max-width: var(--max-width); margin: 0 auto;
+      padding: 80px var(--gutter);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+      width: 100%;
+    }
+    .hero-text h1 {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 400; line-height: 1.05;
+      color: var(--green); margin-bottom: 20px;
+    }
+    .hero-text h1 em { font-style: italic; }
+    .hero-text p {
+      font-size: 18px; color: var(--text-light);
+      line-height: 1.7; margin-bottom: 8px; max-width: 440px;
+    }
+    .hero-text .hero-sub {
+      font-size: 20px; font-weight: 600; color: var(--text);
+      margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .hero-text .hero-fine {
+      font-size: 13px; color: var(--text-light); margin-bottom: 32px;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--green); color: #fff;
+      padding: 16px 36px; border-radius: 2px;
+      font-size: 16px; font-weight: 700;
+      letter-spacing: 0.02em; transition: all 0.2s;
+    }
+    .hero-cta:hover { background: var(--green-light); }
+    .hero-cta svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+    .hero-visual {
+      position: relative;
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-visual-wrapper {
+      width: 100%; max-width: 520px;
+      aspect-ratio: 1; border-radius: var(--radius);
+      overflow: hidden; background: var(--green);
+      position: relative;
+    }
+    .hero-visual-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-play-btn {
+      position: absolute; bottom: 20px; left: 20px;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: #fff; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      transition: all 0.3s;
+    }
+    .hero-play-btn:hover { background: var(--green); }
+    .hero-play-btn:hover svg { stroke: #fff; }
+    .hero-play-btn svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+    /* Floating color dots (Olipop playful elements) */
+    .hero-dots { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-dot {
+      position: absolute; border-radius: 50%; opacity: 0.15;
+    }
+    .hero-dot--1 { width: 200px; height: 200px; background: var(--peach); top: -40px; right: -60px; }
+    .hero-dot--2 { width: 120px; height: 120px; background: var(--sky); bottom: 40px; left: -30px; }
+    .hero-dot--3 { width: 80px; height: 80px; background: var(--lavender); top: 50%; right: 20%; }
+
+    /* ═══════════════════════════════════════════
+       PRODUCT CAROUSEL — "Pure Nostalgia-ahh" style
+       ═══════════════════════════════════════════ */
+    .product-carousel-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .carousel-header {
+      max-width: var(--max-width); margin: 0 auto;
+      padding: 0 var(--gutter);
+      display: flex; align-items: flex-end; justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .carousel-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 400; color: var(--green);
+      line-height: 1.1;
+    }
+    .carousel-header h2 em { font-style: italic; }
+    .carousel-header p {
+      font-size: 16px; color: var(--text-light); margin-top: 8px;
+    }
+    .carousel-header .carousel-nav {
+      display: flex; gap: 8px;
+    }
+    .carousel-nav-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid var(--green); display: flex;
+      align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .carousel-nav-btn:hover { background: var(--green); }
+    .carousel-nav-btn:hover svg { stroke: #fff; }
+    .carousel-nav-btn svg { width: 18px; height: 18px; stroke: var(--green); fill: none; stroke-width: 2; }
+
+    .product-track {
+      display: flex; gap: 24px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 0 var(--gutter) 20px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .product-track::-webkit-scrollbar { display: none; }
+
+    .product-card {
+      flex: 0 0 280px; scroll-snap-align: start;
+      border-radius: var(--radius);
+      overflow: hidden; background: var(--white);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .product-card-badge {
+      position: absolute; top: 12px; left: 12px; z-index: 2;
+      padding: 4px 12px; border-radius: var(--radius-pill);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #fff;
+    }
+    .product-card-img {
+      aspect-ratio: 1; overflow: hidden;
+      position: relative;
+    }
+    .product-card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .product-card:hover .product-card-img img { transform: scale(1.06); }
+    .product-card-body {
+      padding: 18px 20px;
+    }
+    .product-card-name {
+      font-family: var(--font-display);
+      font-size: 18px; font-weight: 400;
+      margin-bottom: 4px; color: var(--text);
+    }
+    .product-card-tagline {
+      font-size: 13px; color: var(--text-light); margin-bottom: 14px;
+    }
+    .product-card-footer {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .product-card-price {
+      font-size: 16px; font-weight: 700;
+    }
+    .product-card-add {
+      font-size: 14px; font-weight: 600; color: var(--green);
+      display: flex; align-items: center; gap: 4px;
+      transition: opacity 0.2s;
+    }
+    .product-card-add:hover { opacity: 0.6; }
+
+    /* Flavor colors for badges */
+    .badge--peach { background: var(--peach); }
+    .badge--green { background: var(--green); }
+    .badge--coral { background: var(--coral); }
+    .badge--grape { background: var(--grape); }
+    .badge--sky { background: var(--sky); color: var(--text); }
+    .badge--lemon { background: var(--lemon); color: var(--text); }
+
+    /* ═══════════════════════════════════════════
+       SPLIT FEATURE — "The URL is the Prank" / benefit callout
+       ═══════════════════════════════════════════ */
+    .split-feature {
+      display: grid; grid-template-columns: 1fr 1fr;
+      min-height: 560px;
+    }
+    .split-feature-img {
+      background: var(--green); display: flex;
+      align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .split-feature-img img { width: 100%; height: 100%; object-fit: cover; }
+    .split-feature-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 60px 56px;
+    }
+    .split-feature-text .kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .split-feature-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 400; line-height: 1.1; margin-bottom: 20px;
+    }
+    .split-feature-text h2 em { font-style: italic; }
+    .split-feature-text p {
+      font-size: 17px; color: var(--text-light);
+      line-height: 1.7; margin-bottom: 28px; max-width: 440px;
+    }
+    .split-feature-text .btn-green {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green); color: #fff;
+      padding: 14px 32px; border-radius: 2px;
+      font-size: 15px; font-weight: 700;
+      transition: background 0.2s; width: fit-content;
+    }
+    .split-feature-text .btn-green:hover { background: var(--green-light); }
+
+    /* Variant: image right */
+    .split-feature--reverse { direction: rtl; }
+    .split-feature--reverse > * { direction: ltr; }
+
+    /* Variant: colored background */
+    .split-feature--cream .split-feature-text { background: var(--cream); }
+    .split-feature--peach .split-feature-img { background: var(--peach); }
+    .split-feature--green .split-feature-text { background: var(--green); color: #fff; }
+    .split-feature--green .split-feature-text .kicker { color: var(--lemon); }
+    .split-feature--green .split-feature-text h2 { color: #fff; }
+    .split-feature--green .split-feature-text p { color: rgba(255,255,255,0.7); }
+    .split-feature--green .split-feature-text .btn-green {
+      background: #fff; color: var(--green);
+    }
+    .split-feature--green .split-feature-text .btn-green:hover {
+      background: var(--cream);
+    }
+
+    /* ═══════════════════════════════════════════
+       HOW IT WORKS — Horizontal steps
+       ═══════════════════════════════════════════ */
+    .how-section {
+      padding: 80px 0;
+      background: var(--cream);
+    }
+    .how-header {
+      text-align: center; margin-bottom: 56px;
+    }
+    .how-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400; color: var(--green);
+    }
+    .how-header h2 em { font-style: italic; }
+    .how-header p { font-size: 16px; color: var(--text-light); margin-top: 8px; }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 40px; position: relative;
+    }
+    .how-steps::before {
+      content: '';
+      position: absolute; top: 36px; left: 18%; right: 18%;
+      height: 2px;
+      background: linear-gradient(to right, var(--green) 0%, var(--mint) 50%, var(--green) 100%);
+      opacity: 0.2;
+    }
+    .how-step { text-align: center; position: relative; }
+    .how-step-num {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--green); color: #fff;
+      font-family: var(--font-display); font-size: 28px;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px; position: relative; z-index: 2;
+      box-shadow: 0 4px 20px rgba(20,67,61,0.25);
+    }
+    .how-step h3 {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 400; margin-bottom: 10px;
+    }
+    .how-step p {
+      font-size: 15px; color: var(--text-light);
+      line-height: 1.7; max-width: 280px; margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════════
+       STATS BANNER — Bold numbers
+       ═══════════════════════════════════════════ */
+    .stats-banner {
+      background: var(--green); color: #fff;
+      padding: 56px 0;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 32px; text-align: center;
+    }
+    .stat-item {}
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 400; line-height: 1;
+      margin-bottom: 6px; color: var(--lemon);
+    }
+    .stat-label {
+      font-size: 14px; font-weight: 500;
+      color: rgba(255,255,255,0.6); letter-spacing: 0.02em;
+    }
+
+    /* ═══════════════════════════════════════════
+       TESTIMONIAL CAROUSEL — Olipop review style
+       ═══════════════════════════════════════════ */
+    .testimonials-section {
+      padding: 80px 0;
+      background: var(--off-white);
+    }
+    .testimonials-header {
+      text-align: center; margin-bottom: 48px;
+    }
+    .testimonials-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400; color: var(--green);
+    }
+    .testimonials-header h2 em { font-style: italic; }
+    .testimonial-track {
+      display: flex; gap: 24px;
+      overflow-x: auto; scroll-snap-type: x mandatory;
+      padding: 0 var(--gutter) 20px;
+      scrollbar-width: none;
+    }
+    .testimonial-track::-webkit-scrollbar { display: none; }
+    .testimonial-card {
+      flex: 0 0 340px; scroll-snap-align: start;
+      background: var(--white); border-radius: var(--radius);
+      padding: 32px 28px; border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .testimonial-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
+    .testimonial-stars {
+      color: var(--lemon); font-size: 18px; letter-spacing: 2px; margin-bottom: 16px;
+    }
+    .testimonial-text {
+      font-family: var(--font-display);
+      font-size: 18px; font-style: italic; line-height: 1.5;
+      color: var(--text); margin-bottom: 20px;
+    }
+    .testimonial-author {
+      font-size: 13px; font-weight: 600; color: var(--text-light);
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+
+    /* ═══════════════════════════════════════════
+       CHAOS TIERS — Playful tier cards
+       ═══════════════════════════════════════════ */
+    .tiers-section {
+      padding: 80px 0;
+      background: var(--white);
+    }
+    .tiers-header {
+      text-align: center; margin-bottom: 48px;
+    }
+    .tiers-header .kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--coral); margin-bottom: 12px;
+    }
+    .tiers-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400; color: var(--green);
+    }
+    .tiers-header h2 em { font-style: italic; }
+    .tiers-header p { font-size: 16px; color: var(--text-light); margin-top: 8px; }
+    .tier-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 960px; margin: 0 auto;
+    }
+    .tier-card {
+      border-radius: var(--radius); padding: 32px 24px;
+      text-align: center; border: 2px solid var(--border);
+      transition: all 0.3s; position: relative;
+    }
+    .tier-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .tier-card--featured {
+      border-color: var(--green);
+      background: rgba(20,67,61,0.03);
+    }
+    .tier-card-badge {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--green); color: #fff;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; padding: 5px 16px;
+      border-radius: var(--radius-pill);
+    }
+    .tier-card-emoji { font-size: 36px; margin-bottom: 12px; }
+    .tier-card h3 {
+      font-family: var(--font-display);
+      font-size: 22px; font-weight: 400; margin-bottom: 4px;
+    }
+    .tier-card .tier-subtitle {
+      font-size: 13px; color: var(--text-light); font-weight: 500;
+      letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 16px;
+    }
+    .tier-card .tier-price {
+      font-family: var(--font-display);
+      font-size: 36px; color: var(--green); margin-bottom: 16px;
+    }
+    .tier-card p {
+      font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 20px;
+    }
+    .tier-pills {
+      display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+    }
+    .tier-pill {
+      font-size: 12px; font-weight: 500; padding: 4px 12px;
+      border-radius: var(--radius-pill); background: var(--cream);
+      color: var(--text);
+    }
+
+    /* ═══════════════════════════════════════════
+       RECIPIENTS — WHO DESERVES ONE
+       ═══════════════════════════════════════════ */
+    .recipients-section {
+      padding: 80px 0; background: var(--cream);
+    }
+    .recipients-header {
+      text-align: center; margin-bottom: 48px;
+    }
+    .recipients-header .kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--coral); margin-bottom: 12px;
+    }
+    .recipients-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400; color: var(--green);
+    }
+    .recipients-header h2 em { font-style: italic; }
+    .recipient-cards {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .recipient-card {
+      background: var(--white); border-radius: var(--radius);
+      padding: 28px 24px; border: 1px solid var(--border);
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .recipient-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 3px; background: var(--green);
+      transform: scaleX(0); transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .recipient-card:hover::after { transform: scaleX(1); }
+    .recipient-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+    .recipient-card .rc-emoji { font-size: 32px; margin-bottom: 14px; }
+    .recipient-card h3 {
+      font-family: var(--font-display);
+      font-size: 20px; font-weight: 400; margin-bottom: 10px;
+    }
+    .recipient-card p {
+      font-size: 14px; color: var(--text-light); line-height: 1.6; margin-bottom: 18px;
+    }
+    .recipient-card .rc-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 700; color: var(--green);
+      transition: opacity 0.2s;
+    }
+    .recipient-card .rc-cta:hover { opacity: 0.6; }
+    .recipient-card .rc-cta svg { width: 14px; height: 14px; stroke: var(--green); fill: none; stroke-width: 2.5; }
+
+    /* ═══════════════════════════════════════════
+       COMPARISON TABLE
+       ═══════════════════════════════════════════ */
+    .comparison-section {
+      padding: 80px 0; background: var(--white);
+    }
+    .comparison-header {
+      text-align: center; margin-bottom: 48px;
+    }
+    .comparison-header .kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--coral); margin-bottom: 12px;
+    }
+    .comparison-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400; color: var(--green);
+    }
+    .comparison-table {
+      max-width: 720px; margin: 0 auto;
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); background: var(--white);
+    }
+    .ct-header {
+      display: grid; grid-template-columns: 1fr 100px 100px;
+      padding: 16px 24px; background: var(--green); color: #fff;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .ct-header span:not(:first-child) { text-align: center; }
+    .ct-header .us-col { color: var(--lemon); }
+    .ct-row {
+      display: grid; grid-template-columns: 1fr 100px 100px;
+      padding: 14px 24px; font-size: 15px;
+      border-bottom: 1px solid var(--border); align-items: center;
+    }
+    .ct-row:last-child { border-bottom: none; }
+    .ct-row:nth-child(even) { background: var(--off-white); }
+    .ct-row span:not(:first-child) { text-align: center; font-size: 18px; }
+    .ct-check { color: var(--green); font-weight: 700; }
+    .ct-cross { color: var(--error); opacity: 0.4; }
+
+    /* ═══════════════════════════════════════════
+       QUIZ CTA
+       ═══════════════════════════════════════════ */
+    .quiz-cta {
+      background: var(--green);
+      border-radius: var(--radius);
+      padding: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 40px; margin: 0 var(--gutter);
+    }
+    .quiz-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400; color: #fff; line-height: 1.15;
+    }
+    .quiz-cta h2 em { font-style: italic; }
+    .quiz-cta p { color: rgba(255,255,255,0.7); font-size: 16px; margin-top: 8px; }
+    .quiz-cta .btn-white {
+      background: #fff; color: var(--green);
+      padding: 14px 32px; border-radius: 2px;
+      font-size: 15px; font-weight: 700;
+      transition: background 0.2s; white-space: nowrap;
+    }
+    .quiz-cta .btn-white:hover { background: var(--cream); }
+
+    /* ═══════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════ */
+    .faq-section { padding: 80px 0; background: var(--off-white); }
+    .faq-header { text-align: center; margin-bottom: 48px; }
+    .faq-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 400; color: var(--green);
+    }
+    .faq-header h2 em { font-style: italic; }
+    .faq-grid { max-width: 720px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; text-align: left; padding: 20px 0;
+      font-size: 17px; font-weight: 500; transition: color 0.2s;
+    }
+    .faq-q:hover { color: var(--green); }
+    .faq-toggle {
+      width: 28px; height: 28px; border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-left: 16px; transition: all 0.3s;
+    }
+    .faq-toggle svg { width: 14px; height: 14px; stroke: var(--text-light); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+    .faq-item.open .faq-toggle { background: var(--green); border-color: var(--green); }
+    .faq-item.open .faq-toggle svg { stroke: #fff; transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a-inner { padding: 0 0 20px; font-size: 15px; color: var(--text-light); line-height: 1.7; }
+
+    /* ═══════════════════════════════════════════
+       GUARANTEE
+       ═══════════════════════════════════════════ */
+    .guarantee-section { padding: 80px 0; background: var(--white); }
+    .guarantee-content { text-align: center; max-width: 600px; margin: 0 auto; }
+    .guarantee-icon {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: var(--cream);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 24px;
+    }
+    .guarantee-icon svg { width: 36px; height: 36px; stroke: var(--green); fill: none; stroke-width: 2; }
+    .guarantee-content h2 {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 40px);
+      font-weight: 400; color: var(--green); margin-bottom: 16px;
+    }
+    .guarantee-content h2 em { font-style: italic; }
+    .guarantee-content p {
+      font-size: 17px; color: var(--text-light); line-height: 1.7; margin-bottom: 28px;
+    }
+    .btn-outline-green {
+      display: inline-flex; align-items: center;
+      background: transparent; color: var(--green);
+      border: 2px solid var(--green); padding: 12px 28px;
+      border-radius: 2px; font-size: 15px; font-weight: 700;
+      transition: all 0.2s;
+    }
+    .btn-outline-green:hover { background: var(--green); color: #fff; }
+
+    /* ═══════════════════════════════════════════
+       FINAL CTA
+       ═══════════════════════════════════════════ */
+    .final-cta {
+      background: var(--green); color: #fff;
+      padding: 100px 0; text-align: center;
+    }
+    .final-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 400; line-height: 1.1; margin-bottom: 16px;
+    }
+    .final-cta h2 em { font-style: italic; color: var(--lemon); }
+    .final-cta p {
+      font-size: 18px; color: rgba(255,255,255,0.65);
+      margin-bottom: 36px; max-width: 500px; margin-left: auto; margin-right: auto;
+    }
+    .final-cta .btn-white {
+      background: #fff; color: var(--green);
+      padding: 16px 40px; border-radius: 2px;
+      font-size: 17px; font-weight: 700;
+      transition: background 0.2s;
+    }
+    .final-cta .btn-white:hover { background: var(--cream); }
+
+    /* ═══════════════════════════════════════════
+       FOOTER — Olipop style
+       ═══════════════════════════════════════════ */
+    .footer {
+      background: var(--green-dark); color: #fff;
+      padding: 64px 0 32px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-brand .logo { color: #fff; margin-bottom: 16px; font-size: 24px; }
+    .footer-brand p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 300px; margin-bottom: 24px; }
+    .footer-social { display: flex; gap: 14px; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .footer-social a:hover { border-color: var(--lemon); background: rgba(245,215,110,0.1); }
+    .footer-social svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; }
+    .footer-col h4 {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 20px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-col a {
+      display: block; font-size: 14px; color: rgba(255,255,255,0.65);
+      padding: 5px 0; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--lemon); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; font-size: 13px; color: rgba(255,255,255,0.25);
+    }
+    .footer-payments { display: flex; gap: 10px; }
+    .footer-pay {
+      width: 40px; height: 26px; border-radius: 4px;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35);
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 990px) {
+      :root { --gutter: 32px; }
+      .hero-inner, .split-feature { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; }
+      .hero-text { text-align: center; }
+      .hero-text p, .hero-text .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-cta { margin: 0 auto; }
+      .split-feature-text { padding: 48px 32px; }
+      .how-steps { grid-template-columns: 1fr; gap: 32px; }
+      .how-steps::before { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .tier-cards { grid-template-columns: 1fr; max-width: 400px; }
+      .recipient-cards { grid-template-columns: repeat(2, 1fr); }
+      .quiz-cta { flex-direction: column; text-align: center; padding: 40px 28px; margin: 0 16px; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 750px) {
+      :root { --gutter: var(--gutter-mobile); }
+      .header-left nav { display: none; }
+      .recipient-cards { grid-template-columns: 1fr; }
+      .ct-header, .ct-row { grid-template-columns: 1fr 80px 80px; }
+      .product-card { flex: 0 0 260px; }
+      .testimonial-card { flex: 0 0 300px; }
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 16px; }
+      .split-feature--reverse { direction: ltr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════
+       ANNOUNCEMENT BAR
+       ═══════════════════════════════════════════ -->
+  <div class="announcements">
+    <div class="announcement-slide">
+      <span class="ann-highlight">Free shipping</span> on every order &bull; <strong>100% anonymous</strong> &bull; 60-day money-back guarantee
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       HEADER
+       ═══════════════════════════════════════════ -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <div class="header-left">
+        <a href="#" class="logo">Package Deal</a>
+        <nav>
+          <a href="#products">Shop</a>
+          <a href="#how">How It Works</a>
+          <a href="#quiz-cta">Quiz</a>
+          <a href="#faq">FAQ</a>
+          <a href="#">About</a>
+        </nav>
+      </div>
+      <div class="header-right">
+        <a href="#">Track Order</a>
+        <a href="#" class="cart-btn">
+          <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Cart (0)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+       ═══════════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-dots">
+      <div class="hero-dot hero-dot--1"></div>
+      <div class="hero-dot hero-dot--2"></div>
+      <div class="hero-dot hero-dot--3"></div>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>A New Kind of <em>Prank.</em></h1>
+        <div class="hero-sub">Anonymous. Embarrassing. Unforgettable.</div>
+        <p>Mailing tubes branded with URLs so mortifying, they become the prank. Delivered to their door with zero explanation.</p>
+        <div class="hero-fine">*100% anonymous. No return address. Free shipping on every order.</div>
+        <a href="#products" class="hero-cta">
+          Shop Now
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-wrapper">
+          <img src="/images/hero.png" alt="Package Deal prank mail tubes" onerror="this.style.display='none'" />
+          <button class="hero-play-btn" aria-label="Play video">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3" fill="currentColor" stroke="none"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PRODUCT CAROUSEL — "Pure Embarrassment"
+       ═══════════════════════════════════════════ -->
+  <section class="product-carousel-section" id="products">
+    <div class="carousel-header">
+      <div>
+        <h2>Pure <em>Embarrassment</em></h2>
+        <p>Four mortifying URLs. Choose your weapon.</p>
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-nav-btn" onclick="document.querySelector('.product-track').scrollBy({left:-300,behavior:'smooth'})">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+        </button>
+        <button class="carousel-nav-btn" onclick="document.querySelector('.product-track').scrollBy({left:300,behavior:'smooth'})">
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="product-track">
+      <!-- MicroPenisCure -->
+      <div class="product-card">
+        <div class="product-card-badge badge--coral">Bestseller</div>
+        <div class="product-card-img" style="background: #FDE8E0;">
+          <img src="/images/micropenis1.webp" alt="MicroPenisCure.com" onerror="this.parentElement.innerHTML='<div style=\'padding:60px 20px;text-align:center;font-size:14px;color:#999\'>MicroPenisCure.com<br>Product Image</div>'" />
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">MicroPenisCure.com</div>
+          <div class="product-card-tagline">The one that started office legends.</div>
+          <div class="product-card-footer">
+            <span class="product-card-price">From $14.99</span>
+            <a href="#" class="product-card-add">+ See Prank</a>
+          </div>
+        </div>
+      </div>
+      <!-- MicroPenisCure Sign For It -->
+      <div class="product-card">
+        <div class="product-card-badge badge--green">Popular</div>
+        <div class="product-card-img" style="background: #E0EDE8;">
+          <img src="/images/micropenis2.webp" alt="MicroPenisCure Sign For It" onerror="this.parentElement.innerHTML='<div style=\'padding:60px 20px;text-align:center;font-size:14px;color:#999\'>MicroPenisCure<br>Sign For It</div>'" />
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">Sign For It Edition</div>
+          <div class="product-card-tagline">They sign. The mail carrier watches.</div>
+          <div class="product-card-footer">
+            <span class="product-card-price">$21.99</span>
+            <a href="#" class="product-card-add">+ Add to Cart</a>
+          </div>
+        </div>
+      </div>
+      <!-- BigAssDildos -->
+      <div class="product-card">
+        <div class="product-card-img" style="background: #E8E0F0;">
+          <img src="/images/bigassdildos2.webp" alt="BigAssDildos.com" onerror="this.parentElement.innerHTML='<div style=\'padding:60px 20px;text-align:center;font-size:14px;color:#999\'>BigAssDildos.com<br>Product Image</div>'" />
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">BigAssDildos.com</div>
+          <div class="product-card-tagline">"Thank You & Cum Again!"</div>
+          <div class="product-card-footer">
+            <span class="product-card-price">From $14.99</span>
+            <a href="#" class="product-card-add">+ See Prank</a>
+          </div>
+        </div>
+      </div>
+      <!-- BigAssDildos Actual Dildo -->
+      <div class="product-card">
+        <div class="product-card-badge badge--grape">Commitment</div>
+        <div class="product-card-img" style="background: #F0E0F5;">
+          <img src="/images/bigassdildos1.webp" alt="BigAssDildos Actual Dildo" onerror="this.parentElement.innerHTML='<div style=\'padding:60px 20px;text-align:center;font-size:14px;color:#999\'>BigAssDildos<br>Actual Dildo Inside</div>'" />
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">The Actual Dildo</div>
+          <div class="product-card-tagline">Yes, there's really one inside.</div>
+          <div class="product-card-footer">
+            <span class="product-card-price">$43.99</span>
+            <a href="#" class="product-card-add">+ Add to Cart</a>
+          </div>
+        </div>
+      </div>
+      <!-- VaginalOdorHelper -->
+      <div class="product-card">
+        <div class="product-card-img" style="background: #DFF0ED;">
+          <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com" onerror="this.parentElement.innerHTML='<div style=\'padding:60px 20px;text-align:center;font-size:14px;color:#999\'>VaginalOdorHelper.com<br>Product Image</div>'" />
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">VaginalOdorHelper.com</div>
+          <div class="product-card-tagline">Clinical enough to raise real concern.</div>
+          <div class="product-card-footer">
+            <span class="product-card-price">From $14.99</span>
+            <a href="#" class="product-card-add">+ See Prank</a>
+          </div>
+        </div>
+      </div>
+      <!-- BulkCondomDelivery -->
+      <div class="product-card">
+        <div class="product-card-badge badge--lemon">Starter</div>
+        <div class="product-card-img" style="background: #FDF5E0;">
+          <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com" onerror="this.parentElement.innerHTML='<div style=\'padding:60px 20px;text-align:center;font-size:14px;color:#999\'>BulkCondomDelivery.com<br>Product Image</div>'" />
+        </div>
+        <div class="product-card-body">
+          <div class="product-card-name">BulkCondomDelivery.com</div>
+          <div class="product-card-tagline">"More Rubber for Your Chubber."</div>
+          <div class="product-card-footer">
+            <span class="product-card-price">$12.99</span>
+            <a href="#" class="product-card-add">+ Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SPLIT FEATURE: "The URL is the Prank"
+       ═══════════════════════════════════════════ -->
+  <section class="split-feature split-feature--cream">
+    <div class="split-feature-img">
+      <img src="/images/micropenis1.webp" alt="Prank tube close-up" onerror="this.style.display='none'" />
+    </div>
+    <div class="split-feature-text">
+      <div class="kicker" style="color: var(--coral);">WHY IT WORKS</div>
+      <h2>The URL <em>is</em> the prank.</h2>
+      <p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they'll have to explain it to anyone who sees it. Which is everyone — the mail carrier, the roommate, the coworker who walked by at the wrong time.</p>
+      <a href="#products" class="btn-green">See All Pranks</a>
+    </div>
+  </section>
+
+  <!-- SPLIT FEATURE: Sign For It (reversed, green bg) -->
+  <section class="split-feature split-feature--reverse split-feature--green">
+    <div class="split-feature-img" style="background: var(--cream);">
+      <img src="/images/micropenis3.webp" alt="Sign For It delivery" onerror="this.style.display='none'" />
+    </div>
+    <div class="split-feature-text">
+      <div class="kicker">UPGRADE</div>
+      <h2>"Sign For It" <em>delivery.</em></h2>
+      <p>They can't just grab it off the porch. A real mail carrier hands them a package — URL fully visible — and waits while they sign for it. In person. The signature creates a witness. Witnesses create stories.</p>
+      <a href="#products" class="btn-green">Upgrade Any Prank</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       HOW IT WORKS
+       ═══════════════════════════════════════════ -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="how-header">
+        <h2>How it <em>works.</em></h2>
+        <p>Three steps to maximum confusion.</p>
+      </div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="how-step-num">1</div>
+          <h3>Pick your prank.</h3>
+          <p>Choose from four embarrassing tubes and decide how far you want to take it with upgrades like confetti or forced signature.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">2</div>
+          <h3>We mail it anonymously.</h3>
+          <p>Ships in 1-2 business days. Their mail carrier sees the URL. Your recipient sees the URL. You remain a mystery.</p>
+        </div>
+        <div class="how-step">
+          <div class="how-step-num">3</div>
+          <h3>Wait for the text.</h3>
+          <p>They'll open it. They'll be confused. They'll ask everyone they know. You'll watch from a safe distance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STATS BANNER
+       ═══════════════════════════════════════════ -->
+  <section class="stats-banner">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">2,400+</div>
+          <div class="stat-label">Pranks shipped</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">4.5/5</div>
+          <div class="stat-label">Rating on Amazon</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">100%</div>
+          <div class="stat-label">Anonymous delivery</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">60</div>
+          <div class="stat-label">Day money-back guarantee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS
+       ═══════════════════════════════════════════ -->
+  <section class="testimonials-section">
+    <div class="testimonials-header">
+      <h2>What happens when <em>it arrives.</em></h2>
+    </div>
+    <div class="testimonial-track">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"He called three people trying to figure out who sent it."</p>
+        <span class="testimonial-author">Verified Sender</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"She made him open it in front of the whole office."</p>
+        <span class="testimonial-author">Verified Sender</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"His mom found it on the porch first. Thanksgiving was interesting."</p>
+        <span class="testimonial-author">Verified Sender</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"The group chat was on fire for two hours straight."</p>
+        <span class="testimonial-author">Verified Sender</span>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"I've been giggling about this for days."</p>
+        <span class="testimonial-author">Amazon Review</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CHAOS TIERS
+       ═══════════════════════════════════════════ -->
+  <section class="tiers-section">
+    <div class="container">
+      <div class="tiers-header">
+        <div class="kicker">CHOOSE YOUR LEVEL</div>
+        <h2>How much <em>chaos?</em></h2>
+        <p>Every tube ships 100% anonymously. Pick your damage.</p>
+      </div>
+      <div class="tier-cards">
+        <div class="tier-card">
+          <div class="tier-card-emoji">&#128230;</div>
+          <h3>Standard</h3>
+          <div class="tier-subtitle">Stealth Mode</div>
+          <div class="tier-price">$14.99</div>
+          <p>The tube ships as-is with the embarrassing label. Just a mortifying package on their doorstep for all to see.</p>
+          <div class="tier-pills">
+            <span class="tier-pill">Embarrassing label</span>
+            <span class="tier-pill">Anonymous</span>
+            <span class="tier-pill">Gift note</span>
+          </div>
+        </div>
+        <div class="tier-card tier-card--featured">
+          <div class="tier-card-badge">Popular</div>
+          <div class="tier-card-emoji">&#9999;&#65039;</div>
+          <h3>Sign For It</h3>
+          <div class="tier-subtitle">Witness the Shame</div>
+          <div class="tier-price">$21.99</div>
+          <p>They sign for it. In person. In front of the delivery person and any nearby witnesses.</p>
+          <div class="tier-pills">
+            <span class="tier-pill">Everything in Standard</span>
+            <span class="tier-pill">Forced signature</span>
+            <span class="tier-pill">Public shame</span>
+          </div>
+        </div>
+        <div class="tier-card">
+          <div class="tier-card-emoji">&#127881;</div>
+          <h3>Confetti Surprise</h3>
+          <div class="tier-subtitle">Full Nuclear</div>
+          <div class="tier-price">$34.99</div>
+          <p>Everything above, plus a confetti explosion when they open the tube. The ultimate prank package.</p>
+          <div class="tier-pills">
+            <span class="tier-pill">Everything in Sign</span>
+            <span class="tier-pill">Confetti bomb</span>
+            <span class="tier-pill">Max chaos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       QUIZ CTA
+       ═══════════════════════════════════════════ -->
+  <section style="padding: 0 0 80px;" id="quiz-cta">
+    <div class="quiz-cta">
+      <div>
+        <h2>Find the <em>perfect</em> prank in 30 seconds</h2>
+        <p>4 questions. One recommendation. Maximum embarrassment.</p>
+      </div>
+      <a href="#" class="btn-white">Take the Quiz</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       WHO DESERVES ONE?
+       ═══════════════════════════════════════════ -->
+  <section class="recipients-section">
+    <div class="container">
+      <div class="recipients-header">
+        <div class="kicker">WHO DESERVES ONE?</div>
+        <h2>Know someone who <em>deserves one?</em></h2>
+      </div>
+      <div class="recipient-cards">
+        <div class="recipient-card">
+          <div class="rc-emoji">&#128188;</div>
+          <h3>Your Coworker</h3>
+          <p>The one who "replies all" to every email. Imagine their face when a tube labeled MicroPenisCure.com arrives at the office — and they have to sign for it.</p>
+          <a href="#" class="rc-cta">Send It <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="recipient-card">
+          <div class="rc-emoji">&#128104;&#8205;&#128105;&#8205;&#128102;</div>
+          <h3>Your Brother-in-Law</h3>
+          <p>He talks too much at Thanksgiving. A tube from BigAssDildos.com at his door sends a message words never could.</p>
+          <a href="#" class="rc-cta">Send It <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="recipient-card">
+          <div class="rc-emoji">&#127891;</div>
+          <h3>Your College Roommate</h3>
+          <p>You survived four years together. They still owe you rent. Return the favor with VaginalOdorHelper.com — anonymously, of course.</p>
+          <a href="#" class="rc-cta">Send It <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+        <div class="recipient-card">
+          <div class="rc-emoji">&#128514;</div>
+          <h3>That Friend</h3>
+          <p>The group chat legend who can take a joke. Hit them with BulkCondomDelivery.com and watch the screenshots roll in.</p>
+          <a href="#" class="rc-cta">Send It <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       COMPARISON TABLE
+       ═══════════════════════════════════════════ -->
+  <section class="comparison-section">
+    <div class="container">
+      <div class="comparison-header">
+        <div class="kicker">THE COMPETITION</div>
+        <h2>Other prank sites <em>wish.</em></h2>
+      </div>
+      <div class="comparison-table">
+        <div class="ct-header">
+          <span>Feature</span>
+          <span class="us-col">Us</span>
+          <span>Them</span>
+        </div>
+        <div class="ct-row"><span>The URL IS the prank</span><span class="ct-check">&#10003;</span><span class="ct-cross">&#10007;</span></div>
+        <div class="ct-row"><span>Forced signature delivery</span><span class="ct-check">&#10003;</span><span class="ct-cross">&#10007;</span></div>
+        <div class="ct-row"><span>Actually anonymous (no return address)</span><span class="ct-check">&#10003;</span><span class="ct-cross">&#10007;</span></div>
+        <div class="ct-row"><span>Premium mailing tubes</span><span class="ct-check">&#10003;</span><span class="ct-cross">&#10007;</span></div>
+        <div class="ct-row"><span>Free shipping</span><span class="ct-check">&#10003;</span><span class="ct-cross">&#10007;</span></div>
+        <div class="ct-row"><span>60-day free returns</span><span class="ct-check">&#10003;</span><span class="ct-cross">&#10007;</span></div>
+        <div class="ct-row"><span>Confetti bomb upgrade</span><span class="ct-check">&#10003;</span><span class="ct-cross">&#10007;</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+       ═══════════════════════════════════════════ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="faq-header">
+        <h2>Questions people <em>actually ask us.</em></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item"><button class="faq-q">Is the shipping really anonymous?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Completely. No return address, no sender info, no way for them to trace it back to you. The only thing on the package is the embarrassing URL — which is the whole point.</div></div></div>
+        <div class="faq-item"><button class="faq-q">What if they're not home when it arrives?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Standard delivery gets left at the door (or with a neighbor, which is even better). The "Sign For It" upgrade means they have to be there in person to accept it.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Is this actually funny?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">Our bestseller is rated 4.5 out of 5 on Amazon, and the most common review theme is "I've been giggling about this for days." It's funny in person. It's funnier when other people see it first.</div></div></div>
+        <div class="faq-item"><button class="faq-q">Could this offend someone?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">These pranks work best between people who already give each other a hard time. If your recipient would laugh at a well-timed joke at their expense, they'll love this. If they wouldn't — maybe send a candle.</div></div></div>
+        <div class="faq-item"><button class="faq-q">What's actually inside the tube?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">The base version is just the tube — the URL on the outside IS the prank. The confetti upgrade adds a burst of confetti when they open it. And one product (BigAssDildos.com) has a variant that includes an actual item inside.</div></div></div>
+        <div class="faq-item"><button class="faq-q">What if I need to blacklist an address?<span class="faq-toggle"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span></button><div class="faq-a"><div class="faq-a-inner">We take this seriously. If someone is receiving unwanted mail, they can contact us and we'll blacklist the address immediately. Pranks are only fun when the recipient would eventually laugh too.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       GUARANTEE
+       ═══════════════════════════════════════════ -->
+  <section class="guarantee-section">
+    <div class="container">
+      <div class="guarantee-content">
+        <div class="guarantee-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h2>If it's not funny, <em>it's free.</em></h2>
+        <p>We'll refund your full purchase within 60 days, no questions asked. If the tube shows up damaged, the prank falls flat, or you just change your mind — we'll make it right.</p>
+        <a href="#" class="btn-outline-green">Read Our Return Policy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA
+       ═══════════════════════════════════════════ -->
+  <section class="final-cta">
+    <h2>You already know who you'd <em>send one to.</em></h2>
+    <p>Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+    <a href="#products" class="btn-white">Shop Now</a>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="logo">Package Deal</div>
+          <p>Anonymous prank mail tubes with embarrassing URLs, delivered to their door. No explanation included.</p>
+          <div class="footer-social">
+            <a href="#"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>
+            <a href="#"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#">All Pranks</a>
+          <a href="#">MicroPenisCure.com</a>
+          <a href="#">BigAssDildos.com</a>
+          <a href="#">VaginalOdorHelper.com</a>
+          <a href="#">BulkCondomDelivery.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Track Your Order</a>
+          <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Package Deal. All rights reserved.</span>
+        <div class="footer-payments">
+          <div class="footer-pay">VISA</div>
+          <div class="footer-pay">MC</div>
+          <div class="footer-pay">AMEX</div>
+          <div class="footer-pay">PYPL</div>
+          <div class="footer-pay">GPay</div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Header scroll shadow
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', window.scrollY > 10);
+    });
+    // FAQ accordion
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

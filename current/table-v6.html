@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparison Table V6 — Progress Bars</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F2F0ED;
+      color: #2D2D2D;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    @media (min-width: 768px) {
+      .section {
+        padding: 96px 40px;
+      }
+    }
+
+    .card {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 40px 24px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 56px 48px;
+      }
+    }
+
+    .kicker {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #D4714E;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      text-align: center;
+      color: #2D2D2D;
+      margin-bottom: 48px;
+    }
+
+    .legend {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 32px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #6B6B6B;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border-radius: 4px;
+    }
+
+    .legend-swatch--pd {
+      background: linear-gradient(90deg, #D4714E, #C0613F);
+    }
+
+    .legend-swatch--else {
+      background: #E8E5E1;
+    }
+
+    .bars {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .bar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .bar-label {
+      font-size: 15px;
+      font-weight: 500;
+      color: #2D2D2D;
+    }
+
+    .bar-pair {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .bar-track {
+      position: relative;
+      height: 28px;
+      border-radius: 6px;
+      overflow: hidden;
+      background: #F2F0ED;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+    }
+
+    .bar-fill--pd {
+      background: linear-gradient(90deg, #D4714E, #C0613F);
+      width: 100%;
+    }
+
+    .bar-fill--else {
+      background: #E8E5E1;
+      width: 0%;
+    }
+
+    .bar-fill-label {
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .bar-fill--pd .bar-fill-label {
+      color: #FFFFFF;
+    }
+
+    .bar-fill--else .bar-fill-label {
+      color: #6B6B6B;
+    }
+
+    /* On the empty bar, show label outside since width is 0 */
+    .bar-track--else {
+      position: relative;
+    }
+
+    .bar-track--else .bar-outside-label {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      font-weight: 600;
+      color: #C9C4BE;
+    }
+
+    .summary {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid #E8E5E1;
+    }
+
+    .summary-score {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: #2D2D2D;
+      margin-bottom: 4px;
+    }
+
+    .summary-score span {
+      color: #D4714E;
+    }
+
+    .summary-sub {
+      font-size: 15px;
+      color: #6B6B6B;
+      font-weight: 400;
+    }
+
+    .cta-wrap {
+      text-align: center;
+      margin-top: 36px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #D4714E;
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 14px 36px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 2px 8px rgba(212, 113, 78, 0.3);
+    }
+
+    .cta-button:hover {
+      background: #C0613F;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(212, 113, 78, 0.35);
+    }
+
+    .cta-button:active {
+      background: #ad5a38;
+      transform: translateY(0);
+    }
+
+    /* Entry animation */
+    .bar-row {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.4s ease forwards;
+    }
+
+    .bar-row:nth-child(1) { animation-delay: 0.05s; }
+    .bar-row:nth-child(2) { animation-delay: 0.1s; }
+    .bar-row:nth-child(3) { animation-delay: 0.15s; }
+    .bar-row:nth-child(4) { animation-delay: 0.2s; }
+    .bar-row:nth-child(5) { animation-delay: 0.25s; }
+    .bar-row:nth-child(6) { animation-delay: 0.3s; }
+    .bar-row:nth-child(7) { animation-delay: 0.35s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="section">
+    <div class="card">
+      <p class="kicker">The Competition</p>
+      <h2 class="headline">Other prank sites wish.</h2>
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-swatch legend-swatch--pd"></div>
+          Package Deal
+        </div>
+        <div class="legend-item">
+          <div class="legend-swatch legend-swatch--else"></div>
+          Everyone Else
+        </div>
+      </div>
+
+      <div class="bars">
+        <div class="bar-row">
+          <div class="bar-label">The URL IS the prank</div>
+          <div class="bar-pair">
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--pd">
+                <span class="bar-fill-label">Package Deal ✓</span>
+              </div>
+            </div>
+            <div class="bar-track bar-track--else">
+              <div class="bar-fill bar-fill--else"></div>
+              <span class="bar-outside-label">Everyone Else ✗</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Forced signature delivery</div>
+          <div class="bar-pair">
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--pd">
+                <span class="bar-fill-label">Package Deal ✓</span>
+              </div>
+            </div>
+            <div class="bar-track bar-track--else">
+              <div class="bar-fill bar-fill--else"></div>
+              <span class="bar-outside-label">Everyone Else ✗</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Actually anonymous (no return address)</div>
+          <div class="bar-pair">
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--pd">
+                <span class="bar-fill-label">Package Deal ✓</span>
+              </div>
+            </div>
+            <div class="bar-track bar-track--else">
+              <div class="bar-fill bar-fill--else"></div>
+              <span class="bar-outside-label">Everyone Else ✗</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Premium mailing tubes (not flimsy novelty)</div>
+          <div class="bar-pair">
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--pd">
+                <span class="bar-fill-label">Package Deal ✓</span>
+              </div>
+            </div>
+            <div class="bar-track bar-track--else">
+              <div class="bar-fill bar-fill--else"></div>
+              <span class="bar-outside-label">Everyone Else ✗</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Free shipping</div>
+          <div class="bar-pair">
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--pd">
+                <span class="bar-fill-label">Package Deal ✓</span>
+              </div>
+            </div>
+            <div class="bar-track bar-track--else">
+              <div class="bar-fill bar-fill--else"></div>
+              <span class="bar-outside-label">Everyone Else ✗</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">60-day free returns</div>
+          <div class="bar-pair">
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--pd">
+                <span class="bar-fill-label">Package Deal ✓</span>
+              </div>
+            </div>
+            <div class="bar-track bar-track--else">
+              <div class="bar-fill bar-fill--else"></div>
+              <span class="bar-outside-label">Everyone Else ✗</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-label">Confetti bomb upgrade</div>
+          <div class="bar-pair">
+            <div class="bar-track">
+              <div class="bar-fill bar-fill--pd">
+                <span class="bar-fill-label">Package Deal ✓</span>
+              </div>
+            </div>
+            <div class="bar-track bar-track--else">
+              <div class="bar-fill bar-fill--else"></div>
+              <span class="bar-outside-label">Everyone Else ✗</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary">
+        <p class="summary-score"><span>Package Deal: 7/7.</span></p>
+        <p class="summary-sub">Everyone else: We'll let you do the math.</p>
+      </div>
+
+      <div class="cta-wrap">
+        <a href="/collection" class="cta-button">Browse the Collection</a>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

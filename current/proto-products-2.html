@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products Proto 2 — Dark Catalog</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --charcoal-deep: #1a1a1a;
+      --terracotta: #D4714E;
+      --terracotta-hover: #C0613F;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: var(--charcoal-deep); color: #fff; }
+
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta); color: #fff;
+      text-align: center; padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100; letter-spacing: 0.05em;
+    }
+
+    .section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 80px 24px; margin-top: 40px;
+    }
+
+    .header {
+      display: flex; justify-content: space-between;
+      align-items: flex-end; margin-bottom: 48px;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 600; line-height: 1.25;
+      max-width: 600px;
+    }
+    .header-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 28px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 999px; color: #fff;
+      font-weight: 600; font-size: 14px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .header-cta:hover {
+      border-color: var(--terracotta);
+      background: rgba(212,113,78,0.1);
+    }
+
+    /* ── Product rows — alternating layout ── */
+    .product-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      transition: background 0.3s;
+    }
+    .product-row:last-child {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .product-row:hover {
+      background: rgba(255,255,255,0.02);
+    }
+    .product-row:nth-child(even) .row-image { order: 2; }
+    .product-row:nth-child(even) .row-content { order: 1; }
+
+    .row-image {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,0.03);
+    }
+    .row-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4/3;
+      transition: transform 0.6s;
+      display: block;
+    }
+    .product-row:hover .row-image img {
+      transform: scale(1.04);
+    }
+
+    .row-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--terracotta); color: #fff;
+      font-size: 12px; font-weight: 700;
+      padding: 5px 14px; border-radius: 999px;
+    }
+
+    .row-content {
+      padding: 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .row-number {
+      font-family: var(--font-display);
+      font-size: 64px; font-weight: 700;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      margin-bottom: -8px;
+    }
+
+    .row-name {
+      font-size: 24px; font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .row-teaser {
+      font-size: 15px; color: rgba(255,255,255,0.6);
+      line-height: 1.7; margin-bottom: 24px;
+    }
+
+    .row-footer {
+      display: flex; align-items: center; gap: 24px;
+    }
+    .row-price {
+      font-size: 20px; font-weight: 700;
+    }
+    .row-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--terracotta); font-weight: 600; font-size: 14px;
+      text-decoration: none;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .row-cta:hover { color: var(--terracotta-hover); gap: 10px; }
+
+    @media (max-width: 768px) {
+      .product-row { grid-template-columns: 1fr; }
+      .product-row:nth-child(even) .row-image { order: 0; }
+      .product-row:nth-child(even) .row-content { order: 0; }
+      .row-content { padding: 32px 24px; }
+      .row-number { font-size: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PRODUCTS PROTO 2 — Dark Alternating Rows (editorial catalog, numbered, alternating image sides)</div>
+
+  <section class="section">
+    <div class="header">
+      <div>
+        <div class="kicker">THE LINEUP</div>
+        <h2 class="headline">Four tubes. Four mortifying URLs. One very confused recipient.</h2>
+      </div>
+      <a href="#" class="header-cta">See All Pranks &rarr;</a>
+    </div>
+
+    <!-- Row 1 -->
+    <div class="product-row">
+      <div class="row-image">
+        <div class="row-badge">Bestseller</div>
+        <img src="/images/micropenis1.webp" alt="MicroPenisCure.com" />
+      </div>
+      <div class="row-content">
+        <div class="row-number">01</div>
+        <h3 class="row-name">MicroPenisCure.com</h3>
+        <p class="row-teaser">A mailing tube with MicroPenisCure.com printed on every side. Handed to them by a mail carrier who definitely read it. The prank that's made grown adults call their mothers for answers.</p>
+        <div class="row-footer">
+          <span class="row-price">From $14.99</span>
+          <a href="#" class="row-cta">See This Prank &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="product-row">
+      <div class="row-image">
+        <img src="/images/bigassdildos2.webp" alt="BigAssDildos.com" />
+      </div>
+      <div class="row-content">
+        <div class="row-number">02</div>
+        <h3 class="row-name">BigAssDildos.com</h3>
+        <p class="row-teaser">The tube that turns a quiet afternoon into an HR conversation. Upgrade to the version that actually has one inside — for the friend who deserves escalation.</p>
+        <div class="row-footer">
+          <span class="row-price">From $14.99</span>
+          <a href="#" class="row-cta">See This Prank &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="product-row">
+      <div class="row-image">
+        <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com" />
+      </div>
+      <div class="row-content">
+        <div class="row-number">03</div>
+        <h3 class="row-name">VaginalOdorHelper.com</h3>
+        <p class="row-teaser">Nothing says "I care" like a medical-looking tube that raises concerns nobody asked to have. The one they'll spend the longest explaining to their roommate.</p>
+        <div class="row-footer">
+          <span class="row-price">From $14.99</span>
+          <a href="#" class="row-cta">See This Prank &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="product-row">
+      <div class="row-image">
+        <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com" />
+      </div>
+      <div class="row-content">
+        <div class="row-number">04</div>
+        <h3 class="row-name">BulkCondomDelivery.com</h3>
+        <p class="row-teaser">A mailing tube that implies your friend has a lifestyle their parents didn't plan for. Best delivered to a family home for maximum confusion.</p>
+        <div class="row-footer">
+          <span class="row-price">From $12.99</span>
+          <a href="#" class="row-cta">See This Prank &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

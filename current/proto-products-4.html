@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products Proto 4 — Tabbed Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --terracotta: #D4714E;
+      --terracotta-hover: #C0613F;
+      --section-alt: #F2F0ED;
+      --border: #E8E5E1;
+      --text-secondary: #6B6B6B;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: #fff; color: var(--charcoal); }
+
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta); color: #fff;
+      text-align: center; padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100; letter-spacing: 0.05em;
+    }
+
+    .section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 80px 24px; margin-top: 40px;
+    }
+
+    .header { text-align: center; margin-bottom: 48px; }
+    .kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 600; line-height: 1.25;
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 40px;
+      background: var(--section-alt);
+      border-radius: 999px;
+      padding: 4px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tab {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: center;
+    }
+    .tab.active {
+      background: #fff;
+      color: var(--charcoal);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    .tab:hover:not(.active) {
+      color: var(--charcoal);
+    }
+
+    /* ── Product Detail View ── */
+    .product-view {
+      display: none;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .product-view.active { display: grid; }
+
+    .pv-gallery {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--section-alt);
+    }
+    .pv-gallery img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+    .pv-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--terracotta); color: #fff;
+      font-size: 12px; font-weight: 700;
+      padding: 6px 16px; border-radius: 999px;
+    }
+
+    /* Thumbnail dots */
+    .pv-dots {
+      position: absolute; bottom: 16px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; gap: 8px;
+    }
+    .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+    .dot.active { background: #fff; }
+
+    .pv-content {}
+    .pv-name {
+      font-family: var(--font-display);
+      font-size: 32px; font-weight: 600;
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .pv-teaser {
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 24px;
+    }
+
+    /* Quick-stats row */
+    .quick-stats {
+      display: flex; gap: 24px; margin-bottom: 24px;
+    }
+    .quick-stat {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text-secondary);
+    }
+    .quick-stat .icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--section-alt);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+
+    .pv-price {
+      font-size: 28px; font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .pv-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 36px;
+      background: var(--terracotta); color: #fff;
+      border-radius: 999px; font-weight: 600; font-size: 16px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 16px rgba(212,113,78,0.25);
+    }
+    .pv-cta:hover {
+      background: var(--terracotta-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ── Thumbnail Strip ── */
+    .thumb-strip {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .thumb {
+      width: 80px; height: 80px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      cursor: pointer;
+      opacity: 0.5;
+      transition: opacity 0.3s, border-color 0.3s, transform 0.3s;
+    }
+    .thumb.active {
+      opacity: 1;
+      border-color: var(--terracotta);
+      transform: scale(1.1);
+    }
+    .thumb:hover { opacity: 0.8; }
+    .thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    @media (max-width: 768px) {
+      .product-view.active { grid-template-columns: 1fr; gap: 32px; }
+      .tabs { flex-wrap: wrap; border-radius: 16px; }
+      .tab { font-size: 12px; padding: 10px 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PRODUCTS PROTO 4 — Tabbed Showcase (tab per product, large image + detail view, mini stats)</div>
+
+  <section class="section">
+    <div class="header">
+      <div class="kicker">THE LINEUP</div>
+      <h2 class="headline">Four tubes. Four mortifying URLs.<br>One very confused recipient.</h2>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="showProduct(0)">MicroPenisCure</button>
+      <button class="tab" onclick="showProduct(1)">BigAssDildos</button>
+      <button class="tab" onclick="showProduct(2)">VaginalOdorHelper</button>
+      <button class="tab" onclick="showProduct(3)">BulkCondomDelivery</button>
+    </div>
+
+    <!-- Product Views -->
+    <div class="product-view active" id="pv-0">
+      <div class="pv-gallery">
+        <div class="pv-badge">Bestseller</div>
+        <img src="/images/micropenis1.webp" alt="MicroPenisCure.com" />
+        <div class="pv-dots">
+          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="pv-content">
+        <h3 class="pv-name">MicroPenisCure.com</h3>
+        <p class="pv-teaser">A mailing tube with MicroPenisCure.com printed on every side. Handed to them by a mail carrier who definitely read it. The prank that's made grown adults call their mothers for answers.</p>
+        <div class="quick-stats">
+          <div class="quick-stat"><div class="icon">&#128230;</div>Ships anonymously</div>
+          <div class="quick-stat"><div class="icon">&#128274;</div>Untraceable</div>
+          <div class="quick-stat"><div class="icon">&#9733;</div>4.8/5 rated</div>
+        </div>
+        <div class="pv-price">From $14.99</div>
+        <a href="#" class="pv-cta">See This Prank &rarr;</a>
+      </div>
+    </div>
+
+    <div class="product-view" id="pv-1">
+      <div class="pv-gallery">
+        <img src="/images/bigassdildos2.webp" alt="BigAssDildos.com" />
+        <div class="pv-dots">
+          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="pv-content">
+        <h3 class="pv-name">BigAssDildos.com</h3>
+        <p class="pv-teaser">The tube that turns a quiet afternoon into an HR conversation. Upgrade to the version that actually has one inside — for the friend who deserves escalation.</p>
+        <div class="quick-stats">
+          <div class="quick-stat"><div class="icon">&#128230;</div>Ships anonymously</div>
+          <div class="quick-stat"><div class="icon">&#128274;</div>Untraceable</div>
+          <div class="quick-stat"><div class="icon">&#128293;</div>Most escalation potential</div>
+        </div>
+        <div class="pv-price">From $14.99</div>
+        <a href="#" class="pv-cta">See This Prank &rarr;</a>
+      </div>
+    </div>
+
+    <div class="product-view" id="pv-2">
+      <div class="pv-gallery">
+        <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com" />
+        <div class="pv-dots">
+          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="pv-content">
+        <h3 class="pv-name">VaginalOdorHelper.com</h3>
+        <p class="pv-teaser">Nothing says "I care" like a medical-looking tube that raises concerns nobody asked to have. The one they'll spend the longest explaining to their roommate.</p>
+        <div class="quick-stats">
+          <div class="quick-stat"><div class="icon">&#128230;</div>Ships anonymously</div>
+          <div class="quick-stat"><div class="icon">&#128274;</div>Untraceable</div>
+          <div class="quick-stat"><div class="icon">&#129300;</div>Hardest to explain</div>
+        </div>
+        <div class="pv-price">From $14.99</div>
+        <a href="#" class="pv-cta">See This Prank &rarr;</a>
+      </div>
+    </div>
+
+    <div class="product-view" id="pv-3">
+      <div class="pv-gallery">
+        <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com" />
+        <div class="pv-dots">
+          <div class="dot active"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="pv-content">
+        <h3 class="pv-name">BulkCondomDelivery.com</h3>
+        <p class="pv-teaser">A mailing tube that implies your friend has a lifestyle their parents didn't plan for. Best delivered to a family home for maximum confusion.</p>
+        <div class="quick-stats">
+          <div class="quick-stat"><div class="icon">&#128230;</div>Ships anonymously</div>
+          <div class="quick-stat"><div class="icon">&#128274;</div>Untraceable</div>
+          <div class="quick-stat"><div class="icon">&#128106;</div>Best for family homes</div>
+        </div>
+        <div class="pv-price">From $12.99</div>
+        <a href="#" class="pv-cta">See This Prank &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Thumbnail strip -->
+    <div class="thumb-strip">
+      <div class="thumb active" onclick="showProduct(0)">
+        <img src="/images/micropenis1.webp" alt="" />
+      </div>
+      <div class="thumb" onclick="showProduct(1)">
+        <img src="/images/bigassdildos2.webp" alt="" />
+      </div>
+      <div class="thumb" onclick="showProduct(2)">
+        <img src="/images/vaginal-odor-helper1.webp" alt="" />
+      </div>
+      <div class="thumb" onclick="showProduct(3)">
+        <img src="/images/bulkcondom1.webp" alt="" />
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function showProduct(index) {
+      document.querySelectorAll('.product-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      document.getElementById('pv-' + index).classList.add('active');
+      document.querySelectorAll('.tab')[index].classList.add('active');
+      document.querySelectorAll('.thumb')[index].classList.add('active');
+    }
+  </script>
+</body>
+</html>

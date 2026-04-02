@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package Deal — Anonymous Prank Mail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=Caveat:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <style>
+    /* ══════════════════════════════════════════
+       RESET & BASE
+       ══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #2D2D2D;
+      background: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    ul { list-style: none; }
+
+    /* ══════════════════════════════════════════
+       TOKENS
+       ══════════════════════════════════════════ */
+    :root {
+      --terracotta: #D4714E;
+      --terracotta-hover: #C0613F;
+      --terracotta-dark: #ad5a38;
+      --terracotta-glow: rgba(212, 113, 78, 0.12);
+      --charcoal: #2D2D2D;
+      --charcoal-deep: #1a1a1a;
+      --text-secondary: #6B6B6B;
+      --warm-bg: #F2F0ED;
+      --warm-bg-alt: #FBF8F5;
+      --peach-bg: #FDF0E9;
+      --lavender-bg: #F5F3FA;
+      --border: #E8E5E1;
+      --canvas: #FFFFFF;
+      --success: #5B8C5A;
+      --warning: #E0A644;
+      --star: #FFB815;
+      --chaos-subtle: #7C3AED;
+      --chaos-public: #D97706;
+      --chaos-nuclear: #DC2626;
+      --max-w: 1280px;
+      --display: 'Caveat', cursive;
+      --serif: 'Playfair Display', Georgia, serif;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    /* ══════════════════════════════════════════
+       UTILITIES
+       ══════════════════════════════════════════ */
+    .container { max-width: var(--max-w); margin: 0 auto; padding: 0 32px; }
+    .text-center { text-align: center; }
+
+    /* ══════════════════════════════════════════
+       BUTTONS — Javvy uses chunky, slightly rounded
+       ══════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 32px;
+      font-size: 15px;
+      font-weight: 600;
+      border-radius: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-primary { background: var(--terracotta); color: #fff; }
+    .btn-primary:hover { background: var(--terracotta-hover); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,113,78,0.3); }
+    .btn-outline { background: transparent; color: var(--charcoal); border: 2px solid var(--charcoal); }
+    .btn-outline:hover { background: var(--charcoal); color: #fff; }
+    .btn-outline-white { background: transparent; color: #fff; border: 2px solid #fff; }
+    .btn-outline-white:hover { background: #fff; color: var(--charcoal); }
+    .btn-white { background: #fff; color: var(--terracotta); }
+    .btn-white:hover { transform: translateY(-1px); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+    .btn-dark { background: var(--charcoal); color: #fff; }
+    .btn-dark:hover { background: #444; }
+    .btn-sm { padding: 10px 20px; font-size: 13px; }
+    .btn-lg { padding: 16px 40px; font-size: 16px; }
+    .btn-arrow::after { content: ' →'; }
+
+    /* ══════════════════════════════════════════
+       1. ANNOUNCEMENT BAR — Javvy: deep navy blue
+       ══════════════════════════════════════════ */
+    .announcement-bar {
+      background: var(--charcoal);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      overflow: hidden;
+      height: 40px;
+      display: flex;
+      align-items: center;
+    }
+    .announcement-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 35s linear infinite;
+    }
+    .announcement-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 40px;
+    }
+    .announcement-track span svg { flex-shrink: 0; width: 16px; height: 16px; }
+    .announcement-highlight { color: var(--terracotta); }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* ══════════════════════════════════════════
+       2. HEADER — Javvy: white, logo left, nav center, icons right
+       ══════════════════════════════════════════ */
+    .header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header-logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--charcoal);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: var(--terracotta);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px; font-weight: 700;
+    }
+    .header-nav { display: flex; align-items: center; gap: 28px; }
+    .header-nav a { font-size: 14px; font-weight: 500; color: var(--charcoal); transition: color 0.2s; }
+    .header-nav a:hover { color: var(--terracotta); }
+    .header-nav a.active { color: var(--terracotta); font-weight: 600; }
+    .header-right { display: flex; align-items: center; gap: 12px; }
+    .header-right button { width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+    .header-right button:hover { background: var(--warm-bg); }
+    .header-right svg { width: 20px; height: 20px; stroke: var(--charcoal); fill: none; stroke-width: 2; }
+    .cart-badge { position: relative; }
+    .cart-badge span {
+      position: absolute; top: -2px; right: -2px;
+      width: 16px; height: 16px; background: var(--terracotta);
+      color: #fff; font-size: 10px; font-weight: 700;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .mobile-toggle { display: none; }
+
+    /* ══════════════════════════════════════════
+       3. SUB-HEADER PRODUCT STRIP — Javvy: warm bg with product thumbnails + badges
+       ══════════════════════════════════════════ */
+    .product-strip {
+      background: var(--peach-bg);
+      border-bottom: 1px solid rgba(212,113,78,0.15);
+      padding: 10px 0;
+    }
+    .product-strip-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+    .strip-badge {
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 11px; font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 5px 14px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .strip-products { display: flex; align-items: center; gap: 16px; }
+    .strip-product {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500;
+    }
+    .strip-thumb {
+      width: 44px; height: 44px;
+      background: rgba(212,113,78,0.12);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+    }
+    .strip-cta {
+      background: var(--charcoal);
+      color: #fff;
+      font-size: 12px; font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .strip-cta:hover { background: #444; }
+
+    /* ══════════════════════════════════════════
+       4. HERO — Javvy: FULL BLEED lifestyle bg, text overlaid LEFT
+       ══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #f7f1eb 0%, #ede5db 50%, #e8ddd0 100%);
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      right: 0; top: 0; bottom: 0;
+      width: 55%;
+      background: url('/images/hero.png') center/cover no-repeat;
+      opacity: 0.9;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #f7f1eb 0%, transparent 40%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 60px 32px;
+      width: 100%;
+    }
+    .hero-text { max-width: 560px; }
+    .hero-kicker {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 22px;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .hero-title {
+      font-family: var(--display);
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 700;
+      line-height: 0.95;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+      max-width: 480px;
+    }
+    .hero-promo {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .hero-promo strong { color: var(--terracotta); }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-badges {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-badge-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 10px;
+      border: 1px solid rgba(212,113,78,0.12);
+    }
+    .hero-badge-item svg { width: 22px; height: 22px; stroke: var(--terracotta); fill: none; stroke-width: 2; }
+    .hero-badge-item span { font-size: 12px; font-weight: 600; color: var(--charcoal); }
+    .hero-badge-divider {
+      width: 1px;
+      height: 48px;
+      background: rgba(0,0,0,0.1);
+      align-self: center;
+    }
+
+    /* ══════════════════════════════════════════
+       5. CATEGORY STRIP — Javvy: "Don't miss the Mega Deals" with product category cards
+       ══════════════════════════════════════════ */
+    .category-strip {
+      background: var(--lavender-bg);
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .category-strip-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .category-strip-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .category-strip-header p {
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .category-cards {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .category-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      position: relative;
+    }
+    .category-card:hover { transform: translateY(-4px); }
+    .category-card-badge {
+      position: absolute;
+      top: -6px; right: -6px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 9px; font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 10px;
+      z-index: 2;
+      letter-spacing: 0.5px;
+    }
+    .category-thumb {
+      width: 120px; height: 120px;
+      border-radius: var(--radius);
+      background: #fff;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .category-card:hover .category-thumb {
+      border-color: var(--terracotta);
+      box-shadow: 0 4px 20px rgba(212,113,78,0.15);
+    }
+    .category-label { font-size: 13px; font-weight: 600; text-align: center; }
+    .category-stars { display: flex; gap: 1px; }
+    .category-stars svg { width: 12px; height: 12px; fill: var(--star); }
+
+    /* ══════════════════════════════════════════
+       6. PRODUCT CAROUSEL — Javvy: "Bold Flavors. Better Fuel."
+       Warm-toned cards, display heading
+       ══════════════════════════════════════════ */
+    .products-section { padding: 64px 0; }
+    .products-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .products-heading h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+    .products-heading p {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 20px;
+      color: var(--terracotta);
+    }
+    .products-scroll {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 0 32px 16px;
+      scrollbar-width: none;
+    }
+    .products-scroll::-webkit-scrollbar { display: none; }
+    .product-card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      position: relative;
+    }
+    .product-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+    .product-card-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 10px; font-weight: 700;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 6px;
+      z-index: 2;
+      letter-spacing: 0.5px;
+    }
+    .product-card-image {
+      height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+      overflow: hidden;
+      position: relative;
+    }
+    /* Javvy-style warm tinted backgrounds per card */
+    .product-card:nth-child(1) .product-card-image { background: #FEF3E2; }
+    .product-card:nth-child(2) .product-card-image { background: #FDE8E8; }
+    .product-card:nth-child(3) .product-card-image { background: #E8F4E8; }
+    .product-card:nth-child(4) .product-card-image { background: #E8EDF8; }
+    .product-card-info { padding: 14px 16px; background: #fff; }
+    .product-card-name { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .product-card-desc {
+      font-size: 13px; color: var(--text-secondary); line-height: 1.4;
+      margin-bottom: 12px;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .quick-add {
+      width: 100%;
+      padding: 12px;
+      background: var(--charcoal);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .quick-add:hover { background: #444; }
+    .products-nav {
+      text-align: center;
+      margin-top: 24px;
+    }
+    .products-nav a {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--terracotta);
+      border-bottom: 2px solid var(--terracotta);
+      padding-bottom: 2px;
+    }
+
+    /* ══════════════════════════════════════════
+       7. SHOWCASE BLOCKS — Javvy's KEY pattern:
+       Large alternating lifestyle image + text blocks
+       ══════════════════════════════════════════ */
+    .showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 450px;
+    }
+    .showcase.reverse { direction: rtl; }
+    .showcase.reverse > * { direction: ltr; }
+    .showcase-image {
+      background: var(--warm-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+      min-height: 400px;
+    }
+    .showcase-image-placeholder {
+      font-size: 16px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .showcase-1 .showcase-image { background: linear-gradient(135deg, #FEF3E2, #FDE8D5); }
+    .showcase-2 .showcase-image { background: linear-gradient(135deg, #EDE8F5, #DDD6EE); }
+    .showcase-3 .showcase-image { background: linear-gradient(135deg, #FDE8E8, #FADADA); }
+    .showcase-4 .showcase-image { background: linear-gradient(135deg, #E8F4E8, #D5ECD5); }
+    .showcase-text {
+      padding: 60px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .showcase-text .kicker {
+      font-family: var(--display);
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+      color: var(--charcoal);
+    }
+    .showcase-text .subtitle {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 18px;
+      color: var(--terracotta);
+      margin-bottom: 16px;
+    }
+    .showcase-text .desc {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+      max-width: 420px;
+    }
+    .showcase-bullets {
+      margin-bottom: 24px;
+    }
+    .showcase-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .showcase-bullets li svg {
+      width: 20px; height: 20px;
+      color: var(--success);
+      flex-shrink: 0;
+    }
+    .showcase-bg-warm { background: var(--warm-bg-alt); }
+    .showcase-bg-white { background: #fff; }
+
+    /* Decorative wave/swirl divider between sections (Javvy uses SVG swirls) */
+    .section-divider {
+      text-align: center;
+      padding: 16px 0;
+      color: var(--terracotta);
+      font-size: 28px;
+      opacity: 0.4;
+      letter-spacing: 8px;
+    }
+
+    /* ══════════════════════════════════════════
+       8. REVIEWS HERO — Javvy: "The Reviews Are In" with large visual
+       ══════════════════════════════════════════ */
+    .reviews-hero {
+      background: var(--peach-bg);
+      padding: 64px 0;
+      overflow: hidden;
+    }
+    .reviews-hero-inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .reviews-hero-visual {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: linear-gradient(135deg, #e8ddd0, #d4c9bb);
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .reviews-hero-visual .play-circle {
+      width: 72px; height: 72px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .reviews-hero-visual .play-circle svg { width: 28px; height: 28px; fill: var(--charcoal); margin-left: 4px; }
+    .reviews-hero-text {}
+    .reviews-hero-stars {
+      display: flex; gap: 4px; margin-bottom: 12px;
+    }
+    .reviews-hero-stars svg { width: 28px; height: 28px; fill: var(--star); }
+    .reviews-hero-text h2 {
+      font-family: var(--display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .reviews-hero-text p {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .review-cards {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 0 32px 16px;
+      scrollbar-width: none;
+      margin-top: 40px;
+    }
+    .review-cards::-webkit-scrollbar { display: none; }
+    .review-card {
+      flex: 0 0 280px;
+      background: #fff;
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      border: 1px solid var(--border);
+    }
+    .review-card-stars { display: flex; gap: 2px; margin-bottom: 8px; }
+    .review-card-stars svg { width: 14px; height: 14px; fill: var(--star); }
+    .review-card-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--terracotta); }
+    .review-card-text { font-size: 14px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 10px; }
+    .review-card-author { font-size: 12px; font-weight: 600; color: #999; }
+
+    /* ══════════════════════════════════════════
+       9. SECTION SHARED STYLES
+       ══════════════════════════════════════════ */
+    .section { padding: 64px 0; }
+    .section-kicker {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .section-heading {
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .section-heading-display {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+    }
+    .section-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+    .section-header { text-align: center; margin-bottom: 40px; }
+    .section-header .section-desc { margin: 0 auto; }
+
+    /* ══════════════════════════════════════════
+       10. RECIPIENTS / "WHO DESERVES ONE" — Javvy's tabbed recipe section
+       ══════════════════════════════════════════ */
+    .recipients-section { padding: 64px 0; background: #fff; }
+    .recipients-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .tab-btn {
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 2px solid var(--border);
+      background: #fff;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--terracotta);
+      color: #fff;
+      border-color: var(--terracotta);
+    }
+    .recipients-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .recipient-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: all 0.25s;
+      background: #fff;
+    }
+    .recipient-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
+    .recipient-card-image {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+    }
+    .recipient-card:nth-child(1) .recipient-card-image { background: #FEF3E2; }
+    .recipient-card:nth-child(2) .recipient-card-image { background: #FDE8E8; }
+    .recipient-card:nth-child(3) .recipient-card-image { background: #E8F4E8; }
+    .recipient-card:nth-child(4) .recipient-card-image { background: #E8EDF8; }
+    .recipient-card-info { padding: 16px; }
+    .recipient-card-info h3 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+    .recipient-card-info p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 10px; }
+    .recipient-card-info .product-link { font-size: 13px; font-weight: 600; color: var(--terracotta); }
+
+    /* ══════════════════════════════════════════
+       11. BUNDLES / "BARISTA ESSENTIALS" — Javvy: accessory grid
+       ══════════════════════════════════════════ */
+    .bundles-section { padding: 64px 0; background: var(--warm-bg-alt); }
+    .bundles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .bundle-card {
+      background: #fff;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: all 0.25s;
+    }
+    .bundle-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+    .bundle-card-image {
+      height: 180px;
+      background: var(--warm-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    .bundle-card-info { padding: 16px; }
+    .bundle-card-info h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+    .bundle-card-info .price { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; }
+    .bundle-card-info .price strong { color: var(--charcoal); }
+    .bundle-card-info .savings { color: var(--success); font-size: 13px; font-weight: 600; }
+
+    /* ══════════════════════════════════════════
+       12. COMPARISON TABLE — dark section
+       ══════════════════════════════════════════ */
+    .comparison-section {
+      background: var(--charcoal);
+      color: #fff;
+      padding: 64px 0;
+    }
+    .comparison-table {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+    .comparison-table thead th {
+      padding: 16px 20px;
+      font-size: 14px; font-weight: 600;
+      text-align: center;
+      background: rgba(255,255,255,0.06);
+    }
+    .comparison-table thead th:first-child { text-align: left; }
+    .comparison-table tbody td {
+      padding: 14px 20px;
+      font-size: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      text-align: center;
+    }
+    .comparison-table tbody td:first-child { text-align: left; font-weight: 500; }
+    .check { color: var(--success); font-weight: 700; }
+    .cross { color: rgba(255,255,255,0.2); }
+
+    /* ══════════════════════════════════════════
+       13. GUARANTEE
+       ══════════════════════════════════════════ */
+    .guarantee-section { padding: 64px 0; background: #fff; }
+    .guarantee-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .guarantee-icon {
+      width: 64px; height: 64px;
+      margin: 0 auto 20px;
+      background: var(--terracotta-glow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .guarantee-icon svg { width: 32px; height: 32px; stroke: var(--terracotta); fill: none; stroke-width: 2; }
+    .guarantee-inner p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    /* ══════════════════════════════════════════
+       14. FAQ — Javvy: clean accordion
+       ══════════════════════════════════════════ */
+    .faq-section { padding: 64px 0; background: var(--warm-bg-alt); }
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-q {
+      width: 100%; padding: 18px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: 16px; font-weight: 600; text-align: left;
+      color: var(--charcoal);
+      gap: 16px;
+    }
+    .faq-q:hover { color: var(--terracotta); }
+    .faq-q svg { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.2s; stroke: currentColor; fill: none; stroke-width: 2; }
+    .faq-item.open .faq-q svg { transform: rotate(45deg); }
+    .faq-a {
+      padding: 0 0 18px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      display: none;
+    }
+    .faq-item.open .faq-a { display: block; }
+
+    /* ══════════════════════════════════════════
+       15. NEWSLETTER / "STAY CONNECTED" — Javvy: brand-colored block
+       ══════════════════════════════════════════ */
+    .newsletter-cta {
+      background: var(--terracotta);
+      color: #fff;
+      padding: 64px 0;
+      text-align: center;
+    }
+    .newsletter-cta h2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .newsletter-cta .tagline {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 20px;
+      opacity: 0.9;
+      margin-bottom: 24px;
+    }
+
+    /* ══════════════════════════════════════════
+       16. FOOTER — Javvy: dark, multi-column
+       ══════════════════════════════════════════ */
+    .footer {
+      background: var(--charcoal-deep);
+      color: #fff;
+      padding: 48px 0 0;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand {}
+    .footer-brand-name {
+      font-size: 20px; font-weight: 700;
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 12px;
+    }
+    .footer-brand-name .fm { width: 28px; height: 28px; background: var(--terracotta); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+    .footer-newsletter-desc { font-size: 14px; color: #999; margin-bottom: 14px; }
+    .footer-email-form { display: flex; gap: 8px; }
+    .footer-email-form input {
+      flex: 1;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    .footer-email-form input::placeholder { color: #666; }
+    .footer-email-form button {
+      padding: 10px 20px;
+      background: var(--terracotta);
+      color: #fff;
+      border-radius: 8px;
+      font-size: 14px; font-weight: 600;
+    }
+    .footer-email-form button:hover { background: var(--terracotta-hover); }
+    .footer-note { font-size: 12px; color: #555; margin-top: 8px; }
+    .footer-col {}
+    .footer-col-title {
+      font-size: 12px; font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+    .footer-col a {
+      display: block; font-size: 14px; color: #999;
+      padding: 3px 0; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      font-size: 13px;
+      color: #555;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .footer-social a:hover { background: rgba(255,255,255,0.12); }
+    .footer-social svg { width: 16px; height: 16px; fill: #aaa; }
+    .footer-payments { display: flex; gap: 6px; }
+    .footer-payments span {
+      padding: 4px 8px; background: rgba(255,255,255,0.06);
+      border-radius: 4px; font-size: 11px; font-weight: 600; color: #777;
+    }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+       ══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .showcase { grid-template-columns: 1fr; }
+      .showcase.reverse { direction: ltr; }
+      .showcase-image { min-height: 300px; }
+      .reviews-hero-inner { grid-template-columns: 1fr; }
+      .bundles-grid { grid-template-columns: repeat(2, 1fr); }
+      .recipients-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .header-nav { display: none; }
+      .mobile-toggle { display: flex; }
+      .product-strip { display: none; }
+      .hero { min-height: auto; }
+      .hero-bg { width: 100%; opacity: 0.2; }
+      .hero-content { padding: 48px 24px; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-badges { gap: 8px; }
+      .hero-badge-divider { display: none; }
+      .category-cards { gap: 16px; }
+      .category-thumb { width: 90px; height: 90px; font-size: 32px; }
+      .product-card { flex: 0 0 240px; }
+      .recipients-grid { grid-template-columns: 1fr; }
+      .recipients-tabs { flex-wrap: wrap; }
+      .bundles-grid { grid-template-columns: 1fr; }
+      .showcase-text { padding: 40px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .container { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     1. ANNOUNCEMENT BAR
+     ═══════════════════════════════════════════════════════════ -->
+<div class="announcement-bar">
+  <div class="announcement-track">
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> <span class="announcement-highlight">Free US Shipping</span> on Every Order</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 100% Anonymous Delivery</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 60-Day Money-Back Guarantee</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> <span class="announcement-highlight">Free US Shipping</span> on Every Order</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 100% Anonymous Delivery</span>
+    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 60-Day Money-Back Guarantee</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     2. HEADER
+     ═══════════════════════════════════════════════════════════ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="/" class="header-logo">
+      <span class="logo-mark">P</span>
+      Package Deal
+    </a>
+    <nav class="header-nav">
+      <a href="/collection">Shop All</a>
+      <a href="/products/micropeniscure-prank-mail" class="active">#1 Prank</a>
+      <a href="/quiz">Quiz</a>
+      <a href="/track">Track Order</a>
+      <a href="/about">About</a>
+      <a href="/faq">Help</a>
+    </nav>
+    <div class="header-right">
+      <button class="mobile-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+      <button aria-label="Account">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </button>
+      <button class="cart-badge" aria-label="Cart">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span>0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════════
+     3. SUB-HEADER PRODUCT STRIP
+     ═══════════════════════════════════════════════════════════ -->
+<div class="product-strip">
+  <div class="product-strip-inner">
+    <span class="strip-badge">Bestseller</span>
+    <div class="strip-products">
+      <div class="strip-product"><div class="strip-thumb">📦</div> MicroPenisCure.com</div>
+      <div class="strip-product"><div class="strip-thumb">📦</div> BigAssDildos.com</div>
+      <div class="strip-product"><div class="strip-thumb">📦</div> VaginalOdorHelper.com</div>
+      <div class="strip-product"><div class="strip-thumb">📦</div> BulkCondomDelivery.com</div>
+    </div>
+    <a href="/collection" class="strip-cta">Shop Now →</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     4. HERO — full-bleed background, text overlaid left
+     ═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-kicker">Anonymous Prank Mail</div>
+      <h1 class="hero-title">Send someone you love something deeply embarrassing.</h1>
+      <p class="hero-desc">Anonymous prank mail tubes branded with URLs like MicroPenisCure.com — delivered to their door with zero explanation.</p>
+      <p class="hero-promo"><strong>FREE SHIPPING</strong> + 60-Day Money-Back Guarantee on every order</p>
+      <div class="hero-ctas">
+        <a href="/collection" class="btn btn-primary btn-lg btn-arrow">See the Pranks</a>
+        <a href="/quiz" class="btn btn-outline btn-lg">Take the Quiz</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge-item">
+          <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+          <span>Free Shipping</span>
+        </div>
+        <div class="hero-badge-divider"></div>
+        <div class="hero-badge-item">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          <span>100% Anonymous</span>
+        </div>
+        <div class="hero-badge-divider"></div>
+        <div class="hero-badge-item">
+          <svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+          <span>60-Day Returns</span>
+        </div>
+        <div class="hero-badge-divider"></div>
+        <div class="hero-badge-item">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span>Rated 4.5/5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     5. CATEGORY STRIP — like Javvy's "Don't Miss the Mega Deals"
+     ═══════════════════════════════════════════════════════════ -->
+<section class="category-strip">
+  <div class="container">
+    <div class="category-strip-header">
+      <h2>Pick Your Prank &nbsp;🎯</h2>
+      <p>Four mortifying URLs. Choose your level of chaos.</p>
+    </div>
+    <div class="category-cards">
+      <a class="category-card" href="/products/micropeniscure-prank-mail">
+        <span class="category-card-badge">Bestseller</span>
+        <div class="category-thumb">🔬</div>
+        <div class="category-label">MicroPenisCure</div>
+        <div class="category-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" style="opacity:.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+      </a>
+      <a class="category-card" href="/products/bigassdildos-prank-mail">
+        <div class="category-thumb">🍆</div>
+        <div class="category-label">BigAssDildos</div>
+        <div class="category-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" style="opacity:.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+      </a>
+      <a class="category-card" href="/products/vaginalodorhelper-prank-mail">
+        <div class="category-thumb">🧪</div>
+        <div class="category-label">VaginalOdorHelper</div>
+        <div class="category-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" style="opacity:.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+      </a>
+      <a class="category-card" href="/products/bulkcondomdelivery-prank-mail">
+        <div class="category-thumb">📬</div>
+        <div class="category-label">BulkCondomDelivery</div>
+        <div class="category-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" style="opacity:.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DECORATIVE DIVIDER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="section-divider">~ ~ ~</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     6. PRODUCT CAROUSEL — "Bold Flavors" style
+     ═══════════════════════════════════════════════════════════ -->
+<section class="products-section">
+  <div class="products-heading">
+    <h2>Four Tubes. Four URLs.</h2>
+    <p>One very confused recipient.</p>
+  </div>
+  <div class="products-scroll">
+    <!-- MicroPenisCure -->
+    <div class="product-card">
+      <span class="product-card-badge">Bestseller</span>
+      <div class="product-card-image">[ MicroPenisCure.com ]</div>
+      <div class="product-card-info">
+        <div class="product-card-name">MicroPenisCure.com</div>
+        <div class="product-card-desc">A mailing tube with MicroPenisCure.com printed on every visible side. No return address.</div>
+        <button class="quick-add">Quick Add · $14.99</button>
+      </div>
+    </div>
+    <!-- BigAssDildos -->
+    <div class="product-card">
+      <div class="product-card-image">[ BigAssDildos.com ]</div>
+      <div class="product-card-info">
+        <div class="product-card-name">BigAssDildos.com</div>
+        <div class="product-card-desc">"Thank You &amp; Cum Again!" printed on the outside. Actual dildo variant available.</div>
+        <button class="quick-add">Quick Add · $14.99</button>
+      </div>
+    </div>
+    <!-- VaginalOdorHelper -->
+    <div class="product-card">
+      <div class="product-card-image">[ VaginalOdorHelper.com ]</div>
+      <div class="product-card-info">
+        <div class="product-card-name">VaginalOdorHelper.com</div>
+        <div class="product-card-desc">Clinical-sounding URL designed to start the most awkward conversations possible.</div>
+        <button class="quick-add">Quick Add · $14.99</button>
+      </div>
+    </div>
+    <!-- BulkCondomDelivery -->
+    <div class="product-card">
+      <div class="product-card-image">[ BulkCondomDelivery.com ]</div>
+      <div class="product-card-info">
+        <div class="product-card-name">BulkCondomDelivery.com</div>
+        <div class="product-card-desc">"More Rubber for Your Chubber" — the mildest prank, best for family homes.</div>
+        <button class="quick-add">Quick Add · $12.99</button>
+      </div>
+    </div>
+  </div>
+  <div class="products-nav">
+    <a href="/collection">Shop All →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     7. SHOWCASE BLOCK 1 — MicroPenisCure (Javvy's alternating image+text)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="showcase showcase-1">
+  <div class="showcase-image">
+    <div class="showcase-image-placeholder">[ MicroPenisCure.com — Product Lifestyle Image ]</div>
+  </div>
+  <div class="showcase-text showcase-bg-warm">
+    <div class="section-kicker">OUR #1 SELLER</div>
+    <div class="kicker">MicroPenisCure.com</div>
+    <div class="subtitle">The package they'll have to explain to everyone.</div>
+    <p class="desc">A mailing tube with MicroPenisCure.com printed on every visible side. No return address. No explanation. Just confusion and a URL nobody wants to Google at work.</p>
+    <ul class="showcase-bullets">
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> URL visible from 10 feet away</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> No return address, completely anonymous</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> "Sign For It" upgrade available</li>
+    </ul>
+    <a href="/products/micropeniscure-prank-mail" class="btn btn-primary btn-arrow">Shop Now</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     8. SHOWCASE BLOCK 2 — Sign For It (reversed)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="showcase showcase-2 reverse">
+  <div class="showcase-image">
+    <div class="showcase-image-placeholder">[ "Sign For It" — Delivery Moment Image ]</div>
+  </div>
+  <div class="showcase-text showcase-bg-white">
+    <div class="section-kicker">THE UPGRADE</div>
+    <div class="kicker">"Sign For It"</div>
+    <div class="subtitle">They accept it in person. In front of the mail carrier.</div>
+    <p class="desc">Upgrade any prank so USPS requires an in-person signature. They have to take it from the mail carrier's hands — with the URL facing out — and sign for it. Witness included.</p>
+    <ul class="showcase-bullets">
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Forced in-person signature</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Mail carrier becomes a live witness</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Available on all multi-variant products</li>
+    </ul>
+    <a href="/collection" class="btn btn-primary btn-arrow">Shop Now</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     9. SHOWCASE BLOCK 3 — BigAssDildos
+     ═══════════════════════════════════════════════════════════ -->
+<div class="showcase showcase-3">
+  <div class="showcase-image">
+    <div class="showcase-image-placeholder">[ BigAssDildos.com — Product Lifestyle Image ]</div>
+  </div>
+  <div class="showcase-text showcase-bg-warm">
+    <div class="section-kicker">THE ESCALATION</div>
+    <div class="kicker">BigAssDildos.com</div>
+    <div class="subtitle">"Thank You &amp; Cum Again!"</div>
+    <p class="desc">The prank that keeps escalating. The tagline is printed right on the outside. And yes — the premium variant includes an actual novelty item inside.</p>
+    <ul class="showcase-bullets">
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Tagline printed on the outside</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Actual dildo variant available ($43.99)</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 100% anonymous delivery</li>
+    </ul>
+    <a href="/products/bigassdildos-prank-mail" class="btn btn-primary btn-arrow">Shop Now</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     10. SHOWCASE BLOCK 4 — Chaos Tiers (reversed)
+     ═══════════════════════════════════════════════════════════ -->
+<div class="showcase showcase-4 reverse">
+  <div class="showcase-image" style="flex-direction:column;gap:16px;padding:32px;">
+    <!-- Inline chaos tier mini-cards -->
+    <div style="display:flex;gap:12px;width:100%;max-width:400px;">
+      <div style="flex:1;background:#fff;border-radius:12px;padding:16px;text-align:center;border:1px solid var(--border);">
+        <div style="font-size:28px;margin-bottom:4px;">📦</div>
+        <div style="font-size:12px;font-weight:700;color:var(--chaos-subtle);text-transform:uppercase;letter-spacing:1px;">Subtle</div>
+        <div style="font-size:13px;font-weight:600;">$14.99</div>
+      </div>
+      <div style="flex:1;background:#fff;border-radius:12px;padding:16px;text-align:center;border:2px solid var(--terracotta);box-shadow:0 4px 20px rgba(212,113,78,0.15);">
+        <div style="font-size:28px;margin-bottom:4px;">✍️</div>
+        <div style="font-size:12px;font-weight:700;color:var(--chaos-public);text-transform:uppercase;letter-spacing:1px;">Popular</div>
+        <div style="font-size:13px;font-weight:600;">$21.99</div>
+      </div>
+      <div style="flex:1;background:#fff;border-radius:12px;padding:16px;text-align:center;border:1px solid var(--border);opacity:.6;">
+        <div style="font-size:28px;margin-bottom:4px;">🎉</div>
+        <div style="font-size:12px;font-weight:700;color:var(--chaos-nuclear);text-transform:uppercase;letter-spacing:1px;">Nuclear</div>
+        <div style="font-size:13px;font-weight:600;text-decoration:line-through;">$34.99</div>
+      </div>
+    </div>
+    <div style="width:100%;max-width:400px;height:6px;border-radius:3px;background:linear-gradient(to right,var(--chaos-subtle),var(--chaos-public),var(--chaos-nuclear));"></div>
+  </div>
+  <div class="showcase-text showcase-bg-white">
+    <div class="section-kicker">CHOOSE YOUR LEVEL</div>
+    <div class="kicker">How Much Chaos?</div>
+    <div class="subtitle">Three tiers. Pick your comfort zone — or don't.</div>
+    <p class="desc">Start with the standard embarrassing tube, upgrade to "Sign For It" for a live witness, or go full nuclear with a confetti bomb that covers everything in glitter.</p>
+    <ul class="showcase-bullets">
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Standard: stealth delivery ($14.99)</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Sign For It: live witness ($21.99)</li>
+      <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Confetti Bomb: full nuclear (sold out)</li>
+    </ul>
+    <a href="/collection" class="btn btn-primary btn-arrow">Shop Now</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DIVIDER
+     ═══════════════════════════════════════════════════════════ -->
+<div class="section-divider">~ ~ ~</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     11. RECIPIENTS — Javvy's "Delicious Recipes" tabbed section
+     ═══════════════════════════════════════════════════════════ -->
+<section class="recipients-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-heading section-heading-display">Know Someone Who Deserves One? &nbsp;😏</div>
+      <p class="section-desc">Match the prank to the person. We've done the research.</p>
+    </div>
+    <div class="recipients-tabs">
+      <button class="tab-btn active">All Recipients</button>
+      <button class="tab-btn">Coworkers</button>
+      <button class="tab-btn">Family</button>
+      <button class="tab-btn">Friends</button>
+    </div>
+    <div class="recipients-grid">
+      <div class="recipient-card">
+        <div class="recipient-card-image">💼</div>
+        <div class="recipient-card-info">
+          <h3>Your Coworker</h3>
+          <p>The one who always "replies all." Send MicroPenisCure.com to their work address so the whole office sees it arrive.</p>
+          <div class="product-link">→ MicroPenisCure.com</div>
+        </div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-card-image">🏠</div>
+        <div class="recipient-card-info">
+          <h3>Your Brother-in-Law</h3>
+          <p>He's earned it. BigAssDildos.com arrives at his front door, "Thank You &amp; Cum Again!" facing the street.</p>
+          <div class="product-link">→ BigAssDildos.com</div>
+        </div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-card-image">🎓</div>
+        <div class="recipient-card-info">
+          <h3>Your College Roommate</h3>
+          <p>VaginalOdorHelper.com shows up at their apartment. Their new roommate has questions they can't answer.</p>
+          <div class="product-link">→ VaginalOdorHelper.com</div>
+        </div>
+      </div>
+      <div class="recipient-card">
+        <div class="recipient-card-image">👥</div>
+        <div class="recipient-card-info">
+          <h3>That Friend</h3>
+          <p>Every group has one. BulkCondomDelivery.com is the mild one — perfect as a starter prank that sparks questions.</p>
+          <div class="product-link">→ BulkCondomDelivery.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     12. REVIEWS HERO — Javvy's "The Reviews Are In"
+     ═══════════════════════════════════════════════════════════ -->
+<section class="reviews-hero">
+  <div class="reviews-hero-inner">
+    <div class="reviews-hero-visual">
+      <div class="play-circle">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+      </div>
+    </div>
+    <div class="reviews-hero-text">
+      <div class="reviews-hero-stars">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24" style="opacity:.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <h2>The Reactions Are In</h2>
+      <p>4.5 out of 5 stars on Amazon with 1,200+ ratings. The most common review theme? "They couldn't stop laughing." The best part isn't sending it — it's the group chat after.</p>
+      <a href="/collection" class="btn btn-primary btn-arrow">Shop Now</a>
+    </div>
+  </div>
+  <!-- Review cards row below -->
+  <div class="review-cards">
+    <div class="review-card">
+      <div class="review-card-stars">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="review-card-title">Hilarious</div>
+      <div class="review-card-text">"He called three people trying to figure out who sent it. The group chat was on fire."</div>
+      <div class="review-card-author">Verified Buyer · Amazon</div>
+    </div>
+    <div class="review-card">
+      <div class="review-card-stars">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="review-card-title">Amazing</div>
+      <div class="review-card-text">"She made him open it in front of the whole office. His face was priceless."</div>
+      <div class="review-card-author">Verified Buyer · Amazon</div>
+    </div>
+    <div class="review-card">
+      <div class="review-card-stars">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="review-card-title">Great Choice</div>
+      <div class="review-card-text">"His mom found it on the porch first. The phone call was legendary."</div>
+      <div class="review-card-author">Verified Buyer · Amazon</div>
+    </div>
+    <div class="review-card">
+      <div class="review-card-stars">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <svg viewBox="0 0 24 24" style="opacity:.4"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="review-card-title">Worth Every Penny</div>
+      <div class="review-card-text">"The group chat was on fire for two hours. Best $22 I've ever spent."</div>
+      <div class="review-card-author">Verified Buyer · Amazon</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     13. BUNDLES — Javvy's "Barista Essentials" accessory grid
+     ═══════════════════════════════════════════════════════════ -->
+<section class="bundles-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-heading section-heading-display">Bundle &amp; Save &nbsp;🎁</div>
+      <p class="section-desc">Send multiple pranks and save. Because one is never enough.</p>
+    </div>
+    <div class="bundles-grid">
+      <div class="bundle-card">
+        <div class="bundle-card-image">[ Double Trouble Bundle ]</div>
+        <div class="bundle-card-info">
+          <h3>Double Trouble</h3>
+          <div class="price">Any 2 pranks · <strong>Save $5</strong></div>
+          <div class="savings">Best for first-timers</div>
+          <button class="quick-add" style="margin-top:12px;">Quick Add · From $24.98</button>
+        </div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-card-image">[ Triple Trouble Bundle ]</div>
+        <div class="bundle-card-info">
+          <h3>Triple Trouble</h3>
+          <div class="price">All 4 tubes · <strong>Save $15</strong></div>
+          <div class="savings">Maximum chaos, maximum savings</div>
+          <button class="quick-add" style="margin-top:12px;">Quick Add · $42.96</button>
+        </div>
+      </div>
+      <div class="bundle-card">
+        <div class="bundle-card-image">[ Quiz Recommendation ]</div>
+        <div class="bundle-card-info">
+          <h3>Not sure which one?</h3>
+          <div class="price">Take the quiz · <strong>30 seconds</strong></div>
+          <div class="savings">4 questions → perfect match</div>
+          <a href="/quiz" class="quick-add" style="margin-top:12px;display:flex;text-decoration:none;">Take the Quiz →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     14. COMPARISON TABLE
+     ═══════════════════════════════════════════════════════════ -->
+<section class="comparison-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-kicker" style="color:rgba(255,255,255,0.5);">THE COMPETITION</div>
+      <h2 class="section-heading" style="color:#fff;">Other prank sites wish.</h2>
+    </div>
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;">Feature</th>
+          <th style="color:var(--terracotta);">Package Deal</th>
+          <th>Everyone Else</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>The URL IS the prank</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>Forced signature delivery</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>Actually anonymous</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>Premium mailing tubes</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>Free shipping</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>60-day free returns</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+        <tr><td>Confetti bomb upgrade</td><td><span class="check">✓</span></td><td><span class="cross">✗</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     15. GUARANTEE
+     ═══════════════════════════════════════════════════════════ -->
+<section class="guarantee-section">
+  <div class="container">
+    <div class="guarantee-inner">
+      <div class="guarantee-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div class="section-kicker" style="text-align:center;">OUR PROMISE</div>
+      <h2 class="section-heading" style="text-align:center;">If it's not funny, it's free.</h2>
+      <p>We stand behind every prank we ship. If your friend doesn't at least look confused when they pick it up, we'll refund your entire order — no questions asked, no return needed. You've got 60 full days.</p>
+      <a href="/shipping-returns" class="btn btn-outline">Read Our Return Policy</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     16. FAQ
+     ═══════════════════════════════════════════════════════════ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-kicker">COMMON QUESTIONS</div>
+      <h2 class="section-heading">Questions people actually ask us.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q">Is shipping really anonymous? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a">Completely. No return address, no sender information, no way to trace it back to you. The package arrives from "Package Deal" with zero indication of who placed the order.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if they're not home when it arrives? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a">Standard orders get left on the porch — visible to neighbors, roommates, anyone walking by. "Sign For It" orders require an in-person signature, so USPS will attempt delivery and leave a notice.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is this actually funny or just an internet thing? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a">4.5 out of 5 stars on Amazon with over 1,200 ratings. The most common review theme? "They couldn't stop laughing." People actually giggle about this for days.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Could this offend someone? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a">These pranks work best between people who already roast each other. If you're wondering "would they think this is funny?" — they probably will. If you're wondering "would this upset them?" — maybe pick a different friend.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's actually inside the tube? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a">The base product is just the tube — the URL printed on the outside IS the prank. The confetti variant includes a spring-loaded confetti surprise. BigAssDildos.com has a premium variant that includes an actual novelty item.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I need to blacklist an address? <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+        <div class="faq-a">We take this seriously. If someone reports receiving unwanted prank mail, we blacklist the address immediately. No questions asked, no pushback. This is for friends who roast each other, not for harassment.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     17. NEWSLETTER CTA — Javvy's "Stay Connected" brand block
+     ═══════════════════════════════════════════════════════════ -->
+<section class="newsletter-cta">
+  <div class="container">
+    <h2>You already know who you'd send one to.</h2>
+    <p class="tagline">Pick a prank. We'll handle the rest — anonymously.</p>
+    <a href="/collection" class="btn btn-white btn-lg btn-arrow">See the Pranks</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     18. FOOTER
+     ═══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name"><span class="fm">P</span> Package Deal</div>
+        <p class="footer-newsletter-desc">Exclusive offers, giveaways, and prank ideas. No spam ever.</p>
+        <form class="footer-email-form" onsubmit="return false;">
+          <input type="email" placeholder="Your email" />
+          <button type="submit">Sign Up</button>
+        </form>
+        <div class="footer-note">Unsubscribe anytime.</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Shop</div>
+        <a href="/collection">Shop All</a>
+        <a href="/products/micropeniscure-prank-mail">MicroPenisCure.com</a>
+        <a href="/products/bigassdildos-prank-mail">BigAssDildos.com</a>
+        <a href="/products/vaginalodorhelper-prank-mail">VaginalOdorHelper.com</a>
+        <a href="/products/bulkcondomdelivery-prank-mail">BulkCondomDelivery.com</a>
+        <a href="/quiz">Take the Quiz</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Help</div>
+        <a href="/faq">FAQ</a>
+        <a href="/shipping-returns">Shipping &amp; Returns</a>
+        <a href="mailto:hi@packagedeal.com">Contact Us</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Company</div>
+        <a href="/about">About Package Deal</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Legal</div>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>&copy; 2026 Package Deal. All rights reserved. &middot; Prank mail, handled with care.</div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
+        <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg></a>
+        <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+      </div>
+      <div class="footer-payments">
+        <span>Visa</span><span>MC</span><span>PayPal</span><span>Shop Pay</span><span>Apple Pay</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+     ═══════════════════════════════════════════════════════════ -->
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+
+</body>
+</html>

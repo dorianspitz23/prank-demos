@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proto 3 — Cinematic Film Strip</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --charcoal-deep: #111;
+      --terracotta: #D4714E;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: #0a0a0a; color: #fff; overflow-x: hidden; }
+
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta); color: #fff;
+      text-align: center; padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100; letter-spacing: 0.05em;
+    }
+
+    .section { padding: 80px 0; margin-top: 40px; }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 64px;
+      padding: 0 24px;
+    }
+    .kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 16px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 6vw, 64px);
+      font-weight: 700; font-style: italic;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.6) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* ── Film Strip ── */
+    .film-strip-container {
+      position: relative;
+      padding: 40px 0;
+    }
+    .film-strip-container::before,
+    .film-strip-container::after {
+      content: '';
+      position: absolute; left: 0; right: 0;
+      height: 32px;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent 0px, transparent 12px,
+        rgba(255,255,255,0.04) 12px, rgba(255,255,255,0.04) 20px,
+        transparent 20px, transparent 32px
+      );
+      z-index: 1;
+    }
+    .film-strip-container::before { top: 0; }
+    .film-strip-container::after { bottom: 0; }
+
+    /* Sprocket holes */
+    .sprocket-strip {
+      position: absolute; left: 0; right: 0;
+      display: flex; justify-content: space-around;
+      pointer-events: none; z-index: 2;
+    }
+    .sprocket-strip.top { top: 8px; }
+    .sprocket-strip.bottom { bottom: 8px; }
+    .sprocket {
+      width: 14px; height: 10px;
+      border-radius: 2px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ── Cards Row ── */
+    .film-row {
+      display: flex;
+      gap: 4px;
+      padding: 0 4px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .film-frame {
+      flex: 0 0 calc(25% - 4px);
+      min-width: 260px;
+      position: relative;
+      background: #000;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .film-frame .placeholder {
+      width: 100%;
+      aspect-ratio: 9/16;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 56px;
+      position: relative;
+    }
+
+    /* Spotlight / vignette effect */
+    .film-frame .placeholder::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at center, transparent 30%, rgba(0,0,0,0.6) 100%);
+    }
+
+    /* Frame number */
+    .frame-number {
+      position: absolute; top: 8px; left: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 11px; color: rgba(255,255,255,0.25);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Caption Overlay ── */
+    .film-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 48px 20px 20px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    }
+    .film-caption .stars {
+      color: #F59E0B; font-size: 12px;
+      letter-spacing: 2px; margin-bottom: 6px;
+    }
+    .film-caption .quote {
+      font-size: 15px; font-style: italic;
+      font-weight: 500; line-height: 1.5;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* ── Marquee ticker ── */
+    .ticker {
+      margin-top: 48px;
+      overflow: hidden;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 0;
+    }
+    .ticker-track {
+      display: flex;
+      gap: 48px;
+      animation: ticker 20s linear infinite;
+      width: max-content;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .ticker-item {
+      font-size: 14px;
+      color: rgba(255,255,255,0.3);
+      font-weight: 500;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .ticker-dot {
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      opacity: 0.5;
+    }
+
+    /* ── Supporting ── */
+    .supporting {
+      text-align: center; margin-top: 48px;
+      padding: 0 24px;
+    }
+    .supporting .tagline {
+      font-family: var(--font-display);
+      font-size: 22px; font-style: italic;
+      color: rgba(255,255,255,0.4);
+      font-weight: 400;
+    }
+    .cta-btn {
+      display: inline-block; margin-top: 24px;
+      padding: 14px 36px;
+      background: var(--terracotta);
+      color: #fff; font-weight: 600;
+      border-radius: 999px; font-size: 15px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      box-shadow: 0 4px 20px rgba(212,113,78,0.3);
+    }
+    .cta-btn:hover {
+      background: #C0613F;
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .film-row { flex-direction: column; align-items: center; }
+      .film-frame { flex: 0 0 90%; min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PROTO 3 — Cinematic Film Strip (dark moody spotlight, sprocket holes, ticker tape)</div>
+
+  <section class="section">
+    <div class="header">
+      <div class="kicker">&#127916; REAL REACTIONS</div>
+      <h2 class="headline">What happens when<br>it arrives.</h2>
+    </div>
+
+    <div class="film-strip-container">
+      <div class="sprocket-strip top">
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+      </div>
+
+      <div class="film-row">
+        <div class="film-frame">
+          <div class="placeholder" style="background: linear-gradient(180deg, #2a1a12 0%, #0a0a0a 100%);">
+            <span style="position:relative;z-index:1;">&#128561;</span>
+          </div>
+          <div class="frame-number">PD-001</div>
+          <div class="film-caption">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;He called three people trying to figure out who sent it.&rdquo;</p>
+          </div>
+        </div>
+
+        <div class="film-frame">
+          <div class="placeholder" style="background: linear-gradient(180deg, #1a1c2a 0%, #0a0a0a 100%);">
+            <span style="position:relative;z-index:1;">&#128518;</span>
+          </div>
+          <div class="frame-number">PD-002</div>
+          <div class="film-caption">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;She made him open it in front of the whole office.&rdquo;</p>
+          </div>
+        </div>
+
+        <div class="film-frame">
+          <div class="placeholder" style="background: linear-gradient(180deg, #1a2a12 0%, #0a0a0a 100%);">
+            <span style="position:relative;z-index:1;">&#128556;</span>
+          </div>
+          <div class="frame-number">PD-003</div>
+          <div class="film-caption">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;His mom found it on the porch first.&rdquo;</p>
+          </div>
+        </div>
+
+        <div class="film-frame">
+          <div class="placeholder" style="background: linear-gradient(180deg, #2a1c0a 0%, #0a0a0a 100%);">
+            <span style="position:relative;z-index:1;">&#128293;</span>
+          </div>
+          <div class="frame-number">PD-004</div>
+          <div class="film-caption">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;The group chat was on fire for two hours.&rdquo;</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="sprocket-strip bottom">
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+        <div class="sprocket"></div><div class="sprocket"></div><div class="sprocket"></div>
+      </div>
+    </div>
+
+    <!-- Ticker -->
+    <div class="ticker">
+      <div class="ticker-track">
+        <span class="ticker-item"><span class="ticker-dot"></span>2,847 tubes delivered</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>4.8/5 sender rating</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>100% anonymous</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>"Best $15 I ever spent"</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Ships in plain packaging</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Group chats destroyed daily</span>
+        <!-- duplicate for seamless loop -->
+        <span class="ticker-item"><span class="ticker-dot"></span>2,847 tubes delivered</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>4.8/5 sender rating</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>100% anonymous</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>"Best $15 I ever spent"</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Ships in plain packaging</span>
+        <span class="ticker-item"><span class="ticker-dot"></span>Group chats destroyed daily</span>
+      </div>
+    </div>
+
+    <div class="supporting">
+      <p class="tagline">The best part isn't sending it. It's the group chat after.</p>
+      <a href="#" class="cta-btn">Send One Now</a>
+    </div>
+  </section>
+</body>
+</html>

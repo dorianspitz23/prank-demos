@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package Deal — Anonymous Prank Mail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #2D2D2D;
+      background: #FFFFFF;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    ul, ol { list-style: none; }
+
+    /* ── Utilities ── */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    /* ── Announcement Bar (marquee ticker) ── */
+    .announcement-bar {
+      background: #2D2D2D;
+      color: #FFFFFF;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 10px 0;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .announcement-bar a { color: #FFFFFF; }
+    .marquee-track {
+      display: inline-flex;
+      animation: marquee 30s linear infinite;
+    }
+    .marquee-track span {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 24px;
+    }
+    .marquee-track .dot {
+      width: 5px; height: 5px;
+      background: #D4714E;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Header / Nav ── */
+    .site-header {
+      background: #FFFFFF;
+      border-bottom: 1px solid #E8E5E1;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-header .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #2D2D2D;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .logo span { font-weight: 400; font-size: 14px; color: #6B6B6B; }
+    .main-nav { display: flex; gap: 32px; }
+    .main-nav a {
+      font-size: 15px;
+      font-weight: 400;
+      color: #2D2D2D;
+      transition: color 0.2s;
+    }
+    .main-nav a:hover { color: #D4714E; }
+    .header-actions { display: flex; align-items: center; gap: 20px; }
+    .header-actions button, .header-actions a {
+      color: #2D2D2D;
+      display: flex;
+      align-items: center;
+    }
+    .icon-btn {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s;
+    }
+    .icon-btn:hover { background: #F2F0ED; }
+    .cart-count {
+      background: #D4714E; color: #fff; font-size: 10px; font-weight: 700;
+      width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; top: -8px; left: -8px;
+    }
+
+    /* ── Hero Section (MBG-style split) ── */
+    .hero {
+      background: linear-gradient(135deg, #FFF5F0 0%, #FDF8F5 50%, #F5F0EB 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      min-height: 520px;
+      padding-top: 48px;
+      padding-bottom: 48px;
+    }
+    .hero-image {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .hero-content { padding: 24px 0; }
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      color: #6B6B6B;
+    }
+    .hero-stars { color: #D4714E; font-size: 14px; letter-spacing: 2px; }
+    .hero h1 {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      color: #2D2D2D;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 700;
+    }
+    .hero-desc {
+      font-size: 17px;
+      color: #6B6B6B;
+      line-height: 1.65;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #2D2D2D;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: #1a1a1a; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: #2D2D2D;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border-radius: 50px;
+      border: 1.5px solid #2D2D2D;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: #2D2D2D; color: #fff; }
+    .btn-terracotta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #D4714E;
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 40px;
+      border-radius: 50px;
+      transition: background 0.2s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-terracotta:hover { background: #C0613F; transform: translateY(-1px); }
+    .hero-carousel-nav {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .carousel-arrow {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid #2D2D2D;
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      transition: all 0.2s;
+      font-size: 18px;
+      color: #2D2D2D;
+    }
+    .carousel-arrow:hover { background: #2D2D2D; color: #fff; }
+
+    /* ── Section Heading (MBG style: partial italic) ── */
+    .section-heading {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      color: #2D2D2D;
+      line-height: 1.2;
+    }
+    .section-heading em {
+      font-style: italic;
+      font-weight: 500;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+    .section-header .shop-all {
+      font-size: 14px;
+      font-weight: 500;
+      color: #6B6B6B;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .section-header .shop-all:hover { color: #D4714E; }
+    .kicker {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #D4714E;
+      margin-bottom: 12px;
+    }
+
+    /* ── "Who Deserves One?" horizontal scroll (MBG category style) ── */
+    .recipients-section {
+      padding: 64px 0;
+      background: #FFFFFF;
+    }
+    .recipients-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      scroll-snap-type: x mandatory;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .recipients-scroll::-webkit-scrollbar { display: none; }
+    .recipient-pill {
+      flex-shrink: 0;
+      padding: 16px 28px;
+      background: #F2F0ED;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #2D2D2D;
+      scroll-snap-align: start;
+      transition: all 0.2s;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .recipient-pill:hover {
+      background: #2D2D2D;
+      color: #fff;
+    }
+
+    /* ── "What Makes Us Different" (MBG 4-col grid) ── */
+    .differentiators-section {
+      padding: 80px 0;
+      background: #FAFAF8;
+    }
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .diff-card {
+      text-align: center;
+      padding: 32px 16px;
+    }
+    .diff-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #FFF5F0;
+      border-radius: 50%;
+      font-size: 24px;
+    }
+    .diff-card h4 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #2D2D2D;
+    }
+    .diff-card p {
+      font-size: 14px;
+      color: #6B6B6B;
+      line-height: 1.55;
+    }
+
+    /* ── Best Sellers / Products Carousel (MBG card style) ── */
+    .products-section {
+      padding: 80px 0;
+      background: #FFFFFF;
+    }
+    .products-carousel {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .product-card {
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+      background: #fff;
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+    }
+    .product-card-image {
+      position: relative;
+      aspect-ratio: 1;
+      overflow: hidden;
+      background: #F2F0ED;
+    }
+    .product-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .product-card:hover .product-card-image img {
+      transform: scale(1.05);
+    }
+    .product-badge {
+      position: absolute;
+      top: 12px; left: 12px;
+      background: #D4714E;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+    .product-card-body { padding: 20px; }
+    .product-tag {
+      font-size: 12px;
+      font-weight: 500;
+      color: #D4714E;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 6px;
+    }
+    .product-card-body h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .product-card-body h3 em {
+      font-weight: 400;
+      font-style: italic;
+      color: #6B6B6B;
+    }
+    .product-card-body .desc {
+      font-size: 13px;
+      color: #6B6B6B;
+      line-height: 1.5;
+      margin-bottom: 12px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .product-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 13px;
+      color: #6B6B6B;
+    }
+    .product-rating .stars { color: #D4714E; font-size: 12px; letter-spacing: 1px; }
+    .product-price {
+      font-size: 17px;
+      font-weight: 600;
+      color: #2D2D2D;
+    }
+
+    /* ── Mission Quote (MBG blockquote style) ── */
+    .mission-section {
+      padding: 80px 0;
+      background: #2D2D2D;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    .mission-section blockquote {
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto 32px;
+      color: rgba(255,255,255,0.9);
+    }
+    .mission-logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #D4714E;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── Quiz CTA (MBG "well-being concern" style) ── */
+    .quiz-section {
+      padding: 80px 0;
+      background: #FFFFFF;
+    }
+    .quiz-inner {
+      text-align: center;
+    }
+    .quiz-inner h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    .quiz-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .quiz-pill {
+      padding: 12px 24px;
+      border: 1.5px solid #E8E5E1;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #2D2D2D;
+      transition: all 0.2s;
+      cursor: pointer;
+      background: #fff;
+    }
+    .quiz-pill:hover {
+      border-color: #D4714E;
+      color: #D4714E;
+      background: #FFF5F0;
+    }
+    .quiz-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      max-width: 400px;
+      margin: 0 auto 20px;
+    }
+    .quiz-divider hr {
+      flex: 1;
+      border: none;
+      border-top: 1px solid #E8E5E1;
+    }
+    .quiz-divider span {
+      font-size: 14px;
+      font-weight: 500;
+      color: #D4714E;
+      white-space: nowrap;
+    }
+    .quiz-sub {
+      font-size: 15px;
+      color: #6B6B6B;
+      max-width: 400px;
+      margin: 0 auto 24px;
+      line-height: 1.55;
+    }
+
+    /* ── How It Works (3-col) ── */
+    .how-it-works-section {
+      padding: 80px 0;
+      background: #FAFAF8;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 48px;
+    }
+    .step-card {
+      text-align: center;
+      padding: 32px 24px;
+    }
+    .step-number {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: #D4714E;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .step-card h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .step-card p {
+      font-size: 14px;
+      color: #6B6B6B;
+      line-height: 1.6;
+    }
+
+    /* ── Chaos Meter / Tier Selector (MBG comparison style) ── */
+    .chaos-section {
+      padding: 80px 0;
+      background: #FFFFFF;
+    }
+    .chaos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .chaos-card {
+      border: 1.5px solid #E8E5E1;
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      transition: all 0.25s;
+      position: relative;
+    }
+    .chaos-card:hover {
+      border-color: #D4714E;
+      box-shadow: 0 8px 32px rgba(212,113,78,0.1);
+    }
+    .chaos-card.popular {
+      border-color: #D4714E;
+      box-shadow: 0 4px 20px rgba(212,113,78,0.12);
+    }
+    .chaos-card .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #D4714E;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 16px;
+      border-radius: 50px;
+    }
+    .chaos-card .tier-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .chaos-card h4 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .chaos-card .tier-subtitle {
+      font-size: 13px;
+      color: #6B6B6B;
+      margin-bottom: 12px;
+    }
+    .chaos-card .tier-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #D4714E;
+      margin-bottom: 16px;
+    }
+    .chaos-card .tier-desc {
+      font-size: 14px;
+      color: #6B6B6B;
+      line-height: 1.55;
+      margin-bottom: 20px;
+    }
+    .chaos-card .tier-pills {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chaos-card .tier-pill {
+      font-size: 13px;
+      color: #2D2D2D;
+      background: #F2F0ED;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+
+    /* ── Comparison Table (MBG-clean style) ── */
+    .comparison-section {
+      padding: 80px 0;
+      background: #FAFAF8;
+    }
+    .comparison-table {
+      width: 100%;
+      max-width: 720px;
+      margin: 40px auto 0;
+      border-collapse: collapse;
+    }
+    .comparison-table thead th {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 12px 20px;
+      text-align: center;
+      border-bottom: 2px solid #E8E5E1;
+    }
+    .comparison-table thead th:first-child { text-align: left; }
+    .comparison-table thead th.us { color: #D4714E; }
+    .comparison-table tbody td {
+      padding: 14px 20px;
+      font-size: 15px;
+      text-align: center;
+      border-bottom: 1px solid #E8E5E1;
+    }
+    .comparison-table tbody td:first-child { text-align: left; color: #2D2D2D; font-weight: 500; }
+    .check { color: #5B8C5A; font-size: 20px; }
+    .cross { color: #C9C4BE; font-size: 20px; }
+
+    /* ── Social Proof / Reactions Marquee ── */
+    .social-proof-section {
+      padding: 64px 0;
+      background: #FFFFFF;
+      overflow: hidden;
+    }
+    .reactions-marquee {
+      display: flex;
+      animation: marquee 25s linear infinite;
+    }
+    .reaction-card {
+      flex-shrink: 0;
+      background: #F2F0ED;
+      border-radius: 12px;
+      padding: 24px 32px;
+      margin: 0 12px;
+      max-width: 320px;
+      min-width: 280px;
+    }
+    .reaction-card .quote {
+      font-size: 15px;
+      font-style: italic;
+      color: #2D2D2D;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .reaction-card .attribution {
+      font-size: 13px;
+      color: #6B6B6B;
+    }
+
+    /* ── Guarantee Section ── */
+    .guarantee-section {
+      padding: 80px 0;
+      background: #FFFFFF;
+    }
+    .guarantee-inner {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .guarantee-inner h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .guarantee-inner p {
+      font-size: 16px;
+      color: #6B6B6B;
+      line-height: 1.65;
+      margin-bottom: 28px;
+    }
+
+    /* ── FAQ Accordion ── */
+    .faq-section {
+      padding: 80px 0;
+      background: #FAFAF8;
+    }
+    .faq-list {
+      max-width: 720px;
+      margin: 40px auto 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid #E8E5E1;
+    }
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      font-size: 16px;
+      font-weight: 500;
+      color: #2D2D2D;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: #D4714E; }
+    .faq-question .toggle {
+      font-size: 24px;
+      color: #6B6B6B;
+      flex-shrink: 0;
+      margin-left: 16px;
+      transition: transform 0.3s;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding-bottom: 20px;
+    }
+    .faq-item.open .faq-question .toggle {
+      transform: rotate(45deg);
+    }
+    .faq-answer p {
+      font-size: 15px;
+      color: #6B6B6B;
+      line-height: 1.65;
+    }
+
+    /* ── Final CTA ── */
+    .final-cta-section {
+      padding: 96px 0;
+      background: linear-gradient(135deg, #FFF5F0 0%, #FDF8F5 50%, #F5F0EB 100%);
+      text-align: center;
+    }
+    .final-cta-section h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .final-cta-section p {
+      font-size: 17px;
+      color: #6B6B6B;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.6;
+    }
+
+    /* ── Newsletter ── */
+    .newsletter-section {
+      padding: 56px 0;
+      background: #FFFFFF;
+      border-top: 1px solid #E8E5E1;
+    }
+    .newsletter-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .newsletter-inner h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .newsletter-inner p {
+      font-size: 14px;
+      color: #6B6B6B;
+      max-width: 400px;
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+    }
+    .newsletter-form input {
+      padding: 14px 20px;
+      border: 1.5px solid #E8E5E1;
+      border-right: none;
+      border-radius: 50px 0 0 50px;
+      font-size: 15px;
+      font-family: inherit;
+      width: 280px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input:focus { border-color: #D4714E; }
+    .newsletter-form button {
+      padding: 14px 28px;
+      background: #2D2D2D;
+      color: #fff;
+      border: 1.5px solid #2D2D2D;
+      border-radius: 0 50px 50px 0;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: #1a1a1a; }
+
+    /* ── Footer ── */
+    .site-footer {
+      padding: 56px 0 32px;
+      background: #2D2D2D;
+      color: #FFFFFF;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand .footer-logo {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #FFFFFF;
+    }
+    .footer-brand p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.55;
+      max-width: 280px;
+    }
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: #D4714E; }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .footer-bottom p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+    }
+    .footer-socials a {
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+      font-size: 18px;
+    }
+    .footer-socials a:hover { color: #D4714E; }
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+
+    /* ── Mobile Responsive ── */
+    @media (max-width: 1024px) {
+      .diff-grid { grid-template-columns: repeat(2, 1fr); }
+      .products-carousel { grid-template-columns: repeat(2, 1fr); }
+      .chaos-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-top: 32px;
+        padding-bottom: 32px;
+        min-height: auto;
+      }
+      .hero-image { order: -1; max-height: 360px; }
+      .hero-carousel-nav { display: none; }
+      .main-nav { display: none; }
+      .diff-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .products-carousel { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .steps-grid { grid-template-columns: 1fr; gap: 24px; }
+      .chaos-grid { grid-template-columns: 1fr; gap: 16px; }
+      .newsletter-inner { flex-direction: column; text-align: center; gap: 24px; }
+      .newsletter-form { width: 100%; }
+      .newsletter-form input { flex: 1; width: auto; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .comparison-table { font-size: 14px; }
+      .section-header { flex-direction: column; gap: 12px; align-items: flex-start; }
+    }
+    @media (max-width: 480px) {
+      .diff-grid { grid-template-columns: 1fr; }
+      .products-carousel { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ Announcement Bar (Marquee Ticker) ═══ -->
+  <div class="announcement-bar">
+    <div class="marquee-track">
+      <span><span class="dot"></span> TAKE THE QUIZ</span>
+      <span><span class="dot"></span> FIND YOUR PERFECT PRANK &amp; SEND IT ANONYMOUSLY</span>
+      <span><span class="dot"></span> FREE SHIPPING ON ALL ORDERS</span>
+      <span><span class="dot"></span> 100% ANONYMOUS DELIVERY</span>
+      <span><span class="dot"></span> 60-DAY FREE RETURNS</span>
+      <span><span class="dot"></span> TAKE THE QUIZ</span>
+      <span><span class="dot"></span> FIND YOUR PERFECT PRANK &amp; SEND IT ANONYMOUSLY</span>
+      <span><span class="dot"></span> FREE SHIPPING ON ALL ORDERS</span>
+      <span><span class="dot"></span> 100% ANONYMOUS DELIVERY</span>
+      <span><span class="dot"></span> 60-DAY FREE RETURNS</span>
+      <span><span class="dot"></span> TAKE THE QUIZ</span>
+      <span><span class="dot"></span> FIND YOUR PERFECT PRANK &amp; SEND IT ANONYMOUSLY</span>
+      <span><span class="dot"></span> FREE SHIPPING ON ALL ORDERS</span>
+      <span><span class="dot"></span> 100% ANONYMOUS DELIVERY</span>
+      <span><span class="dot"></span> 60-DAY FREE RETURNS</span>
+    </div>
+  </div>
+
+  <!-- ═══ Header ═══ -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="logo">package deal <span>shop</span></a>
+      <nav class="main-nav">
+        <a href="/collection">pranks</a>
+        <a href="/products/micropeniscure-prank-mail">bestseller</a>
+        <a href="/quiz">quiz</a>
+        <a href="/about">about</a>
+        <a href="/faq">faq</a>
+      </nav>
+      <div class="header-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Account">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Open shopping cart" style="position: relative;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══ Hero Section (MBG split layout) ═══ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-image">
+        <img src="/images/hero.png" alt="Package Deal prank mail tubes" />
+      </div>
+      <div class="hero-content">
+        <div class="hero-trust">
+          <span class="hero-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>Rated 4.5/5 on Amazon</span>
+        </div>
+        <h1>send someone<br><em>something deeply<br>embarrassing.</em></h1>
+        <p class="hero-desc">Anonymous prank mail tubes branded with URLs like MicroPenisCure.com &mdash; delivered to their door with zero explanation. They'll have questions. You won't have answers.</p>
+        <a href="/collection" class="btn-primary">SEE THE PRANKS</a>
+      </div>
+    </div>
+    <div class="hero-carousel-nav">
+      <button class="carousel-arrow" aria-label="Previous">&larr;</button>
+      <button class="carousel-arrow" aria-label="Next">&rarr;</button>
+    </div>
+  </section>
+
+  <!-- ═══ "Who Deserves One?" — horizontal scroll pills (MBG category style) ═══ -->
+  <section class="recipients-section">
+    <div class="container">
+      <div class="section-header">
+        <h3 class="section-heading">Who Deserves <em>One?</em></h3>
+        <div style="display: flex; gap: 8px;">
+          <button class="carousel-arrow" aria-label="Previous" style="width: 36px; height: 36px; font-size: 14px;">&larr;</button>
+          <button class="carousel-arrow" aria-label="Next" style="width: 36px; height: 36px; font-size: 14px;">&rarr;</button>
+        </div>
+      </div>
+      <div class="recipients-scroll">
+        <a href="/products/micropeniscure-prank-mail" class="recipient-pill">Your Coworker</a>
+        <a href="/products/bigassdildos-prank-mail" class="recipient-pill">Your Brother-in-Law</a>
+        <a href="/products/vaginalodorhelper-prank-mail" class="recipient-pill">Your College Roommate</a>
+        <a href="/products/bulkcondomdelivery-prank-mail" class="recipient-pill">That Friend</a>
+        <a href="/products/micropeniscure-prank-mail" class="recipient-pill">Your Boss</a>
+        <a href="/products/bigassdildos-prank-mail" class="recipient-pill">Your Neighbor</a>
+        <a href="/collection" class="recipient-pill">The Reply-All Guy</a>
+        <a href="/collection" class="recipient-pill">Your Fantasy League Loser</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ What Makes Us Different (MBG 4-col grid) ═══ -->
+  <section class="differentiators-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 48px;">
+        <h3 class="section-heading">what makes us <em>different</em></h3>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-icon">&#9993;</div>
+          <h4>The URL is the prank.</h4>
+          <p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they'll have to explain it to anyone who sees it. Which is everyone.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">&#9997;</div>
+          <h4>"Sign For It" delivery.</h4>
+          <p>Upgrade any prank to require a signature. They can't just grab it off the porch &mdash; they have to look their mail carrier in the eye and accept it.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">&#128065;</div>
+          <h4>Actually anonymous.</h4>
+          <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">&#128666;</div>
+          <h4>Free shipping. Free returns.</h4>
+          <p>We ship it free. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Best Sellers / Product Cards (MBG carousel style) ═══ -->
+  <section class="products-section">
+    <div class="container">
+      <div class="section-header">
+        <h3 class="section-heading">Best <em>Sellers</em></h3>
+        <a href="/collection" class="shop-all">Shop all</a>
+      </div>
+      <div class="products-carousel">
+        <!-- MicroPenisCure -->
+        <a href="/products/micropeniscure-prank-mail" class="product-card">
+          <div class="product-card-image">
+            <img src="/images/micropenis1.webp" alt="MicroPenisCure.com prank mail" />
+            <span class="product-badge">Bestseller</span>
+          </div>
+          <div class="product-card-body">
+            <div class="product-tag">Classic Prank</div>
+            <h3>MicroPenisCure.com <em>prank mail</em></h3>
+            <p class="desc">A mailing tube with MicroPenisCure.com printed on every side. The mail carrier reads it. The coworkers read it. Nobody forgets.</p>
+            <div class="product-card-footer">
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span>4.5</span>
+              </div>
+              <div class="product-price">$14.99</div>
+            </div>
+          </div>
+        </a>
+        <!-- BigAssDildos -->
+        <a href="/products/bigassdildos-prank-mail" class="product-card">
+          <div class="product-card-image">
+            <img src="/images/bigassdildos2.webp" alt="BigAssDildos.com prank mail" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-tag">Escalation</div>
+            <h3>BigAssDildos.com <em>prank mail</em></h3>
+            <p class="desc">The tube that turns a quiet afternoon into an HR conversation. Upgrade to the version that actually has one inside.</p>
+            <div class="product-card-footer">
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span>4.5</span>
+              </div>
+              <div class="product-price">$14.99</div>
+            </div>
+          </div>
+        </a>
+        <!-- VaginalOdorHelper -->
+        <a href="/products/vaginalodorhelper-prank-mail" class="product-card">
+          <div class="product-card-image">
+            <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com prank mail" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-tag">Medical-Grade Awkward</div>
+            <h3>VaginalOdorHelper.com <em>prank mail</em></h3>
+            <p class="desc">Nothing says "I care" like a medical-looking tube that raises concerns nobody asked to have.</p>
+            <div class="product-card-footer">
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span>4.5</span>
+              </div>
+              <div class="product-price">$14.99</div>
+            </div>
+          </div>
+        </a>
+        <!-- BulkCondomDelivery -->
+        <a href="/products/bulkcondomdelivery-prank-mail" class="product-card">
+          <div class="product-card-image">
+            <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com prank mail" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-tag">Family Confusion</div>
+            <h3>BulkCondomDelivery.com <em>prank mail</em></h3>
+            <p class="desc">A mailing tube that implies your friend has a lifestyle their parents didn't plan for. Best delivered to a family home.</p>
+            <div class="product-card-footer">
+              <div class="product-rating">
+                <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+                <span>4.5</span>
+              </div>
+              <div class="product-price">$12.99</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Mission / Brand Quote (MBG blockquote style) ═══ -->
+  <section class="mission-section">
+    <div class="container">
+      <blockquote>"we believe the best pranks are the ones where everyone eventually laughs &mdash; including the person holding the tube."</blockquote>
+      <div class="mission-logo">package deal</div>
+    </div>
+  </section>
+
+  <!-- ═══ How It Works (3-step) ═══ -->
+  <section class="how-it-works-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="kicker">3 SIMPLE STEPS</div>
+        <h3 class="section-heading">How It <em>Works</em></h3>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <h4>Pick your prank.</h4>
+          <p>Choose from four embarrassing tubes (and decide how far you want to take it with upgrades like confetti or forced signature).</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <h4>We mail it anonymously.</h4>
+          <p>Ships in 1-2 business days in discreet outer packaging. Their mail carrier sees the URL. Your recipient sees the URL. You remain a mystery.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <h4>Sit back and wait for the text.</h4>
+          <p>They'll open it. They'll be confused. They'll ask everyone they know. You'll watch from a safe distance.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Chaos Level Tiers (MBG pricing/comparison style) ═══ -->
+  <section class="chaos-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="kicker">CHOOSE YOUR LEVEL</div>
+        <h3 class="section-heading">How Much <em>Chaos?</em></h3>
+        <p style="color: #6B6B6B; margin-top: 12px; font-size: 16px;">Slide up the damage. Every tube ships 100% anonymously.</p>
+      </div>
+      <div class="chaos-grid">
+        <div class="chaos-card">
+          <div class="tier-icon">&#128230;</div>
+          <h4>Standard</h4>
+          <div class="tier-subtitle">Stealth Mode</div>
+          <div class="tier-price">$14.99</div>
+          <p class="tier-desc">The tube ships as-is with the embarrassing label. No fanfare, no extras &mdash; just a mortifying package sitting on their doorstep for all to see.</p>
+          <div class="tier-pills">
+            <span class="tier-pill">Embarrassing label</span>
+            <span class="tier-pill">Anonymous shipping</span>
+            <span class="tier-pill">Gift note option</span>
+          </div>
+        </div>
+        <div class="chaos-card popular">
+          <span class="popular-badge">POPULAR</span>
+          <div class="tier-icon">&#9997;&#65039;</div>
+          <h4>Signature Required</h4>
+          <div class="tier-subtitle">Witness the Shame</div>
+          <div class="tier-price">$21.99</div>
+          <p class="tier-desc">They have to sign for it. In person. In front of the delivery person and any nearby witnesses. There's no hiding from this one.</p>
+          <div class="tier-pills">
+            <span class="tier-pill">Everything in Standard</span>
+            <span class="tier-pill">Signature required</span>
+            <span class="tier-pill">Public embarrassment</span>
+          </div>
+        </div>
+        <div class="chaos-card">
+          <div class="tier-icon">&#127881;</div>
+          <h4>Confetti Surprise</h4>
+          <div class="tier-subtitle">Full Nuclear</div>
+          <div class="tier-price">$34.99</div>
+          <p class="tier-desc">Everything above, plus a confetti explosion when they open the tube. Physical comedy on top of visual comedy. The ultimate prank package.</p>
+          <div class="tier-pills">
+            <span class="tier-pill">Everything in Signature</span>
+            <span class="tier-pill">Confetti explosion</span>
+            <span class="tier-pill">Ultimate chaos package</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Quiz CTA (MBG "well-being concern" style) ═══ -->
+  <section class="quiz-section">
+    <div class="container">
+      <div class="quiz-inner">
+        <h2>Who are you <em>pranking?</em></h2>
+        <div class="quiz-pills">
+          <a href="/quiz" class="quiz-pill">A Coworker</a>
+          <a href="/quiz" class="quiz-pill">A Family Member</a>
+          <a href="/quiz" class="quiz-pill">A Best Friend</a>
+          <a href="/quiz" class="quiz-pill">A Roommate</a>
+          <a href="/quiz" class="quiz-pill">An Ex</a>
+          <a href="/quiz" class="quiz-pill">My Boss</a>
+          <a href="/quiz" class="quiz-pill">Someone at a Party</a>
+          <a href="/quiz" class="quiz-pill">The Fantasy League Loser</a>
+        </div>
+        <div class="quiz-divider">
+          <hr />
+          <span>Take the quiz</span>
+          <hr />
+        </div>
+        <p class="quiz-sub">We can narrow in on the perfect prank for your situation. 4 questions. One recommendation. Maximum embarrassment.</p>
+        <a href="/quiz" class="btn-terracotta">TAKE THE QUIZ</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Social Proof / Reactions (MBG testimonial marquee) ═══ -->
+  <section class="social-proof-section">
+    <div class="container" style="margin-bottom: 24px;">
+      <div style="text-align: center;">
+        <div class="kicker">REAL REACTIONS</div>
+        <h3 class="section-heading">What Happens When <em>It Arrives</em></h3>
+      </div>
+    </div>
+    <div class="reactions-marquee">
+      <div class="reaction-card">
+        <p class="quote">"He called three people trying to figure out who sent it."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"She made him open it in front of the whole office."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"His mom found it on the porch first."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"The group chat was on fire for two hours."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"I've been giggling about this for days."</p>
+        <span class="attribution">&mdash; Amazon Review</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"The mail carrier definitely read it. Definitely."</p>
+        <span class="attribution">&mdash; Amazon Review</span>
+      </div>
+      <!-- Duplicate set for infinite scroll -->
+      <div class="reaction-card">
+        <p class="quote">"He called three people trying to figure out who sent it."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"She made him open it in front of the whole office."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"His mom found it on the porch first."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"The group chat was on fire for two hours."</p>
+        <span class="attribution">&mdash; Verified Sender</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"I've been giggling about this for days."</p>
+        <span class="attribution">&mdash; Amazon Review</span>
+      </div>
+      <div class="reaction-card">
+        <p class="quote">"The mail carrier definitely read it. Definitely."</p>
+        <span class="attribution">&mdash; Amazon Review</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Comparison Table ═══ -->
+  <section class="comparison-section">
+    <div class="container">
+      <div style="text-align: center;">
+        <div class="kicker">THE COMPETITION</div>
+        <h3 class="section-heading">Other Prank Sites <em>Wish.</em></h3>
+      </div>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th class="us">Package Deal</th>
+            <th>Others</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>The URL IS the prank</td><td><span class="check">&#10003;</span></td><td><span class="cross">&#10005;</span></td></tr>
+          <tr><td>Forced signature delivery</td><td><span class="check">&#10003;</span></td><td><span class="cross">&#10005;</span></td></tr>
+          <tr><td>Actually anonymous (no return address)</td><td><span class="check">&#10003;</span></td><td><span class="cross">&#10005;</span></td></tr>
+          <tr><td>Premium mailing tubes (not flimsy novelty)</td><td><span class="check">&#10003;</span></td><td><span class="cross">&#10005;</span></td></tr>
+          <tr><td>Free shipping</td><td><span class="check">&#10003;</span></td><td><span class="cross">&#10005;</span></td></tr>
+          <tr><td>60-day free returns</td><td><span class="check">&#10003;</span></td><td><span class="cross">&#10005;</span></td></tr>
+          <tr><td>Confetti bomb upgrade</td><td><span class="check">&#10003;</span></td><td><span class="cross">&#10005;</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ Guarantee ═══ -->
+  <section class="guarantee-section">
+    <div class="container">
+      <div class="guarantee-inner">
+        <div class="kicker">OUR PROMISE</div>
+        <h2>If it's not funny, <em>it's free.</em></h2>
+        <p>We'll refund your full purchase within 60 days, no questions asked. If the tube shows up damaged, the prank falls flat, or you just change your mind &mdash; we'll make it right. We're in the business of making people laugh, not making returns difficult.</p>
+        <a href="/shipping-returns" class="btn-secondary">Read Our Return Policy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FAQ Accordion ═══ -->
+  <section class="faq-section">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 8px;">
+        <div class="kicker">COMMON QUESTIONS</div>
+        <h3 class="section-heading">Questions People <em>Actually Ask Us</em></h3>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            Is the shipping really anonymous?
+            <span class="toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Completely. No return address, no sender info, no way for them to trace it back to you. The only thing on the package is the embarrassing URL &mdash; which is the whole point.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            What if they're not home when it arrives?
+            <span class="toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Standard delivery gets left at the door (or with a neighbor, which is even better). The "Sign For It" upgrade means they have to be there in person to accept it. From a real mail carrier. Who has definitely read the label.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            Is this actually funny, or is it one of those things that's only funny online?
+            <span class="toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Our bestseller is rated 4.5 out of 5 on Amazon, and the most common review theme is "I've been giggling about this for days." It's funny in person. It's funnier when other people see it first.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            Could this offend someone?
+            <span class="toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>These pranks work best between people who already give each other a hard time. If your recipient would laugh at a well-timed joke at their expense, they'll love this. If they wouldn't &mdash; maybe send a candle.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            What's actually inside the tube?
+            <span class="toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>The base version is just the tube &mdash; the URL on the outside IS the prank. The confetti upgrade adds a burst of confetti when they open it. And one product (BigAssDildos.com) has a variant that includes an actual item inside, for those who believe in commitment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            What if I need to blacklist an address?
+            <span class="toggle">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>We take this seriously. If someone is receiving unwanted mail from our store, they can contact us and we'll blacklist the address immediately. Pranks are only fun when the recipient would eventually laugh too.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Final CTA ═══ -->
+  <section class="final-cta-section">
+    <div class="container">
+      <div class="kicker">READY?</div>
+      <h2>You already know who you'd <em>send one to.</em></h2>
+      <p>Pick a prank. We'll handle the rest &mdash; anonymously, with free shipping, and with a straight face.</p>
+      <a href="/collection" class="btn-primary">SEE THE PRANKS</a>
+    </div>
+  </section>
+
+  <!-- ═══ Newsletter ═══ -->
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div>
+          <h4>Sign up for prank intel</h4>
+          <p>New pranks, prank ideas, and stories from the field. No spam. Just tubes.</p>
+        </div>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email" aria-label="Email address" />
+          <button type="submit">Sign up</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ Footer ═══ -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">package deal</div>
+          <p>Anonymous prank mail tubes with URLs so embarrassing, they become the prank. Free shipping. Free returns. Zero regrets.</p>
+        </div>
+        <div class="footer-col">
+          <h5>Shop</h5>
+          <a href="/collection">All Pranks</a>
+          <a href="/products/micropeniscure-prank-mail">MicroPenisCure.com</a>
+          <a href="/products/bigassdildos-prank-mail">BigAssDildos.com</a>
+          <a href="/products/vaginalodorhelper-prank-mail">VaginalOdorHelper.com</a>
+          <a href="/products/bulkcondomdelivery-prank-mail">BulkCondomDelivery.com</a>
+        </div>
+        <div class="footer-col">
+          <h5>About</h5>
+          <a href="/about">About Us</a>
+          <a href="/quiz">Take the Quiz</a>
+          <a href="/faq">FAQ</a>
+          <a href="/track">Track Your Prank</a>
+        </div>
+        <div class="footer-col">
+          <h5>Help</h5>
+          <a href="/shipping-returns">Shipping &amp; Returns</a>
+          <a href="/shipping-returns">Return Policy</a>
+          <a href="mailto:support@packagedeal.com">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Package Deal. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="/shipping-returns">Terms of Sale</a>
+          <a href="/shipping-returns">Privacy Policy</a>
+          <a href="/shipping-returns">Return Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Who Deserves One? — Package Deal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #2D2D2D;
+      background: #FFFFFF;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .section {
+      background: #F2F0ED;
+      padding: 80px 24px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    /* Left column */
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .kicker {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #D4714E;
+    }
+
+    .headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #2D2D2D;
+    }
+
+    .subline {
+      font-size: 17px;
+      line-height: 1.6;
+      color: #6B6B6B;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      padding: 14px 32px;
+      background: #D4714E;
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+
+    .cta-button:hover {
+      background: #C0613F;
+    }
+
+    /* Right column — tab switcher */
+    .tab-switcher {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .tab-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid #E8E5E1;
+      border-radius: 9999px;
+      background: #FFFFFF;
+      color: #2D2D2D;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      border-color: #D4714E;
+      color: #D4714E;
+    }
+
+    .tab-btn.active {
+      background: #2D2D2D;
+      color: #FFFFFF;
+      border-color: #2D2D2D;
+    }
+
+    .tab-btn.active:hover {
+      background: #2D2D2D;
+      color: #FFFFFF;
+      border-color: #2D2D2D;
+    }
+
+    .tab-panel {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 32px;
+      min-height: 160px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .tab-content {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .tab-content.visible {
+      opacity: 1;
+    }
+
+    .tab-description {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #2D2D2D;
+    }
+
+    .tab-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #D4714E;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .tab-link:hover {
+      color: #C0613F;
+    }
+
+    /* Mobile */
+    @media (max-width: 767px) {
+      .section {
+        padding: 56px 20px;
+      }
+
+      .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .left-content {
+        text-align: center;
+        align-items: center;
+      }
+
+      .cta-button {
+        align-self: center;
+      }
+
+      .tab-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .tab-btn {
+        text-align: center;
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+
+      .tab-panel {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<section class="section">
+  <div class="container">
+    <div class="left-content">
+      <span class="kicker">Who Deserves One?</span>
+      <h2 class="headline">You already know who you'd send one to.</h2>
+      <p class="subline">Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+      <a href="/collection" class="cta-button">See the Pranks</a>
+    </div>
+
+    <div class="tab-switcher">
+      <div class="tab-row" role="tablist">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-tab="0">Your Coworker</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="1">Your Brother-in-Law</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="2">Your College Roommate</button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-tab="3">That Friend</button>
+      </div>
+
+      <div class="tab-panel">
+        <div class="tab-content visible" data-panel="0">
+          <p class="tab-description">The one who "replies all" to every email. Imagine their face when a tube labeled MicroPenisCure.com arrives at the office — and they have to sign for it.</p>
+        </div>
+        <div class="tab-content" data-panel="1" style="display:none;">
+          <p class="tab-description">He talks too much at Thanksgiving and always has an opinion. A tube from BigAssDildos.com showing up at his door sends a message words never could.</p>
+        </div>
+        <div class="tab-content" data-panel="2" style="display:none;">
+          <p class="tab-description">You survived four years together. They still owe you rent. Return the favor with a tube from VaginalOdorHelper.com — anonymously, of course.</p>
+        </div>
+        <div class="tab-content" data-panel="3" style="display:none;">
+          <p class="tab-description">You know the one. The group chat legend who can take a joke. Hit them with BulkCondomDelivery.com and watch the screenshots roll in.</p>
+        </div>
+        <div class="tab-links">
+          <a href="/products/micropeniscure-prank-mail" class="tab-link" data-link="0">Send It &rarr;</a>
+          <a href="/products/bigassdildos-prank-mail" class="tab-link" data-link="1" style="display:none;">Send It &rarr;</a>
+          <a href="/products/vaginalodorhelper-prank-mail" class="tab-link" data-link="2" style="display:none;">Send It &rarr;</a>
+          <a href="/products/bulkcondomdelivery-prank-mail" class="tab-link" data-link="3" style="display:none;">Send It &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function() {
+    var tabs = document.querySelectorAll('.tab-btn');
+    var panels = document.querySelectorAll('.tab-content');
+    var links = document.querySelectorAll('.tab-link');
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        var index = this.getAttribute('data-tab');
+
+        // Update tab states
+        tabs.forEach(function(t) {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        this.classList.add('active');
+        this.setAttribute('aria-selected', 'true');
+
+        // Fade out current, then show new
+        panels.forEach(function(p) {
+          p.classList.remove('visible');
+          p.style.display = 'none';
+        });
+        links.forEach(function(l) {
+          l.style.display = 'none';
+        });
+
+        var targetPanel = document.querySelector('[data-panel="' + index + '"]');
+        var targetLink = document.querySelector('[data-link="' + index + '"]');
+
+        targetPanel.style.display = '';
+        targetLink.style.display = '';
+
+        // Trigger reflow for fade-in
+        void targetPanel.offsetWidth;
+        targetPanel.classList.add('visible');
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>

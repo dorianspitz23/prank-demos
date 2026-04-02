@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Differentiators — Proto 2: Dark Cinematic Stagger</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #2D2D2D; color: #fff; }
+
+  .section { max-width: 1280px; margin: 0 auto; padding: 96px 24px; }
+  .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 600; color: #D4714E; text-align: center; margin-bottom: 12px; }
+  .headline { font-size: clamp(24px, 4vw, 36px); font-weight: 600; text-align: center; margin-bottom: 72px; }
+
+  /* Staggered full-width rows with oversized numbers */
+  .rows { display: flex; flex-direction: column; gap: 0; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 32px;
+    padding: 48px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    align-items: center;
+  }
+  .row:last-child { border-bottom: none; }
+
+  .row:nth-child(even) {
+    direction: rtl;
+  }
+  .row:nth-child(even) > * { direction: ltr; }
+
+  .big-num {
+    font-size: 80px;
+    font-weight: 700;
+    color: #D4714E;
+    line-height: 1;
+    text-align: center;
+    opacity: 0.7;
+  }
+
+  .row-content { max-width: 600px; }
+  .row-content h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .row-content p {
+    color: rgba(255,255,255,0.6);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .accent-line {
+    width: 40px;
+    height: 3px;
+    background: #D4714E;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .row { grid-template-columns: 60px 1fr; gap: 20px; padding: 32px 0; }
+    .big-num { font-size: 48px; }
+    .row:nth-child(even) { direction: ltr; }
+  }
+</style>
+</head>
+<body>
+<section class="section">
+  <p class="kicker">Why Package Deal</p>
+  <h2 class="headline">Why this isn't like every other prank site.</h2>
+
+  <div class="rows">
+    <div class="row">
+      <div class="big-num">01</div>
+      <div class="row-content">
+        <div class="accent-line"></div>
+        <h3>The URL is the prank.</h3>
+        <p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they'll have to explain it to anyone who sees it. Which is everyone.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="big-num">02</div>
+      <div class="row-content">
+        <div class="accent-line"></div>
+        <h3>"Sign For It" delivery.</h3>
+        <p>Upgrade any prank to require a signature. They can't just grab it off the porch — they have to look their mail carrier in the eye and accept it. By name.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="big-num">03</div>
+      <div class="row-content">
+        <div class="accent-line"></div>
+        <h3>Actually anonymous.</h3>
+        <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="big-num">04</div>
+      <div class="row-content">
+        <div class="accent-line"></div>
+        <h3>Free shipping. Free returns.</h3>
+        <p>We ship it free. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

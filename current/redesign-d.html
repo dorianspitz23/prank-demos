@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Option D — Closing Argument</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: #1a1a1a; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+  .section { background: #2D2D2D; width: 100%; padding: 80px 24px; position: relative; overflow: hidden; }
+
+  /* Subtle gradient glow behind content */
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(212,113,78,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .inner { max-width: 640px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+
+  .headline {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 24px;
+    line-height: 1.3;
+  }
+
+  .quote-block {
+    position: relative;
+    margin-bottom: 32px;
+    padding: 0 20px;
+  }
+  .quote-mark {
+    font-size: 64px;
+    font-weight: 700;
+    color: #D4714E;
+    opacity: 0.25;
+    line-height: 0.5;
+    display: block;
+    margin-bottom: 8px;
+  }
+  .quote-text {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .quote-attr {
+    font-size: 13px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+  }
+
+  /* Trust line */
+  .trust-line {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .trust-line .dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    flex-shrink: 0;
+  }
+  .trust-line .trust-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+  }
+  .trust-line svg { flex-shrink: 0; }
+
+  /* CTA button */
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 40px;
+    background: #D4714E;
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(212,113,78,0.3);
+  }
+  .cta-button:hover {
+    background: #C0613F;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(212,113,78,0.4);
+  }
+  .cta-button:active {
+    transform: translateY(0);
+    background: #ad5a38;
+  }
+
+  .subtext {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .subtext svg { color: #5B8C5A; }
+
+  @media (max-width: 640px) {
+    .headline { font-size: 24px; }
+    .quote-text { font-size: 18px; }
+    .section { padding: 56px 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="section">
+    <div class="inner">
+      <h2 class="headline">Still thinking about it?</h2>
+
+      <div class="quote-block">
+        <span class="quote-mark">&ldquo;</span>
+        <p class="quote-text">I've been giggling about this for days.</p>
+        <p class="quote-attr">Most common review theme on Amazon</p>
+      </div>
+
+      <div class="trust-line">
+        <span class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#D4714E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+          Trusted by 1,000+ senders
+        </span>
+        <span class="dot"></span>
+        <span class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#E0A644" stroke="#E0A644" stroke-width="1"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          4.5/5 on Amazon
+        </span>
+        <span class="dot"></span>
+        <span class="trust-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5B8C5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          60-day free returns
+        </span>
+      </div>
+
+      <button class="cta-button">
+        Send the Prank
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </button>
+
+      <p class="subtext">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        100% anonymous · secure checkout
+      </p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Package Deal — Prank Mail, Handled With Care</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Bruvi's EXACT palette */
+      --navy: #004e7c;
+      --navy-deep: #003a5c;
+      --navy-dark: #002a44;
+      --coral: #F58A6C;
+      --coral-hover: #ED8365;
+      --teal-bg: #edf8f8;
+      --teal-mid: #d4efef;
+      --white: #ffffff;
+      --off-white: #f4f4f6;
+      --text-dark: #1a2a3a;
+      --text-mid: #527293;
+      --text-light: #676986;
+      --border-light: #E5E5EB;
+      --gold: #E0A644;
+      --success: #5B8C5A;
+      --max-width: 1200px;
+      --radius-pill: 25px;
+      --radius-card: 10px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul, ol { list-style: none; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 32px; }
+
+    /* ═══ BUTTONS — Bruvi pill style ═══ */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 600; padding: 13px 30px;
+      border-radius: var(--radius-pill); transition: all 0.2s; border: 2px solid transparent;
+    }
+    .btn-coral { background: var(--coral); color: #fff; }
+    .btn-coral:hover { background: var(--coral-hover); transform: translateY(-1px); }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-navy:hover { background: var(--navy-deep); }
+    .btn-outline-white { background: transparent; color: #fff; border-color: rgba(255,255,255,0.5); }
+    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+    .btn-outline-navy { background: transparent; color: var(--navy); border-color: var(--navy); }
+    .btn-outline-navy:hover { background: var(--navy); color: #fff; }
+    .btn-white { background: #fff; color: var(--navy); }
+    .btn-white:hover { background: var(--off-white); }
+
+    /* ═══ ANNOUNCEMENT BAR ═══ */
+    .announcement {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .announcement strong { color: var(--coral); }
+
+    /* ═══ HEADER ═══ */
+    .header {
+      background: var(--white);
+      height: 64px;
+      border-bottom: 1px solid var(--border-light);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%; max-width: var(--max-width); margin: 0 auto; padding: 0 32px;
+    }
+    .logo { font-size: 22px; font-weight: 700; color: var(--navy); }
+    .logo span { color: var(--coral); }
+    .nav { display: flex; gap: 28px; }
+    .nav a { font-size: 13px; font-weight: 600; color: var(--text-dark); transition: color 0.2s; }
+    .nav a:hover { color: var(--coral); }
+    .nav-right { display: flex; gap: 16px; align-items: center; }
+    .nav-right a { font-size: 13px; color: var(--text-mid); }
+    .nav-right a:hover { color: var(--navy); }
+    .hamburger { display: none; }
+
+    /* ═══ HERO — Bruvi full-viewport jumbotron ═══ */
+    .hero {
+      position: relative;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--navy-dark);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+    }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,40,68,0.75) 0%, rgba(0,78,124,0.4) 50%, rgba(0,0,0,0.2) 100%);
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: var(--max-width); margin: 0 auto; padding: 100px 32px;
+      color: #fff;
+    }
+    .hero-inner h1 {
+      font-size: clamp(2.5rem, 5vw, 3.75rem);
+      font-weight: 700; line-height: 1.08;
+      margin-bottom: 20px; max-width: 580px;
+    }
+    .hero-inner p {
+      font-size: 16px; line-height: 1.7; opacity: 0.85;
+      margin-bottom: 32px; max-width: 460px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 32px; }
+    .hero-rating {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: rgba(255,255,255,0.7);
+    }
+    .hero-stars { display: flex; gap: 2px; }
+    .hero-stars svg { width: 14px; height: 14px; color: var(--gold); }
+
+    /* ═══ PRESS STRIP — Bruvi "As Seen In" ═══ */
+    .press-strip {
+      background: var(--teal-bg);
+      padding: 18px 0;
+      overflow: hidden;
+      border-bottom: 1px solid var(--teal-mid);
+    }
+    .press-label {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--text-mid); text-align: center;
+      margin-bottom: 12px;
+    }
+    .press-track {
+      display: flex; gap: 56px; align-items: center;
+      animation: scroll-left 40s linear infinite;
+      width: max-content;
+    }
+    .press-track:hover { animation-play-state: paused; }
+    .press-item {
+      font-size: 15px; font-weight: 700; color: var(--text-mid);
+      white-space: nowrap; opacity: 0.6; transition: opacity 0.3s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .press-item:hover { opacity: 1; }
+    .press-item svg { width: 16px; height: 16px; color: var(--coral); }
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ═══ SECTION HELPERS ═══ */
+    .section { padding: 88px 0; }
+    .section-teal { background: var(--teal-bg); }
+    .section-navy { background: var(--navy); color: #fff; }
+    .section-dark { background: var(--navy-dark); color: #fff; }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700; text-align: center;
+      margin-bottom: 16px; line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 15px; color: var(--text-mid);
+      text-align: center; max-width: 520px;
+      margin: 0 auto 48px;
+    }
+    .section-navy .section-subtitle { color: rgba(255,255,255,0.6); }
+
+    /* ═══ "WHAT ARE YOU SHOPPING FOR?" — category tiles ═══ */
+    .cat-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+    .cat-card { text-align: center; transition: transform 0.3s; }
+    .cat-card:hover { transform: translateY(-8px); }
+    .cat-img {
+      aspect-ratio: 1; border-radius: 50%;
+      overflow: hidden; margin: 0 auto 16px;
+      width: 180px; height: 180px;
+      border: 3px solid var(--teal-mid);
+      transition: border-color 0.3s;
+    }
+    .cat-card:hover .cat-img { border-color: var(--coral); }
+    .cat-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cat-card h3 { font-size: 15px; font-weight: 600; }
+    .cat-card p { font-size: 13px; color: var(--text-mid); margin-top: 4px; }
+
+    /* ═══ "EXCEPTIONAL COFFEE" — 4 feature cards strip ═══ */
+    .features-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; margin-bottom: 40px;
+    }
+    .feat-card { text-align: center; padding: 24px 16px; }
+    .feat-icon {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: var(--teal-bg); display: flex;
+      align-items: center; justify-content: center;
+      margin: 0 auto 16px; color: var(--navy);
+    }
+    .feat-icon svg { width: 28px; height: 28px; }
+    .feat-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .feat-card p { font-size: 13px; color: var(--text-mid); line-height: 1.5; }
+
+    /* ═══ "4 REASONS" — Bruvi split with timeline ═══ */
+    .reasons-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .reasons-left h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700; line-height: 1.2; margin-bottom: 40px;
+      color: var(--navy);
+    }
+    .reason {
+      display: flex; gap: 16px; margin-bottom: 28px;
+      position: relative; padding-left: 8px;
+    }
+    .reason::before {
+      content: ''; position: absolute; left: 24px; top: 44px;
+      width: 2px; height: calc(100% - 10px);
+      background: var(--teal-mid);
+    }
+    .reason:last-child::before { display: none; }
+    .reason-dot {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--navy); display: flex;
+      align-items: center; justify-content: center;
+      color: #fff; flex-shrink: 0; z-index: 1;
+    }
+    .reason-dot svg { width: 20px; height: 20px; }
+    .reason-text h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .reason-text p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+    .reasons-img { border-radius: var(--radius-card); overflow: hidden; }
+    .reasons-img img { width: 100%; border-radius: var(--radius-card); }
+
+    /* ═══ FULL-BLEED LIFESTYLE ═══ */
+    .fullbleed {
+      position: relative; min-height: 480px;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .fullbleed-bg { position: absolute; inset: 0; }
+    .fullbleed-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .fullbleed-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, rgba(0,40,68,0.7) 0%, rgba(0,78,124,0.3) 60%, transparent 100%);
+    }
+    .fullbleed-content {
+      position: relative; z-index: 2; color: #fff;
+      max-width: var(--max-width); margin: 0 auto; padding: 80px 32px;
+    }
+    .fullbleed-content h2 {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700; line-height: 1.15; margin-bottom: 16px; max-width: 460px;
+    }
+    .fullbleed-content p {
+      font-size: 15px; line-height: 1.7; opacity: 0.85;
+      margin-bottom: 28px; max-width: 420px;
+    }
+
+    /* ═══ FLOATING PRODUCTS ═══ */
+    .floating { padding: 72px 0 40px; text-align: center; background: var(--white); }
+    .floating h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; margin-bottom: 12px; color: var(--navy); }
+    .floating > p { font-size: 15px; color: var(--text-mid); margin-bottom: 48px; }
+    .float-row {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; padding: 0 32px; perspective: 600px;
+    }
+    .float-item {
+      width: 130px; transition: transform 0.5s ease;
+    }
+    .float-item:nth-child(1) { transform: translateY(0px) rotate(-4deg); }
+    .float-item:nth-child(2) { transform: translateY(-20px) rotate(2deg); }
+    .float-item:nth-child(3) { transform: translateY(10px) rotate(-2deg); }
+    .float-item:nth-child(4) { transform: translateY(-15px) rotate(3deg); }
+    .float-item:nth-child(5) { transform: translateY(5px) rotate(-3deg); }
+    .float-item:nth-child(6) { transform: translateY(-10px) rotate(1deg); }
+    .float-item:hover { transform: translateY(-30px) rotate(0deg) scale(1.1) !important; }
+    .float-item img {
+      width: 100%; border-radius: 8px;
+      box-shadow: 0 12px 32px rgba(0,78,124,0.15);
+    }
+    .float-item span { font-size: 11px; font-weight: 600; color: var(--text-mid); margin-top: 8px; display: block; }
+
+    /* ═══ BRAND PARTNERS — navy scroll ═══ */
+    .brands-scroll {
+      overflow: hidden; padding: 20px 0;
+    }
+    .brands-track {
+      display: flex; gap: 64px; align-items: center;
+      animation: scroll-left 28s linear infinite;
+      width: max-content;
+    }
+    .brand-name {
+      font-size: 20px; font-weight: 700;
+      color: rgba(255,255,255,0.35); white-space: nowrap;
+      letter-spacing: 1px; transition: color 0.3s;
+    }
+    .brand-name:hover { color: rgba(255,255,255,0.8); }
+
+    /* ═══ TESTIMONIALS — navy cards ═══ */
+    .test-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; max-width: 960px; margin: 0 auto;
+    }
+    .test-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-card);
+      padding: 28px 24px; text-align: left;
+    }
+    .test-stars { display: flex; gap: 2px; margin-bottom: 14px; }
+    .test-stars svg { width: 14px; height: 14px; color: var(--gold); }
+    .test-quote {
+      font-size: 14px; line-height: 1.7;
+      color: rgba(255,255,255,0.8); margin-bottom: 18px; font-style: italic;
+    }
+    .test-author { font-size: 12px; color: rgba(255,255,255,0.5); }
+    .test-author span { color: var(--coral); font-weight: 600; }
+
+    /* ═══ SPLIT SECTION ═══ */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .split-img { border-radius: var(--radius-card); overflow: hidden; }
+    .split-img img { width: 100%; border-radius: var(--radius-card); }
+    .split-text h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700; line-height: 1.2; margin-bottom: 16px; color: var(--navy);
+    }
+    .split-text p { font-size: 15px; color: var(--text-mid); line-height: 1.7; margin-bottom: 24px; }
+    .check-list { margin-bottom: 28px; }
+    .check-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 500; padding: 5px 0;
+    }
+    .check-item svg { width: 18px; height: 18px; color: var(--success); flex-shrink: 0; }
+
+    /* ═══ CHAOS TIERS — Bruvi pricing ═══ */
+    .tiers {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .tier {
+      background: var(--white); border: 2px solid var(--border-light);
+      border-radius: var(--radius-card); padding: 36px 28px;
+      text-align: center; position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .tier:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,78,124,0.1); }
+    .tier.pop { border-color: var(--coral); box-shadow: 0 8px 32px rgba(245,138,108,0.15); }
+    .tier-badge {
+      position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+      background: var(--coral); color: #fff;
+      font-size: 11px; font-weight: 700; padding: 5px 20px;
+      border-radius: var(--radius-pill); text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tier-icon {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--teal-bg); display: flex;
+      align-items: center; justify-content: center;
+      margin: 0 auto 16px; color: var(--navy);
+    }
+    .tier-icon svg { width: 24px; height: 24px; }
+    .tier h3 { font-size: 18px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .tier .sub { font-size: 13px; color: var(--text-mid); margin-bottom: 16px; }
+    .tier .price { font-size: 32px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+    .tier .price span { font-size: 14px; font-weight: 400; color: var(--text-mid); }
+    .tier .desc { font-size: 13px; color: var(--text-mid); line-height: 1.6; margin-bottom: 24px; }
+    .tier-feats { text-align: left; margin-bottom: 28px; }
+    .tier-feat {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; padding: 5px 0; color: var(--text-dark);
+    }
+    .tier-feat svg { width: 16px; height: 16px; color: var(--success); flex-shrink: 0; }
+
+    /* ═══ COMPARISON TABLE ═══ */
+    .comp-table {
+      width: 100%; max-width: 800px; margin: 0 auto;
+      border-collapse: collapse; background: var(--white);
+      border-radius: var(--radius-card); overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,78,124,0.06);
+    }
+    .comp-table thead th {
+      font-size: 13px; font-weight: 700; padding: 16px 20px;
+      text-align: center; background: var(--navy); color: #fff;
+    }
+    .comp-table thead th:first-child { text-align: left; }
+    .comp-table thead th.us { color: var(--coral); }
+    .comp-table td {
+      font-size: 14px; padding: 14px 20px;
+      border-bottom: 1px solid var(--border-light); text-align: center;
+    }
+    .comp-table td:first-child { text-align: left; font-weight: 500; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .ck { color: var(--success); font-weight: 700; font-size: 18px; }
+    .xx { color: #ccc; font-size: 18px; }
+
+    /* ═══ AWARDS STRIP ═══ */
+    .awards-scroll { overflow: hidden; padding: 20px 0; }
+    .awards-track {
+      display: flex; gap: 48px; align-items: center;
+      animation: scroll-left 20s linear infinite;
+      width: max-content;
+    }
+    .award-item {
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.4);
+      white-space: nowrap; text-transform: uppercase; letter-spacing: 1px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .award-item svg { width: 16px; height: 16px; color: var(--gold); }
+
+    /* ═══ FAQ — Bruvi card accordion ═══ */
+    .faq-list { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      background: var(--white); border-radius: 8px;
+      margin-bottom: 8px; overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,78,124,0.04);
+    }
+    .faq-q {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 24px; font-size: 15px; font-weight: 600;
+      color: var(--text-dark); text-align: left;
+    }
+    .faq-q:hover { color: var(--coral); }
+    .faq-q svg { width: 20px; height: 20px; color: var(--text-mid); flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-q svg { transform: rotate(180deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-a { max-height: 200px; }
+    .faq-a p { font-size: 14px; color: var(--text-mid); line-height: 1.7; padding: 0 24px 20px; }
+
+    /* ═══ CTA SECTION ═══ */
+    .cta-navy { padding: 80px 0; background: var(--navy); text-align: center; color: #fff; }
+    .cta-navy h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; margin-bottom: 12px; }
+    .cta-navy p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 440px; margin: 0 auto 32px; }
+
+    /* ═══ WAVE DIVIDERS — Bruvi signature ═══ */
+    .wave { position: relative; height: 80px; overflow: hidden; }
+    .wave svg { position: absolute; bottom: 0; width: 100%; height: 80px; }
+
+    /* ═══ FOOTER ═══ */
+    .footer-nl {
+      background: var(--navy-dark); padding: 40px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nl-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 32px; flex-wrap: wrap;
+    }
+    .nl-inner h3 { font-size: 18px; font-weight: 700; color: #fff; }
+    .nl-inner p { font-size: 13px; color: rgba(255,255,255,0.5); }
+    .nl-form { display: flex; }
+    .nl-form input {
+      padding: 11px 18px; border: 1px solid rgba(255,255,255,0.15);
+      border-right: none; background: rgba(255,255,255,0.05);
+      color: #fff; font-size: 13px; font-family: inherit;
+      border-radius: var(--radius-pill) 0 0 var(--radius-pill);
+      outline: none; width: 240px;
+    }
+    .nl-form input::placeholder { color: rgba(255,255,255,0.3); }
+    .nl-form button {
+      background: var(--coral); color: #fff; font-size: 13px; font-weight: 600;
+      padding: 11px 22px; border-radius: 0 var(--radius-pill) var(--radius-pill) 0;
+    }
+    .nl-form button:hover { background: var(--coral-hover); }
+
+    .footer {
+      background: var(--navy-dark); padding: 40px 0 24px;
+      color: rgba(255,255,255,0.6); font-size: 13px;
+    }
+    .ft-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+    .ft-brand p { line-height: 1.6; margin-top: 12px; max-width: 260px; }
+    .ft-social { display: flex; gap: 12px; margin-top: 16px; }
+    .ft-social a {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5); transition: all 0.2s;
+    }
+    .ft-social a:hover { background: var(--coral); color: #fff; }
+    .ft-col h4 {
+      font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1.5px; color: rgba(255,255,255,0.8); margin-bottom: 14px;
+    }
+    .ft-col a { display: block; padding: 3px 0; color: rgba(255,255,255,0.5); }
+    .ft-col a:hover { color: var(--coral); }
+    .ft-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 32px; padding-top: 20px;
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: rgba(255,255,255,0.3);
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 1024px) {
+      .cat-grid { grid-template-columns: repeat(2, 1fr); }
+      .features-strip { grid-template-columns: repeat(2, 1fr); }
+      .test-grid { grid-template-columns: 1fr 1fr; }
+      .ft-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav { display: none; }
+      .hamburger {
+        display: flex; flex-direction: column; gap: 5px; padding: 4px;
+      }
+      .hamburger span { display: block; width: 22px; height: 2px; background: var(--text-dark); border-radius: 2px; }
+      .hero { min-height: 90vh; }
+      .hero-inner h1 { font-size: 2rem; }
+      .reasons-grid, .split { grid-template-columns: 1fr; }
+      .reasons-img { order: -1; }
+      .tiers { grid-template-columns: 1fr; }
+      .test-grid { grid-template-columns: 1fr; }
+      .cat-grid { grid-template-columns: 1fr 1fr; }
+      .features-strip { grid-template-columns: 1fr; }
+      .float-row { gap: 12px; }
+      .float-item { width: 90px; }
+      .nl-inner { flex-direction: column; text-align: center; }
+      .nl-form input { width: auto; flex: 1; }
+      .ft-grid { grid-template-columns: 1fr; gap: 24px; }
+      .ft-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .wave { height: 40px; }
+      .wave svg { height: 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT -->
+  <div class="announcement">
+    <strong>Free Shipping</strong> on All Orders &bull; 60-Day No Questions Asked Returns &bull; <strong>100% Anonymous</strong>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">Package<span>Deal</span></a>
+      <nav class="nav">
+        <a href="#">Pranks</a>
+        <a href="#">How It Works</a>
+        <a href="#">Quiz</a>
+        <a href="#">About</a>
+        <a href="#">FAQ</a>
+      </nav>
+      <div class="nav-right">
+        <a href="#">Help</a>
+        <a href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <a href="#" style="position:relative;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span style="position:absolute;top:-6px;right:-8px;background:var(--coral);color:#fff;font-size:9px;font-weight:700;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;">0</span>
+        </a>
+      </div>
+      <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"><img src="/images/lifestyle.png" alt="" /></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-inner">
+      <h1>Remarkably embarrassing mail.<br>100% Anonymous.</h1>
+      <p>Prank mail tubes branded with URLs so mortifying, they become the prank. Delivered to their door with zero explanation.</p>
+      <div class="hero-ctas">
+        <a href="#shop" class="btn btn-coral">See the Pranks</a>
+        <a href="#how" class="btn btn-outline-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          How It Works
+        </a>
+      </div>
+      <div class="hero-rating">
+        <div class="hero-stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" opacity="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        Rated 4.5/5 on Amazon &bull; 2,400+ pranks shipped
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS STRIP -->
+  <div class="press-strip">
+    <div class="press-label">Trusted by pranksters everywhere</div>
+    <div class="press-track">
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 100% Anonymous</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Free Shipping</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> 60-Day Returns</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Money-Back Guarantee</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Discreet Packaging</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8"/><line x1="1" y1="1" x2="23" y2="23"/></svg> No Return Address</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> 100% Anonymous</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Free Shipping</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> 60-Day Returns</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Money-Back Guarantee</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> Discreet Packaging</span>
+      <span class="press-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8"/><line x1="1" y1="1" x2="23" y2="23"/></svg> No Return Address</span>
+    </div>
+  </div>
+
+  <!-- "WHAT ARE YOU SHOPPING FOR?" -->
+  <section class="section" id="shop">
+    <div class="container">
+      <h2 class="section-title" style="color:var(--navy);">What are you pranking for?</h2>
+      <p class="section-subtitle">Four tubes. Four mortifying URLs. One very confused recipient.</p>
+      <div class="cat-grid">
+        <a href="#" class="cat-card"><div class="cat-img"><img src="/images/micropenis1.webp" alt=""/></div><h3>MicroPenisCure.com</h3><p>From $14.99 &bull; Bestseller</p></a>
+        <a href="#" class="cat-card"><div class="cat-img"><img src="/images/bigassdildos2.webp" alt=""/></div><h3>BigAssDildos.com</h3><p>From $14.99</p></a>
+        <a href="#" class="cat-card"><div class="cat-img"><img src="/images/vaginal-odor-helper1.webp" alt=""/></div><h3>VaginalOdorHelper.com</h3><p>From $14.99</p></a>
+        <a href="#" class="cat-card"><div class="cat-img"><img src="/images/bulkcondom1.webp" alt=""/></div><h3>BulkCondomDelivery.com</h3><p>$12.99</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- "EXCEPTIONAL COFFEE MADE EASY" → feature cards strip -->
+  <section class="section section-teal">
+    <div class="container">
+      <h2 class="section-title" style="color:var(--navy);">Anonymous prank mail, made easy.</h2>
+      <div class="features-strip">
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <h3>The URL IS the Prank</h3>
+          <p>A mailing tube with a URL so embarrassing, it becomes the entire joke.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+          <h3>100% Anonymous</h3>
+          <p>No return address. No sender info. Zero trace back to you.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
+          <h3>"Sign For It" Upgrade</h3>
+          <p>Force them to sign in person. The mail carrier watches.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+          <h3>Free Shipping & Returns</h3>
+          <p>Every order ships free. 60-day returns, no questions asked.</p>
+        </div>
+      </div>
+      <div style="text-align:center;"><a href="#shop" class="btn btn-coral">Browse Pranks</a></div>
+    </div>
+  </section>
+
+  <!-- WAVE → WHITE -->
+  <div class="wave" style="background:var(--teal-bg);"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="var(--white)"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"/></svg></div>
+
+  <!-- 4 REASONS -->
+  <section class="section" id="how">
+    <div class="container">
+      <div class="reasons-grid">
+        <div class="reasons-left">
+          <h2>Four reasons Package Deal actually works...</h2>
+          <div class="reason">
+            <div class="reason-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div class="reason-text"><h3>The URL is the prank.</h3><p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they have to explain it to anyone who sees it.</p></div>
+          </div>
+          <div class="reason">
+            <div class="reason-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><circle cx="11" cy="11" r="2"/></svg></div>
+            <div class="reason-text"><h3>"Sign For It" delivery.</h3><p>They can't grab it off the porch — they have to look their mail carrier in the eye and accept it. By name.</p></div>
+          </div>
+          <div class="reason">
+            <div class="reason-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+            <div class="reason-text"><h3>Actually anonymous.</h3><p>No return address. No sender info. Just a tube with questions and zero answers.</p></div>
+          </div>
+          <div class="reason">
+            <div class="reason-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div class="reason-text"><h3>Free shipping. Free returns.</h3><p>We ship it free. Returns are free too. 60 days, no questions asked.</p></div>
+          </div>
+        </div>
+        <div class="reasons-img"><img src="/images/hero.png" alt=""/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-BLEED LIFESTYLE -->
+  <section class="fullbleed">
+    <div class="fullbleed-bg"><img src="/images/lifestyle3.png" alt=""/></div>
+    <div class="fullbleed-overlay"></div>
+    <div class="fullbleed-content">
+      <h2>Your favorite group chat moment, now in their mailbox.</h2>
+      <p>The best part isn't sending it. It's the group chat after. They'll call everyone they know trying to figure out who sent it. Nobody confesses.</p>
+      <a href="#shop" class="btn btn-coral">Browse Pranks</a>
+    </div>
+  </section>
+
+  <!-- FLOATING PRODUCTS -->
+  <section class="floating">
+    <div class="container">
+      <h2>Pick your weapon.</h2>
+      <p>Every tube ships 100% anonymously. Choose your level of chaos.</p>
+    </div>
+    <div class="float-row">
+      <div class="float-item"><img src="/images/micropenis1.webp" alt=""/><span>MicroPenisCure</span></div>
+      <div class="float-item"><img src="/images/bigassdildos1.webp" alt=""/><span>BigAssDildos</span></div>
+      <div class="float-item"><img src="/images/micropenis2.webp" alt=""/><span>Side view</span></div>
+      <div class="float-item"><img src="/images/vaginal-odor-helper1.webp" alt=""/><span>VaginalOdor</span></div>
+      <div class="float-item"><img src="/images/bulkcondom1.webp" alt=""/><span>BulkCondom</span></div>
+      <div class="float-item"><img src="/images/bigassdildos3.webp" alt=""/><span>Close-up</span></div>
+    </div>
+  </section>
+
+  <!-- WAVE → NAVY -->
+  <div class="wave" style="background:var(--white);"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="var(--navy)"><path d="M0,20 C240,60 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z"/></svg></div>
+
+  <!-- BRAND PARTNERS STRIP (navy) -->
+  <section class="section-navy" style="padding:40px 0;">
+    <div class="container" style="text-align:center;margin-bottom:24px;">
+      <h2 style="font-size:1.25rem;font-weight:700;margin-bottom:4px;">A curated selection of mortifying URLs.</h2>
+      <p style="font-size:13px;color:rgba(255,255,255,0.5);">New embarrassments added all the time.</p>
+    </div>
+    <div class="brands-scroll">
+      <div class="brands-track">
+        <span class="brand-name">MicroPenisCure.com</span>
+        <span class="brand-name">BigAssDildos.com</span>
+        <span class="brand-name">VaginalOdorHelper.com</span>
+        <span class="brand-name">BulkCondomDelivery.com</span>
+        <span class="brand-name">MicroPenisCure.com</span>
+        <span class="brand-name">BigAssDildos.com</span>
+        <span class="brand-name">VaginalOdorHelper.com</span>
+        <span class="brand-name">BulkCondomDelivery.com</span>
+        <span class="brand-name">MicroPenisCure.com</span>
+        <span class="brand-name">BigAssDildos.com</span>
+        <span class="brand-name">VaginalOdorHelper.com</span>
+        <span class="brand-name">BulkCondomDelivery.com</span>
+      </div>
+    </div>
+    <div style="text-align:center;padding-top:20px;"><a href="#shop" style="font-size:13px;color:var(--coral);text-decoration:underline;text-underline-offset:3px;">View All Pranks</a></div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section-dark" style="padding:80px 0;">
+    <div class="container">
+      <h2 class="section-title">What happens when it arrives.</h2>
+      <p class="section-subtitle" style="color:rgba(255,255,255,0.5);">Real reactions from real recipients.</p>
+      <div class="test-grid">
+        <div class="test-card">
+          <div class="test-stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <p class="test-quote">"He called three people trying to figure out who sent it. The whole office was dying. Best $22 I've ever spent."</p>
+          <div class="test-author"><span>Jake M.</span> &bull; Verified Purchase</div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <p class="test-quote">"She made him open it in front of the whole office. The mail carrier definitely read it. Definitely. I've been giggling about this for days."</p>
+          <div class="test-author"><span>Nadia R.</span> &bull; Verified Purchase</div>
+        </div>
+        <div class="test-card">
+          <div class="test-stars"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg viewBox="0 0 24 24" fill="currentColor" opacity="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <p class="test-quote">"His mom found it on the porch first. She called him before he even got home. The group chat was on fire for two hours."</p>
+          <div class="test-author"><span>Marcus T.</span> &bull; Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE → WHITE -->
+  <div class="wave" style="background:var(--navy-dark);"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="var(--white)"><path d="M0,60 C360,20 720,70 1080,30 C1260,15 1380,40 1440,20 L1440,80 L0,80 Z"/></svg></div>
+
+  <!-- GUARANTEE — Bruvi split -->
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="split-img"><img src="/images/all-variants.webp" alt=""/></div>
+        <div class="split-text">
+          <h2>If it's not funny, it's free.</h2>
+          <p>We'll refund your full purchase within 60 days, no questions asked. If the tube shows up damaged, the prank falls flat, or you just change your mind — we'll make it right.</p>
+          <div class="check-list">
+            <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 60-day free returns</div>
+            <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Free shipping on all orders</div>
+            <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No questions asked refunds</div>
+            <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Real reactions guaranteed</div>
+          </div>
+          <a href="#" class="btn btn-navy">Read Our Return Policy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ — Bruvi App section -->
+  <section class="section section-teal">
+    <div class="container">
+      <div class="split">
+        <div class="split-text">
+          <h2>Find the perfect prank in 30 seconds.</h2>
+          <p>4 questions. One recommendation. Maximum embarrassment. Our quiz matches you with the right tube and the right chaos level.</p>
+          <div class="check-list">
+            <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Takes 30 seconds</div>
+            <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Personalized recommendation</div>
+            <div class="check-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Matches tube + chaos level</div>
+          </div>
+          <a href="#" class="btn btn-coral">Take the Quiz</a>
+        </div>
+        <div class="split-img"><img src="/images/lifestyle3.png" alt=""/></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE → NAVY (awards) -->
+  <div class="wave" style="background:var(--teal-bg);"><svg viewBox="0 0 1440 80" preserveAspectRatio="none" fill="var(--navy)"><path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,50 1440,40 L1440,80 L0,80 Z"/></svg></div>
+
+  <!-- AWARDS / TRUST STRIP -->
+  <section class="section-navy" style="padding:40px 0;">
+    <div class="awards-scroll">
+      <div class="awards-track">
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.5/5 Amazon Rating</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 2,400+ Pranks Shipped</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 100% Anonymous</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 60-Day Returns</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Free Shipping</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 1,200+ Reviews</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 4.5/5 Amazon Rating</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 2,400+ Pranks Shipped</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 100% Anonymous</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 60-Day Returns</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Free Shipping</span>
+        <span class="award-item"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 1,200+ Reviews</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta-navy">
+    <div class="container">
+      <h2>Upgrade your daily chaos.</h2>
+      <p>Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+      <a href="#shop" class="btn btn-coral">See the Pranks</a>
+    </div>
+  </div>
+
+  <!-- FINAL BANNER -->
+  <section class="fullbleed" style="min-height:380px;">
+    <div class="fullbleed-bg"><img src="/images/all-variants2.webp" alt=""/></div>
+    <div class="fullbleed-overlay" style="background:linear-gradient(135deg,rgba(0,40,68,0.8) 0%,rgba(0,78,124,0.5) 100%);"></div>
+    <div class="fullbleed-content" style="text-align:center;max-width:560px;margin:0 auto;padding:80px 32px;">
+      <h2 style="max-width:none;">Free shipping. 100% anonymous.<br>60-day returns.</h2>
+      <p style="max-width:none;margin-left:auto;margin-right:auto;">Four tubes. Four mortifying URLs. Starting at $12.99.</p>
+      <a href="#shop" class="btn btn-coral">Browse All Pranks</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer-nl">
+    <div class="container">
+      <div class="nl-inner">
+        <div><h3>Stay in the loop.</h3><p>New pranks, limited drops, and stories too good not to share.</p></div>
+        <div class="nl-form"><input type="email" placeholder="Enter your email"/><button>Subscribe</button></div>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="container">
+      <div class="ft-grid">
+        <div class="ft-brand">
+          <div style="font-size:20px;font-weight:700;color:#fff;">Package<span style="color:var(--coral)">Deal</span></div>
+          <p>Anonymous prank mail tubes with URLs so embarrassing, they become the prank.</p>
+          <div class="ft-social">
+            <a href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+            <a href="#"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div class="ft-col"><h4>Shop</h4><a href="#">All Pranks</a><a href="#">MicroPenisCure.com</a><a href="#">BigAssDildos.com</a><a href="#">VaginalOdorHelper.com</a><a href="#">BulkCondomDelivery.com</a></div>
+        <div class="ft-col"><h4>Help</h4><a href="#">FAQ</a><a href="#">Shipping & Returns</a><a href="#">Track Order</a><a href="#">About Us</a></div>
+        <div class="ft-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Return Policy</a></div>
+      </div>
+      <div class="ft-bottom"><span>&copy; 2026 Package Deal. All rights reserved.</span><div><a href="#" style="color:rgba(255,255,255,0.3);margin-right:16px;">Privacy</a><a href="#" style="color:rgba(255,255,255,0.3);">Terms</a></div></div>
+    </div>
+  </footer>
+
+</body>
+</html>

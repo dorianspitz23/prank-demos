@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Differentiators — Proto 7: Zigzag Image/Text Rows</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #fff; color: #2D2D2D; }
+
+  .section { max-width: 1280px; margin: 0 auto; padding: 96px 24px; }
+  .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 600; color: #D4714E; text-align: center; margin-bottom: 12px; }
+  .headline { font-size: clamp(24px, 4vw, 36px); font-weight: 600; text-align: center; margin-bottom: 72px; }
+
+  /* Zigzag rows */
+  .zigzag-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    padding: 48px 0;
+    border-bottom: 1px solid #E8E5E1;
+  }
+  .zigzag-row:last-child { border-bottom: none; }
+  .zigzag-row:nth-child(even) .zz-media { order: 2; }
+  .zigzag-row:nth-child(even) .zz-content { order: 1; }
+
+  /* Image/video placeholder */
+  .zz-media {
+    background: #FAFAF8;
+    border: 1px dashed #E8E5E1;
+    border-radius: 16px;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .zz-media-inner {
+    text-align: center;
+    color: #6B6B6B;
+    font-size: 14px;
+    padding: 24px;
+  }
+  .zz-media-inner svg {
+    width: 48px; height: 48px;
+    stroke: #D4714E; fill: none; stroke-width: 1.5;
+    margin-bottom: 12px; opacity: 0.5;
+  }
+
+  /* Content side */
+  .zz-content { max-width: 480px; }
+  .zz-content h3 { font-size: 28px; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+  .zz-content p { color: #6B6B6B; font-size: 16px; line-height: 1.7; margin-bottom: 24px; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #D4714E;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+  }
+  .cta-btn:hover { background: #C0613F; }
+
+  /* Row 2 accordion variant */
+  .zz-accordion { margin-bottom: 24px; }
+  .zz-acc-item { border-bottom: 1px solid #E8E5E1; }
+  .zz-acc-item:first-child { border-top: 1px solid #E8E5E1; }
+  .zz-acc-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 0; cursor: pointer; user-select: none;
+  }
+  .zz-acc-header h4 { font-size: 16px; font-weight: 600; }
+  .zz-acc-chevron {
+    width: 18px; height: 18px; color: #6B6B6B;
+    transition: transform 0.3s;
+  }
+  .zz-acc-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s ease;
+  }
+  .zz-acc-body p { font-size: 15px; color: #6B6B6B; line-height: 1.65; padding-bottom: 16px; }
+  .zz-acc-item.open .zz-acc-body { max-height: 200px; }
+  .zz-acc-item.open .zz-acc-chevron { transform: rotate(180deg); }
+
+  @media (max-width: 768px) {
+    .zigzag-row { grid-template-columns: 1fr; gap: 24px; }
+    .zigzag-row:nth-child(even) .zz-media { order: 0; }
+    .zigzag-row:nth-child(even) .zz-content { order: 0; }
+    .zz-content h3 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<section class="section">
+  <p class="kicker">Why Package Deal</p>
+  <h2 class="headline">Why this isn't like every other prank site.</h2>
+
+  <!-- Row 1: Image left, text right -->
+  <div class="zigzag-row">
+    <div class="zz-media">
+      <div class="zz-media-inner">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 5 10-5"/></svg>
+        <div>Image or video that complements<br/>and reinforces this value prop</div>
+      </div>
+    </div>
+    <div class="zz-content">
+      <h3>The URL is the prank.</h3>
+      <p>Not glitter. Not a letter. A mailing tube with a URL so embarrassing, they'll have to explain it to anyone who sees it. Which is everyone.</p>
+      <a href="/collection" class="cta-btn">Shop Now</a>
+    </div>
+  </div>
+
+  <!-- Row 2: Text left with accordion, image right -->
+  <div class="zigzag-row">
+    <div class="zz-content">
+      <h3>"Sign For It" delivery.</h3>
+      <p>Upgrade any prank to require a signature. They can't just grab it off the porch — they have to look their mail carrier in the eye and accept it. By name.</p>
+
+      <div class="zz-accordion">
+        <div class="zz-acc-item open" onclick="toggleAcc(this)">
+          <div class="zz-acc-header">
+            <h4>They have to sign for it</h4>
+            <svg class="zz-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="zz-acc-body">
+            <p>No leaving it on the porch. No pretending it never arrived. They sign their name, in person, confirming they are indeed the person receiving a tube from MicroPenisCure.com.</p>
+          </div>
+        </div>
+        <div class="zz-acc-item" onclick="toggleAcc(this)">
+          <div class="zz-acc-header">
+            <h4>The mail carrier sees it too</h4>
+            <svg class="zz-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="zz-acc-body">
+            <p>That's at least two people who now know about it. And mail carriers talk.</p>
+          </div>
+        </div>
+        <div class="zz-acc-item" onclick="toggleAcc(this)">
+          <div class="zz-acc-header">
+            <h4>Tracking included</h4>
+            <svg class="zz-acc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <div class="zz-acc-body">
+            <p>You'll get a notification when they sign. So you know the exact moment it happens.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="/collection" class="cta-btn">Shop Now</a>
+    </div>
+    <div class="zz-media">
+      <div class="zz-media-inner">
+        <svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+        <div>Image or video that complements<br/>and reinforces this value prop</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 3: Image left, text right -->
+  <div class="zigzag-row">
+    <div class="zz-media">
+      <div class="zz-media-inner">
+        <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        <div>Image or video that complements<br/>and reinforces this value prop</div>
+      </div>
+    </div>
+    <div class="zz-content">
+      <h3>Actually anonymous.</h3>
+      <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+      <a href="/collection" class="cta-btn">Shop Now</a>
+    </div>
+  </div>
+
+  <!-- Row 4: Text left, image right -->
+  <div class="zigzag-row">
+    <div class="zz-content">
+      <h3>Free shipping. Free returns.</h3>
+      <p>We ship it free. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+      <a href="/collection" class="cta-btn">Shop Now</a>
+    </div>
+    <div class="zz-media">
+      <div class="zz-media-inner">
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        <div>Image or video that complements<br/>and reinforces this value prop</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleAcc(el) {
+  el.classList.toggle('open');
+}
+</script>
+</body>
+</html>

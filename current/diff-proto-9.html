@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Differentiators — Proto 9: Split Headline + 2x2 Mini-Grid + Image</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: #F2F0ED; color: #2D2D2D; }
+
+  .section { max-width: 1280px; margin: 0 auto; padding: 96px 24px; }
+
+  /* Two-column split */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  /* Left content */
+  .left {}
+  .kicker { text-transform: uppercase; letter-spacing: 0.12em; font-size: 13px; font-weight: 600; color: #D4714E; margin-bottom: 12px; }
+  .headline { font-size: clamp(26px, 4vw, 38px); font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
+  .subtext { color: #6B6B6B; font-size: 16px; line-height: 1.7; margin-bottom: 36px; max-width: 440px; }
+
+  /* 2x2 mini grid of benefits */
+  .mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .mini-item {}
+  .mini-dot {
+    width: 40px; height: 40px;
+    background: rgba(212,113,78,0.12);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 10px;
+  }
+  .mini-dot svg { width: 18px; height: 18px; stroke: #D4714E; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .mini-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
+  .mini-item p { color: #6B6B6B; font-size: 13px; line-height: 1.55; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #D4714E;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(212,113,78,0.3);
+  }
+  .cta-btn:hover { background: #C0613F; }
+
+  /* Right: image placeholder */
+  .media {
+    background: #fff;
+    border: 1px dashed #E8E5E1;
+    border-radius: 20px;
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #6B6B6B;
+    font-size: 14px;
+    padding: 32px;
+  }
+  .media svg {
+    width: 56px; height: 56px;
+    stroke: #D4714E; fill: none; stroke-width: 1.5;
+    margin-bottom: 12px; opacity: 0.4;
+  }
+
+  @media (max-width: 768px) {
+    .split { grid-template-columns: 1fr; gap: 40px; }
+    .media { aspect-ratio: 3/2; }
+  }
+</style>
+</head>
+<body>
+<section class="section">
+  <div class="split">
+    <div class="left">
+      <p class="kicker">Why Package Deal</p>
+      <h2 class="headline">Why this isn't like every other prank site.</h2>
+      <p class="subtext">We ship anonymous mailing tubes with URLs so embarrassing, they become the prank. Here's what makes it work.</p>
+
+      <div class="mini-grid">
+        <div class="mini-item">
+          <div class="mini-dot">
+            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 5 10-5"/></svg>
+          </div>
+          <h4>The URL is the prank</h4>
+          <p>A mailing tube they'll have to explain to anyone who sees it.</p>
+        </div>
+        <div class="mini-item">
+          <div class="mini-dot">
+            <svg viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+          </div>
+          <h4>"Sign For It" delivery</h4>
+          <p>They look their mail carrier in the eye and accept it. By name.</p>
+        </div>
+        <div class="mini-item">
+          <div class="mini-dot">
+            <svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </div>
+          <h4>Actually anonymous</h4>
+          <p>No return address. No sender info. Zero answers.</p>
+        </div>
+        <div class="mini-item">
+          <div class="mini-dot">
+            <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h4>Free shipping & returns</h4>
+          <p>We ship free. Returns free too. 60 days, no questions.</p>
+        </div>
+      </div>
+
+      <a href="/collection" class="cta-btn">Shop Now</a>
+    </div>
+
+    <div class="media">
+      <div>
+        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="3"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+        <div>Image or video that complements<br/>and reinforces core value proposition</div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

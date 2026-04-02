@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Proto 4 — Text Message Thread</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --charcoal: #2D2D2D;
+      --terracotta: #D4714E;
+      --section-alt: #F2F0ED;
+      --font-sans: 'DM Sans', system-ui, sans-serif;
+      --font-display: 'Playfair Display', Georgia, serif;
+    }
+    body { font-family: var(--font-sans); background: #fff; color: var(--charcoal); }
+
+    .proto-label {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--terracotta); color: #fff;
+      text-align: center; padding: 10px; font-weight: 600; font-size: 14px;
+      z-index: 100; letter-spacing: 0.05em;
+    }
+
+    .section {
+      max-width: 1280px; margin: 0 auto;
+      padding: 80px 24px; margin-top: 40px;
+    }
+
+    .header { text-align: center; margin-bottom: 56px; }
+    .kicker {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--terracotta); margin-bottom: 12px;
+    }
+    .headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 600; line-height: 1.2;
+    }
+    .subtitle {
+      font-size: 16px; color: #6B6B6B; margin-top: 8px; font-weight: 500;
+    }
+
+    /* ── Layout: side-by-side ── */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .split-layout { grid-template-columns: 1fr; }
+    }
+
+    /* ── iMessage Thread ── */
+    .imessage-container {
+      background: #fff;
+      border-radius: 24px;
+      border: 1px solid #E8E5E1;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .imessage-header {
+      background: #f8f8f8;
+      padding: 12px 20px;
+      border-bottom: 1px solid #E8E5E1;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .imessage-header .avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--terracotta);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-weight: 700; font-size: 14px;
+    }
+    .imessage-header .name { font-weight: 600; font-size: 15px; }
+    .imessage-header .group-label { font-size: 12px; color: #999; }
+
+    .imessage-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 400px;
+    }
+
+    .msg {
+      max-width: 80%;
+      padding: 10px 16px;
+      border-radius: 18px;
+      font-size: 15px;
+      line-height: 1.5;
+      animation: msg-in 0.3s ease;
+    }
+    @keyframes msg-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg--received {
+      background: #E9E9EB;
+      color: #000;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    .msg--sent {
+      background: #007AFF;
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .msg--terracotta {
+      background: var(--terracotta);
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .msg--emphasis {
+      font-size: 32px;
+      background: transparent;
+      align-self: flex-start;
+      padding: 0;
+    }
+    .msg-sender {
+      font-size: 11px; color: #999; font-weight: 500;
+      margin-bottom: 2px; padding-left: 4px;
+    }
+    .msg-time {
+      font-size: 11px; color: #999; text-align: center;
+      margin: 8px 0;
+    }
+    .msg-image {
+      max-width: 65%;
+      align-self: flex-start;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #E8E5E1;
+    }
+    .msg-image .img-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #f0e8e0 0%, #e0d8d0 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 48px;
+    }
+
+    /* ── Right side: video + quote cards ── */
+    .reaction-cards {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .reaction-card {
+      background: var(--section-alt);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex; gap: 20px;
+      align-items: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .reaction-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .reaction-video {
+      width: 80px; height: 120px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px;
+      position: relative;
+    }
+    .reaction-video .play-icon {
+      position: absolute;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: var(--charcoal);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .reaction-text { flex: 1; }
+    .reaction-text .stars { color: #F59E0B; font-size: 14px; letter-spacing: 2px; margin-bottom: 6px; }
+    .reaction-text .quote {
+      font-size: 15px; font-style: italic; font-weight: 500;
+      color: var(--charcoal); line-height: 1.5;
+    }
+    .reaction-text .meta {
+      font-size: 12px; color: #999; margin-top: 6px;
+    }
+
+    /* ── Supporting ── */
+    .supporting {
+      text-align: center; margin-top: 56px;
+      font-size: 18px; color: #6B6B6B; font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="proto-label">PROTO 4 — Text Message Thread (iMessage group chat + reaction cards, storytelling focus)</div>
+
+  <section class="section">
+    <div class="header">
+      <div class="kicker">REAL REACTIONS</div>
+      <h2 class="headline">What happens when it arrives.</h2>
+      <p class="subtitle">Actual group chat. Names changed. Chaos preserved.</p>
+    </div>
+
+    <div class="split-layout">
+
+      <!-- Left: iMessage Thread -->
+      <div class="imessage-container">
+        <div class="imessage-header">
+          <div class="avatar">GC</div>
+          <div>
+            <div class="name">The Boys &#128170;</div>
+            <div class="group-label">5 members</div>
+          </div>
+        </div>
+        <div class="imessage-body">
+          <div class="msg-time">Tuesday 2:14 PM</div>
+
+          <div class="msg-sender">Mike</div>
+          <div class="msg msg--received">yo who sent me a package from MicroPenisCure.com</div>
+
+          <div class="msg-sender">Mike</div>
+          <div class="msg msg--received">I had to SIGN for it. In front of the FedEx guy.</div>
+
+          <div class="msg msg--emphasis">&#128561;&#128561;&#128561;</div>
+
+          <div class="msg msg--sent">wait WHAT</div>
+          <div class="msg msg--sent">it actually made you sign??</div>
+
+          <div class="msg-sender">Mike</div>
+          <div class="msg msg--received">YES. He looked me dead in the eye and said "sign here" with a straight face</div>
+
+          <div class="msg-sender">Jake</div>
+          <div class="msg msg--received">I'm literally crying at work rn</div>
+
+          <div class="msg msg--sent">did you open it</div>
+
+          <div class="msg-sender">Mike</div>
+          <div class="msg msg--received">IT'S AN EMPTY TUBE</div>
+          <div class="msg-sender">Mike</div>
+          <div class="msg msg--received">THERE'S NOTHING IN IT</div>
+          <div class="msg-sender">Mike</div>
+          <div class="msg msg--received">WHO DID THIS</div>
+
+          <div class="msg msg--terracotta">&#128521;</div>
+
+          <div class="msg-time">Mike is typing...</div>
+        </div>
+      </div>
+
+      <!-- Right: Reaction Cards -->
+      <div class="reaction-cards">
+        <div class="reaction-card">
+          <div class="reaction-video" style="background: linear-gradient(135deg, #3a1c1c, #1a1a1a);">
+            <span>&#128561;</span>
+            <div class="play-icon">&#9654;</div>
+          </div>
+          <div class="reaction-text">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;He called three people trying to figure out who sent it.&rdquo;</p>
+            <p class="meta">Verified Sender &middot; 3 weeks ago</p>
+          </div>
+        </div>
+
+        <div class="reaction-card">
+          <div class="reaction-video" style="background: linear-gradient(135deg, #1c2a3a, #1a1a1a);">
+            <span>&#128518;</span>
+            <div class="play-icon">&#9654;</div>
+          </div>
+          <div class="reaction-text">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;She made him open it in front of the whole office.&rdquo;</p>
+            <p class="meta">Verified Sender &middot; 1 week ago</p>
+          </div>
+        </div>
+
+        <div class="reaction-card">
+          <div class="reaction-video" style="background: linear-gradient(135deg, #2a3a1c, #1a1a1a);">
+            <span>&#128556;</span>
+            <div class="play-icon">&#9654;</div>
+          </div>
+          <div class="reaction-text">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;His mom found it on the porch first.&rdquo;</p>
+            <p class="meta">Verified Sender &middot; 5 days ago</p>
+          </div>
+        </div>
+
+        <div class="reaction-card">
+          <div class="reaction-video" style="background: linear-gradient(135deg, #3a2a1c, #1a1a1a);">
+            <span>&#128293;</span>
+            <div class="play-icon">&#9654;</div>
+          </div>
+          <div class="reaction-text">
+            <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="quote">&ldquo;The group chat was on fire for two hours.&rdquo;</p>
+            <p class="meta">Verified Sender &middot; 2 days ago</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="supporting">The best part isn't sending it. It's the group chat after.</p>
+  </section>
+</body>
+</html>

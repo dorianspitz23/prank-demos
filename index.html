@@ -124,6 +124,12 @@
         .card-ransom .card-preview { background: linear-gradient(135deg, #D2B48C, #E8E0D8); }
         .card-ransom .card-tag { background: #8B002022; color: #E07070; }
 
+        .card-current .card-preview { background: linear-gradient(135deg, #FAFAF8, #D4714E); }
+        .card-current .card-tag { background: #D4714E22; color: #D4714E; }
+        .card-current .card-preview-label { color: #2D2D2D; text-shadow: none; }
+        .card-current { border-color: #D4714E44; }
+        .card-current:hover { border-color: #D4714E; }
+
         .card-preview-label {
             font-size: 1rem;
             font-weight: 700;
@@ -164,11 +170,18 @@
 <body>
     <div class="header">
         <h1>Package Deal — Design Explorations</h1>
-        <p>7 wildly different takes on a prank mail e-commerce site. Each has a homepage + demo PDP.</p>
+        <p>The current prototype + 7 wildly different design explorations. Each demo has a homepage + PDP.</p>
     </div>
 
-    <div class="section-label">Style Explorations</div>
     <div class="grid">
+        <a href="current/index.html" class="card card-current">
+            <div class="card-preview"><span class="card-preview-label">Current Prototype</span></div>
+            <div class="card-body">
+                <span class="card-tag">Live Build</span>
+                <h2>Package Deal (Actual Site)</h2>
+                <p>The real React + Tailwind prototype. DM Sans + Playfair Display, terracotta accents, warm and trustworthy.</p>
+            </div>
+        </a>
         <a href="demo-neon.html" class="card card-neon">
             <div class="card-preview"><span class="card-preview-label">Neon Chaos</span></div>
             <div class="card-body">
@@ -201,10 +214,6 @@
                 <p>Layered stickers, wheat-paste posters, grain texture, Permanent Marker font. Skateboard culture energy.</p>
             </div>
         </a>
-    </div>
-
-    <div class="section-label">Prank & Mail Themed</div>
-    <div class="grid">
         <a href="demo-crimeboard.html" class="card card-crime">
             <div class="card-preview"><span class="card-preview-label">Crime Board</span></div>
             <div class="card-body">

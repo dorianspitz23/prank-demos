@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Package Deal — Comparison Table V1</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #F2F0ED;
+      color: #2D2D2D;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 64px 16px;
+    }
+
+    .section-wrapper {
+      width: 100%;
+      max-width: 1280px;
+    }
+
+    .comparison-section {
+      background: #2D2D2D;
+      border-radius: 24px;
+      padding: 56px 40px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .section-kicker {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #D4714E;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .section-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: #FFFFFF;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    /* Column headers */
+    .column-headers {
+      display: grid;
+      grid-template-columns: 1fr 120px 120px;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding: 0 16px;
+    }
+
+    .col-label {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      padding-bottom: 8px;
+    }
+
+    .col-label-us {
+      color: #FFFFFF;
+      position: relative;
+    }
+
+    .col-label-us::before {
+      content: '';
+      position: absolute;
+      inset: -8px -16px;
+      background: radial-gradient(ellipse at center, rgba(212, 113, 78, 0.25) 0%, transparent 70%);
+      border-radius: 12px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .col-label-us span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .col-label-them {
+      color: #6B6B6B;
+    }
+
+    /* Feature rows */
+    .feature-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .feature-row {
+      display: grid;
+      grid-template-columns: 1fr 120px 120px;
+      gap: 8px;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 16px;
+      transition: background 0.2s ease;
+    }
+
+    .feature-row:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .feature-text {
+      font-size: 15px;
+      font-weight: 500;
+      color: #FFFFFF;
+      line-height: 1.4;
+    }
+
+    .badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .badge-check {
+      background: rgba(91, 140, 90, 0.2);
+      color: #5B8C5A;
+      border: 1.5px solid rgba(91, 140, 90, 0.35);
+    }
+
+    .badge-x {
+      background: rgba(107, 107, 107, 0.1);
+      color: #6B6B6B;
+      border: 1.5px solid rgba(107, 107, 107, 0.15);
+    }
+
+    /* SVG icons inside badges */
+    .badge svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.5;
+    }
+
+    /* CTA area */
+    .cta-area {
+      text-align: center;
+      margin-top: 44px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: #D4714E;
+      color: #FFFFFF;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 40px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      box-shadow: 0 4px 16px rgba(212, 113, 78, 0.35);
+    }
+
+    .cta-button:hover {
+      background: #C0613F;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(212, 113, 78, 0.45);
+    }
+
+    .cta-button:active {
+      background: #ad5a38;
+      transform: translateY(0);
+    }
+
+    .guarantee-text {
+      font-size: 14px;
+      color: #6B6B6B;
+      margin-top: 14px;
+    }
+
+    .guarantee-text svg {
+      display: inline-block;
+      vertical-align: -2px;
+      margin-right: 4px;
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      body {
+        padding: 32px 12px;
+      }
+
+      .comparison-section {
+        padding: 40px 16px 36px;
+        border-radius: 16px;
+      }
+
+      .section-headline {
+        margin-bottom: 32px;
+      }
+
+      .column-headers {
+        grid-template-columns: 1fr 72px 72px;
+        padding: 0 8px;
+      }
+
+      .col-label {
+        font-size: 12px;
+      }
+
+      .feature-row {
+        grid-template-columns: 1fr 72px 72px;
+        padding: 14px 12px;
+        gap: 4px;
+      }
+
+      .feature-text {
+        font-size: 14px;
+      }
+
+      .badge {
+        width: 30px;
+        height: 30px;
+      }
+
+      .badge svg {
+        width: 15px;
+        height: 15px;
+      }
+
+      .cta-button {
+        padding: 14px 32px;
+        font-size: 15px;
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="section-wrapper">
+    <section class="comparison-section">
+      <p class="section-kicker">The Competition</p>
+      <h2 class="section-headline">Other prank sites wish.</h2>
+
+      <div class="column-headers">
+        <div></div>
+        <div class="col-label col-label-us"><span>Package Deal</span></div>
+        <div class="col-label col-label-them">Everyone Else</div>
+      </div>
+
+      <div class="feature-list">
+        <div class="feature-row">
+          <span class="feature-text">The URL IS the prank</span>
+          <span class="badge badge-check">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="badge badge-x">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+        </div>
+
+        <div class="feature-row">
+          <span class="feature-text">Forced signature delivery</span>
+          <span class="badge badge-check">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="badge badge-x">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+        </div>
+
+        <div class="feature-row">
+          <span class="feature-text">Actually anonymous (no return address)</span>
+          <span class="badge badge-check">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="badge badge-x">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+        </div>
+
+        <div class="feature-row">
+          <span class="feature-text">Premium mailing tubes (not flimsy novelty)</span>
+          <span class="badge badge-check">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="badge badge-x">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+        </div>
+
+        <div class="feature-row">
+          <span class="feature-text">Free shipping</span>
+          <span class="badge badge-check">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="badge badge-x">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+        </div>
+
+        <div class="feature-row">
+          <span class="feature-text">60-day free returns</span>
+          <span class="badge badge-check">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="badge badge-x">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+        </div>
+
+        <div class="feature-row">
+          <span class="feature-text">Confetti bomb upgrade</span>
+          <span class="badge badge-check">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </span>
+          <span class="badge badge-x">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="cta-area">
+        <a href="/collection" class="cta-button">See the Pranks</a>
+        <p class="guarantee-text">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          60-day money-back guarantee
+        </p>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

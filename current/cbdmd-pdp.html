@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MicroPenisCure.com — Embarrassing Prank Mail | Package Deal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════════════
+       RESET & BASE — cbdMD PDP-inspired
+       ═══════════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --canvas: #FFFFFF;
+      --canvas-alt: #FAFAF8;
+      --charcoal: #2D2D2D;
+      --charcoal-deep: #1a1a1a;
+      --text-secondary: #6B6B6B;
+      --terracotta: #D4714E;
+      --terracotta-hover: #C0613F;
+      --terracotta-active: #ad5a38;
+      --terracotta-glow: rgba(212, 113, 78, 0.12);
+      --success: #5B8C5A;
+      --warning: #E0A644;
+      --error: #C4453C;
+      --disabled: #C9C4BE;
+      --border: #E8E5E1;
+      --section-alt: #F2F0ED;
+      --chaos-subtle: #7C3AED;
+      --chaos-public: #D97706;
+      --chaos-nuclear: #DC2626;
+
+      --section-py: 72px;
+      --max-width: 1280px;
+      --header-height: 64px;
+      --gallery-width: 55%;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--charcoal);
+      background: var(--canvas);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul, ol { list-style: none; }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       ANNOUNCEMENT BAR
+       ═══════════════════════════════════════════════ */
+    .announcement-bar {
+      background: var(--charcoal-deep);
+      color: #fff;
+      text-align: center;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+    .announcement-bar strong { color: var(--terracotta); font-weight: 700; }
+
+    /* ═══════════════════════════════════════════════
+       HEADER — sticky
+       ═══════════════════════════════════════════════ */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--border);
+      height: var(--header-height);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .header-logo { font-size: 22px; font-weight: 700; color: var(--charcoal); letter-spacing: -0.5px; }
+    .header-logo span { color: var(--terracotta); }
+    .header-nav { display: flex; gap: 32px; align-items: center; }
+    .header-nav a {
+      font-size: 14px; font-weight: 500; color: var(--charcoal); transition: color 0.2s; position: relative;
+    }
+    .header-nav a:hover { color: var(--terracotta); }
+    .header-nav a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 2px; background: var(--terracotta); transition: width 0.3s;
+    }
+    .header-nav a:hover::after { width: 100%; }
+    .header-actions { display: flex; align-items: center; gap: 20px; }
+    .header-actions a { font-size: 14px; font-weight: 500; color: var(--text-secondary); transition: color 0.2s; }
+    .header-actions a:hover { color: var(--charcoal); }
+    .cart-icon { position: relative; display: flex; align-items: center; gap: 4px; }
+    .cart-badge {
+      background: var(--terracotta); color: #fff; font-size: 10px; font-weight: 700;
+      width: 18px; height: 18px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      position: absolute; top: -8px; right: -10px;
+    }
+    .mobile-menu-btn { display: none; }
+
+    /* ═══════════════════════════════════════════════
+       STICKY ADD TO CART BAR (desktop)
+       ═══════════════════════════════════════════════ */
+    .sticky-atc {
+      position: fixed;
+      top: var(--header-height);
+      left: 0; right: 0;
+      background: var(--canvas);
+      border-bottom: 1px solid var(--border);
+      z-index: 90;
+      transform: translateY(-100%);
+      transition: transform 0.3s ease;
+      display: none; /* shown via JS */
+    }
+    .sticky-atc.visible { transform: translateY(0); display: block; }
+    .sticky-atc-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sticky-atc-left { display: flex; align-items: center; gap: 16px; }
+    .sticky-atc-left img { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; }
+    .sticky-atc-title { font-size: 14px; font-weight: 600; }
+    .sticky-atc-price { font-size: 14px; font-weight: 600; color: var(--terracotta); }
+    .sticky-atc-btn {
+      background: var(--terracotta); color: #fff; font-size: 14px; font-weight: 600;
+      padding: 10px 28px; border-radius: 4px; transition: background 0.2s;
+    }
+    .sticky-atc-btn:hover { background: var(--terracotta-hover); }
+
+    /* ═══════════════════════════════════════════════
+       BREADCRUMBS — cbdMD style
+       ═══════════════════════════════════════════════ */
+    .breadcrumbs {
+      padding: 16px 0;
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .breadcrumbs a { color: var(--text-secondary); transition: color 0.2s; }
+    .breadcrumbs a:hover { color: var(--terracotta); }
+    .breadcrumbs span { margin: 0 8px; color: var(--disabled); }
+
+    /* ═══════════════════════════════════════════════
+       PRODUCT HERO — cbdMD 51/49 split layout
+       ═══════════════════════════════════════════════ */
+    .product-hero {
+      display: grid;
+      grid-template-columns: var(--gallery-width) 1fr;
+      gap: 48px;
+      padding-bottom: 48px;
+    }
+
+    /* Gallery — left column */
+    .gallery { position: sticky; top: calc(var(--header-height) + 16px); align-self: start; }
+    .gallery-main {
+      position: relative;
+      background: var(--section-alt);
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-in;
+    }
+    .gallery-main img {
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain;
+      padding: 24px;
+      transition: transform 0.4s;
+    }
+    .gallery-main:hover img { transform: scale(1.08); }
+    .gallery-badge {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--charcoal); color: #fff;
+      font-size: 11px; font-weight: 700;
+      padding: 6px 14px; border-radius: 4px;
+      text-transform: uppercase; letter-spacing: 0.5px; z-index: 2;
+    }
+    .gallery-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.9); color: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: background 0.2s;
+      z-index: 2;
+    }
+    .gallery-nav:hover { background: #fff; }
+    .gallery-nav.prev { left: 12px; }
+    .gallery-nav.next { right: 12px; }
+
+    /* Thumbnails — cbdMD circular style */
+    .gallery-thumbs {
+      display: flex;
+      gap: 12px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+    .gallery-thumb {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid transparent;
+      transition: border-color 0.2s;
+      cursor: pointer;
+      background: var(--section-alt);
+    }
+    .gallery-thumb.active { border-color: var(--terracotta); }
+    .gallery-thumb:hover { border-color: var(--charcoal); }
+    .gallery-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+    }
+
+    /* Product info — right column */
+    .product-info { padding-top: 8px; }
+
+    .product-badge-row {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+    }
+    .product-collection-badge {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--terracotta);
+    }
+
+    .product-title {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: var(--charcoal-deep);
+    }
+
+    .product-rating {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 16px;
+    }
+    .stars { display: flex; gap: 1px; }
+    .star { width: 16px; height: 16px; color: var(--warning); }
+    .rating-text { font-size: 13px; color: var(--text-secondary); }
+    .rating-text a { color: var(--terracotta); text-decoration: underline; text-underline-offset: 2px; }
+
+    .product-price-row {
+      display: flex; align-items: baseline; gap: 12px;
+      margin-bottom: 16px; padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .product-price {
+      font-size: 28px; font-weight: 700; color: var(--charcoal);
+    }
+    .product-compare-price {
+      font-size: 16px; color: var(--disabled);
+      text-decoration: line-through;
+    }
+
+    .product-short-desc {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 20px;
+    }
+
+    /* Key features list — cbdMD bullet style */
+    .key-features {
+      margin-bottom: 24px;
+    }
+    .key-feature {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 6px 0;
+      font-size: 14px;
+      color: var(--charcoal);
+    }
+    .key-feature svg {
+      width: 16px; height: 16px; color: var(--terracotta);
+      flex-shrink: 0; margin-top: 3px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       VARIANT SELECTOR — cbdMD size/option style
+       ═══════════════════════════════════════════════ */
+    .variant-section {
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .variant-label {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--text-secondary);
+      margin-bottom: 12px;
+    }
+    .variant-options { display: flex; flex-direction: column; gap: 8px; }
+    .variant-option {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px;
+      border: 2px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.15s;
+      position: relative;
+    }
+    .variant-option:hover { border-color: var(--charcoal); }
+    .variant-option.selected {
+      border-color: var(--terracotta);
+      background: var(--terracotta-glow);
+    }
+    .variant-option.sold-out {
+      opacity: 0.5; cursor: not-allowed;
+      background: var(--canvas-alt);
+    }
+    .variant-option-left {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .variant-radio {
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 2px solid var(--disabled);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .variant-option.selected .variant-radio {
+      border-color: var(--terracotta);
+    }
+    .variant-option.selected .variant-radio::after {
+      content: '';
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--terracotta);
+    }
+    .variant-name {
+      font-size: 14px; font-weight: 500;
+    }
+    .variant-badge-inline {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      background: var(--terracotta); color: #fff;
+      padding: 2px 8px; border-radius: 3px;
+      letter-spacing: 0.5px; margin-left: 8px;
+    }
+    .variant-sold-out-tag {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      background: var(--disabled); color: #fff;
+      padding: 2px 8px; border-radius: 3px;
+      letter-spacing: 0.5px; margin-left: 8px;
+    }
+    .variant-desc {
+      font-size: 12px; color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .variant-price {
+      font-size: 15px; font-weight: 600; color: var(--charcoal);
+      white-space: nowrap;
+    }
+
+    /* ═══════════════════════════════════════════════
+       QUANTITY SELECTOR — cbdMD style
+       ═══════════════════════════════════════════════ */
+    .qty-row {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 16px;
+    }
+    .qty-label {
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--text-secondary);
+    }
+    .qty-selector {
+      display: flex; align-items: center;
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden;
+    }
+    .qty-btn {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 500;
+      color: var(--charcoal);
+      transition: background 0.15s;
+    }
+    .qty-btn:hover { background: var(--section-alt); }
+    .qty-value {
+      width: 48px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 600;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+
+    /* ═══════════════════════════════════════════════
+       ADD TO CART — cbdMD primary CTA
+       ═══════════════════════════════════════════════ */
+    .atc-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--terracotta);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 32px;
+      border-radius: 6px;
+      transition: background 0.2s, transform 0.15s;
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+    .atc-btn:hover {
+      background: var(--terracotta-hover);
+      transform: translateY(-1px);
+    }
+    .atc-btn svg { width: 18px; height: 18px; }
+
+    /* Bundle upsell — cbdMD subscription offer style */
+    .bundle-offers {
+      display: flex; flex-direction: column; gap: 8px;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .bundle-offer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 16px;
+      background: var(--canvas-alt);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.15s;
+    }
+    .bundle-offer:hover {
+      border-color: var(--terracotta);
+      background: var(--terracotta-glow);
+    }
+    .bundle-offer-left { display: flex; align-items: center; gap: 10px; }
+    .bundle-offer-icon {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--terracotta-glow);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--terracotta);
+    }
+    .bundle-offer-icon svg { width: 16px; height: 16px; }
+    .bundle-offer-title { font-size: 14px; font-weight: 600; }
+    .bundle-offer-badge {
+      font-size: 10px; font-weight: 700; text-transform: uppercase;
+      background: var(--success); color: #fff;
+      padding: 2px 8px; border-radius: 3px;
+      margin-left: 8px;
+    }
+    .bundle-offer-save {
+      font-size: 13px; font-weight: 600; color: var(--success);
+    }
+
+    /* Trust badges below ATC — cbdMD style */
+    .trust-badges {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .trust-badge {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 12px; font-weight: 500; color: var(--text-secondary);
+    }
+    .trust-badge svg { width: 16px; height: 16px; color: var(--success); }
+
+    /* ═══════════════════════════════════════════════
+       PRODUCT INFO ACCORDION — cbdMD tabs/details
+       ═══════════════════════════════════════════════ */
+    .info-accordion { margin-bottom: 24px; }
+    .accordion-item { border-bottom: 1px solid var(--border); }
+    .accordion-trigger {
+      width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 16px 0;
+      font-size: 14px; font-weight: 600;
+      color: var(--charcoal);
+      text-align: left;
+      transition: color 0.2s;
+    }
+    .accordion-trigger:hover { color: var(--terracotta); }
+    .accordion-trigger svg {
+      width: 18px; height: 18px; color: var(--text-secondary);
+      transition: transform 0.3s; flex-shrink: 0;
+    }
+    .accordion-item.open .accordion-trigger svg { transform: rotate(180deg); }
+    .accordion-body {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    .accordion-item.open .accordion-body { max-height: 600px; }
+    .accordion-body-inner {
+      padding-bottom: 20px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    .accordion-body-inner ul { padding-left: 20px; }
+    .accordion-body-inner li {
+      list-style: disc;
+      margin-bottom: 6px;
+    }
+    .accordion-body-inner .step {
+      display: flex; gap: 10px; margin-bottom: 12px;
+    }
+    .accordion-body-inner .step-num {
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--terracotta); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; flex-shrink: 0;
+    }
+    .accordion-body-inner .sub-q {
+      font-weight: 600; color: var(--charcoal);
+      margin-top: 12px; margin-bottom: 4px;
+    }
+
+    /* SKU + Lab results link — cbdMD style */
+    .sku-row {
+      font-size: 12px; color: var(--disabled);
+      margin-bottom: 8px;
+    }
+    .lab-link {
+      font-size: 13px; font-weight: 500;
+      color: var(--terracotta); text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ═══════════════════════════════════════════════
+       BELOW-THE-FOLD SECTIONS
+       ═══════════════════════════════════════════════ */
+    .section-kicker {
+      display: inline-block;
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 12px;
+    }
+    .section-header {
+      text-align: center; margin-bottom: 48px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 600; color: var(--charcoal);
+      line-height: 1.2; margin-bottom: 8px;
+    }
+    .section-header p {
+      font-size: 16px; color: var(--text-secondary);
+      max-width: 560px; margin: 0 auto;
+    }
+
+    /* Prank Experience / Description */
+    .description-section {
+      padding: var(--section-py) 0;
+      background: var(--section-alt);
+    }
+    .description-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .description-inner h2 {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 600; margin-bottom: 24px;
+      text-align: center;
+    }
+    .description-inner p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.8; margin-bottom: 20px;
+    }
+
+    /* Value Prop split — cbdMD features */
+    .value-prop-section {
+      padding: var(--section-py) 0;
+      background: var(--canvas);
+    }
+    .value-prop-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .value-prop-left h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+    .value-prop-left .amazon-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 13px; font-weight: 500; color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .value-prop-left .amazon-badge svg { color: var(--warning); }
+    .value-prop-bullets { display: flex; flex-direction: column; gap: 20px; }
+    .vp-bullet {
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .vp-bullet-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--terracotta-glow);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--terracotta); flex-shrink: 0;
+    }
+    .vp-bullet-icon svg { width: 20px; height: 20px; }
+    .vp-bullet-text { font-size: 15px; color: var(--text-secondary); line-height: 1.5; padding-top: 8px; }
+
+    /* Sign For It section — cbdMD split CTA */
+    .sign-for-it-section {
+      padding: var(--section-py) 0;
+      background: var(--section-alt);
+    }
+    .sign-for-it-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .sign-for-it-image {
+      border-radius: 12px; overflow: hidden;
+    }
+    .sign-for-it-image img { width: 100%; height: 100%; object-fit: cover; }
+    .sign-for-it-content h2 {
+      font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+      font-weight: 600; margin-bottom: 16px; line-height: 1.2;
+    }
+    .sign-for-it-content p {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.7; margin-bottom: 16px;
+    }
+
+    /* Differentiators — cbdMD clean grid */
+    .differentiators-section {
+      padding: var(--section-py) 0;
+      background: var(--canvas);
+    }
+    .diff-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 32px; margin-top: 48px;
+    }
+    .diff-card {
+      text-align: center; padding: 24px 16px;
+    }
+    .diff-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--terracotta-glow);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px; color: var(--terracotta);
+    }
+    .diff-icon svg { width: 22px; height: 22px; }
+    .diff-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .diff-card p {
+      font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+    }
+
+    /* Occasions — cbdMD category cards */
+    .occasions-section {
+      padding: var(--section-py) 0;
+      background: var(--section-alt);
+    }
+    .occasions-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 20px; margin-top: 48px;
+    }
+    .occasion-card {
+      background: var(--canvas);
+      border-radius: 8px; padding: 28px 20px; text-align: center;
+      border: 1px solid var(--border);
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .occasion-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .occasion-icon {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--terracotta-glow);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 14px; color: var(--terracotta);
+    }
+    .occasion-icon svg { width: 22px; height: 22px; }
+    .occasion-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .occasion-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 14px; }
+    .occasion-card a {
+      font-size: 13px; font-weight: 600; color: var(--terracotta);
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+
+    /* Cross-sell grid — cbdMD related products */
+    .cross-sell-section {
+      padding: var(--section-py) 0;
+      background: var(--canvas);
+    }
+    .cross-sell-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 48px;
+    }
+    .cross-sell-card {
+      border: 1px solid var(--border); border-radius: 8px;
+      overflow: hidden; transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .cross-sell-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+    .cross-sell-card-image {
+      aspect-ratio: 1; background: var(--section-alt);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; padding: 20px;
+    }
+    .cross-sell-card-image img {
+      max-height: 100%; object-fit: contain;
+      transition: transform 0.4s;
+    }
+    .cross-sell-card:hover .cross-sell-card-image img { transform: scale(1.05); }
+    .cross-sell-card-body { padding: 20px; }
+    .cross-sell-card-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .cross-sell-card-hook { font-size: 13px; color: var(--text-secondary); line-height: 1.5; margin-bottom: 12px; }
+    .cross-sell-card a {
+      font-size: 13px; font-weight: 600; color: var(--terracotta);
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+
+    /* Reviews section */
+    .reviews-section {
+      padding: var(--section-py) 0;
+      background: var(--section-alt);
+    }
+    .reviews-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 40px;
+    }
+    .review-card {
+      background: var(--canvas);
+      border: 1px solid var(--border); border-radius: 8px;
+      padding: 24px;
+    }
+    .review-card .stars { margin-bottom: 12px; }
+    .review-card-title { font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+    .review-card-body { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px; }
+    .review-card-author { font-size: 12px; color: var(--text-secondary); }
+    .review-card-author .verified { color: var(--success); font-weight: 600; }
+
+    /* FAQ section */
+    .faq-section {
+      padding: var(--section-py) 0;
+      background: var(--canvas);
+    }
+    .faq-list { max-width: 760px; margin: 48px auto 0; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 0; font-size: 15px; font-weight: 500;
+      color: var(--charcoal); text-align: left; transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--terracotta); }
+    .faq-question svg { width: 20px; height: 20px; color: var(--text-secondary); flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-question svg { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.open .faq-answer { max-height: 200px; }
+    .faq-answer p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; padding-bottom: 18px; }
+
+    /* Final CTA */
+    .final-cta-section {
+      padding: var(--section-py) 0;
+      background: var(--terracotta); text-align: center; color: #fff;
+    }
+    .final-cta-section h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem); font-weight: 700; margin-bottom: 16px;
+    }
+    .final-cta-section p {
+      font-size: 16px; opacity: 0.9; max-width: 480px;
+      margin: 0 auto 28px; line-height: 1.6;
+    }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--charcoal);
+      font-size: 15px; font-weight: 600;
+      padding: 14px 32px; border-radius: 4px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-white:hover { background: var(--canvas-alt); transform: translateY(-1px); }
+
+    /* Footer */
+    .footer {
+      background: var(--charcoal-deep);
+      padding: 48px 0 32px; color: rgba(255,255,255,0.7);
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    .footer-brand p {
+      font-size: 13px; line-height: 1.6; margin-top: 16px; max-width: 280px;
+    }
+    .footer-social { display: flex; gap: 16px; margin-top: 20px; }
+    .footer-social a {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.6); transition: background 0.2s, color 0.2s;
+    }
+    .footer-social a:hover { background: var(--terracotta); color: #fff; }
+    .footer-col h4 {
+      font-size: 13px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: #fff; margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block; font-size: 13px; color: rgba(255,255,255,0.6);
+      padding: 4px 0; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--terracotta); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px; margin-top: 40px;
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: rgba(255,255,255,0.4);
+    }
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .product-hero { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .diff-grid { grid-template-columns: repeat(2, 1fr); }
+      .occasions-grid { grid-template-columns: repeat(2, 1fr); }
+      .cross-sell-grid { grid-template-columns: repeat(3, 1fr); }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      :root { --section-py: 48px; }
+
+      .header-nav { display: none; }
+      .mobile-menu-btn {
+        display: flex; flex-direction: column; gap: 5px; padding: 4px;
+      }
+      .mobile-menu-btn span {
+        display: block; width: 22px; height: 2px;
+        background: var(--charcoal); border-radius: 2px;
+      }
+
+      .product-hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .gallery { position: static; }
+
+      .trust-badges { gap: 16px; flex-wrap: wrap; }
+
+      .value-prop-grid { grid-template-columns: 1fr; }
+      .sign-for-it-grid { grid-template-columns: 1fr; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .occasions-grid { grid-template-columns: 1fr 1fr; }
+      .cross-sell-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+      /* Mobile sticky ATC at bottom */
+      .mobile-sticky-atc {
+        display: flex !important;
+      }
+    }
+
+    /* Mobile bottom sticky ATC */
+    .mobile-sticky-atc {
+      display: none;
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: var(--canvas);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+      z-index: 90;
+      flex-direction: column; gap: 8px;
+    }
+    .mobile-sticky-atc-info {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .mobile-sticky-atc-info .name { font-size: 13px; font-weight: 600; }
+    .mobile-sticky-atc-info .price { font-size: 14px; font-weight: 700; color: var(--terracotta); }
+    .mobile-sticky-atc-btn {
+      width: 100%; background: var(--terracotta); color: #fff;
+      font-size: 15px; font-weight: 700; padding: 14px;
+      border-radius: 6px; text-align: center;
+      transition: background 0.2s;
+    }
+    .mobile-sticky-atc-btn:hover { background: var(--terracotta-hover); }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar">
+    FREE SHIPPING ON ALL ORDERS &bull; <strong>100% ANONYMOUS DELIVERY</strong> &bull; 60-DAY FREE RETURNS
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/cbdmd-inspired.html" class="header-logo">Package<span>Deal</span></a>
+      <nav class="header-nav">
+        <a href="/cbdmd-inspired.html">Home</a>
+        <a href="#">Shop All Pranks</a>
+        <a href="#">Take the Quiz</a>
+        <a href="#">About</a>
+        <a href="#">FAQ</a>
+      </nav>
+      <div class="header-actions">
+        <a href="#">Track Order</a>
+        <a href="#" class="cart-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-badge">0</span>
+        </a>
+      </div>
+      <button class="mobile-menu-btn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- BREADCRUMBS -->
+  <div class="container">
+    <nav class="breadcrumbs">
+      <a href="/cbdmd-inspired.html">Home</a>
+      <span>/</span>
+      <a href="#">Prank Mail Packages</a>
+      <span>/</span>
+      MicroPenisCure.com
+    </nav>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       PRODUCT HERO — cbdMD 55/45 split
+       ════════════════════════════════════════════ -->
+  <section class="container">
+    <div class="product-hero">
+      <!-- LEFT: Image Gallery -->
+      <div class="gallery">
+        <div class="gallery-main">
+          <span class="gallery-badge">Bestseller</span>
+          <button class="gallery-nav prev" onclick="changeImage(-1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <img id="mainImage" src="/images/micropenis1.webp" alt="MicroPenisCure.com prank mail tube" />
+          <button class="gallery-nav next" onclick="changeImage(1)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active" onclick="setImage(0)">
+            <img src="/images/micropenis1.webp" alt="Thumb 1" />
+          </div>
+          <div class="gallery-thumb" onclick="setImage(1)">
+            <img src="/images/micropenis2.webp" alt="Thumb 2" />
+          </div>
+          <div class="gallery-thumb" onclick="setImage(2)">
+            <img src="/images/micropenis3.webp" alt="Thumb 3" />
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Product Info -->
+      <div class="product-info">
+        <div class="product-badge-row">
+          <span class="product-collection-badge">Bestseller</span>
+        </div>
+
+        <h1 class="product-title">The Package They'll Have to Explain to Everyone — MicroPenisCure.com</h1>
+
+        <!-- Rating — cbdMD Yotpo style -->
+        <div class="product-rating">
+          <div class="stars">
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor" opacity="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <span class="rating-text">4.5 · <a href="#reviews">1,200+ ratings on Amazon</a></span>
+        </div>
+
+        <!-- Price -->
+        <div class="product-price-row">
+          <span class="product-price" id="currentPrice">$21.99</span>
+        </div>
+
+        <!-- Short Description -->
+        <p class="product-short-desc">A mailing tube with MicroPenisCure.com printed on every side, delivered anonymously to their door. The mail carrier reads it. The coworkers read it. Nobody forgets.</p>
+
+        <!-- Key Features — cbdMD bullet list -->
+        <div class="key-features">
+          <div class="key-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Anonymous delivery — no return address, no sender info
+          </div>
+          <div class="key-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Ships via real USPS mail in 3–5 days
+          </div>
+          <div class="key-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            Real reactions guaranteed or your money back
+          </div>
+          <div class="key-feature">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+            60-day free returns, no questions asked
+          </div>
+        </div>
+
+        <!-- Variant Selector — cbdMD option buttons -->
+        <div class="variant-section">
+          <div class="variant-label">Choose Your Chaos Level</div>
+          <div class="variant-options">
+            <div class="variant-option" onclick="selectVariant(this, '$14.99')" data-price="$14.99">
+              <div class="variant-option-left">
+                <div class="variant-radio"></div>
+                <div>
+                  <div class="variant-name">No Signature Required</div>
+                  <div class="variant-desc">Delivered to their door. Everyone reads it. Nobody says a word.</div>
+                </div>
+              </div>
+              <div class="variant-price">$14.99</div>
+            </div>
+
+            <div class="variant-option selected" onclick="selectVariant(this, '$21.99')" data-price="$21.99">
+              <div class="variant-option-left">
+                <div class="variant-radio"></div>
+                <div>
+                  <div class="variant-name">
+                    Make Them Sign For It
+                    <span class="variant-badge-inline">Most Popular</span>
+                  </div>
+                  <div class="variant-desc">They sign for it in person. The mail carrier watches.</div>
+                </div>
+              </div>
+              <div class="variant-price">$21.99</div>
+            </div>
+
+            <div class="variant-option sold-out">
+              <div class="variant-option-left">
+                <div class="variant-radio"></div>
+                <div>
+                  <div class="variant-name">
+                    Penis Confetti Bomb + Sign For It
+                    <span class="variant-sold-out-tag">Sold Out</span>
+                  </div>
+                  <div class="variant-desc">Forced signature plus confetti explosion on open.</div>
+                </div>
+              </div>
+              <div class="variant-price">$34.99</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="qty-row">
+          <span class="qty-label">Quantity</span>
+          <div class="qty-selector">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <div class="qty-value" id="qtyValue">1</div>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+
+        <!-- Add to Cart -->
+        <button class="atc-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          Send this prank — <span id="atcPrice">$21.99</span>
+        </button>
+
+        <!-- Bundle Upsells — cbdMD subscription offers -->
+        <div class="bundle-offers">
+          <div class="bundle-offer">
+            <div class="bundle-offer-left">
+              <div class="bundle-offer-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <div>
+                <span class="bundle-offer-title">Double Trouble</span>
+                <span class="bundle-offer-badge">Most Popular</span>
+              </div>
+            </div>
+            <span class="bundle-offer-save">Save $5</span>
+          </div>
+          <div class="bundle-offer">
+            <div class="bundle-offer-left">
+              <div class="bundle-offer-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              </div>
+              <span class="bundle-offer-title">Triple Trouble</span>
+            </div>
+            <span class="bundle-offer-save">Save $15</span>
+          </div>
+        </div>
+
+        <!-- Trust Badges — cbdMD below-ATC -->
+        <div class="trust-badges">
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Free Returns
+          </div>
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            Free Shipping
+          </div>
+          <div class="trust-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            60-Day Guarantee
+          </div>
+        </div>
+
+        <!-- Product Info Accordion — cbdMD details/FAQ tabs -->
+        <div class="info-accordion">
+          <div class="accordion-item open">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
+              Product Details
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-body-inner">
+                <ul>
+                  <li>Branded mailing tube with MicroPenisCure.com on every side</li>
+                  <li>URL printed large enough to read from 10 feet away</li>
+                  <li>Anonymous prank letter inside</li>
+                  <li>No return address — completely untraceable</li>
+                  <li>Upgrade to forced signature for a witness</li>
+                  <li>Confetti bomb variant adds penis-shaped confetti</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
+              How It Works
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-body-inner">
+                <div class="step">
+                  <span class="step-num">1</span>
+                  <div><strong>Pick your prank.</strong> Choose your chaos level — standard, forced signature, or confetti bomb.</div>
+                </div>
+                <div class="step">
+                  <span class="step-num">2</span>
+                  <div><strong>We mail it anonymously.</strong> Ships in 1-2 business days in discreet outer packaging. You get tracking; the recipient does not.</div>
+                </div>
+                <div class="step">
+                  <span class="step-num">3</span>
+                  <div><strong>Sit back and wait for the text.</strong> They'll open it. They'll be confused. They'll ask everyone they know. You'll watch from a safe distance.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
+              FAQ
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-body-inner">
+                <p class="sub-q">Is the shipping actually anonymous?</p>
+                <p>Completely. No return address, no sender info, no way for them to trace it back to you.</p>
+                <p class="sub-q">Will they know who sent it?</p>
+                <p>Only if you tell them. Most recipients spend days texting everyone they know trying to figure it out.</p>
+                <p class="sub-q">Could this actually offend someone?</p>
+                <p>These pranks work best between people who already give each other a hard time. If your recipient would laugh at a well-timed joke at their expense, they'll love this. If they wouldn't — maybe send a candle.</p>
+                <p class="sub-q">How long does shipping take?</p>
+                <p>Orders ship within 1-2 business days and arrive in 3-5 business days within the US.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <button class="accordion-trigger" onclick="this.parentElement.classList.toggle('open')">
+              Shipping & Returns
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="accordion-body">
+              <div class="accordion-body-inner">
+                <ul>
+                  <li>Free US shipping on all orders</li>
+                  <li>Ships within 1-2 business days</li>
+                  <li>Arrives in 3-5 business days</li>
+                  <li>60-day free returns, no questions asked</li>
+                  <li>You get a tracking email; the recipient does not</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sku-row">SKU#: MICRO-SIGN-01</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       PRANK EXPERIENCE / DESCRIPTION
+       ════════════════════════════════════════════ -->
+  <section class="description-section">
+    <div class="container">
+      <div class="description-inner">
+        <div class="section-kicker" style="text-align:center;display:block;">THE FULL STORY</div>
+        <h2>What actually happens when it arrives.</h2>
+        <p>Your friend is at work. Normal day. Then someone from the mailroom walks over holding a tube. They can see the label from ten feet away. So can everyone between the mailroom and their desk. By the time it's in their hands, three people have already read it, and one of them is trying very hard not to say anything.</p>
+        <p>They sit there holding a tube that says MicroPenisCure.com in letters large enough to read from across the room. There's no return address. There's no explanation. They open it and find a letter confirming what they already suspect — someone did this on purpose. The confetti variant adds penis-shaped confetti that springs out of the tube, which is a nice touch if you want to make sure the story gets retold at every office happy hour for the next six months.</p>
+        <p>The best part happens after. The group chat lights up. They text everyone they know trying to figure out who sent it. Nobody confesses. It becomes the kind of story that resurfaces every time someone new joins the team — "oh, you haven't heard about the MicroPenisCure incident?" You'll know. They won't.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       VALUE PROP — cbdMD features split
+       ════════════════════════════════════════════ -->
+  <section class="value-prop-section">
+    <div class="container">
+      <div class="value-prop-grid">
+        <div class="value-prop-left">
+          <div class="section-kicker">WHY THIS PRANK</div>
+          <h2>The tube that turns a quiet day into an office legend.</h2>
+          <div class="amazon-badge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Rated 4.5/5 on Amazon · 1,200+ ratings
+          </div>
+        </div>
+        <div class="value-prop-bullets">
+          <div class="vp-bullet">
+            <div class="vp-bullet-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <span class="vp-bullet-text">URL printed large enough to read from ten feet away</span>
+          </div>
+          <div class="vp-bullet">
+            <div class="vp-bullet-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </div>
+            <span class="vp-bullet-text">No return address — completely untraceable</span>
+          </div>
+          <div class="vp-bullet">
+            <div class="vp-bullet-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+            </div>
+            <span class="vp-bullet-text">Ships via real USPS mail in 3–5 days</span>
+          </div>
+          <div class="vp-bullet">
+            <div class="vp-bullet-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+            </div>
+            <span class="vp-bullet-text">Upgrade to forced signature for a witness</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       SIGN FOR IT — cbdMD split CTA
+       ════════════════════════════════════════════ -->
+  <section class="sign-for-it-section">
+    <div class="container">
+      <div class="sign-for-it-grid">
+        <div class="sign-for-it-image">
+          <img src="/images/lifestyle3.png" alt="Sign For It upgrade" />
+        </div>
+        <div class="sign-for-it-content">
+          <div class="section-kicker">THE UPGRADE</div>
+          <h2>"Sign For It" — the chaos multiplier.</h2>
+          <p>Standard delivery is private. The "Sign For It" upgrade means a mail carrier hands them a package labeled MicroPenisCure.com — and waits while they sign for it.</p>
+          <p>The signature creates a witness. Witnesses create stories.</p>
+          <a href="#" style="display:inline-flex;align-items:center;gap:8px;background:var(--terracotta);color:#fff;font-size:14px;font-weight:600;padding:12px 28px;border-radius:4px;transition:background 0.2s;margin-top:8px;" onmouseover="this.style.background='var(--terracotta-hover)'" onmouseout="this.style.background='var(--terracotta)'">
+            Upgrade to Sign For It — $21.99
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       DIFFERENTIATORS
+       ════════════════════════════════════════════ -->
+  <section class="differentiators-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">WHY PACKAGE DEAL</div>
+        <h2>Why Package Deal.</h2>
+      </div>
+      <div class="diff-grid">
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <h3>The URL is the prank.</h3>
+          <p>Not glitter, not a letter. A mailing tube branded with a URL so embarrassing, they have to explain it to anyone who sees it.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+          </div>
+          <h3>"Sign For It" delivery.</h3>
+          <p>Upgrade any prank to require a forced signature. A real mail carrier hands it to them, URL visible, and waits while they sign.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </div>
+          <h3>Actually anonymous.</h3>
+          <p>No return address. No sender info. No way to trace it back to you. Just a tube with questions and zero answers.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <h3>Premium packaging.</h3>
+          <p>Real, sturdy mailing tubes — not flimsy novelty packaging. The URL is printed large enough to read from across a room.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3>Free shipping. Free returns.</h3>
+          <p>Every order ships free within the US. If something goes wrong, returns are free too. 60 days, no questions asked.</p>
+        </div>
+        <div class="diff-card">
+          <div class="diff-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Real reactions guaranteed.</h3>
+          <p>If the prank doesn't land, we'll refund your purchase. No asterisks, no fine print.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       OCCASIONS
+       ════════════════════════════════════════════ -->
+  <section class="occasions-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">PERFECT FOR</div>
+        <h2>For every occasion that deserves a terrible gift.</h2>
+      </div>
+      <div class="occasions-grid">
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></svg>
+          </div>
+          <h3>Birthday</h3>
+          <p>Send it before the party and let it become the centerpiece. Nothing says "happy birthday" like a tube that makes the whole room stop and read the label.</p>
+          <a href="#">Shop Now →</a>
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12v0c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11v0c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98v0C9.52 4.9 9 5.52 9 6.23V7"/></svg>
+          </div>
+          <h3>Bachelor / Bachelorette</h3>
+          <p>The one gift that guarantees a story for the rehearsal dinner. Works best when they have to open it in front of the group.</p>
+          <a href="#">Shop Now →</a>
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Office</h3>
+          <p>Workplace deliveries are where these tubes do their best work. The mailroom sees it first. Then the front desk. Then everyone between there and their desk.</p>
+          <a href="#">Shop Now →</a>
+        </div>
+        <div class="occasion-card">
+          <div class="occasion-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Just Because</h3>
+          <p>No occasion necessary. Sometimes you just think of someone and want to make their day slightly worse in the best possible way.</p>
+          <a href="#">Shop Now →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       CROSS-SELL — cbdMD related products
+       ════════════════════════════════════════════ -->
+  <section class="cross-sell-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">MORE PRANKS</div>
+        <h2>More ways to make their day worse.</h2>
+      </div>
+      <div class="cross-sell-grid">
+        <div class="cross-sell-card">
+          <div class="cross-sell-card-image">
+            <img src="/images/bigassdildos2.webp" alt="BigAssDildos.com" />
+          </div>
+          <div class="cross-sell-card-body">
+            <div class="cross-sell-card-title">BigAssDildos.com</div>
+            <div class="cross-sell-card-hook">Ready to escalate? A tube that says BigAssDildos.com — and one variant that actually delivers on the promise.</div>
+            <a href="#">See this prank →</a>
+          </div>
+        </div>
+        <div class="cross-sell-card">
+          <div class="cross-sell-card-image">
+            <img src="/images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com" />
+          </div>
+          <div class="cross-sell-card-body">
+            <div class="cross-sell-card-title">VaginalOdorHelper.com</div>
+            <div class="cross-sell-card-hook">The one that started it all. The URL alone has made grown adults call their mothers for answers.</div>
+            <a href="#">See this prank →</a>
+          </div>
+        </div>
+        <div class="cross-sell-card">
+          <div class="cross-sell-card-image">
+            <img src="/images/bulkcondom1.webp" alt="BulkCondomDelivery.com" />
+          </div>
+          <div class="cross-sell-card-body">
+            <div class="cross-sell-card-title">BulkCondomDelivery.com</div>
+            <div class="cross-sell-card-hook">The bestseller for a reason. The prank that turns a quiet mailbox into a crime scene of confusion.</div>
+            <a href="#">See this prank →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       REVIEWS
+       ════════════════════════════════════════════ -->
+  <section class="reviews-section" id="reviews">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">REAL REACTIONS</div>
+        <h2>What people are saying.</h2>
+        <p>Rated 4.5/5 on Amazon · 1,200+ ratings</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="review-card-title">Office Legend Status</div>
+          <div class="review-card-body">"He called three people trying to figure out who sent it. The whole office was dying. Best $22 I've ever spent."</div>
+          <div class="review-card-author">Jake M. · <span class="verified">Verified Purchase</span></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="review-card-title">The Mail Carrier Knew</div>
+          <div class="review-card-body">"She made him open it in front of the whole office. The mail carrier definitely read it. Definitely. I've been giggling about this for days."</div>
+          <div class="review-card-author">Nadia R. · <span class="verified">Verified Purchase</span></div>
+        </div>
+        <div class="review-card">
+          <div class="stars">
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="currentColor" opacity="0.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="review-card-title">Mom Found It First</div>
+          <div class="review-card-body">"His mom found it on the porch first. She called him before he even got home. The group chat was on fire for two hours."</div>
+          <div class="review-card-author">Marcus T. · <span class="verified">Verified Purchase</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════════════════
+       FAQ
+       ════════════════════════════════════════════ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-kicker">COMMON QUESTIONS</div>
+        <h2>Questions people actually ask us.</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            Is the shipping really anonymous?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><p>Completely. No return address, no sender info, no way for them to trace it back to you. The only thing on the package is the embarrassing URL — which is the whole point.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            Will they know who sent it?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><p>Not unless you tell them. The package ships from Package Deal — no sender name, no return address that traces back to you. Most recipients spend days texting everyone they know trying to figure it out.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            What if I need to cancel or return?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><p>60-day free returns, no questions asked. If you catch a cancellation before it ships (1-2 business days), we'll cancel it. Otherwise, use the return process — still free, still painless.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            Is this actually funny?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><p>Our bestseller is rated 4.5 out of 5 on Amazon. The most common review theme is "I've been giggling about this for days." It's funny in person. It's funnier when other people see it first.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            Can I send it to a work address?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><p>Yes. In fact, that's kind of the point. Workplace deliveries are where these tubes do their best work — the mailroom sees it, the front desk sees it, the person who walks it over sees it.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="this.parentElement.classList.toggle('open')">
+            How long does shipping take?
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="faq-answer"><p>Orders ship within 1-2 business days and arrive in 3-5 business days within the US. You get a tracking email; the recipient does not.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta-section">
+    <div class="container">
+      <div class="section-kicker" style="color:rgba(255,255,255,0.7);">READY?</div>
+      <h2>You already know who you'd send one to.</h2>
+      <p>Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+      <a href="/cbdmd-inspired.html" class="btn-white">See All Pranks</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div style="font-size:20px;font-weight:700;color:#fff;">Package<span style="color:var(--terracotta)">Deal</span></div>
+          <p>Anonymous prank mail tubes with URLs so embarrassing, they become the prank. Shipped with a straight face.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+            <a href="#" aria-label="TikTok"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1 0-5.78 2.92 2.92 0 0 1 .88.13v-3.5a6.37 6.37 0 0 0-.88-.07 6.26 6.26 0 0 0 0 12.51 6.27 6.27 0 0 0 6.27-6.27V9.5a8.16 8.16 0 0 0 3.83.95V7.05a4.84 4.84 0 0 1-1-.36z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#">All Pranks</a>
+          <a href="#">MicroPenisCure.com</a>
+          <a href="#">BigAssDildos.com</a>
+          <a href="#">VaginalOdorHelper.com</a>
+          <a href="#">BulkCondomDelivery.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Track Your Order</a>
+          <a href="#">About Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Return Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Package Deal. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile sticky ATC -->
+  <div class="mobile-sticky-atc">
+    <div class="mobile-sticky-atc-info">
+      <span class="name">MicroPenisCure.com</span>
+      <span class="price" id="mobilePriceDisplay">$21.99</span>
+    </div>
+    <button class="mobile-sticky-atc-btn">Send this prank</button>
+  </div>
+
+  <!-- ════════════════════════════════════════════
+       MINIMAL JS FOR INTERACTIVITY
+       ════════════════════════════════════════════ -->
+  <script>
+    // Image gallery
+    const images = ['/images/micropenis1.webp', '/images/micropenis2.webp', '/images/micropenis3.webp'];
+    let currentImage = 0;
+
+    function setImage(idx) {
+      currentImage = idx;
+      document.getElementById('mainImage').src = images[idx];
+      document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === idx);
+      });
+    }
+
+    function changeImage(dir) {
+      currentImage = (currentImage + dir + images.length) % images.length;
+      setImage(currentImage);
+    }
+
+    // Variant selector
+    function selectVariant(el, price) {
+      if (el.classList.contains('sold-out')) return;
+      document.querySelectorAll('.variant-option').forEach(v => v.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('currentPrice').textContent = price;
+      document.getElementById('atcPrice').textContent = price;
+      document.getElementById('mobilePriceDisplay').textContent = price;
+    }
+
+    // Quantity
+    let qty = 1;
+    function changeQty(dir) {
+      qty = Math.max(1, qty + dir);
+      document.getElementById('qtyValue').textContent = qty;
+    }
+  </script>
+</body>
+</html>

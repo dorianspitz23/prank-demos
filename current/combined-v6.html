@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Deserves One? — Package Deal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: #2D2D2D;
+    background: #FFFFFF;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .section {
+    background: #F2F0ED;
+    padding: 80px 24px;
+  }
+
+  .section-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    gap: 64px;
+    align-items: start;
+  }
+
+  /* Left column */
+  .left-col {
+    flex: 0 0 38%;
+    position: sticky;
+    top: 80px;
+  }
+
+  .kicker {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #D4714E;
+    margin-bottom: 16px;
+  }
+
+  .headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.2vw, 44px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: #2D2D2D;
+    margin-bottom: 16px;
+  }
+
+  .subline {
+    font-size: 17px;
+    line-height: 1.6;
+    color: #6B6B6B;
+    margin-bottom: 32px;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background: #D4714E;
+    color: #FFFFFF;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px 36px;
+    border-radius: 9999px;
+    text-decoration: none;
+    transition: background 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .cta-button:hover { background: #C0613F; }
+
+  /* Right column */
+  .right-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tab-item {
+    border-bottom: 1px solid #E8E5E1;
+    overflow: hidden;
+  }
+
+  .tab-item:first-child {
+    border-top: 1px solid #E8E5E1;
+  }
+
+  .tab-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2D2D2D;
+    text-align: left;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .tab-trigger:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  .tab-trigger .chevron {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+    color: #6B6B6B;
+    flex-shrink: 0;
+  }
+
+  .tab-item.active .tab-trigger {
+    background: #FFFFFF;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .tab-item.active .tab-trigger .chevron {
+    transform: rotate(180deg);
+    color: #D4714E;
+  }
+
+  .tab-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.35s ease;
+    background: #FFFFFF;
+    padding: 0 24px;
+  }
+
+  .tab-item.active .tab-content {
+    max-height: 300px;
+    padding: 0 24px 24px;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .tab-description {
+    font-size: 16px;
+    line-height: 1.65;
+    color: #6B6B6B;
+    margin-bottom: 16px;
+  }
+
+  .tab-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #D4714E;
+    text-decoration: none;
+    transition: gap 0.2s ease;
+  }
+
+  .tab-link:hover {
+    gap: 10px;
+    color: #C0613F;
+  }
+
+  .tab-link .arrow {
+    transition: transform 0.2s ease;
+  }
+
+  /* Mobile */
+  @media (max-width: 767px) {
+    .section {
+      padding: 56px 20px;
+    }
+
+    .section-inner {
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .left-col {
+      flex: none;
+      position: static;
+    }
+
+    .headline {
+      font-size: 28px;
+    }
+
+    .subline {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .tab-trigger {
+      padding: 18px 20px;
+      font-size: 17px;
+    }
+
+    .tab-content {
+      padding: 0 20px;
+    }
+
+    .tab-item.active .tab-content {
+      padding: 0 20px 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<section class="section">
+  <div class="section-inner">
+    <div class="left-col">
+      <p class="kicker">Who Deserves One?</p>
+      <h2 class="headline">You already know who you'd send one to.</h2>
+      <p class="subline">Pick a prank. We'll handle the rest — anonymously, with free shipping, and with a straight face.</p>
+      <a href="/collection" class="cta-button">See the Pranks</a>
+    </div>
+
+    <div class="right-col">
+      <div class="tab-item active" data-tab="0">
+        <button class="tab-trigger" onclick="switchTab(0)">
+          <span>Your Coworker</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tab-content">
+          <p class="tab-description">The one who "replies all" to every email. Imagine their face when a tube labeled MicroPenisCure.com arrives at the office — and they have to sign for it.</p>
+          <a href="/products/micropeniscure-prank-mail" class="tab-link">Send It <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="tab-item" data-tab="1">
+        <button class="tab-trigger" onclick="switchTab(1)">
+          <span>Your Brother-in-Law</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tab-content">
+          <p class="tab-description">He talks too much at Thanksgiving and always has an opinion. A tube from BigAssDildos.com showing up at his door sends a message words never could.</p>
+          <a href="/products/bigassdildos-prank-mail" class="tab-link">Send It <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="tab-item" data-tab="2">
+        <button class="tab-trigger" onclick="switchTab(2)">
+          <span>Your College Roommate</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tab-content">
+          <p class="tab-description">You survived four years together. They still owe you rent. Return the favor with a tube from VaginalOdorHelper.com — anonymously, of course.</p>
+          <a href="/products/vaginalodorhelper-prank-mail" class="tab-link">Send It <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+
+      <div class="tab-item" data-tab="3">
+        <button class="tab-trigger" onclick="switchTab(3)">
+          <span>That Friend</span>
+          <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="tab-content">
+          <p class="tab-description">You know the one. The group chat legend who can take a joke. Hit them with BulkCondomDelivery.com and watch the screenshots roll in.</p>
+          <a href="/products/bulkcondomdelivery-prank-mail" class="tab-link">Send It <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function switchTab(index) {
+    var items = document.querySelectorAll('.tab-item');
+    items.forEach(function(item, i) {
+      if (i === index) {
+        item.classList.toggle('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

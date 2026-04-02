@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal — Prototype A7 (Magazine Bold)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --terracotta: #D4714E;
+    --terracotta-hover: #C0613F;
+    --charcoal: #2D2D2D;
+    --charcoal-deep: #1a1a1a;
+    --canvas: #FFFFFF;
+    --cream: #FAF8F5;
+    --text: #2D2D2D;
+    --text-secondary: #6B6B6B;
+    --border: #E8E5E1;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--canvas);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif { font-family: 'DM Serif Display', serif; }
+
+  /* ---- ANIMATIONS ---- */
+  .fade-in { opacity: 0; transition: opacity 0.8s ease; }
+  .fade-in.visible { opacity: 1; }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--terracotta);
+    opacity: 0.4;
+  }
+
+  /* ---- SECTION INNER ---- */
+  .inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---- TEXT LINK ---- */
+  .text-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--terracotta);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
+  .text-link:hover { color: var(--terracotta); }
+
+  /* ---- 1. HEADER ---- */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #fff;
+  }
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--charcoal);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .logo em { font-style: normal; color: var(--terracotta); }
+  .header-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+  }
+  .header-nav a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .header-nav a:hover { color: var(--terracotta); }
+
+  /* ---- 2. HERO ---- */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 24px 60px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(3.2rem, 9vw, 8rem);
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    max-width: 1100px;
+    margin-bottom: 40px;
+  }
+  .hero-line {
+    width: 80px;
+    height: 2px;
+    background: var(--terracotta);
+    margin-bottom: 28px;
+  }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 440px;
+    margin-bottom: 24px;
+  }
+
+  /* ---- 3. PRODUCT IMAGE STRIP ---- */
+  .image-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+  }
+  .image-strip img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ---- 4. HOW IT WORKS ---- */
+  .how-it-works {
+    padding: 72px 0;
+  }
+  .how-it-works h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    margin-bottom: 48px;
+  }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+  }
+  .step-number {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 5vw, 6rem);
+    font-weight: 400;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+  .step h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .step p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ---- 5. PULL QUOTE ---- */
+  .pull-quote {
+    background: var(--cream);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .pull-quote blockquote {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    color: var(--charcoal);
+    line-height: 1.35;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* ---- 6. PRODUCTS (MAGAZINE GRID) ---- */
+  .products-section {
+    padding: 72px 0;
+  }
+  .products-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    margin-bottom: 48px;
+  }
+  .magazine-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .magazine-grid .featured {
+    grid-row: span 2;
+  }
+  .product-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .product-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease;
+    min-height: 260px;
+  }
+  .product-card:hover img { transform: scale(1.03); }
+  .product-card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 28px;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+    color: #fff;
+  }
+  .product-card-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .product-card-info .price {
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0.85;
+  }
+  .product-card-info .card-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+    margin-top: 8px;
+    display: inline-block;
+    transition: border-color 0.2s;
+  }
+  .product-card-info .card-link:hover { border-color: var(--terracotta); }
+
+  /* ---- 7. STATS INLINE ---- */
+  .stats-inline {
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .stats-inline p {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1.5;
+  }
+  .stats-inline em {
+    font-style: normal;
+    color: var(--terracotta);
+  }
+
+  /* ---- 8. SOCIAL PROOF ---- */
+  .social-proof {
+    background: var(--charcoal-deep);
+    padding: 80px 0;
+    color: #fff;
+  }
+  .social-proof h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    margin-bottom: 56px;
+    text-align: center;
+  }
+  .quotes-stack {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+  .quote-item blockquote {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+    color: rgba(255,255,255,0.9);
+    line-height: 1.45;
+    text-align: center;
+  }
+  .quote-item cite {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.4);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  /* ---- 9. COMPARISON TABLE ---- */
+  .comparison {
+    padding: 72px 0;
+  }
+  .comparison h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    margin-bottom: 40px;
+  }
+  .comparison-table {
+    max-width: 720px;
+    width: 100%;
+  }
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 1fr 100px 100px;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: center;
+    font-size: 0.95rem;
+  }
+  .comparison-row.header {
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--charcoal);
+  }
+  .comparison-row .cell-center {
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  /* ---- 10. GUARANTEE ---- */
+  .guarantee {
+    padding: 80px 24px;
+    text-align: center;
+    background: var(--cream);
+  }
+  .guarantee h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+  .guarantee p {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+
+  /* ---- 11. FAQ ---- */
+  .faq-section {
+    padding: 72px 0;
+  }
+  .faq-section h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    margin-bottom: 40px;
+  }
+  .faq-list {
+    max-width: 680px;
+  }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 20px 0;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--text);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  .faq-question:hover { color: var(--terracotta); }
+  .faq-question .icon {
+    font-size: 1.3rem;
+    font-weight: 300;
+    transition: transform 0.3s;
+    color: var(--terracotta);
+  }
+  .faq-item.open .faq-question .icon { transform: rotate(45deg); }
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .faq-answer-inner {
+    padding: 0 0 20px;
+    font-size: 0.93rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+
+  /* ---- 12. FINAL CTA ---- */
+  .final-cta {
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .final-cta h2 {
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    font-weight: 400;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+    line-height: 1.15;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn-pill-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 44px;
+    border-radius: 999px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: none;
+    background: var(--charcoal);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: background 0.25s;
+  }
+  .btn-pill-dark:hover { background: var(--charcoal-deep); }
+
+  /* ---- 13. FOOTER ---- */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+  .footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+  }
+  .footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--terracotta); }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    .header-nav { gap: 20px; }
+    .header-nav .hide-mobile { display: none; }
+    .hero { min-height: 75vh; padding: 48px 20px 40px; }
+    .image-strip { grid-template-columns: repeat(2, 1fr); }
+    .image-strip img { height: 200px; }
+    .steps-grid { grid-template-columns: 1fr; gap: 36px; }
+    .magazine-grid { grid-template-columns: 1fr; }
+    .magazine-grid .featured { grid-row: span 1; }
+    .product-card img { min-height: 220px; height: 280px; }
+    .comparison-row { grid-template-columns: 1fr 80px 80px; font-size: 0.88rem; }
+    .footer-inner { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo">Package<em>Deal</em></a>
+    <nav>
+      <ul class="header-nav">
+        <li class="hide-mobile"><a href="#">Shop</a></li>
+        <li class="hide-mobile"><a href="#">How It Works</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Cart (0)</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero fade-in">
+  <h1>Send someone you love something deeply embarrassing.</h1>
+  <div class="hero-line"></div>
+  <p class="hero-sub">Anonymous prank mail tubes with hilariously embarrassing fake URLs printed right on the label. They have to sign for it.</p>
+  <a href="#products" class="text-link">Shop now &rarr;</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- IMAGE STRIP -->
+<section class="image-strip fade-in">
+  <img src="images/micropenis1.webp" alt="MicroPenisCure.com tube">
+  <img src="images/bigassdildos1.webp" alt="BigAssDildos.com tube">
+  <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com tube">
+  <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com tube">
+</section>
+
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works fade-in">
+  <div class="inner">
+    <h2>How it works</h2>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h3>Pick your weapon</h3>
+        <p>Choose from four gloriously embarrassing fake URLs. Each one printed in bold on a professional mailing tube.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h3>Enter their address</h3>
+        <p>We ship it directly to your friend. No return address, no trace back to you. Completely anonymous.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h3>Watch the chaos</h3>
+        <p>They sign for a package labeled BigAssDildos.com in front of the delivery driver. You get the story at dinner.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PULL QUOTE -->
+<section class="pull-quote fade-in">
+  <blockquote>&ldquo;The delivery driver watched him sign for a tube that said MicroPenisCure.com. He didn&rsquo;t make eye contact with anyone for a week.&rdquo;</blockquote>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRODUCTS -->
+<section class="products-section fade-in" id="products">
+  <div class="inner">
+    <h2>The lineup</h2>
+    <div class="magazine-grid">
+      <div class="product-card featured">
+        <img src="images/micropenis1.webp" alt="MicroPenisCure.com">
+        <div class="product-card-info">
+          <h3>MicroPenisCure.com</h3>
+          <div class="price">From $14.99</div>
+          <a href="#" class="card-link">View product &rarr;</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/bigassdildos1.webp" alt="BigAssDildos.com">
+        <div class="product-card-info">
+          <h3>BigAssDildos.com</h3>
+          <div class="price">From $14.99</div>
+          <a href="#" class="card-link">View product &rarr;</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com">
+        <div class="product-card-info">
+          <h3>VaginalOdorHelper.com</h3>
+          <div class="price">From $14.99</div>
+          <a href="#" class="card-link">View product &rarr;</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com">
+        <div class="product-card-info">
+          <h3>BulkCondomDelivery.com</h3>
+          <div class="price">$12.99</div>
+          <a href="#" class="card-link">View product &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STATS INLINE -->
+<section class="stats-inline fade-in">
+  <p><em>2,400+</em> pranks shipped. <em>4.5/5</em> rating. <em>100%</em> anonymous. <em>0</em> friendships permanently destroyed.</p>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOCIAL PROOF -->
+<section class="social-proof fade-in">
+  <div class="inner">
+    <h2>What senders are saying</h2>
+    <div class="quotes-stack">
+      <div class="quote-item">
+        <blockquote>&ldquo;My brother had to sign for MicroPenisCure.com in front of his entire office. Best $22 I&rsquo;ve ever spent.&rdquo;</blockquote>
+        <cite>Jake M. &mdash; Verified Sender</cite>
+      </div>
+      <div class="quote-item">
+        <blockquote>&ldquo;She called me screaming. It was the highlight of my year. The packaging looks completely legit.&rdquo;</blockquote>
+        <cite>Sarah K. &mdash; Verified Sender</cite>
+      </div>
+      <div class="quote-item">
+        <blockquote>&ldquo;I sent BigAssDildos.com to my boss for his birthday. HR got involved. Worth every penny.&rdquo;</blockquote>
+        <cite>Marcus T. &mdash; Verified Sender</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPARISON TABLE -->
+<section class="comparison fade-in">
+  <div class="inner">
+    <h2>Why Package Deal</h2>
+    <div class="comparison-table">
+      <div class="comparison-row header">
+        <div>Feature</div>
+        <div class="cell-center">Us</div>
+        <div class="cell-center">Others</div>
+      </div>
+      <div class="comparison-row">
+        <div>Completely anonymous</div>
+        <div class="cell-center">&check;</div>
+        <div class="cell-center">&mdash;</div>
+      </div>
+      <div class="comparison-row">
+        <div>Signature required option</div>
+        <div class="cell-center">&check;</div>
+        <div class="cell-center">&mdash;</div>
+      </div>
+      <div class="comparison-row">
+        <div>Real USPS tracking</div>
+        <div class="cell-center">&check;</div>
+        <div class="cell-center">&check;</div>
+      </div>
+      <div class="comparison-row">
+        <div>Professional tube packaging</div>
+        <div class="cell-center">&check;</div>
+        <div class="cell-center">&mdash;</div>
+      </div>
+      <div class="comparison-row">
+        <div>Embarrassing URL on label</div>
+        <div class="cell-center">&check;</div>
+        <div class="cell-center">&mdash;</div>
+      </div>
+      <div class="comparison-row">
+        <div>Ships within 24 hours</div>
+        <div class="cell-center">&check;</div>
+        <div class="cell-center">&mdash;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- GUARANTEE -->
+<section class="guarantee fade-in">
+  <h2>100% Anonymity Guarantee</h2>
+  <p>Your name never appears on the package. No return address, no sender info, nothing. If they ever find out it was you, it&rsquo;s because you couldn&rsquo;t stop laughing.</p>
+  <a href="#products" class="text-link">See products &rarr;</a>
+</section>
+
+<div class="divider"></div>
+
+<!-- FAQ -->
+<section class="faq-section fade-in">
+  <div class="inner">
+    <h2>Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question">Is this actually anonymous? <span class="icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">Completely. No return address, no sender info on the package. The only thing on the label is their name, address, and the gloriously embarrassing URL. We take your secret to the grave.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What does &ldquo;Sign For It&rdquo; mean? <span class="icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">It means the delivery driver hands them the tube and they have to sign for it in person. Face to face. While holding a package that says BigAssDildos.com. It&rsquo;s the premium experience.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What&rsquo;s actually inside the tube? <span class="icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">A rolled-up certificate congratulating them on their purchase, plus care instructions for their fictional product. The real gift is the moment they had to sign for it in public.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How long does shipping take? <span class="icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">We ship within 24 hours. Standard delivery is 3-5 business days via USPS. You&rsquo;ll get a tracking number so you can time your &ldquo;Oh wow, that&rsquo;s crazy&rdquo; reaction perfectly.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I send this to someone at work? <span class="icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">You can send it anywhere with a valid mailing address. Office deliveries are particularly effective because there are witnesses. Many, many witnesses.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Is there a return policy? <span class="icon">+</span></button>
+        <div class="faq-answer"><div class="faq-answer-inner">If the package arrives damaged or there&rsquo;s a shipping error, we&rsquo;ll make it right. But no refunds for &ldquo;my friend didn&rsquo;t think it was funny.&rdquo; They did. They&rsquo;re just not admitting it.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FINAL CTA -->
+<section class="final-cta fade-in">
+  <h2>Someone you know deserves this.</h2>
+  <a href="#products" class="btn-pill-dark">Shop All Products &rarr;</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>&copy; 2026 Package Deal. All rights reserved.</div>
+    <ul class="footer-links">
+      <li><a href="#">Shipping &amp; Returns</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-answer').style.maxHeight = null;
+      });
+
+      // Open clicked (if was closed)
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
