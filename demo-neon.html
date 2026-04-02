@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal — Send Chaos. Stay Anonymous.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cyan: #00f0ff;
+  --magenta: #ff00e5;
+  --purple: #8b5cf6;
+  --pink: #ff2d8a;
+  --lime: #a3ff12;
+  --bg: #0a0a0a;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --bg-card-hover: rgba(255, 255, 255, 0.08);
+  --text: #f0f0f0;
+  --text-dim: #888;
+  --border: rgba(255, 255, 255, 0.08);
+  --glow-cyan: 0 0 20px rgba(0, 240, 255, 0.4);
+  --glow-magenta: 0 0 20px rgba(255, 0, 229, 0.4);
+  --glow-purple: 0 0 20px rgba(139, 92, 246, 0.4);
+  --gradient-neon: linear-gradient(135deg, var(--cyan), var(--magenta), var(--purple));
+  --gradient-neon-move: linear-gradient(270deg, var(--cyan), var(--magenta), var(--purple), var(--pink), var(--cyan));
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; line-height: 1.1; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; border-radius: 12px; }
+
+/* ===== ANIMATIONS ===== */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes neon-pulse {
+  0%, 100% { opacity: 1; filter: brightness(1); }
+  50% { opacity: 0.85; filter: brightness(1.3); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes glow-border {
+  0%, 100% { border-color: var(--cyan); box-shadow: 0 0 15px rgba(0,240,255,0.2); }
+  33% { border-color: var(--magenta); box-shadow: 0 0 15px rgba(255,0,229,0.2); }
+  66% { border-color: var(--purple); box-shadow: 0 0 15px rgba(139,92,246,0.2); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes rotate-glow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.6; }
+}
+
+.animate-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.animate-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== UTILITY ===== */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.gradient-text {
+  background: var(--gradient-neon-move);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+}
+.neon-glow-cyan { text-shadow: 0 0 10px var(--cyan), 0 0 40px rgba(0,240,255,0.3); color: var(--cyan); }
+.neon-glow-magenta { text-shadow: 0 0 10px var(--magenta), 0 0 40px rgba(255,0,229,0.3); color: var(--magenta); }
+.neon-glow-purple { text-shadow: 0 0 10px var(--purple), 0 0 40px rgba(139,92,246,0.3); color: var(--purple); }
+
+/* ===== GLASS CARD ===== */
+.glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+.glass:hover {
+  background: var(--bg-card-hover);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ===== NEON BUTTON ===== */
+.btn-neon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--magenta), var(--purple));
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(255, 0, 229, 0.3), 0 0 60px rgba(139, 92, 246, 0.15);
+}
+.btn-neon:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 0 40px rgba(255, 0, 229, 0.5), 0 0 80px rgba(139, 92, 246, 0.25);
+}
+.btn-neon:active { transform: translateY(0) scale(0.98); }
+.btn-neon.pulse { animation: pulse-scale 2s ease infinite; }
+
+.btn-neon-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 32px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--cyan);
+  background: transparent;
+  border: 2px solid var(--cyan);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+}
+.btn-neon-outline:hover {
+  background: rgba(0, 240, 255, 0.08);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 16px 0;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  transition: color 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.nav-links a:hover { color: var(--cyan); }
+.nav-cart {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.nav-cart:hover { border-color: var(--cyan); box-shadow: var(--glow-cyan); }
+.nav-cart svg { width: 20px; height: 20px; }
+.cart-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 20px;
+  height: 20px;
+  background: var(--magenta);
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255, 0, 229, 0.5);
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: 100px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 30%, rgba(0, 240, 255, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(255, 0, 229, 0.06) 0%, transparent 50%);
+  animation: rotate-glow 30s linear infinite;
+  pointer-events: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.hero-text { animation: slide-up 0.8s ease; }
+.hero-kicker {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  margin-bottom: 20px;
+  animation: neon-pulse 3s ease infinite;
+}
+.hero h1 {
+  font-size: clamp(48px, 6vw, 80px);
+  margin-bottom: 24px;
+  line-height: 1.05;
+}
+.hero p {
+  font-size: 20px;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+  max-width: 500px;
+  line-height: 1.7;
+}
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+.hero-stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+}
+.hero-stat-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.hero-image {
+  position: relative;
+  animation: float 6s ease infinite;
+}
+.hero-image img {
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 0 60px rgba(139, 92, 246, 0.15);
+}
+.hero-image::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 22px;
+  background: var(--gradient-neon-move);
+  background-size: 300% 100%;
+  animation: gradient-shift 4s ease infinite;
+  z-index: -1;
+  opacity: 0.5;
+  filter: blur(20px);
+}
+
+/* ===== PRODUCTS ===== */
+.products { padding: 120px 0; position: relative; }
+.products::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--magenta), transparent);
+}
+.section-header { text-align: center; margin-bottom: 64px; }
+.section-header .kicker {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--magenta);
+  margin-bottom: 12px;
+  display: block;
+}
+.section-header h2 { font-size: clamp(32px, 4vw, 52px); margin-bottom: 16px; }
+.section-header p { font-size: 18px; color: var(--text-dim); max-width: 600px; margin: 0 auto; }
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.product-card {
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+.product-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1px;
+  background: var(--gradient-neon-move);
+  background-size: 300% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  animation: gradient-shift 3s ease infinite;
+}
+.product-card:hover::before { opacity: 1; }
+.product-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4); }
+.product-card:hover .product-img img { transform: scale(1.05); }
+
+.product-img {
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+  aspect-ratio: 1;
+  background: #111;
+}
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  transition: transform 0.5s ease;
+}
+.product-info { padding: 20px; }
+.product-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  transition: color 0.3s;
+}
+.product-card:hover .product-name { color: var(--cyan); }
+.product-tagline { font-size: 13px; color: var(--text-dim); margin-bottom: 12px; }
+.product-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.product-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--lime);
+}
+.product-badge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: rgba(255, 0, 229, 0.15);
+  color: var(--magenta);
+  border: 1px solid rgba(255, 0, 229, 0.3);
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-it-works {
+  padding: 120px 0;
+  background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.03), transparent);
+}
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 64px;
+}
+.step-card { padding: 40px 32px; text-align: center; position: relative; }
+.step-card:hover { transform: translateY(-4px); }
+.step-num {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 auto 24px;
+  position: relative;
+}
+.step-card:nth-child(1) .step-num {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--cyan);
+  border: 2px solid rgba(0, 240, 255, 0.3);
+  box-shadow: var(--glow-cyan);
+}
+.step-card:nth-child(2) .step-num {
+  background: rgba(255, 0, 229, 0.1);
+  color: var(--magenta);
+  border: 2px solid rgba(255, 0, 229, 0.3);
+  box-shadow: var(--glow-magenta);
+}
+.step-card:nth-child(3) .step-num {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--purple);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow: var(--glow-purple);
+}
+.step-card h3 { font-size: 22px; margin-bottom: 12px; }
+.step-card p { font-size: 15px; color: var(--text-dim); line-height: 1.7; }
+.step-connector {
+  position: absolute;
+  top: 76px;
+  right: -24px;
+  font-size: 24px;
+  color: var(--text-dim);
+  opacity: 0.3;
+}
+
+/* ===== REVIEWS ===== */
+.reviews { padding: 120px 0; }
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.review-card {
+  padding: 32px;
+  position: relative;
+  animation: glow-border 6s ease infinite;
+  border-width: 1px;
+  border-style: solid;
+}
+.review-card:nth-child(2) { animation-delay: -2s; }
+.review-card:nth-child(3) { animation-delay: -4s; }
+.review-stars { color: #fbbf24; font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+.review-text { font-size: 15px; line-height: 1.8; margin-bottom: 20px; font-style: italic; color: #ccc; }
+.review-author { font-size: 13px; font-weight: 600; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+
+/* ===== FINAL CTA ===== */
+.final-cta {
+  padding: 120px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255, 0, 229, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.final-cta h2 { font-size: clamp(36px, 5vw, 64px); margin-bottom: 20px; position: relative; }
+.final-cta p { font-size: 20px; color: var(--text-dim); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; position: relative; }
+.final-cta .btn-neon { position: relative; }
+
+/* ===== DIVIDER ===== */
+.big-divider {
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+}
+.big-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--magenta), var(--cyan), var(--purple), transparent);
+}
+.big-divider span {
+  position: relative;
+  background: var(--bg);
+  padding: 0 40px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--text-dim);
+}
+
+/* ===== PDP ===== */
+.pdp { padding: 80px 0 120px; }
+.pdp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.pdp-gallery { display: flex; flex-direction: column; gap: 16px; }
+.pdp-main-image {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: #111;
+  position: relative;
+}
+.pdp-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: transform 0.4s ease;
+}
+.pdp-main-image:hover img { transform: scale(1.03); }
+.pdp-thumbs { display: flex; gap: 12px; }
+.pdp-thumb {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all 0.3s;
+  background: #111;
+}
+.pdp-thumb:hover, .pdp-thumb.active {
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+.pdp-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; }
+
+.pdp-info { position: sticky; top: 100px; }
+.pdp-badge-row { display: flex; gap: 10px; margin-bottom: 16px; }
+.pdp-badge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 4px 14px;
+  border-radius: 50px;
+}
+.pdp-badge.anon { background: rgba(0, 240, 255, 0.1); color: var(--cyan); border: 1px solid rgba(0, 240, 255, 0.3); }
+.pdp-badge.chaos { background: rgba(255, 0, 229, 0.1); color: var(--magenta); border: 1px solid rgba(255, 0, 229, 0.3); }
+
+.pdp h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  margin-bottom: 8px;
+  animation: flicker 5s linear infinite;
+}
+.pdp-subtitle {
+  font-size: 18px;
+  color: var(--text-dim);
+  margin-bottom: 24px;
+}
+.pdp-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.pdp-rating .stars { color: #fbbf24; }
+
+.pdp-price {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 32px;
+}
+
+/* Variant pills */
+.variant-selector { margin-bottom: 32px; }
+.variant-label {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.variant-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+.variant-pill {
+  padding: 12px 24px;
+  border-radius: 50px;
+  border: 2px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+}
+.variant-pill:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+}
+.variant-pill.selected {
+  border-color: var(--cyan);
+  background: rgba(0, 240, 255, 0.08);
+  color: var(--cyan);
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+}
+.variant-pill .pill-price {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+.variant-pill.selected .pill-price { color: rgba(0, 240, 255, 0.6); }
+.variant-pill.oos {
+  opacity: 0.4;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* ATC */
+.btn-atc {
+  width: 100%;
+  padding: 20px;
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+.trust-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  font-size: 12px;
+  color: var(--text-dim);
+  margin-bottom: 32px;
+}
+.trust-row span { display: flex; align-items: center; gap: 6px; }
+
+/* PDP description */
+.pdp-desc { margin-top: 32px; }
+.pdp-desc h3 { font-size: 20px; margin-bottom: 12px; color: var(--cyan); }
+.pdp-desc p { font-size: 15px; color: var(--text-dim); line-height: 1.8; margin-bottom: 16px; }
+
+/* What happens section */
+.what-happens {
+  margin-top: 48px;
+  padding: 32px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(255, 0, 229, 0.04));
+  border: 1px solid rgba(139, 92, 246, 0.15);
+}
+.what-happens h3 { font-size: 22px; margin-bottom: 20px; }
+.timeline { display: flex; flex-direction: column; gap: 20px; }
+.timeline-item { display: flex; gap: 16px; align-items: flex-start; }
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px currentColor;
+}
+.timeline-item:nth-child(1) .timeline-dot { background: var(--cyan); color: var(--cyan); }
+.timeline-item:nth-child(2) .timeline-dot { background: var(--magenta); color: var(--magenta); }
+.timeline-item:nth-child(3) .timeline-dot { background: var(--purple); color: var(--purple); }
+.timeline-item:nth-child(4) .timeline-dot { background: var(--lime); color: var(--lime); }
+.timeline-item strong { display: block; font-size: 15px; margin-bottom: 2px; }
+.timeline-item p { font-size: 14px; color: var(--text-dim); line-height: 1.6; margin: 0; }
+
+/* ===== FOOTER ===== */
+footer {
+  padding: 60px 0 40px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+footer p { font-size: 13px; color: var(--text-dim); }
+footer .gradient-text { font-size: 14px; font-weight: 600; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .pdp-grid { grid-template-columns: 1fr; }
+  .pdp-info { position: static; }
+}
+@media (max-width: 768px) {
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero p { margin-left: auto; margin-right: auto; }
+  .hero-stats { justify-content: center; }
+  .hero-image { order: -1; }
+  .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+  .step-connector { display: none; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .product-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+}
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 16px 28px;
+  border-radius: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, var(--magenta), var(--purple));
+  box-shadow: 0 0 30px rgba(255, 0, 229, 0.3);
+  transform: translateY(120px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 200;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <a href="#" class="nav-logo"><span class="gradient-text">PACKAGE DEAL</span></a>
+    <div class="nav-links">
+      <a href="#products">Products</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#pdp-section">Shop</a>
+    </div>
+    <div class="nav-cart" onclick="showToast('Your cart is empty. Pick a tube first!')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <div class="cart-count" id="cart-count" style="display:none;">0</div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="hero-kicker">Anonymous Prank Mail Since 2024</span>
+        <h1><span class="gradient-text">Send Chaos.</span><br>Stay Anonymous.</h1>
+        <p>Cardboard mailing tubes with the most embarrassing fake URLs imaginable. Shipped to anyone. No return address. They have to sign for it at the door.</p>
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+          <a href="#products" class="btn-neon pulse">Browse the Chaos</a>
+          <a href="#how-it-works" class="btn-neon-outline">How It Works</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="hero-stat-num neon-glow-cyan">12K+</div>
+            <div class="hero-stat-label">Tubes Shipped</div>
+          </div>
+          <div>
+            <div class="hero-stat-num neon-glow-magenta">100%</div>
+            <div class="hero-stat-label">Anonymous</div>
+          </div>
+          <div>
+            <div class="hero-stat-num neon-glow-purple">4.8/5</div>
+            <div class="hero-stat-label">Chaos Rating</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="images/hero.png" alt="Package Deal prank mailing tube">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="kicker">The Arsenal</span>
+      <h2><span class="gradient-text">Pick Your Weapon</span></h2>
+      <p>Each tube arrives in plain packaging with one of these URLs printed in massive letters on the outside. Choose wisely.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card glass animate-in" onclick="scrollToPDP()">
+        <div class="product-img"><img src="images/micropenis1.webp" alt="MicroPenisCure.com tube"></div>
+        <div class="product-info">
+          <div class="product-name">MicroPenisCure.com</div>
+          <div class="product-tagline">The all-time bestseller. Enough said.</div>
+          <div class="product-price-row">
+            <div class="product-price">$14.99</div>
+            <div class="product-badge">Best Seller</div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card glass animate-in" style="transition-delay: 0.1s;">
+        <div class="product-img"><img src="images/bigassdildos1.webp" alt="BigAssDildos.com tube"></div>
+        <div class="product-info">
+          <div class="product-name">BigAssDildos.com</div>
+          <div class="product-tagline">Heavy. Bold. Impossible to ignore.</div>
+          <div class="product-price-row">
+            <div class="product-price">$14.99</div>
+            <div class="product-badge">Fan Favorite</div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card glass animate-in" style="transition-delay: 0.2s;">
+        <div class="product-img"><img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com tube"></div>
+        <div class="product-info">
+          <div class="product-name">VaginalOdorHelper.com</div>
+          <div class="product-tagline">For when subtlety just won't cut it.</div>
+          <div class="product-price-row">
+            <div class="product-price">$14.99</div>
+          </div>
+        </div>
+      </div>
+      <div class="product-card glass animate-in" style="transition-delay: 0.3s;">
+        <div class="product-img"><img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com tube"></div>
+        <div class="product-info">
+          <div class="product-name">BulkCondomDelivery.com</div>
+          <div class="product-tagline">The neighborly conversation starter.</div>
+          <div class="product-price-row">
+            <div class="product-price">$12.99</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="kicker">Dead Simple</span>
+      <h2>Three Steps to <span class="gradient-text">Maximum Chaos</span></h2>
+      <p>No account needed. No trace back to you. Just pure, anonymous comedy delivered to any doorstep in America.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card glass animate-in">
+        <div class="step-num">1</div>
+        <h3>Pick a Tube</h3>
+        <p>Choose the URL that'll cause the most damage to your buddy's reputation. Upgrade to "Sign For It" if you want them to accept it face-to-face with the mail carrier watching.</p>
+        <span class="step-connector">&rarr;</span>
+      </div>
+      <div class="step-card glass animate-in" style="transition-delay: 0.15s;">
+        <div class="step-num">2</div>
+        <h3>We Ship It Anonymously</h3>
+        <p>No return address. No sender info. Just a mysterious cardboard tube with an absolutely unhinged URL printed on the outside arriving via USPS Priority Mail.</p>
+        <span class="step-connector">&rarr;</span>
+      </div>
+      <div class="step-card glass animate-in" style="transition-delay: 0.3s;">
+        <div class="step-num">3</div>
+        <h3>They Sign For It</h3>
+        <p>The mail carrier hands it over. They sign the little screen. They look down and read the URL. The mail carrier has already seen it. There is no recovering from this moment.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="container">
+    <div class="section-header animate-in">
+      <span class="kicker">Verified Chaos</span>
+      <h2>What People Are <span class="gradient-text">Saying</span></h2>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card glass animate-in">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">"My roommate had to sign for a tube that said MicroPenisCure.com in front of the entire apartment complex. He didn't speak to me for three days. Worth every penny."</div>
+        <div class="review-author">Jake M. &mdash; Verified Purchase</div>
+      </div>
+      <div class="review-card glass animate-in" style="transition-delay: 0.1s;">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">"Sent BulkCondomDelivery.com to my brother at his office. The receptionist handed it to him during a team meeting. His face was absolutely priceless. I can die happy."</div>
+        <div class="review-author">Nadia K. &mdash; Verified Purchase</div>
+      </div>
+      <div class="review-card glass animate-in" style="transition-delay: 0.2s;">
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <div class="review-text">"I wasn't sure it would actually be anonymous. It was. Completely. My friend has been interrogating everyone in his life trying to figure out who did it. Nobody suspects me. Perfect crime."</div>
+        <div class="review-author">Marcus T. &mdash; Verified Purchase</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="animate-in">
+      <h2>Someone You Know <span class="gradient-text">Deserves This</span></h2>
+      <p>You're already thinking of who. Don't fight it. Starting at $12.99 with free shipping and zero evidence it was you.</p>
+      <a href="#products" class="btn-neon pulse">Send Chaos Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="big-divider" id="pdp-section">
+  <span>Product Detail Preview</span>
+</div>
+
+<!-- PDP -->
+<section class="pdp">
+  <div class="container">
+    <div class="pdp-grid">
+      <!-- Gallery -->
+      <div class="pdp-gallery animate-in">
+        <div class="pdp-main-image">
+          <img id="pdp-main-img" src="images/micropenis1.webp" alt="MicroPenisCure.com product">
+        </div>
+        <div class="pdp-thumbs">
+          <div class="pdp-thumb active" onclick="switchImage(this, 'images/micropenis1.webp')">
+            <img src="images/micropenis1.webp" alt="View 1">
+          </div>
+          <div class="pdp-thumb" onclick="switchImage(this, 'images/micropenis2.webp')">
+            <img src="images/micropenis2.webp" alt="View 2">
+          </div>
+          <div class="pdp-thumb" onclick="switchImage(this, 'images/micropenis3.webp')">
+            <img src="images/micropenis3.webp" alt="View 3">
+          </div>
+        </div>
+      </div>
+
+      <!-- Info -->
+      <div class="pdp-info animate-in" style="transition-delay: 0.15s;">
+        <div class="pdp-badge-row">
+          <span class="pdp-badge anon">100% Anonymous</span>
+          <span class="pdp-badge chaos">Max Embarrassment</span>
+        </div>
+        <h1 class="neon-glow-cyan">MicroPenisCure.com</h1>
+        <div class="pdp-subtitle">The original. The legend. The tube that started it all.</div>
+        <div class="pdp-rating">
+          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          <span>4.8 out of 5 &mdash; 2,847 happy senders</span>
+        </div>
+        <div class="pdp-price" id="pdp-price"><span class="neon-glow-magenta">$21.99</span></div>
+
+        <div class="variant-selector">
+          <div class="variant-label">Choose Your Chaos Level</div>
+          <div class="variant-pills">
+            <button class="variant-pill" onclick="selectVariant(this, '$14.99')" data-name="Standard">
+              Standard
+              <span class="pill-price">$14.99</span>
+            </button>
+            <button class="variant-pill selected" onclick="selectVariant(this, '$21.99')" data-name="Sign For It">
+              Sign For It
+              <span class="pill-price">$21.99</span>
+            </button>
+            <button class="variant-pill oos" data-name="Confetti Bomb">
+              Confetti Bomb
+              <span class="pill-price">$34.99 &mdash; Sold Out</span>
+            </button>
+          </div>
+        </div>
+
+        <button class="btn-neon btn-atc pulse" onclick="addToCart()">Add to Cart &mdash; Ship the Chaos</button>
+        <div class="trust-row">
+          <span>&#128274; Secure Checkout</span>
+          <span>&#128230; Free Shipping</span>
+          <span>&#128373;&#65039; No Return Address</span>
+        </div>
+
+        <div class="pdp-desc">
+          <h3>What's in the Tube?</h3>
+          <p>Nothing. That's the beauty of it. It's a professional-looking cardboard mailing tube with "MicroPenisCure.com" printed in bold letters across the outside. There's a rolled-up note inside that reads: "Your friend thought you could use this." That's it. That's the whole product. And it's magnificent.</p>
+          <p>Available in three chaos tiers: <strong>Standard</strong> arrives quietly in their mailbox. <strong>Sign For It</strong> means the mail carrier hands it to them face-to-face and they have to acknowledge its existence with a signature. <strong>Confetti Bomb</strong> (currently sold out because you animals bought them all) explodes with glitter when opened.</p>
+        </div>
+
+        <div class="what-happens">
+          <h3><span class="gradient-text">What Happens When It Arrives</span></h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <strong>Day 1-3: The Delivery</strong>
+                <p>A USPS carrier walks up to their door holding a tube clearly labeled MicroPenisCure.com. If they chose "Sign For It," the carrier waits while your buddy reads the label, processes what just happened, and signs the device with a shaking hand.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <strong>The First 30 Seconds</strong>
+                <p>They look at the tube. They read it again. They look around to see who's watching. They flip it over looking for a return address. There isn't one. The confusion is already setting in.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <strong>The Investigation</strong>
+                <p>They open it. They find the note. They immediately start texting everyone they know: "Did you send this?" You deny everything. You have been preparing for this moment.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div>
+                <strong>The Group Chat Erupts</strong>
+                <p>They post a photo of the tube. Everyone loses it. This becomes the funniest thing that happened in your friend group this year. You quietly take credit three months later at a barbecue. Legend status achieved.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p style="margin-bottom: 8px;"><span class="gradient-text">PACKAGE DEAL</span></p>
+    <p>Anonymous prank mail for people with taste and terrible friends.</p>
+    <p style="margin-top: 16px; font-size: 11px; opacity: 0.4;">&copy; 2024 Package Deal. All chaos reserved. This is a demo page.</p>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// Scroll-reveal animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+// PDP image switching
+function switchImage(thumb, src) {
+  document.getElementById('pdp-main-img').src = src;
+  document.querySelectorAll('.pdp-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+// Variant selection
+function selectVariant(pill, price) {
+  if (pill.classList.contains('oos')) return;
+  document.querySelectorAll('.variant-pill').forEach(p => p.classList.remove('selected'));
+  pill.classList.add('selected');
+  document.getElementById('pdp-price').innerHTML = '<span class="neon-glow-magenta">' + price + '</span>';
+}
+
+// Add to cart
+let cartCount = 0;
+function addToCart() {
+  cartCount++;
+  const badge = document.getElementById('cart-count');
+  badge.style.display = 'flex';
+  badge.textContent = cartCount;
+  const selected = document.querySelector('.variant-pill.selected');
+  const name = selected ? selected.dataset.name : 'Standard';
+  showToast('MicroPenisCure.com (' + name + ') added to cart!');
+}
+
+// Toast
+let toastTimeout;
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+// Scroll to PDP
+function scrollToPDP() {
+  document.getElementById('pdp-section').scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>

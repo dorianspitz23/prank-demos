@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal — Send Someone Something Truly Awful</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caveat:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ================================================
+     RESET & BASE
+     ================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --kraft: #D4A574;
+    --kraft-light: #E8CBA8;
+    --cherry: #E63946;
+    --cherry-dark: #C62D39;
+    --yellow: #FFD166;
+    --sage: #606C38;
+    --cream: #FFFDF5;
+    --ink: #2B2118;
+    --pink-note: #FFB6C1;
+    --blue-note: #B0D4F1;
+    --green-note: #C8E6C9;
+    --yellow-note: #FFF9C4;
+    --font-hand: 'Caveat', cursive;
+    --font-display: 'Abril Fatface', serif;
+    --font-body: 'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--cream);
+    overflow-x: hidden;
+    line-height: 1.5;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; }
+
+  /* ================================================
+     NOISE / PAPER TEXTURE (applied to body)
+     ================================================ */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ================================================
+     NAV / HEADER
+     ================================================ */
+  .nav {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 4px dashed var(--kraft);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.02em;
+    transform: rotate(-1deg);
+  }
+  .nav-logo span { color: var(--cherry); }
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    font-family: var(--font-hand);
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .nav-links a {
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--yellow); }
+
+  /* ================================================
+     UTILITY CLASSES
+     ================================================ */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Polaroid frame */
+  .polaroid {
+    background: #fff;
+    padding: 12px 12px 40px;
+    box-shadow: 3px 4px 12px rgba(43,33,24,0.18), 1px 1px 0 rgba(43,33,24,0.06);
+    display: inline-block;
+    position: relative;
+  }
+  .polaroid img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .polaroid-caption {
+    font-family: var(--font-hand);
+    font-size: 1.15rem;
+    text-align: center;
+    margin-top: 8px;
+    color: var(--ink);
+  }
+
+  /* Washi tape strip */
+  .washi {
+    position: absolute;
+    width: 90px;
+    height: 26px;
+    opacity: 0.85;
+    z-index: 5;
+    border-radius: 2px;
+  }
+  .washi-yellow { background: var(--yellow); }
+  .washi-cherry { background: var(--cherry); opacity: 0.7; }
+  .washi-sage { background: var(--sage); opacity: 0.6; }
+  .washi-kraft { background: var(--kraft); opacity: 0.75; }
+
+  /* Sticker badge */
+  .sticker {
+    display: inline-block;
+    font-family: var(--font-hand);
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 50%;
+    border: 3px dashed;
+    text-align: center;
+    line-height: 1.2;
+    box-shadow: 2px 3px 6px rgba(43,33,24,0.15);
+  }
+
+  /* Torn paper edge (top) */
+  .torn-top {
+    clip-path: polygon(
+      0% 4%, 2% 0%, 5% 3%, 8% 1%, 12% 4%, 15% 0%, 18% 3%, 22% 1%, 25% 4%, 28% 0%, 32% 3%, 35% 1%, 38% 5%, 42% 0%, 45% 3%, 48% 1%, 52% 4%, 55% 0%, 58% 3%, 62% 1%, 65% 4%, 68% 0%, 72% 3%, 75% 1%, 78% 4%, 82% 0%, 85% 3%, 88% 1%, 92% 4%, 95% 0%, 98% 3%, 100% 0%,
+      100% 100%, 0% 100%
+    );
+    padding-top: 30px;
+  }
+
+  /* Torn paper edge (bottom) */
+  .torn-bottom {
+    clip-path: polygon(
+      0% 0%, 100% 0%,
+      100% 96%, 98% 100%, 95% 97%, 92% 100%, 88% 96%, 85% 100%, 82% 97%, 78% 100%, 75% 96%, 72% 100%, 68% 97%, 65% 100%, 62% 96%, 58% 100%, 55% 97%, 52% 100%, 48% 96%, 45% 100%, 42% 97%, 38% 100%, 35% 96%, 32% 100%, 28% 97%, 25% 100%, 22% 96%, 18% 100%, 15% 97%, 12% 100%, 8% 96%, 5% 100%, 2% 97%, 0% 100%
+    );
+    padding-bottom: 30px;
+  }
+
+  /* Wavy underline */
+  .wavy-underline {
+    text-decoration: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='12' viewBox='0 0 100 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8 Q12.5 0 25 8 Q37.5 16 50 8 Q62.5 0 75 8 Q87.5 16 100 8' fill='none' stroke='%23E63946' stroke-width='2.5'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-position: bottom;
+    background-size: 50px 10px;
+    padding-bottom: 10px;
+  }
+
+  /* Big red CTA button */
+  .btn-red {
+    display: inline-block;
+    font-family: var(--font-hand);
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: var(--cherry);
+    color: #fff;
+    padding: 16px 40px;
+    border: 3px solid var(--ink);
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+  }
+  .btn-red:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .btn-red:active {
+    transform: translate(2px, 2px);
+    box-shadow: 1px 1px 0 var(--ink);
+  }
+
+  /* Stamp button (for ATC) */
+  .btn-stamp {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    background: var(--cherry);
+    color: #fff;
+    padding: 18px 48px;
+    border: 4px double #fff;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--ink), inset 0 0 0 2px var(--cherry-dark);
+    transform: rotate(-2deg);
+    transition: transform 0.15s;
+    outline-offset: 4px;
+    outline: 3px dashed var(--cherry);
+  }
+  .btn-stamp:hover { transform: rotate(0deg) scale(1.04); }
+
+  /* Price tag */
+  .price-tag {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.1rem;
+    background: var(--yellow);
+    color: var(--ink);
+    padding: 4px 14px 4px 20px;
+    border: 2px solid var(--ink);
+    border-radius: 0 4px 4px 0;
+    position: relative;
+    box-shadow: 2px 2px 0 rgba(43,33,24,0.15);
+  }
+  .price-tag::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 1.5px solid var(--ink);
+  }
+
+  /* ================================================
+     SECTION 1: HERO
+     ================================================ */
+  .hero {
+    background: var(--kraft-light);
+    padding: 60px 0 80px;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px dotted var(--ink);
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    position: relative;
+  }
+  .hero-text {
+    position: relative;
+    z-index: 3;
+  }
+  .hero-text h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 4.8rem);
+    line-height: 1.1;
+    transform: rotate(-2deg);
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .hero-text h1 .accent { color: var(--cherry); }
+  .hero-subtext {
+    font-family: var(--font-hand);
+    font-size: 1.5rem;
+    color: var(--ink);
+    margin-bottom: 32px;
+    max-width: 440px;
+    line-height: 1.4;
+  }
+  .hero-cta-wrap {
+    transform: rotate(1.5deg);
+    display: inline-block;
+    position: relative;
+  }
+  /* Washi tapes on hero */
+  .hero .washi-1 {
+    top: 15px; right: 42%; width: 100px;
+    transform: rotate(-35deg);
+  }
+  .hero .washi-2 {
+    bottom: 20px; left: 10px; width: 80px;
+    transform: rotate(15deg);
+  }
+  .hero-image-wrap {
+    position: relative;
+    z-index: 2;
+  }
+  .hero-polaroid {
+    transform: rotate(3deg);
+    max-width: 420px;
+    margin-left: auto;
+    position: relative;
+  }
+  .hero-polaroid .washi-3 {
+    top: -10px; right: 20px;
+    transform: rotate(25deg);
+    width: 70px;
+  }
+  .hero-anon-badge {
+    position: absolute;
+    bottom: 60px;
+    left: -40px;
+    z-index: 6;
+    transform: rotate(-8deg);
+  }
+  .hero-anon-badge .sticker {
+    background: var(--yellow);
+    border-color: var(--ink);
+    font-size: 1rem;
+    padding: 14px 20px;
+  }
+  .hero-arrow {
+    position: absolute;
+    bottom: 110px;
+    left: -90px;
+    font-size: 2.5rem;
+    transform: rotate(25deg);
+    z-index: 6;
+    color: var(--cherry);
+    font-family: var(--font-hand);
+    font-weight: 700;
+  }
+
+  /* Cross-hatch doodle BG pattern */
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 300px; height: 300px;
+    opacity: 0.04;
+    background: repeating-linear-gradient(
+      45deg,
+      var(--ink) 0px, var(--ink) 1px,
+      transparent 1px, transparent 12px
+    ), repeating-linear-gradient(
+      -45deg,
+      var(--ink) 0px, var(--ink) 1px,
+      transparent 1px, transparent 12px
+    );
+    pointer-events: none;
+  }
+
+  /* ================================================
+     SECTION 2: PRODUCT GRID — CORKBOARD
+     ================================================ */
+  .products {
+    padding: 80px 0;
+    background:
+      radial-gradient(circle, rgba(43,33,24,0.06) 1px, transparent 1px),
+      var(--kraft);
+    background-size: 16px 16px;
+    border-top: 3px dashed var(--ink);
+    border-bottom: 3px dashed var(--ink);
+    position: relative;
+  }
+  .products-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--cream);
+    transform: rotate(-1deg);
+  }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .product-card {
+    position: relative;
+  }
+  .product-card:nth-child(1) { transform: rotate(-3deg); }
+  .product-card:nth-child(2) { transform: rotate(2deg); margin-top: 20px; }
+  .product-card:nth-child(3) { transform: rotate(-1deg); }
+  .product-card:nth-child(4) { transform: rotate(4deg); margin-top: 10px; }
+
+  .product-card .polaroid {
+    width: 100%;
+    transition: transform 0.25s;
+    cursor: pointer;
+  }
+  .product-card .polaroid:hover {
+    transform: rotate(0deg) scale(1.05);
+    z-index: 10;
+  }
+  .product-card .polaroid img {
+    aspect-ratio: 1;
+    object-fit: cover;
+    background: #f0ebe4;
+  }
+  .product-name {
+    font-family: var(--font-hand);
+    font-size: 1.35rem;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 6px;
+    color: var(--ink);
+  }
+  .product-price-wrap {
+    text-align: center;
+    margin-top: 8px;
+  }
+  /* "NEW!" sticker */
+  .new-sticker {
+    position: absolute;
+    top: -12px;
+    right: -8px;
+    z-index: 10;
+    background: var(--cherry);
+    color: #fff;
+    font-family: var(--font-hand);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 50%;
+    transform: rotate(12deg);
+    border: 2px dashed #fff;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  }
+  /* Pin on card */
+  .pin {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 18px;
+    background: var(--cherry);
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+    z-index: 6;
+  }
+
+  /* ================================================
+     SECTION 3: HOW IT WORKS — NOTEBOOK PAPER
+     ================================================ */
+  .how-it-works {
+    padding: 80px 0;
+    background: var(--cream);
+    position: relative;
+  }
+  .notebook {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 48px 48px 48px 80px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 4px 6px 16px rgba(43,33,24,0.1);
+    position: relative;
+    /* Ruled lines */
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      #d4e0ed 31px,
+      #d4e0ed 32px
+    );
+    background-position: 0 42px;
+  }
+  /* Red margin line */
+  .notebook::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 64px;
+    width: 2px;
+    background: var(--cherry);
+    opacity: 0.4;
+  }
+  /* Spiral holes */
+  .notebook::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; left: 8px;
+    width: 32px;
+    background:
+      radial-gradient(circle 6px at 16px 24px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 56px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 88px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 120px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 152px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 184px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 216px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 248px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 280px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 312px, #ddd 5px, transparent 6px),
+      radial-gradient(circle 6px at 16px 344px, #ddd 5px, transparent 6px);
+  }
+
+  .notebook-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 32px;
+    transform: rotate(-1deg);
+    position: relative;
+    z-index: 2;
+  }
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 28px;
+    position: relative;
+    z-index: 2;
+  }
+  .step-num {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.4rem;
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--cherry);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: rgba(230,57,70,0.08);
+  }
+  .step-text {
+    font-family: var(--font-hand);
+    font-size: 1.4rem;
+    line-height: 1.4;
+    padding-top: 6px;
+  }
+  .step-text strong {
+    font-weight: 700;
+    color: var(--cherry);
+  }
+  .step-icon {
+    font-size: 1.3rem;
+    margin-right: 6px;
+  }
+
+  /* ================================================
+     SECTION 4: WALL OF SHAME — STICKY NOTES
+     ================================================ */
+  .testimonials {
+    padding: 80px 0 100px;
+    background: var(--kraft-light);
+    border-top: 4px dotted var(--sage);
+    border-bottom: 4px dotted var(--sage);
+    position: relative;
+  }
+  .testimonials-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    text-align: center;
+    margin-bottom: 50px;
+    transform: rotate(1deg);
+  }
+  .sticky-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  .sticky-note {
+    padding: 24px 20px;
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    box-shadow: 3px 4px 8px rgba(43,33,24,0.15);
+    position: relative;
+  }
+  .sticky-note:nth-child(1) { background: var(--yellow-note); transform: rotate(-2deg); }
+  .sticky-note:nth-child(2) { background: var(--pink-note); transform: rotate(3deg); margin-top: 16px; }
+  .sticky-note:nth-child(3) { background: var(--blue-note); transform: rotate(-1deg); margin-top: -10px; }
+  .sticky-note:nth-child(4) { background: var(--green-note); transform: rotate(2.5deg); margin-top: 20px; }
+
+  .sticky-note .author {
+    display: block;
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--ink);
+    opacity: 0.7;
+  }
+  /* Tape on top of each note */
+  .sticky-note::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-5deg);
+    width: 60px;
+    height: 18px;
+    background: rgba(212,167,116,0.7);
+    border-radius: 2px;
+  }
+
+  /* ================================================
+     SECTION 5: FUN FACTS STRIP
+     ================================================ */
+  .fun-facts {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 40px 0;
+    overflow: hidden;
+    border-top: 4px double var(--yellow);
+    border-bottom: 4px double var(--yellow);
+  }
+  .facts-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .fact {
+    text-align: center;
+    position: relative;
+  }
+  .fact:not(:last-child)::after {
+    content: '✦';
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--yellow);
+    font-size: 1.2rem;
+  }
+  .fact-number {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--yellow);
+    display: block;
+  }
+  .fact-label {
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    opacity: 0.85;
+  }
+  .fact:nth-child(2) .fact-number { color: var(--cherry); font-family: var(--font-hand); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2.2rem); }
+  .fact:nth-child(3) .fact-number { color: var(--sage); font-family: var(--font-body); font-weight: 700; }
+
+  /* ================================================
+     SECTION 6: FINAL CTA
+     ================================================ */
+  .final-cta {
+    padding: 100px 0;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .final-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    padding: 0 24px;
+  }
+  .final-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    line-height: 1.1;
+    margin-bottom: 20px;
+    transform: rotate(-1.5deg);
+  }
+  .final-text p {
+    font-family: var(--font-hand);
+    font-size: 1.4rem;
+    margin-bottom: 32px;
+    max-width: 400px;
+    line-height: 1.4;
+  }
+  .final-image-side {
+    position: relative;
+  }
+  .final-polaroid {
+    transform: rotate(4deg);
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  /* Scattered stickers */
+  .final-sticker-1,
+  .final-sticker-2,
+  .final-sticker-3 {
+    position: absolute;
+    z-index: 5;
+  }
+  .final-sticker-1 {
+    top: -20px; right: 30px;
+    transform: rotate(12deg);
+  }
+  .final-sticker-1 .sticker {
+    background: var(--yellow);
+    border-color: var(--ink);
+    font-size: 0.95rem;
+    padding: 12px 16px;
+  }
+  .final-sticker-2 {
+    bottom: 40px; left: -30px;
+    transform: rotate(-15deg);
+  }
+  .final-sticker-2 .sticker {
+    background: var(--sage);
+    border-color: var(--cream);
+    color: var(--cream);
+    font-size: 0.95rem;
+    padding: 14px 18px;
+  }
+  .final-sticker-3 {
+    bottom: -10px; right: -20px;
+    transform: rotate(8deg);
+  }
+  .final-sticker-3 .sticker {
+    background: var(--cherry);
+    border-color: #fff;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 10px 14px;
+  }
+  .final-washi-1 {
+    position: absolute;
+    top: 30px; left: -40px;
+    width: 110px; height: 26px;
+    background: var(--yellow);
+    opacity: 0.7;
+    transform: rotate(-20deg);
+  }
+  .final-cta-wrap {
+    transform: rotate(2deg);
+    display: inline-block;
+  }
+
+  /* ================================================
+     TORN PAPER DIVIDER
+     ================================================ */
+  .torn-divider {
+    height: 50px;
+    background: var(--kraft-light);
+    clip-path: polygon(
+      0% 0%, 100% 0%,
+      100% 60%, 97% 80%, 94% 50%, 91% 75%, 88% 45%, 85% 70%, 82% 40%, 79% 65%, 76% 35%, 73% 70%, 70% 50%, 67% 80%, 64% 45%, 61% 70%, 58% 40%, 55% 75%, 52% 50%, 49% 80%, 46% 45%, 43% 70%, 40% 35%, 37% 65%, 34% 45%, 31% 75%, 28% 50%, 25% 80%, 22% 40%, 19% 65%, 16% 45%, 13% 75%, 10% 50%, 7% 80%, 4% 45%, 1% 70%, 0% 55%
+    );
+    position: relative;
+    z-index: 2;
+    margin-bottom: -20px;
+  }
+
+  /* ================================================
+     PDP SECTION
+     ================================================ */
+  .pdp {
+    background: var(--cream);
+    padding: 80px 0 100px;
+    position: relative;
+  }
+  .pdp-header {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+  }
+  .pdp-label {
+    font-family: var(--font-hand);
+    font-size: 1.3rem;
+    color: var(--sage);
+    display: block;
+    margin-bottom: 8px;
+    transform: rotate(2deg);
+  }
+  .pdp-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+    transform: rotate(-1.5deg);
+    display: inline-block;
+    position: relative;
+  }
+
+  .pdp-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  /* Fanned polaroids */
+  .pdp-gallery {
+    position: relative;
+    height: 500px;
+  }
+  .pdp-gallery .polaroid {
+    position: absolute;
+    width: 280px;
+    cursor: pointer;
+    transition: transform 0.3s, z-index 0s;
+  }
+  .pdp-gallery .polaroid:hover {
+    z-index: 20;
+    transform: rotate(0deg) scale(1.08) !important;
+  }
+  .pdp-gallery .polaroid:nth-child(1) {
+    top: 20px; left: 10px;
+    transform: rotate(-6deg);
+    z-index: 3;
+  }
+  .pdp-gallery .polaroid:nth-child(2) {
+    top: 0; left: 140px;
+    transform: rotate(3deg);
+    z-index: 4;
+  }
+  .pdp-gallery .polaroid:nth-child(3) {
+    top: 40px; left: 260px;
+    transform: rotate(8deg);
+    z-index: 2;
+  }
+
+  .pdp-info {
+    padding-top: 20px;
+  }
+  .pdp-price-row {
+    margin-bottom: 24px;
+  }
+  .pdp-price-row .price-tag {
+    font-size: 1.4rem;
+    padding: 8px 20px 8px 28px;
+  }
+
+  .pdp-desc {
+    background: #fff;
+    padding: 28px 24px;
+    margin-bottom: 28px;
+    border: 2px dashed var(--kraft);
+    position: relative;
+    clip-path: polygon(
+      0% 2%, 3% 0%, 6% 3%, 10% 0%, 14% 2%, 18% 0%, 22% 3%, 26% 0%, 30% 2%, 34% 0%, 38% 3%, 42% 0%, 46% 2%, 50% 0%, 54% 3%, 58% 0%, 62% 2%, 66% 0%, 70% 3%, 74% 0%, 78% 2%, 82% 0%, 86% 3%, 90% 0%, 94% 2%, 97% 0%, 100% 3%,
+      100% 97%, 97% 100%, 94% 98%, 90% 100%, 86% 97%, 82% 100%, 78% 98%, 74% 100%, 70% 97%, 66% 100%, 62% 98%, 58% 100%, 54% 97%, 50% 100%, 46% 98%, 42% 100%, 38% 97%, 34% 100%, 30% 98%, 26% 100%, 22% 97%, 18% 100%, 14% 98%, 10% 100%, 6% 97%, 3% 100%, 0% 98%
+    );
+  }
+  .pdp-desc p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink);
+  }
+
+  /* Variant selector */
+  .variant-selector {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .variant-btn {
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 10px 22px;
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition: all 0.15s;
+    color: var(--ink);
+  }
+  .variant-btn:hover {
+    background: var(--yellow);
+  }
+  .variant-btn.active {
+    background: var(--cherry);
+    color: #fff;
+    border-color: var(--cherry-dark);
+    transform: rotate(-1deg);
+  }
+
+  /* Packing list */
+  .packing-list {
+    background: #fff;
+    padding: 32px 32px 32px 60px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 3px 4px 10px rgba(43,33,24,0.08);
+    margin-top: 32px;
+    position: relative;
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 27px,
+      #d4e0ed 27px,
+      #d4e0ed 28px
+    );
+    background-position: 0 36px;
+  }
+  .packing-list::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 48px;
+    width: 2px;
+    background: var(--cherry);
+    opacity: 0.3;
+  }
+  .packing-list h3 {
+    font-family: var(--font-hand);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 2;
+  }
+  .packing-list ul {
+    list-style: none;
+    position: relative;
+    z-index: 2;
+  }
+  .packing-list li {
+    font-family: var(--font-hand);
+    font-size: 1.25rem;
+    padding: 4px 0;
+    position: relative;
+    padding-left: 24px;
+  }
+  .packing-list li::before {
+    content: '☑';
+    position: absolute;
+    left: 0;
+    color: var(--sage);
+  }
+
+  /* ================================================
+     FOOTER
+     ================================================ */
+  .footer {
+    background: var(--ink);
+    color: var(--cream);
+    padding: 40px 24px;
+    text-align: center;
+    font-family: var(--font-hand);
+    font-size: 1.2rem;
+    border-top: 4px dashed var(--kraft);
+  }
+  .footer p { margin-bottom: 8px; }
+  .footer .small { font-size: 0.9rem; opacity: 0.6; font-family: var(--font-body); }
+
+  /* ================================================
+     RESPONSIVE
+     ================================================ */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero-subtext { margin: 0 auto 32px; }
+    .hero-polaroid { max-width: 320px; margin: 32px auto 0; }
+    .hero-anon-badge { left: auto; right: -10px; bottom: 30px; }
+    .hero-arrow { display: none; }
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .sticky-grid { grid-template-columns: repeat(2, 1fr); }
+    .final-inner { grid-template-columns: 1fr; text-align: center; }
+    .final-text p { margin: 0 auto 32px; }
+    .final-polaroid { max-width: 300px; }
+    .pdp-layout { grid-template-columns: 1fr; }
+    .pdp-gallery { height: 380px; }
+    .pdp-gallery .polaroid { width: 200px; }
+    .pdp-gallery .polaroid:nth-child(1) { left: 0; }
+    .pdp-gallery .polaroid:nth-child(2) { left: 80px; }
+    .pdp-gallery .polaroid:nth-child(3) { left: 160px; }
+  }
+  @media (max-width: 600px) {
+    .products-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .sticky-grid { grid-template-columns: 1fr; max-width: 340px; }
+    .facts-track { gap: 24px; }
+    .fact:not(:last-child)::after { display: none; }
+    .notebook { padding: 36px 24px 36px 52px; }
+    .notebook::before { left: 40px; }
+    .pdp-gallery { height: 320px; }
+    .pdp-gallery .polaroid { width: 170px; }
+    .pdp-gallery .polaroid:nth-child(1) { left: 0; top: 10px; }
+    .pdp-gallery .polaroid:nth-child(2) { left: 60px; top: 0; }
+    .pdp-gallery .polaroid:nth-child(3) { left: 120px; top: 20px; }
+    .nav-links { gap: 14px; font-size: 1.1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Package<span>Deal</span></div>
+  <ul class="nav-links">
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#pdp">Featured</a></li>
+  </ul>
+</nav>
+
+<!-- =============================================
+     HERO
+     ============================================= -->
+<section class="hero">
+  <div class="container hero-inner">
+    <!-- Washi tapes -->
+    <div class="washi washi-yellow washi-1"></div>
+    <div class="washi washi-sage washi-2"></div>
+
+    <div class="hero-text">
+      <h1>Send Someone Something <span class="accent">Truly Awful</span></h1>
+      <p class="hero-subtext">
+        We mail embarrassing cardboard tubes with ridiculous fake URLs on them.
+        Anonymously. To anyone you mildly dislike.
+      </p>
+      <div class="hero-cta-wrap">
+        <a href="#products" class="btn-red">Pick Your Weapon</a>
+      </div>
+    </div>
+
+    <div class="hero-image-wrap">
+      <div class="polaroid hero-polaroid">
+        <div class="washi washi-cherry washi-3"></div>
+        <img src="images/hero.png" alt="Prank mailing tube" loading="lazy">
+        <div class="polaroid-caption">it's worse than it looks</div>
+      </div>
+      <div class="hero-anon-badge">
+        <div class="sticker">totally<br>anonymous</div>
+      </div>
+      <div class="hero-arrow">← look!</div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     PRODUCTS — CORKBOARD
+     ============================================= -->
+<section class="products" id="products">
+  <div class="container">
+    <h2 class="products-title">Pin Your Pick to the Board</h2>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="pin"></div>
+        <div class="new-sticker">NEW!</div>
+        <div class="polaroid">
+          <img src="images/micropenis1.webp" alt="MicroPenisCure.com tube" loading="lazy">
+        </div>
+        <div class="product-name">MicroPenisCure.com</div>
+        <div class="product-price-wrap"><span class="price-tag">$14.99</span></div>
+      </div>
+
+      <div class="product-card">
+        <div class="pin"></div>
+        <div class="polaroid">
+          <img src="images/bigassdildos1.webp" alt="BigAssDildos.com tube" loading="lazy">
+        </div>
+        <div class="product-name">BigAssDildos.com</div>
+        <div class="product-price-wrap"><span class="price-tag">$14.99</span></div>
+      </div>
+
+      <div class="product-card">
+        <div class="pin"></div>
+        <div class="polaroid">
+          <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com tube" loading="lazy">
+        </div>
+        <div class="product-name">VaginalOdorHelper.com</div>
+        <div class="product-price-wrap"><span class="price-tag">$14.99</span></div>
+      </div>
+
+      <div class="product-card">
+        <div class="pin"></div>
+        <div class="polaroid">
+          <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com tube" loading="lazy">
+        </div>
+        <div class="product-name">BulkCondomDelivery.com</div>
+        <div class="product-price-wrap"><span class="price-tag">$12.99</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     HOW IT WORKS — NOTEBOOK
+     ============================================= -->
+<section class="how-it-works" id="how">
+  <div class="container">
+    <div class="notebook">
+      <h2 class="notebook-title">How This Whole Thing Works</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-text"><span class="step-icon">✏️</span> <strong>Pick a tube</strong> — choose from our collection of deeply unfortunate URLs. We won't judge. Much.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-text"><span class="step-icon">📦</span> <strong>Enter their address</strong> — we package it up in a plain cardboard tube. Boring on the outside, devastating on the inside.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-text"><span class="step-icon">🏃</span> <strong>We ship it anonymously</strong> — no return address, no sender info, no trail. You were never here.</div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-text"><span class="step-icon">💥</span> <strong>They open it in public</strong> — imagine the mailman reading "MicroPenisCure.com" out loud. You're welcome.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     WALL OF SHAME — STICKY NOTES
+     ============================================= -->
+<section class="testimonials">
+  <div class="container">
+    <h2 class="testimonials-title">The Wall of Shame</h2>
+    <div class="sticky-grid">
+
+      <div class="sticky-note">
+        "My roommate had to sign for the BigAssDildos tube in front of our entire building lobby. I watched from the window. Best $22 I ever spent."
+        <span class="author">— Jake, 28</span>
+      </div>
+
+      <div class="sticky-note">
+        "Sent one to my brother for his birthday. His wife opened it first. They still bring it up at Thanksgiving. Every. Single. Year."
+        <span class="author">— Priya, 31</span>
+      </div>
+
+      <div class="sticky-note">
+        "The delivery guy read the URL out loud as he handed it over. My coworker turned colors I didn't know humans could produce."
+        <span class="author">— Marcus, 33</span>
+      </div>
+
+      <div class="sticky-note">
+        "I'm not saying this saved my friendship, but it did give us something to laugh about that wasn't the incident at the company retreat."
+        <span class="author">— Taylor, 26</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     FUN FACTS STRIP
+     ============================================= -->
+<section class="fun-facts">
+  <div class="facts-track">
+    <div class="fact">
+      <span class="fact-number">14,000+</span>
+      <span class="fact-label">tubes shipped so far</span>
+    </div>
+    <div class="fact">
+      <span class="fact-number">100% Anonymous</span>
+      <span class="fact-label">we don't snitch</span>
+    </div>
+    <div class="fact">
+      <span class="fact-number">Zero</span>
+      <span class="fact-label">friendships harmed (probably)</span>
+    </div>
+    <div class="fact">
+      <span class="fact-number">4.5 ★</span>
+      <span class="fact-label">rated on Amazon</span>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     FINAL CTA
+     ============================================= -->
+<section class="final-cta">
+  <div class="final-washi-1"></div>
+  <div class="final-inner">
+    <div class="final-text">
+      <h2>Someone You Know<br>Deserves This</h2>
+      <p>
+        You already have someone in mind. We can tell.
+        Go ahead — they'll never know it was you.
+        That's kind of the whole point.
+      </p>
+      <div class="final-cta-wrap">
+        <a href="#products" class="btn-red">Send One Right Now</a>
+      </div>
+    </div>
+    <div class="final-image-side">
+      <div class="final-sticker-1"><div class="sticker">ANONYMOUS!</div></div>
+      <div class="final-sticker-2"><div class="sticker">SHIPS<br>FAST</div></div>
+      <div class="final-sticker-3"><div class="sticker">THEY'LL<br>HATE IT</div></div>
+      <div class="polaroid final-polaroid">
+        <img src="images/lifestyle.png" alt="Someone opening a prank tube" loading="lazy">
+        <div class="polaroid-caption">the moment of truth</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =============================================
+     TORN PAPER DIVIDER
+     ============================================= -->
+<div class="torn-divider"></div>
+
+<!-- =============================================
+     PDP — MicroPenisCure.com
+     ============================================= -->
+<section class="pdp" id="pdp">
+  <div class="container">
+    <div class="pdp-header">
+      <span class="pdp-label">~ our bestseller, obviously ~</span>
+      <h2 class="pdp-title wavy-underline">MicroPenisCure.com</h2>
+    </div>
+
+    <div class="pdp-layout">
+      <!-- Gallery: 3 fanned polaroids -->
+      <div class="pdp-gallery">
+        <div class="polaroid">
+          <img src="images/micropenis1.webp" alt="MicroPenisCure tube front" loading="lazy">
+        </div>
+        <div class="polaroid">
+          <img src="images/micropenis2.webp" alt="MicroPenisCure tube angle" loading="lazy">
+        </div>
+        <div class="polaroid">
+          <img src="images/micropenis3.webp" alt="MicroPenisCure tube detail" loading="lazy">
+        </div>
+      </div>
+
+      <!-- Product Info -->
+      <div class="pdp-info">
+        <div class="pdp-price-row">
+          <span class="price-tag">$14.99</span>
+        </div>
+
+        <div class="variant-selector">
+          <button class="variant-btn active" onclick="selectVariant(this, 1499)">Standard</button>
+          <button class="variant-btn" onclick="selectVariant(this, 2199)">Sign For It — $21.99</button>
+          <button class="variant-btn" style="opacity:0.5; cursor: not-allowed;" disabled>Confetti Bomb — SOLD OUT</button>
+        </div>
+
+        <button class="btn-stamp" onclick="addToCart()">Add to Cart</button>
+
+        <div class="pdp-desc" style="margin-top: 28px;">
+          <p>
+            A real cardboard mailing tube with "MicroPenisCure.com" printed in large,
+            impossible-to-miss lettering. We ship it anonymously to whoever you want.
+            No return address. No sender info. Just a bewildered person holding a tube
+            they really, really wish the neighbors hadn't seen.
+          </p>
+          <p style="margin-top: 12px;">
+            <strong>Upgrade to "Sign For It"</strong> and they'll have to accept this
+            thing face-to-face with the delivery person. Eye contact included, dignity not.
+          </p>
+        </div>
+
+        <div class="packing-list">
+          <h3>What's Inside the Tube</h3>
+          <ul>
+            <li>One cardboard tube (the embarrassing kind)</li>
+            <li>A very official-looking fake pamphlet</li>
+            <li>A "customer satisfaction survey" that makes it worse</li>
+            <li>Absolutely zero explanation of who sent it</li>
+            <li>Maximum confusion, minimum closure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>Made with questionable intentions by <strong>Package Deal</strong></p>
+  <p>We don't ship hate — just really awkward mail.</p>
+  <p class="small">&copy; 2026 Package Deal. All rights reserved. All grudges honored.</p>
+</footer>
+
+<!-- =============================================
+     MINIMAL JS
+     ============================================= -->
+<script>
+  function selectVariant(btn, priceInCents) {
+    document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const dollars = (priceInCents / 100).toFixed(2);
+    document.querySelector('.pdp-price-row .price-tag').textContent = '$' + dollars;
+  }
+
+  function addToCart() {
+    const btn = document.querySelector('.btn-stamp');
+    const original = btn.textContent;
+    btn.textContent = 'Added! 🎉';
+    btn.style.background = '#606C38';
+    btn.style.outlineColor = '#606C38';
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.style.background = '';
+      btn.style.outlineColor = '';
+    }, 1800);
+  }
+
+  // Subtle scroll entrance for polaroids
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = entry.target.dataset.rot || 'rotate(0deg)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.product-card').forEach((card, i) => {
+    const rots = ['-3deg', '2deg', '-1deg', '4deg'];
+    card.dataset.rot = 'rotate(' + rots[i] + ')';
+    card.style.opacity = '0';
+    card.style.transform = 'rotate(0deg) translateY(30px)';
+    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    card.style.transitionDelay = (i * 0.12) + 's';
+    observer.observe(card);
+  });
+</script>
+</body>
+</html>

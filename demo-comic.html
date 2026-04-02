@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PACKAGE DEAL - Issue #1 - The World's Most Embarrassing Mail</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red: #FF0000;
+  --yellow: #FFD700;
+  --blue: #0066FF;
+  --black: #000000;
+  --white: #FFFFFF;
+  --pink: #FF69B4;
+  --green: #00CC00;
+  --orange: #FF6600;
+  --panel-border: 4px solid var(--black);
+  --panel-border-thick: 6px solid var(--black);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Comic Neue', cursive, sans-serif;
+  font-weight: 700;
+  color: var(--black);
+  background: var(--white);
+  overflow-x: hidden;
+  line-height: 1.4;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; font-family: 'Bangers', cursive; border: none; background: none; }
+
+/* ============================================
+   COMIC UTILITY PATTERNS
+   ============================================ */
+
+/* Ben-Day dots */
+.benday-red {
+  background-image: radial-gradient(circle, var(--red) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.benday-blue {
+  background-image: radial-gradient(circle, var(--blue) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+.benday-yellow {
+  background-image: radial-gradient(circle, var(--yellow) 1.2px, transparent 1.2px);
+  background-size: 10px 10px;
+}
+.benday-pink {
+  background-image: radial-gradient(circle, var(--pink) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Halftone overlay for images */
+.halftone {
+  position: relative;
+  overflow: hidden;
+}
+.halftone::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.3) 1px, transparent 1px);
+  background-size: 4px 4px;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* Speed lines */
+.speed-lines {
+  position: relative;
+  overflow: hidden;
+}
+.speed-lines::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(0,0,0,0.04) 8px,
+    rgba(0,0,0,0.04) 9px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Comic panel */
+.panel {
+  border: var(--panel-border);
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Narration box (yellow caption) */
+.narration {
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  padding: 10px 16px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: inline-block;
+  box-shadow: 3px 3px 0 var(--black);
+}
+
+/* Speech bubble */
+.speech-bubble {
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-radius: 20px;
+  padding: 16px 22px;
+  position: relative;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  font-size: 1.05rem;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 30px;
+  width: 0; height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 22px solid var(--black);
+}
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 33px;
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 18px solid var(--white);
+  z-index: 2;
+}
+
+/* Thought bubble */
+.thought-bubble {
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-radius: 50% / 40%;
+  padding: 20px 26px;
+  position: relative;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  font-size: 1rem;
+}
+.thought-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 40px;
+  width: 14px; height: 14px;
+  background: var(--white);
+  border: 3px solid var(--black);
+  border-radius: 50%;
+}
+.thought-bubble .thought-dot {
+  position: absolute;
+  bottom: -36px;
+  left: 34px;
+  width: 8px; height: 8px;
+  background: var(--white);
+  border: 2px solid var(--black);
+  border-radius: 50%;
+}
+
+/* Starburst / action word */
+.starburst {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-family: 'Bangers', cursive;
+  font-size: 2.5rem;
+  color: var(--black);
+  padding: 20px 30px;
+  text-shadow: 2px 2px 0 var(--yellow);
+  z-index: 2;
+}
+.starburst::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--yellow);
+  clip-path: polygon(
+    50% 0%, 63% 15%, 78% 2%, 80% 20%, 98% 22%, 88% 38%,
+    100% 50%, 88% 62%, 98% 78%, 80% 80%, 78% 98%, 63% 85%,
+    50% 100%, 37% 85%, 22% 98%, 20% 80%, 2% 78%, 12% 62%,
+    0% 50%, 12% 38%, 2% 22%, 20% 20%, 22% 2%, 37% 15%
+  );
+  z-index: -1;
+  border: 3px solid var(--black);
+}
+
+.starburst-red::before { background: var(--red); }
+.starburst-red { color: var(--white); text-shadow: 2px 2px 0 var(--black); }
+
+.starburst-blue::before { background: var(--blue); }
+.starburst-blue { color: var(--white); text-shadow: 2px 2px 0 var(--black); }
+
+.starburst-pink::before { background: var(--pink); }
+.starburst-pink { color: var(--white); text-shadow: 2px 2px 0 var(--black); }
+
+/* Big comic button */
+.comic-btn {
+  display: inline-block;
+  font-family: 'Bangers', cursive;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  padding: 16px 44px;
+  border: 4px solid var(--black);
+  color: var(--white);
+  background: var(--red);
+  box-shadow: 5px 5px 0 var(--black);
+  transition: all 0.15s;
+  text-transform: uppercase;
+  position: relative;
+}
+.comic-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 3px 3px 0 var(--black);
+}
+.comic-btn:active {
+  transform: translate(4px, 4px);
+  box-shadow: 1px 1px 0 var(--black);
+}
+.comic-btn-blue { background: var(--blue); }
+.comic-btn-yellow { background: var(--yellow); color: var(--black); }
+.comic-btn-green { background: var(--green); }
+
+/* Section wrapper */
+.comic-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Action words floating */
+.action-float {
+  position: absolute;
+  font-family: 'Bangers', cursive;
+  font-size: 3rem;
+  color: var(--red);
+  text-shadow: 3px 3px 0 var(--yellow), -1px -1px 0 var(--black), 1px -1px 0 var(--black), -1px 1px 0 var(--black), 1px 1px 0 var(--black);
+  transform: rotate(-12deg);
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.site-header {
+  background: var(--yellow);
+  border-bottom: var(--panel-border-thick);
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.site-title {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  color: var(--black);
+  text-shadow: 3px 3px 0 var(--red);
+  letter-spacing: 3px;
+  line-height: 1;
+  position: relative;
+}
+.issue-badge {
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Bangers', cursive;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border: 2px solid var(--black);
+  border-radius: 4px;
+  position: absolute;
+  top: -10px;
+  right: -60px;
+  transform: rotate(8deg);
+  letter-spacing: 1px;
+  box-shadow: 2px 2px 0 var(--black);
+  white-space: nowrap;
+}
+.header-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+.header-nav a {
+  font-family: 'Bangers', cursive;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  color: var(--black);
+  border-bottom: 3px solid transparent;
+  transition: border-color 0.2s;
+  padding-bottom: 2px;
+}
+.header-nav a:hover { border-color: var(--red); }
+.cart-btn {
+  background: var(--red);
+  color: var(--white);
+  font-family: 'Bangers', cursive;
+  font-size: 1.1rem;
+  padding: 8px 18px;
+  border: 3px solid var(--black);
+  box-shadow: 3px 3px 0 var(--black);
+  letter-spacing: 1px;
+}
+.cart-btn:hover { transform: translate(1px,1px); box-shadow: 2px 2px 0 var(--black); }
+
+@media (max-width: 700px) {
+  .header-nav a:not(.cart-btn) { display: none; }
+  .issue-badge { display: none; }
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  border-bottom: var(--panel-border-thick);
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle, var(--blue) 1px, transparent 1px),
+    linear-gradient(135deg, #FFF8DC 0%, #FFFACD 50%, #FFF8DC 100%);
+  background-size: 10px 10px, 100% 100%;
+  z-index: 0;
+}
+.hero-speedlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    transparent 0deg, transparent 4deg,
+    rgba(0,0,0,0.03) 4deg, rgba(0,0,0,0.03) 5deg
+  );
+  background-position: center;
+  z-index: 1;
+}
+.hero-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+  width: 100%;
+}
+.hero-text { position: relative; }
+.hero-text h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  color: var(--black);
+  text-shadow: 4px 4px 0 var(--red);
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+}
+.hero-text h1 span {
+  display: block;
+  color: var(--red);
+  text-shadow: 3px 3px 0 var(--black);
+}
+.hero-speech {
+  max-width: 440px;
+  margin-bottom: 32px;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+.hero-image-panel {
+  border: 5px solid var(--black);
+  background: var(--white);
+  position: relative;
+  padding: 8px;
+  box-shadow: 8px 8px 0 var(--black);
+  transform: rotate(1.5deg);
+}
+.hero-image-panel img {
+  width: 100%;
+  display: block;
+  filter: contrast(1.1) saturate(1.2);
+}
+.hero-kapow {
+  position: absolute;
+  top: -30px;
+  right: -20px;
+  z-index: 10;
+  font-size: 3.2rem;
+}
+.hero-boom {
+  position: absolute;
+  bottom: 20px;
+  left: -15px;
+  z-index: 10;
+  font-size: 2rem;
+  transform: rotate(-15deg);
+}
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-speech { margin: 0 auto 28px; }
+  .hero-image-panel { max-width: 400px; margin: 0 auto; transform: rotate(0); }
+  .hero-kapow { top: -20px; right: 0; font-size: 2.2rem; }
+  .hero-boom { display: none; }
+}
+
+/* ============================================
+   PRODUCT GRID (Comic Panels)
+   ============================================ */
+.products-section {
+  padding: 60px 0;
+  border-bottom: var(--panel-border-thick);
+  position: relative;
+}
+.products-section .benday-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--pink) 0.8px, transparent 0.8px);
+  background-size: 12px 12px;
+  opacity: 0.4;
+  z-index: 0;
+}
+.section-title {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  text-align: center;
+  color: var(--black);
+  text-shadow: 3px 3px 0 var(--yellow);
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 2;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: var(--panel-border-thick);
+  position: relative;
+  z-index: 2;
+}
+.product-panel {
+  border: 3px solid var(--black);
+  background: var(--white);
+  padding: 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+  overflow: hidden;
+}
+.product-panel:hover {
+  z-index: 3;
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+}
+.product-panel .halftone-img {
+  position: relative;
+  border: 3px solid var(--black);
+  margin-bottom: 14px;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+.product-panel .halftone-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.15) saturate(1.1);
+}
+.product-panel .halftone-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.25) 1px, transparent 1px);
+  background-size: 4px 4px;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.product-name-burst {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  color: var(--black);
+  text-align: center;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.product-price-box {
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  display: inline-block;
+  padding: 4px 14px;
+  font-family: 'Bangers', cursive;
+  font-size: 1.3rem;
+  align-self: center;
+  margin-bottom: 10px;
+  box-shadow: 2px 2px 0 var(--black);
+}
+.product-tagline {
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.92rem;
+  text-align: center;
+  color: #333;
+  flex: 1;
+  margin-bottom: 12px;
+}
+.product-panel .comic-btn {
+  font-size: 1.1rem;
+  padding: 10px 24px;
+  align-self: center;
+  box-shadow: 3px 3px 0 var(--black);
+}
+.product-action {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
+  color: var(--red);
+  text-shadow: 1px 1px 0 var(--yellow);
+  transform: rotate(12deg);
+  z-index: 4;
+}
+@media (max-width: 600px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   HOW IT WORKS (Comic Strip)
+   ============================================ */
+.how-section {
+  padding: 60px 0 0;
+  border-bottom: var(--panel-border-thick);
+  background: var(--white);
+}
+.comic-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: var(--panel-border-thick);
+  margin-bottom: 0;
+}
+.strip-panel {
+  border: 3px solid var(--black);
+  padding: 20px 16px;
+  text-align: center;
+  position: relative;
+  background: var(--white);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.strip-panel .panel-number {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--yellow);
+  border: 2px solid var(--black);
+  width: 28px; height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bangers', cursive;
+  font-size: 0.9rem;
+}
+.strip-panel .panel-art {
+  font-size: 3.5rem;
+  margin: 16px 0 10px;
+}
+.strip-narration {
+  background: var(--yellow);
+  border: 2px solid var(--black);
+  padding: 6px 10px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+.strip-speech {
+  background: var(--white);
+  border: 2px solid var(--black);
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  font-size: 0.9rem;
+  position: relative;
+}
+.strip-speech::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid var(--black);
+}
+.strip-speech::before {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid var(--white);
+  z-index: 2;
+}
+.strip-action {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem;
+  color: var(--red);
+  text-shadow: 2px 2px 0 var(--yellow);
+  margin-top: 8px;
+}
+@media (max-width: 768px) {
+  .comic-strip { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 500px) {
+  .comic-strip { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   TESTIMONIALS (Thought Bubbles)
+   ============================================ */
+.testimonials-section {
+  padding: 60px 0;
+  border-bottom: var(--panel-border-thick);
+  position: relative;
+  overflow: hidden;
+}
+.testimonials-section .benday-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--yellow) 1px, transparent 1px);
+  background-size: 10px 10px;
+  opacity: 0.3;
+  z-index: 0;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px 24px;
+  position: relative;
+  z-index: 2;
+}
+.testimonial-card {
+  text-align: center;
+}
+.testimonial-card .thought-bubble {
+  margin-bottom: 30px;
+  font-style: italic;
+  line-height: 1.5;
+}
+.reviewer-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  border: 3px solid var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Bangers', cursive;
+  font-size: 1.2rem;
+  color: var(--white);
+  margin: 0 auto 6px;
+}
+.reviewer-name {
+  font-family: 'Bangers', cursive;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+.review-stars {
+  color: var(--yellow);
+  text-shadow: 1px 1px 0 var(--black);
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+}
+@media (max-width: 768px) {
+  .testimonials-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+}
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta-section {
+  padding: 80px 0;
+  border-bottom: var(--panel-border-thick);
+  background: var(--black);
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+}
+.final-cta-section .speed-bg {
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    transparent 0deg, transparent 3deg,
+    rgba(255,255,255,0.03) 3deg, rgba(255,255,255,0.03) 4deg
+  );
+}
+.final-cta-content {
+  position: relative;
+  z-index: 2;
+}
+.final-cta-content h2 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  color: var(--yellow);
+  text-shadow: 4px 4px 0 var(--red);
+  margin-bottom: 12px;
+  letter-spacing: 3px;
+}
+.final-cta-content p {
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 36px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.final-cta-content .comic-btn {
+  font-size: 2rem;
+  padding: 20px 56px;
+}
+
+/* ============================================
+   MEANWHILE DIVIDER
+   ============================================ */
+.meanwhile {
+  background: var(--black);
+  border-top: var(--panel-border-thick);
+  border-bottom: var(--panel-border-thick);
+  padding: 28px 20px;
+  text-align: center;
+}
+.meanwhile span {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--yellow);
+  text-shadow: 3px 3px 0 var(--red);
+  letter-spacing: 4px;
+}
+
+/* ============================================
+   PDP SECTION
+   ============================================ */
+.pdp-section {
+  padding: 60px 0;
+  border-bottom: var(--panel-border-thick);
+  position: relative;
+}
+.pdp-section .benday-bg {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--blue) 0.6px, transparent 0.6px);
+  background-size: 10px 10px;
+  opacity: 0.15;
+  z-index: 0;
+}
+.pdp-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  position: relative;
+  z-index: 2;
+  align-items: start;
+}
+.pdp-image-main {
+  border: 5px solid var(--black);
+  position: relative;
+  box-shadow: 6px 6px 0 var(--black);
+  background: var(--white);
+}
+.pdp-image-main img {
+  width: 100%;
+  display: block;
+  filter: contrast(1.1) saturate(1.15);
+}
+.pdp-image-main .exhibit-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--yellow);
+  border-top: 3px solid var(--black);
+  border-right: 3px solid var(--black);
+  padding: 6px 16px;
+  font-family: 'Bangers', cursive;
+  font-size: 1rem;
+  letter-spacing: 1px;
+}
+.pdp-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 16px;
+}
+.pdp-gallery-item {
+  border: 3px solid var(--black);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1;
+}
+.pdp-gallery-item img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: contrast(1.1);
+  transition: transform 0.2s;
+}
+.pdp-gallery-item:hover img { transform: scale(1.08); }
+.pdp-gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.2) 0.8px, transparent 0.8px);
+  background-size: 3px 3px;
+  pointer-events: none;
+}
+.pdp-info { position: relative; }
+.pdp-product-name {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  color: var(--black);
+  text-shadow: 3px 3px 0 var(--red);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.pdp-subtitle {
+  font-family: 'Comic Neue', cursive;
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.pdp-price-box {
+  background: var(--yellow);
+  border: 3px solid var(--black);
+  display: inline-block;
+  padding: 8px 24px;
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  box-shadow: 3px 3px 0 var(--black);
+  margin-bottom: 24px;
+}
+.variant-selector {
+  margin-bottom: 24px;
+}
+.variant-selector label {
+  display: block;
+  font-family: 'Bangers', cursive;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+.variant-options {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.variant-opt {
+  background: var(--white);
+  border: 3px solid var(--black);
+  padding: 10px 20px;
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: 3px 3px 0 var(--black);
+}
+.variant-opt:hover {
+  background: var(--yellow);
+}
+.variant-opt.active {
+  background: var(--red);
+  color: var(--white);
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0 var(--black);
+}
+.atc-burst {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 28px;
+}
+.atc-burst .comic-btn {
+  font-size: 1.5rem;
+  padding: 16px 48px;
+  z-index: 2;
+  position: relative;
+}
+.pdp-description .speech-bubble {
+  margin-bottom: 40px;
+  max-width: 100%;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* PDP Comic Strip (what happens next) */
+.pdp-story-title {
+  font-family: 'Bangers', cursive;
+  font-size: 1.8rem;
+  text-shadow: 2px 2px 0 var(--yellow);
+  margin-bottom: 16px;
+  letter-spacing: 1px;
+}
+.pdp-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: var(--panel-border);
+}
+.pdp-strip .strip-panel {
+  min-height: 220px;
+}
+@media (max-width: 768px) {
+  .pdp-layout { grid-template-columns: 1fr; }
+  .pdp-strip { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  background: var(--black);
+  color: var(--white);
+  padding: 40px 20px;
+  text-align: center;
+}
+.footer-title {
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  color: var(--yellow);
+  text-shadow: 2px 2px 0 var(--red);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.footer-links a {
+  font-family: 'Comic Neue', cursive;
+  font-weight: 700;
+  color: var(--yellow);
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.footer-links a:hover { border-color: var(--yellow); }
+.footer-copy {
+  font-family: 'Comic Neue', cursive;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes float-pulse {
+  0%, 100% { transform: rotate(-12deg) scale(1); }
+  50% { transform: rotate(-8deg) scale(1.08); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+.animate-float { animation: float-pulse 2s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 0.6s ease-in-out infinite; }
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-title" style="position:relative;">
+      PACKAGE DEAL
+      <span class="issue-badge">ISSUE #1</span>
+    </div>
+    <nav class="header-nav">
+      <a href="#products">PRODUCTS</a>
+      <a href="#how">HOW IT WORKS</a>
+      <a href="#pdp-section">EXHIBIT A</a>
+      <a href="#" class="cart-btn">CART (0)</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-speedlines"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="narration" style="margin-bottom:18px;">SOMEWHERE IN AN ORDINARY NEIGHBORHOOD...</div>
+      <h1>
+        SEND THE MAIL<span>THEY'LL NEVER FORGET.</span>
+      </h1>
+      <div class="speech-bubble hero-speech">
+        Embarrassing fake URLs printed on real cardboard tubes. Shipped anonymously. They have to sign for it. In front of the mail carrier. With their full name on it.
+      </div>
+      <a href="#products" class="comic-btn" style="margin-right:12px;">PICK YOUR WEAPON</a>
+      <a href="#pdp-section" class="comic-btn comic-btn-yellow">SEE IT IN ACTION</a>
+    </div>
+    <div class="hero-image-panel">
+      <div class="halftone">
+        <img src="images/hero.png" alt="Prank mailing tubes">
+      </div>
+      <div class="starburst starburst-red hero-kapow animate-float">KAPOW!</div>
+      <div class="starburst hero-boom animate-float" style="animation-delay:0.5s;">ZAP!</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCT GRID ===== -->
+<section class="products-section" id="products">
+  <div class="benday-bg"></div>
+  <div class="comic-section">
+    <h2 class="section-title reveal">CHOOSE YOUR INSTRUMENT OF CHAOS</h2>
+    <div class="product-grid reveal">
+      <!-- Product 1 -->
+      <div class="product-panel">
+        <div class="product-action">POW!</div>
+        <div class="halftone-img">
+          <img src="images/micropenis1.webp" alt="MicroPenisCure.com mailing tube">
+        </div>
+        <div class="product-name-burst">MicroPenisCure.com</div>
+        <div class="product-price-box">$14.99</div>
+        <p class="product-tagline">A cardboard tube with "MicroPenisCure.com" in bold letters. They sign for it. The mail carrier sees it. The neighbors see it. Everyone sees it.</p>
+        <a href="#pdp-section" class="comic-btn">SEND THIS ONE</a>
+      </div>
+      <!-- Product 2 -->
+      <div class="product-panel">
+        <div class="product-action">WHAM!</div>
+        <div class="halftone-img">
+          <img src="images/bigassdildos1.webp" alt="BigAssDildos.com mailing tube">
+        </div>
+        <div class="product-name-burst">BigAssDildos.com</div>
+        <div class="product-price-box">$14.99</div>
+        <p class="product-tagline">Nothing says "thinking of you" like a cardboard tube labeled BigAssDildos.com arriving at their doorstep. During dinner. On a Tuesday.</p>
+        <a href="#pdp-section" class="comic-btn comic-btn-blue">SEND THIS ONE</a>
+      </div>
+      <!-- Product 3 -->
+      <div class="product-panel">
+        <div class="product-action">BAM!</div>
+        <div class="halftone-img">
+          <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com mailing tube">
+        </div>
+        <div class="product-name-burst">VaginalOdorHelper.com</div>
+        <div class="product-price-box">$14.99</div>
+        <p class="product-tagline">This one hits different. Imagine the mail carrier reading it. Twice. Then handing it over with a perfectly straight face. Comedy gold.</p>
+        <a href="#pdp-section" class="comic-btn comic-btn-green">SEND THIS ONE</a>
+      </div>
+      <!-- Product 4 -->
+      <div class="product-panel">
+        <div class="product-action">ZOOM!</div>
+        <div class="halftone-img">
+          <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com mailing tube">
+        </div>
+        <div class="product-name-burst">BulkCondomDelivery.com</div>
+        <div class="product-price-box">$12.99</div>
+        <p class="product-tagline">Because nothing raises more questions than a large cardboard tube from BulkCondomDelivery.com showing up at someone's office. In front of their coworkers.</p>
+        <a href="#pdp-section" class="comic-btn" style="background:var(--orange);">SEND THIS ONE</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section" id="how">
+  <div class="comic-section">
+    <h2 class="section-title reveal">THE ANATOMY OF A PERFECT PRANK</h2>
+    <div class="comic-strip reveal">
+      <div class="strip-panel">
+        <div class="panel-number">1</div>
+        <div class="strip-narration">OUR HERO BROWSES THE COLLECTION...</div>
+        <div class="panel-art">🛒</div>
+        <div class="strip-speech">"This one. This is the one that'll get Dave from accounting."</div>
+      </div>
+      <div class="strip-panel" style="background: #FFFCE8;">
+        <div class="panel-number">2</div>
+        <div class="strip-narration">THE PACKAGE SHIPS. ANONYMOUSLY.</div>
+        <div class="panel-art">📦</div>
+        <div class="strip-speech">"No return address. No trace. Just vibes."</div>
+        <div class="strip-action">WHOOSH!</div>
+      </div>
+      <div class="strip-panel">
+        <div class="panel-number">3</div>
+        <div class="strip-narration">THE MAIL CARRIER ARRIVES. THEY MUST SIGN.</div>
+        <div class="panel-art">🚪</div>
+        <div class="strip-speech">"Uh... package for you. It says... well. Just sign here."</div>
+      </div>
+      <div class="strip-panel" style="background: var(--yellow);">
+        <div class="panel-number">4</div>
+        <div class="strip-narration">THE MOMENT OF GLORY.</div>
+        <div class="panel-art">😱</div>
+        <div class="strip-action" style="font-size:2.4rem;">BOOM!</div>
+        <div class="strip-speech">"WHO SENT ME A TUBE FROM MICROPENISCURE.COM?!"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials-section" id="reviews">
+  <div class="benday-bg"></div>
+  <div class="comic-section">
+    <h2 class="section-title reveal">DISPATCHES FROM THE FIELD</h2>
+    <div class="testimonials-grid reveal">
+      <div class="testimonial-card">
+        <div class="thought-bubble">
+          "My roommate had to sign for a tube labeled BigAssDildos.com in front of our entire building's mail room. He didn't speak to me for three days. Best $15 I ever spent."
+          <div class="thought-dot"></div>
+        </div>
+        <div class="reviewer-avatar" style="background:var(--red);">JK</div>
+        <div class="reviewer-name">JAKE K.</div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="thought-bubble">
+          "Sent the VaginalOdorHelper one to my brother-in-law. His wife opened it. At the family barbecue. I have never seen a man turn that shade of red. Legendary."
+          <div class="thought-dot"></div>
+        </div>
+        <div class="reviewer-avatar" style="background:var(--blue);">SM</div>
+        <div class="reviewer-name">SARAH M.</div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="thought-bubble">
+          "My buddy got the BulkCondomDelivery tube at his office. His boss walked by as he was opening it. The entire floor went silent. Then everyone lost it. 11 out of 10."
+          <div class="thought-dot"></div>
+        </div>
+        <div class="reviewer-avatar" style="background:var(--green);">DR</div>
+        <div class="reviewer-name">DEREK R.</div>
+        <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta-section">
+  <div class="speed-bg"></div>
+  <div class="comic-section final-cta-content">
+    <div class="starburst starburst-red reveal" style="font-size:clamp(1.5rem,4vw,3rem); margin-bottom:24px;">DON'T JUST SIT THERE!</div>
+    <h2 class="reveal">SOMEONE OUT THERE<br>DESERVES THIS.</h2>
+    <p class="reveal">You know exactly who. That friend. That coworker. That sibling who still owes you from 2019. The clock is ticking. The mail carrier is waiting.</p>
+    <a href="#products" class="comic-btn reveal" style="font-size:clamp(1.4rem,3vw,2rem);">UNLEASH THE CHAOS</a>
+  </div>
+</section>
+
+<!-- ===== MEANWHILE DIVIDER ===== -->
+<div class="meanwhile" id="pdp-section">
+  <span>MEANWHILE... A CLOSER LOOK AT THE EVIDENCE</span>
+</div>
+
+<!-- ===== PDP ===== -->
+<section class="pdp-section">
+  <div class="benday-bg"></div>
+  <div class="comic-section">
+    <div class="pdp-layout reveal">
+      <!-- Left: Images -->
+      <div>
+        <div class="pdp-image-main halftone">
+          <img src="images/micropenis1.webp" alt="MicroPenisCure.com product" id="pdp-main-img">
+          <div class="exhibit-label">EXHIBIT A</div>
+        </div>
+        <div class="pdp-gallery">
+          <div class="pdp-gallery-item" onclick="changeImg('images/micropenis1.webp')">
+            <img src="images/micropenis1.webp" alt="View 1">
+          </div>
+          <div class="pdp-gallery-item" onclick="changeImg('images/micropenis1-3.webp')">
+            <img src="images/micropenis1-3.webp" alt="View 2">
+          </div>
+          <div class="pdp-gallery-item" onclick="changeImg('images/lifestyle3.png')">
+            <img src="images/lifestyle3.png" alt="Lifestyle shot">
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Info -->
+      <div class="pdp-info">
+        <div class="narration" style="margin-bottom:12px;">THE FILE ON...</div>
+        <h2 class="pdp-product-name">MICROPENISCURE.COM</h2>
+        <p class="pdp-subtitle">The Original. The Legend. The Tube That Started It All.</p>
+        <div class="pdp-price-box" id="pdp-price">$14.99</div>
+
+        <!-- Variants -->
+        <div class="variant-selector">
+          <label>SELECT YOUR CHAOS LEVEL:</label>
+          <div class="variant-options">
+            <button class="variant-opt" onclick="selectVariant(this, '$14.99')">Standard</button>
+            <button class="variant-opt active" onclick="selectVariant(this, '$21.99')">Sign For It</button>
+            <button class="variant-opt" onclick="selectVariant(this, '$34.99')">Confetti Bomb</button>
+          </div>
+        </div>
+
+        <!-- ATC -->
+        <div class="atc-burst">
+          <button class="comic-btn" style="font-size:1.5rem; padding:16px 48px;" onclick="addToCart()">ADD TO CART</button>
+        </div>
+
+        <!-- Description -->
+        <div class="pdp-description">
+          <div class="speech-bubble" style="margin-bottom: 40px;">
+            A real, sturdy cardboard mailing tube with <strong>"MicroPenisCure.com"</strong> printed in bold letters on the outside. Shipped anonymously to the address of your choosing. No return address. No explanation. Just pure, unfiltered confusion.
+            <br><br>
+            <strong>"Sign For It"</strong> means they have to physically accept the package. Face-to-face with the mail carrier. While the label stares back at both of them. It's beautiful, really.
+          </div>
+        </div>
+
+        <!-- What happens next strip -->
+        <h3 class="pdp-story-title">WHAT HAPPENS NEXT...</h3>
+        <div class="pdp-strip">
+          <div class="strip-panel">
+            <div class="panel-number">1</div>
+            <div class="strip-narration">THE DOORBELL RINGS.</div>
+            <div class="panel-art">🔔</div>
+            <div class="strip-speech">"I wasn't expecting anything..."</div>
+          </div>
+          <div class="strip-panel" style="background:#FFF8E8;">
+            <div class="panel-number">2</div>
+            <div class="strip-narration">THEY READ THE LABEL.</div>
+            <div class="panel-art">👀</div>
+            <div class="strip-action">GASP!</div>
+          </div>
+          <div class="strip-panel" style="background:var(--yellow);">
+            <div class="panel-number">3</div>
+            <div class="strip-narration">THE GROUP CHAT EXPLODES.</div>
+            <div class="panel-art">📱</div>
+            <div class="strip-action" style="font-size:2rem;">HAHAHA!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-title">PACKAGE DEAL</div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#">FAQ</a>
+    <a href="#">Shipping</a>
+    <a href="#">Privacy</a>
+    <a href="#">Contact</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Package Deal. All rights reserved. No mail carriers were harmed in the making of these pranks.</p>
+</footer>
+
+<!-- ===== CART NOTIFICATION ===== -->
+<div id="cart-toast" style="
+  position: fixed; bottom: -100px; left: 50%; transform: translateX(-50%);
+  background: var(--yellow); border: 4px solid var(--black); padding: 16px 32px;
+  font-family: 'Bangers', cursive; font-size: 1.4rem; letter-spacing: 1px;
+  box-shadow: 5px 5px 0 var(--black); z-index: 999; transition: bottom 0.4s ease;
+">
+  KA-CHING! ADDED TO CART!
+</div>
+
+<script>
+/* Image swap on PDP gallery */
+function changeImg(src) {
+  document.getElementById('pdp-main-img').src = src;
+}
+
+/* Variant selector */
+function selectVariant(el, price) {
+  document.querySelectorAll('.variant-opt').forEach(function(btn) {
+    btn.classList.remove('active');
+  });
+  el.classList.add('active');
+  document.getElementById('pdp-price').textContent = price;
+}
+
+/* Add to cart toast */
+var cartCount = 0;
+function addToCart() {
+  cartCount++;
+  document.querySelector('.cart-btn').textContent = 'CART (' + cartCount + ')';
+  var toast = document.getElementById('cart-toast');
+  toast.style.bottom = '30px';
+  setTimeout(function() {
+    toast.style.bottom = '-100px';
+  }, 2000);
+}
+
+/* Scroll reveal */
+function revealOnScroll() {
+  var reveals = document.querySelectorAll('.reveal');
+  for (var i = 0; i < reveals.length; i++) {
+    var windowHeight = window.innerHeight;
+    var elementTop = reveals[i].getBoundingClientRect().top;
+    if (elementTop < windowHeight - 60) {
+      reveals[i].classList.add('visible');
+    }
+  }
+}
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
+</script>
+
+</body>
+</html>

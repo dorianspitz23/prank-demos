@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CASE FILE #PD-2026 — OPERATION: PACKAGE DEAL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cork: #C4956A;
+  --cork-dark: #A07850;
+  --cork-light: #D4A87A;
+  --aged-paper: #F5E6C8;
+  --pin-red: #CC3333;
+  --pin-blue: #336699;
+  --pin-yellow: #DAA520;
+  --pin-green: #2E8B57;
+  --dark-ink: #2a2a2a;
+  --red-string: #CC0000;
+  --sticky-yellow: #FFFACD;
+  --sticky-pink: #FFB6C1;
+  --sticky-blue: #B0E0E6;
+  --sticky-green: #90EE90;
+  --manila: #E8D5A3;
+  --typewriter: #1a1a1a;
+  --evidence-bg: #F0E4CC;
+  --font-hand: 'Caveat', cursive;
+  --font-type: 'Courier Prime', monospace;
+  --font-bold: 'Oswald', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-type);
+  color: var(--dark-ink);
+  background: var(--cork);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* ============================================
+   CORK BOARD TEXTURE
+   ============================================ */
+.cork-bg {
+  background-color: var(--cork);
+  background-image:
+    radial-gradient(ellipse 2px 2px at 15px 15px, rgba(0,0,0,0.08) 50%, transparent 50%),
+    radial-gradient(ellipse 1px 2px at 42px 8px, rgba(0,0,0,0.06) 50%, transparent 50%),
+    radial-gradient(ellipse 2px 1px at 7px 32px, rgba(0,0,0,0.07) 50%, transparent 50%),
+    radial-gradient(ellipse 1px 1px at 28px 25px, rgba(160,120,80,0.3) 50%, transparent 50%),
+    radial-gradient(ellipse 2px 2px at 35px 38px, rgba(0,0,0,0.05) 50%, transparent 50%),
+    linear-gradient(135deg, rgba(0,0,0,0.03) 25%, transparent 25%, transparent 50%, rgba(0,0,0,0.03) 50%, rgba(0,0,0,0.03) 75%, transparent 75%);
+  background-size: 50px 50px, 50px 50px, 50px 50px, 50px 50px, 50px 50px, 8px 8px;
+}
+
+/* ============================================
+   PUSH PINS
+   ============================================ */
+.pin {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: -8px;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 -2px 3px rgba(0,0,0,0.2), inset 0 2px 3px rgba(255,255,255,0.3);
+}
+.pin::after {
+  content: '';
+  position: absolute;
+  width: 4px; height: 4px;
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  top: 3px; left: 4px;
+}
+.pin-red { background: radial-gradient(circle at 35% 35%, #ee5555, var(--pin-red), #991111); left: 50%; transform: translateX(-50%); }
+.pin-blue { background: radial-gradient(circle at 35% 35%, #5599cc, var(--pin-blue), #224466); left: 50%; transform: translateX(-50%); }
+.pin-yellow { background: radial-gradient(circle at 35% 35%, #eebb44, var(--pin-yellow), #996600); left: 50%; transform: translateX(-50%); }
+.pin-green { background: radial-gradient(circle at 35% 35%, #55bb77, var(--pin-green), #1a5e35); left: 50%; transform: translateX(-50%); }
+.pin-left { left: 12px; transform: none; }
+.pin-right { left: auto; right: 12px; transform: none; }
+
+/* ============================================
+   POLAROID PHOTOS
+   ============================================ */
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 40px;
+  box-shadow: 2px 3px 12px rgba(0,0,0,0.3), 0 0 0 1px rgba(0,0,0,0.05);
+  position: relative;
+  display: inline-block;
+}
+.polaroid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.polaroid-caption {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  color: var(--dark-ink);
+  text-align: center;
+  margin-top: 6px;
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  right: 10px;
+}
+
+/* ============================================
+   STICKY NOTES
+   ============================================ */
+.sticky {
+  padding: 18px 16px;
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  line-height: 1.4;
+  position: relative;
+  box-shadow: 3px 4px 10px rgba(0,0,0,0.25);
+  min-width: 140px;
+}
+.sticky-yellow { background: var(--sticky-yellow); }
+.sticky-pink { background: var(--sticky-pink); }
+.sticky-blue { background: var(--sticky-blue); }
+.sticky-green { background: var(--sticky-green); }
+.rotate-cw-1 { transform: rotate(1.5deg); }
+.rotate-cw-2 { transform: rotate(3deg); }
+.rotate-ccw-1 { transform: rotate(-2deg); }
+.rotate-ccw-2 { transform: rotate(-3.5deg); }
+.rotate-cw-3 { transform: rotate(5deg); }
+
+/* ============================================
+   EVIDENCE TAGS
+   ============================================ */
+.evidence-tag {
+  background: var(--manila);
+  border: 1px solid #c4aa70;
+  padding: 8px 18px 8px 28px;
+  font-family: var(--font-type);
+  font-size: 0.85rem;
+  position: relative;
+  display: inline-block;
+  box-shadow: 1px 2px 6px rgba(0,0,0,0.2);
+}
+.evidence-tag::before {
+  content: '';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px; height: 8px;
+  border: 2px solid #8B7355;
+  border-radius: 50%;
+}
+
+/* ============================================
+   NEWSPAPER CLIPPING
+   ============================================ */
+.newspaper {
+  background: var(--aged-paper);
+  padding: 20px 24px;
+  border: 1px solid #d4c4a0;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
+  position: relative;
+}
+.newspaper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 60%, rgba(0,0,0,0.04));
+  pointer-events: none;
+}
+.newspaper h3 {
+  font-family: var(--font-bold);
+  font-size: 1.6rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  border-bottom: 2px solid #333;
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+.newspaper p {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  column-count: 2;
+  column-gap: 20px;
+  color: #3a3a3a;
+}
+@media (max-width: 600px) {
+  .newspaper p { column-count: 1; }
+}
+
+/* ============================================
+   RED STRING / THREAD
+   ============================================ */
+.red-string {
+  position: absolute;
+  border-top: 2px solid var(--red-string);
+  opacity: 0.7;
+  z-index: 1;
+  pointer-events: none;
+}
+.red-string-v {
+  position: absolute;
+  border-left: 2px solid var(--red-string);
+  opacity: 0.7;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ============================================
+   STAMPS & BADGES
+   ============================================ */
+.stamp {
+  font-family: var(--font-bold);
+  text-transform: uppercase;
+  color: var(--pin-red);
+  border: 3px solid var(--pin-red);
+  padding: 6px 16px;
+  display: inline-block;
+  transform: rotate(-5deg);
+  opacity: 0.85;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+.stamp-blue {
+  color: var(--pin-blue);
+  border-color: var(--pin-blue);
+}
+.stamp-classified {
+  font-size: 2rem;
+  padding: 8px 24px;
+  border-width: 4px;
+  transform: rotate(-8deg);
+}
+
+/* ============================================
+   TAPE STRIPS
+   ============================================ */
+.tape {
+  position: absolute;
+  width: 80px;
+  height: 22px;
+  background: rgba(255, 245, 200, 0.55);
+  border: 1px solid rgba(200, 180, 130, 0.3);
+  z-index: 15;
+}
+.tape-tl { top: -6px; left: 10px; transform: rotate(-15deg); }
+.tape-tr { top: -6px; right: 10px; transform: rotate(12deg); }
+.tape-center { top: -8px; left: 50%; transform: translateX(-50%) rotate(-3deg); }
+
+/* ============================================
+   CASE FILE HEADER
+   ============================================ */
+.case-header {
+  background: var(--manila);
+  border-bottom: 4px solid var(--cork-dark);
+  padding: 20px 0;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.case-header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.folder-tab {
+  background: var(--cork-dark);
+  color: var(--aged-paper);
+  font-family: var(--font-bold);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 6px 20px;
+  border-radius: 6px 6px 0 0;
+  position: absolute;
+  top: -28px;
+  left: 40px;
+}
+.case-title {
+  font-family: var(--font-bold);
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--dark-ink);
+}
+.case-title span {
+  font-family: var(--font-type);
+  font-weight: 400;
+  font-size: 0.75em;
+  display: block;
+  letter-spacing: 1px;
+  color: #666;
+}
+.badge {
+  width: 50px; height: 50px;
+  background: radial-gradient(circle at 40% 40%, #d4a44a, #8B7355);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.3);
+  flex-shrink: 0;
+}
+.badge-inner {
+  width: 38px; height: 38px;
+  background: radial-gradient(circle at 40% 40%, #ecc66a, #b8943e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-bold);
+  font-size: 0.6rem;
+  color: #3a2a10;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  line-height: 1.1;
+}
+.nav-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.nav-tag {
+  background: var(--aged-paper);
+  border: 1px solid #c4aa70;
+  padding: 4px 14px;
+  font-family: var(--font-type);
+  font-size: 0.75rem;
+  text-decoration: none;
+  color: var(--dark-ink);
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.nav-tag:hover {
+  background: var(--sticky-yellow);
+}
+
+/* ============================================
+   SECTION CONTAINERS
+   ============================================ */
+.section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 24px;
+  position: relative;
+}
+.section-label {
+  font-family: var(--font-bold);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--aged-paper);
+  text-shadow: 1px 2px 4px rgba(0,0,0,0.4);
+  margin-bottom: 40px;
+  position: relative;
+  display: inline-block;
+}
+.section-label::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--red-string);
+}
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+.hero-board {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  width: 100%;
+}
+@media (max-width: 800px) {
+  .hero-board { grid-template-columns: 1fr; }
+}
+.hero-left {
+  position: relative;
+}
+.hero-polaroid {
+  max-width: 380px;
+  margin: 0 auto;
+  transform: rotate(-2deg);
+}
+.hero-polaroid img {
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.hero-headline {
+  font-family: var(--font-bold);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  text-transform: uppercase;
+  color: var(--aged-paper);
+  text-shadow: 2px 3px 6px rgba(0,0,0,0.4);
+  line-height: 1.1;
+  letter-spacing: 2px;
+}
+.hero-headline em {
+  font-style: normal;
+  color: var(--pin-red);
+}
+.hero-stickies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.hero-stickies .sticky {
+  max-width: 180px;
+  font-size: 1.1rem;
+}
+
+/* ============================================
+   PRODUCTS / SUSPECTS GRID
+   ============================================ */
+.suspects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+  position: relative;
+}
+.suspect-card {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.suspect-card:hover {
+  transform: scale(1.03);
+}
+.suspect-card .polaroid {
+  width: 100%;
+}
+.suspect-card .polaroid img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.suspect-info {
+  margin-top: 12px;
+}
+.case-number {
+  font-family: var(--font-type);
+  font-size: 0.7rem;
+  color: #888;
+  letter-spacing: 1px;
+}
+.suspect-name {
+  font-family: var(--font-hand);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--aged-paper);
+  margin-top: 2px;
+}
+.suspect-price {
+  display: inline-block;
+  margin-top: 6px;
+}
+
+/* ============================================
+   TIMELINE / HOW IT WORKS
+   ============================================ */
+.timeline {
+  position: relative;
+  padding: 20px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--red-string);
+  opacity: 0.7;
+}
+@media (max-width: 700px) {
+  .timeline::before { left: 20px; }
+}
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 60px;
+  position: relative;
+}
+.timeline-step:nth-child(odd) {
+  flex-direction: row;
+}
+.timeline-step:nth-child(even) {
+  flex-direction: row-reverse;
+}
+@media (max-width: 700px) {
+  .timeline-step,
+  .timeline-step:nth-child(even) {
+    flex-direction: row;
+    padding-left: 50px;
+  }
+}
+.timeline-pin {
+  width: 20px; height: 20px;
+  background: radial-gradient(circle at 35% 35%, #ee5555, var(--pin-red));
+  border-radius: 50%;
+  position: absolute;
+  left: calc(50% - 10px);
+  top: 20px;
+  z-index: 5;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+@media (max-width: 700px) {
+  .timeline-pin { left: 10px; }
+}
+.timeline-content {
+  width: 45%;
+  padding: 0 20px;
+}
+@media (max-width: 700px) {
+  .timeline-content { width: 100%; padding: 0; }
+}
+.step-number {
+  font-family: var(--font-bold);
+  font-size: 3rem;
+  color: rgba(255,255,255,0.15);
+  line-height: 1;
+  margin-bottom: -10px;
+}
+.step-title {
+  font-family: var(--font-hand);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--aged-paper);
+}
+.step-desc {
+  font-family: var(--font-hand);
+  font-size: 1.15rem;
+  color: rgba(255,255,255,0.8);
+  margin-top: 4px;
+}
+
+/* ============================================
+   WITNESSES / TESTIMONIALS
+   ============================================ */
+.witnesses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+.witness-note {
+  position: relative;
+  padding: 22px 18px 30px;
+}
+.witness-text {
+  font-size: 1.15rem;
+  line-height: 1.4;
+  margin-bottom: 12px;
+}
+.witness-name {
+  font-family: var(--font-type);
+  font-size: 0.8rem;
+  color: #555;
+  text-align: right;
+}
+
+/* ============================================
+   FINAL CTA
+   ============================================ */
+.final-cta {
+  text-align: center;
+  padding: 80px 24px;
+}
+.final-sticky {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  font-size: 1.4rem;
+}
+.final-sticky h2 {
+  font-family: var(--font-hand);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+.cta-btn {
+  display: inline-block;
+  background: var(--manila);
+  border: 2px solid #8B7355;
+  padding: 14px 32px 14px 42px;
+  font-family: var(--font-bold);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--dark-ink);
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.25);
+}
+.cta-btn::before {
+  content: '';
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px; height: 10px;
+  border: 2px solid #8B7355;
+  border-radius: 50%;
+}
+.cta-btn:hover {
+  background: var(--sticky-yellow);
+  transform: translateY(-2px);
+  box-shadow: 3px 5px 12px rgba(0,0,0,0.3);
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+.torn-edge {
+  height: 40px;
+  background: var(--cork);
+  position: relative;
+  overflow: hidden;
+}
+.torn-edge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -10px;
+  right: -10px;
+  height: 20px;
+  background: linear-gradient(90deg,
+    var(--manila) 0%, var(--manila) 3%, transparent 3%, transparent 5%,
+    var(--manila) 5%, var(--manila) 12%, transparent 12%, transparent 14%,
+    var(--manila) 14%, var(--manila) 18%, transparent 18%, transparent 20%,
+    var(--manila) 20%, var(--manila) 28%, transparent 28%, transparent 30%,
+    var(--manila) 30%, var(--manila) 35%, transparent 35%, transparent 37%,
+    var(--manila) 37%, var(--manila) 45%, transparent 45%, transparent 47%,
+    var(--manila) 47%, var(--manila) 55%, transparent 55%, transparent 57%,
+    var(--manila) 57%, var(--manila) 62%, transparent 62%, transparent 64%,
+    var(--manila) 64%, var(--manila) 72%, transparent 72%, transparent 74%,
+    var(--manila) 74%, var(--manila) 80%, transparent 80%, transparent 82%,
+    var(--manila) 82%, var(--manila) 90%, transparent 90%, transparent 92%,
+    var(--manila) 92%, var(--manila) 100%
+  );
+  clip-path: polygon(
+    0% 0%, 2% 60%, 5% 30%, 8% 70%, 12% 20%, 15% 80%, 18% 40%,
+    22% 90%, 25% 30%, 28% 75%, 32% 15%, 35% 85%, 38% 25%,
+    42% 70%, 45% 10%, 48% 65%, 52% 30%, 55% 80%, 58% 20%,
+    62% 75%, 65% 35%, 68% 85%, 72% 15%, 75% 70%, 78% 25%,
+    82% 80%, 85% 40%, 88% 90%, 92% 20%, 95% 65%, 98% 30%, 100% 0%
+  );
+}
+
+/* ============================================
+   PDP SECTION
+   ============================================ */
+.pdp-section {
+  background: var(--manila);
+  position: relative;
+}
+.pdp-section .cork-strip {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 8px;
+  background: var(--cork-dark);
+}
+.pdp-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+.pdp-header {
+  margin-bottom: 40px;
+}
+.pdp-header h2 {
+  font-family: var(--font-bold);
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--dark-ink);
+}
+.pdp-header .stamp {
+  margin-top: 8px;
+}
+.pdp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: start;
+}
+@media (max-width: 800px) {
+  .pdp-grid { grid-template-columns: 1fr; }
+}
+.pdp-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.pdp-main-photo .polaroid {
+  width: 100%;
+  transform: rotate(-1deg);
+}
+.pdp-main-photo .polaroid img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.pdp-thumbs {
+  display: flex;
+  gap: 12px;
+}
+.pdp-thumb {
+  flex: 1;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.pdp-thumb:hover { transform: scale(1.05); }
+.pdp-thumb .polaroid {
+  padding: 5px 5px 24px;
+  width: 100%;
+}
+.pdp-thumb .polaroid img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.pdp-details {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.variant-sticky-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.variant-sticky {
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-align: center;
+  min-width: 120px;
+  position: relative;
+}
+.variant-sticky:hover { transform: scale(1.05); }
+.variant-sticky.selected {
+  outline: 3px solid var(--pin-red);
+  outline-offset: 4px;
+  transform: rotate(0deg) scale(1.05);
+}
+.variant-sticky .variant-name {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.variant-sticky .variant-price {
+  font-family: var(--font-type);
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+.pdp-description {
+  background: white;
+  padding: 24px;
+  border: 1px solid #ddd;
+  position: relative;
+  box-shadow: 1px 2px 6px rgba(0,0,0,0.1);
+}
+.pdp-description::before {
+  content: 'DETECTIVE\'S REPORT';
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  background: white;
+  padding: 0 8px;
+  font-family: var(--font-type);
+  font-size: 0.7rem;
+  letter-spacing: 2px;
+  color: #888;
+}
+.pdp-description p {
+  font-family: var(--font-type);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+.pdp-description p:last-child { margin-bottom: 0; }
+
+.crime-scene-section {
+  margin-top: 50px;
+  padding: 30px;
+  position: relative;
+  background: rgba(196, 149, 106, 0.2);
+  border: 2px dashed var(--cork-dark);
+}
+.crime-scene-section h3 {
+  font-family: var(--font-bold);
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: var(--pin-red);
+}
+.crime-scene-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.crime-moment {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.crime-time {
+  font-family: var(--font-type);
+  font-size: 0.8rem;
+  color: #888;
+  min-width: 70px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.crime-desc {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  color: var(--dark-ink);
+  border-left: 2px solid var(--red-string);
+  padding-left: 14px;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  background: var(--dark-ink);
+  color: rgba(255,255,255,0.5);
+  text-align: center;
+  padding: 30px 24px;
+  font-family: var(--font-type);
+  font-size: 0.8rem;
+}
+.site-footer a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+}
+.site-footer a:hover { color: white; }
+
+/* ============================================
+   SVG STRING OVERLAY
+   ============================================ */
+.string-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ============================================
+   UTILITY
+   ============================================ */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+.text-center { text-align: center; }
+.mt-1 { margin-top: 8px; }
+.mt-2 { margin-top: 16px; }
+.mt-3 { margin-top: 24px; }
+.mb-2 { margin-bottom: 16px; }
+
+/* ============================================
+   CART DRAWER
+   ============================================ */
+.cart-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+.cart-overlay.open { display: block; }
+.cart-drawer {
+  position: fixed;
+  top: 0; right: 0;
+  width: 380px;
+  max-width: 90vw;
+  height: 100vh;
+  background: var(--aged-paper);
+  z-index: 1000;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.3);
+}
+.cart-drawer.open { transform: translateX(0); }
+.cart-drawer-header {
+  padding: 20px;
+  border-bottom: 2px solid var(--cork-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--manila);
+}
+.cart-drawer-header h3 {
+  font-family: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.1rem;
+}
+.cart-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--dark-ink);
+  padding: 4px 8px;
+}
+.cart-items {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+.cart-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px dashed #c4aa70;
+  align-items: center;
+}
+.cart-item-info {
+  flex: 1;
+}
+.cart-item-name {
+  font-family: var(--font-hand);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.cart-item-variant {
+  font-family: var(--font-type);
+  font-size: 0.75rem;
+  color: #888;
+}
+.cart-item-price {
+  font-family: var(--font-type);
+  font-weight: 700;
+}
+.cart-remove {
+  background: none;
+  border: none;
+  color: var(--pin-red);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: var(--font-type);
+}
+.cart-footer {
+  padding: 20px;
+  border-top: 2px solid var(--cork-dark);
+  background: var(--manila);
+}
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-bold);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+.cart-checkout-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--pin-red);
+  color: white;
+  border: none;
+  font-family: var(--font-bold);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cart-checkout-btn:hover { background: #aa2222; }
+.cart-empty {
+  font-family: var(--font-hand);
+  font-size: 1.3rem;
+  color: #888;
+  text-align: center;
+  padding: 40px 0;
+}
+.cart-count-badge {
+  background: var(--pin-red);
+  color: white;
+  font-family: var(--font-bold);
+  font-size: 0.65rem;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 4px;
+  vertical-align: top;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes pin-drop {
+  0% { transform: translateY(-20px) scale(1.3); opacity: 0; }
+  60% { transform: translateY(2px) scale(0.95); }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in {
+  opacity: 0;
+  animation: fade-up 0.6s ease forwards;
+}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+</style>
+</head>
+<body>
+
+<!-- ============================================
+     CASE FILE HEADER
+     ============================================ -->
+<header class="case-header">
+  <div class="folder-tab">Case File</div>
+  <div class="case-header-inner">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div class="badge"><div class="badge-inner">P.D.<br>DEPT</div></div>
+      <div class="case-title">
+        Case #PD-2026 &mdash; Operation: Package Deal
+        <span>Filed: April 2, 2026 &bull; Status: OPEN INVESTIGATION</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <nav class="nav-tags">
+        <a class="nav-tag" href="#suspects">Suspects</a>
+        <a class="nav-tag" href="#timeline">Timeline</a>
+        <a class="nav-tag" href="#witnesses">Witnesses</a>
+        <a class="nav-tag" href="#dossier">Dossier</a>
+      </nav>
+      <button class="nav-tag" onclick="openCart()" style="border:2px solid #8B7355;font-weight:700;">
+        EVIDENCE LOCKER <span class="cart-count-badge" id="cart-count">0</span>
+      </button>
+    </div>
+    <div class="stamp" style="position:absolute;right:40px;top:8px;display:none;" id="open-stamp">OPEN</div>
+  </div>
+</header>
+
+<!-- ============================================
+     HERO — THE BOARD
+     ============================================ -->
+<section class="cork-bg" style="border-bottom: 3px solid rgba(0,0,0,0.15);">
+  <div class="section hero">
+    <div class="hero-board">
+      <div class="hero-left animate-in">
+        <div class="hero-polaroid polaroid" style="position:relative;">
+          <div class="pin pin-red"></div>
+          <img src="images/hero.png" alt="The package — evidence photo">
+          <span class="polaroid-caption" style="font-size:1.3rem;font-weight:700;color:#CC3333;">THE PACKAGE</span>
+        </div>
+        <div class="newspaper animate-in delay-3" style="max-width:360px;margin-top:24px;transform:rotate(1deg);">
+          <div class="tape tape-tl"></div>
+          <h3>Mysterious Packages Causing Embarrassment Nationwide</h3>
+          <p>Authorities remain baffled by the surge of anonymous mailing tubes bearing deeply personal URLs appearing on doorsteps across the country. Recipients, who must sign for the parcels, report feelings ranging from profound confusion to uncontrollable laughter. Postal inspectors have been unable to trace the sender. "Whoever is behind this is either a genius or completely unhinged," said one investigator who declined to be identified. The packages continue to arrive.</p>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="stamp stamp-classified animate-in" style="align-self:flex-start;">CLASSIFIED</div>
+        <h1 class="hero-headline animate-in delay-1">
+          Someone you know deserves <em>an anonymous package</em> they&rsquo;ll never forget
+        </h1>
+        <div class="hero-stickies">
+          <div class="sticky sticky-yellow rotate-ccw-1 animate-in delay-2" style="position:relative;">
+            <div class="pin pin-red"></div>
+            Ships 100% anonymously. No return address. No trace.
+          </div>
+          <div class="sticky sticky-pink rotate-cw-2 animate-in delay-3" style="position:relative;">
+            <div class="pin pin-blue"></div>
+            They have to SIGN for it. In front of whoever is standing there.
+          </div>
+          <div class="sticky sticky-green rotate-ccw-2 animate-in delay-4" style="position:relative;">
+            <div class="pin pin-yellow"></div>
+            Real mailing tube. Real embarrassing URL. Real confusion.
+          </div>
+        </div>
+        <a href="#suspects" class="cta-btn animate-in delay-5" style="align-self:flex-start;margin-top:12px;">
+          Begin Investigation
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     SUSPECTS / PRODUCT GRID
+     ============================================ -->
+<section class="cork-bg" id="suspects">
+  <div class="section">
+    <div class="section-label">Known Packages &mdash; Active Cases</div>
+    <p style="font-family:var(--font-type);color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:-30px;margin-bottom:40px;">
+      The following items have been identified as instruments of anonymous embarrassment. Handle with extreme caution.
+    </p>
+
+    <div class="suspects-grid">
+      <!-- PRODUCT 1 -->
+      <a class="suspect-card animate-in delay-1" href="#dossier" data-product="micropenis">
+        <div class="polaroid" style="transform:rotate(-2deg);position:relative;">
+          <div class="pin pin-red"></div>
+          <img src="images/micropenis1.webp" alt="MicroPenisCure.com evidence photo">
+          <span class="polaroid-caption">Exhibit A</span>
+        </div>
+        <div class="suspect-info">
+          <div class="case-number">CASE #PD-001</div>
+          <div class="suspect-name">MicroPenisCure.com</div>
+          <div class="evidence-tag suspect-price">From $14.99</div>
+        </div>
+      </a>
+
+      <!-- PRODUCT 2 -->
+      <a class="suspect-card animate-in delay-2" href="#dossier" data-product="bigass">
+        <div class="polaroid" style="transform:rotate(1.5deg);position:relative;">
+          <div class="pin pin-blue"></div>
+          <img src="images/bigassdildos1.webp" alt="BigAssDildos.com evidence photo">
+          <span class="polaroid-caption">Exhibit B</span>
+        </div>
+        <div class="suspect-info">
+          <div class="case-number">CASE #PD-002</div>
+          <div class="suspect-name">BigAssDildos.com</div>
+          <div class="evidence-tag suspect-price">From $14.99</div>
+        </div>
+      </a>
+
+      <!-- PRODUCT 3 -->
+      <a class="suspect-card animate-in delay-3" href="#dossier" data-product="vaginal">
+        <div class="polaroid" style="transform:rotate(-1deg);position:relative;">
+          <div class="pin pin-yellow"></div>
+          <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com evidence photo">
+          <span class="polaroid-caption">Exhibit C</span>
+        </div>
+        <div class="suspect-info">
+          <div class="case-number">CASE #PD-003</div>
+          <div class="suspect-name">VaginalOdorHelper.com</div>
+          <div class="evidence-tag suspect-price">From $14.99</div>
+        </div>
+      </a>
+
+      <!-- PRODUCT 4 -->
+      <a class="suspect-card animate-in delay-4" href="#dossier" data-product="bulk">
+        <div class="polaroid" style="transform:rotate(2.5deg);position:relative;">
+          <div class="pin pin-green"></div>
+          <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com evidence photo">
+          <span class="polaroid-caption">Exhibit D</span>
+        </div>
+        <div class="suspect-info">
+          <div class="case-number">CASE #PD-004</div>
+          <div class="suspect-name">BulkCondomDelivery.com</div>
+          <div class="evidence-tag suspect-price">$12.99</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TIMELINE / HOW IT WORKS
+     ============================================ -->
+<section class="cork-bg" id="timeline" style="background-image: linear-gradient(rgba(0,0,0,0.08), transparent), radial-gradient(ellipse 2px 2px at 15px 15px, rgba(0,0,0,0.08) 50%, transparent 50%), radial-gradient(ellipse 1px 2px at 42px 8px, rgba(0,0,0,0.06) 50%, transparent 50%); background-size: 100% 100%, 50px 50px, 50px 50px;">
+  <div class="section">
+    <div class="section-label">Operational Timeline</div>
+    <p style="font-family:var(--font-type);color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:-30px;margin-bottom:40px;">
+      Standard operating procedure. Four steps. No witnesses. No evidence linking back to you.
+    </p>
+
+    <div class="timeline">
+      <!-- Step 1 -->
+      <div class="timeline-step animate-in">
+        <div class="timeline-pin"></div>
+        <div class="timeline-content">
+          <div class="sticky sticky-yellow rotate-ccw-1" style="position:relative;margin-bottom:8px;">
+            <div class="pin pin-red pin-left"></div>
+            <div class="step-number">01</div>
+            <div class="step-title">Select Your Weapon</div>
+            <div class="step-desc">Browse the evidence locker. Choose the URL that will cause maximum confusion when printed on a mailing tube and delivered to your target's doorstep.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="timeline-step animate-in delay-1">
+        <div class="timeline-pin"></div>
+        <div class="timeline-content">
+          <div class="sticky sticky-blue rotate-cw-1" style="position:relative;margin-bottom:8px;">
+            <div class="pin pin-blue pin-left"></div>
+            <div class="step-number">02</div>
+            <div class="step-title">Provide the Drop Location</div>
+            <div class="step-desc">Enter their address. We don't ask questions. We don't judge. We just ship. Your name appears nowhere on the package. Nowhere.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="timeline-step animate-in delay-2">
+        <div class="timeline-pin"></div>
+        <div class="timeline-content">
+          <div class="sticky sticky-pink rotate-ccw-2" style="position:relative;margin-bottom:8px;">
+            <div class="pin pin-yellow pin-left"></div>
+            <div class="step-number">03</div>
+            <div class="step-title">The Delivery</div>
+            <div class="step-desc">A real postal carrier arrives. With a real mailing tube. Bearing a URL that no one wants to be seen holding. Your friend must sign for it. In person. In front of God and the mail carrier.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="timeline-step animate-in delay-3">
+        <div class="timeline-pin"></div>
+        <div class="timeline-content">
+          <div class="sticky sticky-green rotate-cw-2" style="position:relative;margin-bottom:8px;">
+            <div class="pin pin-green pin-left"></div>
+            <div class="step-number">04</div>
+            <div class="step-title">The Aftermath</div>
+            <div class="step-desc">They stand in their doorway holding a tube that says BigAssDildos.com while their roommate walks up behind them. You receive a panicked text. You play dumb. Case closed.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     WITNESSES / TESTIMONIALS
+     ============================================ -->
+<section class="cork-bg" id="witnesses">
+  <div class="section">
+    <div class="section-label">Witness Statements &mdash; Confidential</div>
+    <p style="font-family:var(--font-type);color:rgba(255,255,255,0.6);font-size:0.85rem;margin-top:-30px;margin-bottom:40px;">
+      The following testimony was collected from field operatives. Names have been redacted for their protection.
+    </p>
+
+    <div class="witnesses-grid">
+      <div class="witness-note sticky sticky-yellow rotate-cw-1 animate-in" style="position:relative;">
+        <div class="pin pin-red"></div>
+        <div class="witness-text">"Sent one to my college roommate. He called me in a panic asking if someone was threatening him. I told him it was probably a scam. He believed me. I've never been happier."</div>
+        <div class="witness-name">&mdash; WITNESS ALPHA, Age 28</div>
+      </div>
+
+      <div class="witness-note sticky sticky-blue rotate-ccw-2 animate-in delay-1" style="position:relative;">
+        <div class="pin pin-blue"></div>
+        <div class="witness-text">"My sister had to sign for VaginalOdorHelper.com in front of her boyfriend's parents who were visiting. She still hasn't forgiven me. Worth every penny."</div>
+        <div class="witness-name">&mdash; WITNESS BRAVO, Age 31</div>
+      </div>
+
+      <div class="witness-note sticky sticky-pink rotate-cw-2 animate-in delay-2" style="position:relative;">
+        <div class="pin pin-yellow"></div>
+        <div class="witness-text">"The best part isn't the delivery. It's the three days of paranoid texts afterward: 'Did YOU send this?' 'Do you know who sent this?' 'WHY DOES SOMEONE THINK I NEED THIS?'"</div>
+        <div class="witness-name">&mdash; WITNESS CHARLIE, Age 26</div>
+      </div>
+
+      <div class="witness-note sticky sticky-green rotate-ccw-1 animate-in delay-3" style="position:relative;">
+        <div class="pin pin-green"></div>
+        <div class="witness-text">"I sent BulkCondomDelivery.com to my buddy at his office. The receptionist handed it to him during a team meeting. He turned colors I didn't know humans could turn."</div>
+        <div class="witness-name">&mdash; WITNESS DELTA, Age 33</div>
+      </div>
+
+      <div class="witness-note sticky sticky-yellow rotate-cw-3 animate-in delay-4" style="position:relative;">
+        <div class="pin pin-red"></div>
+        <div class="witness-text">"My husband signed for MicroPenisCure.com while our neighbor was watching. The neighbor hasn't made eye contact since. My husband still doesn't know it was me. I sleep like a baby."</div>
+        <div class="witness-name">&mdash; WITNESS ECHO, Age 30</div>
+      </div>
+
+      <div class="witness-note sticky sticky-blue rotate-ccw-1 animate-in delay-5" style="position:relative;">
+        <div class="pin pin-blue"></div>
+        <div class="witness-text">"Ordered the Sign For It upgrade and I have zero regrets. Making someone physically hand-sign for a tube that says BigAssDildos.com is the greatest $21.99 I've ever spent."</div>
+        <div class="witness-name">&mdash; WITNESS FOXTROT, Age 29</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FINAL CTA
+     ============================================ -->
+<section class="cork-bg">
+  <div class="section final-cta">
+    <div class="final-sticky sticky sticky-yellow" style="display:inline-block;position:relative;transform:rotate(-1deg);">
+      <div class="pin pin-red"></div>
+      <h2>Ready to Open a New Case?</h2>
+      <p style="font-size:1.2rem;margin-bottom:20px;">
+        Every great investigation starts with a single anonymous package. Select your evidence. Enter the drop address. Sit back and wait for the panicked phone call.
+      </p>
+      <a href="#suspects" class="cta-btn">Open a Case File</a>
+    </div>
+    <div style="margin-top:30px;">
+      <div class="stamp stamp-blue animate-in">100% Anonymous &bull; No Return Address &bull; Ships in 1-3 Days</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     TORN EDGE DIVIDER
+     ============================================ -->
+<div class="torn-edge"></div>
+
+<!-- ============================================
+     PDP SECTION — BIGASSDILDOS DOSSIER
+     ============================================ -->
+<section class="pdp-section" id="dossier">
+  <div class="cork-strip"></div>
+  <div class="pdp-inner">
+    <div class="pdp-header">
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <h2>Evidence File: BigAssDildos.com</h2>
+        <div class="stamp" style="font-size:0.8rem;">HIGH IMPACT</div>
+      </div>
+      <p style="font-family:var(--font-type);font-size:0.85rem;color:#888;margin-top:4px;">
+        CASE #PD-002 &bull; Classification: MAXIMUM EMBARRASSMENT &bull; Threat Level: Severe
+      </p>
+    </div>
+
+    <div class="pdp-grid">
+      <!-- Gallery -->
+      <div class="pdp-gallery">
+        <div class="pdp-main-photo" id="pdp-main-photo">
+          <div class="polaroid" style="position:relative;">
+            <div class="pin pin-red"></div>
+            <div class="tape tape-tr"></div>
+            <img id="pdp-hero-img" src="images/bigassdildos1.webp" alt="BigAssDildos.com — primary evidence photo">
+            <span class="polaroid-caption" style="font-weight:700;">Primary Evidence — Front View</span>
+          </div>
+        </div>
+        <div class="pdp-thumbs">
+          <div class="pdp-thumb" onclick="changePhoto('images/bigassdildos1.webp', 'Primary Evidence — Front View')">
+            <div class="polaroid" style="transform:rotate(-2deg);position:relative;">
+              <div class="pin pin-yellow" style="width:12px;height:12px;top:-5px;"></div>
+              <img src="images/bigassdildos1.webp" alt="Angle 1">
+              <span class="polaroid-caption" style="font-size:0.8rem;">Front</span>
+            </div>
+          </div>
+          <div class="pdp-thumb" onclick="changePhoto('images/bigassdildos2.webp', 'Secondary Evidence — Side Angle')">
+            <div class="polaroid" style="transform:rotate(1deg);position:relative;">
+              <div class="pin pin-blue" style="width:12px;height:12px;top:-5px;"></div>
+              <img src="images/bigassdildos2.webp" alt="Angle 2">
+              <span class="polaroid-caption" style="font-size:0.8rem;">Side</span>
+            </div>
+          </div>
+          <div class="pdp-thumb" onclick="changePhoto('images/bigassdildos3.webp', 'Tertiary Evidence — Detail Shot')">
+            <div class="polaroid" style="transform:rotate(-1.5deg);position:relative;">
+              <div class="pin pin-green" style="width:12px;height:12px;top:-5px;"></div>
+              <img src="images/bigassdildos3.webp" alt="Angle 3">
+              <span class="polaroid-caption" style="font-size:0.8rem;">Detail</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Details -->
+      <div class="pdp-details">
+        <div class="sticky sticky-yellow rotate-cw-1" style="position:relative;align-self:flex-start;">
+          <div class="pin pin-red"></div>
+          <span style="font-size:1.5rem;font-weight:700;">BigAssDildos.com</span><br>
+          <span style="font-family:var(--font-type);font-size:0.8rem;">A professional mailing tube with an extremely unprofessional URL printed on it. Shipped anonymously to the address of your choosing.</span>
+        </div>
+
+        <div>
+          <div style="font-family:var(--font-bold);text-transform:uppercase;letter-spacing:2px;font-size:0.85rem;color:var(--dark-ink);margin-bottom:12px;">
+            Select Operation Level:
+          </div>
+          <div class="variant-sticky-row">
+            <div class="variant-sticky sticky sticky-blue rotate-ccw-1 selected" onclick="selectVariant(this, 'Standard', 1499)" style="position:relative;">
+              <div class="pin pin-blue" style="width:12px;height:12px;top:-5px;"></div>
+              <div class="variant-name">Standard</div>
+              <div class="variant-price">$14.99</div>
+            </div>
+            <div class="variant-sticky sticky sticky-pink rotate-cw-1" onclick="selectVariant(this, 'Sign For It', 2199)" style="position:relative;">
+              <div class="pin pin-red" style="width:12px;height:12px;top:-5px;"></div>
+              <div class="variant-name">Sign For It</div>
+              <div class="variant-price">$21.99</div>
+            </div>
+            <div class="variant-sticky sticky sticky-green rotate-ccw-2" onclick="selectVariant(this, 'Actual Dildo', 4399)" style="position:relative;">
+              <div class="pin pin-green" style="width:12px;height:12px;top:-5px;"></div>
+              <div class="variant-name">Actual Dildo</div>
+              <div class="variant-price">$43.99</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <div class="evidence-tag"><strong>Price:</strong> <span id="pdp-price">$14.99</span></div>
+          <div class="evidence-tag"><strong>Case:</strong> #PD-002</div>
+          <div class="evidence-tag"><strong>Threat:</strong> MAXIMUM</div>
+        </div>
+
+        <button class="cta-btn" style="font-size:1.1rem;padding:16px 36px 16px 48px;border:2px solid var(--pin-red);cursor:pointer;background:var(--manila);" onclick="addToCart('BigAssDildos.com', selectedVariant, selectedPrice)">
+          Add to Evidence Locker
+        </button>
+
+        <div class="pdp-description">
+          <p><strong>RE: CASE #PD-002 — Field Report</strong></p>
+          <p>The item in question is a standard cardboard mailing tube, approximately 2 inches in diameter and 18 inches in length. On its exterior, printed in clear, professional lettering, are the words "BigAssDildos.com." The tube contains no actual contraband — merely a rolled card explaining that this was sent by someone who considers the recipient a close personal friend.</p>
+          <p>Our field tests indicate that the critical moment occurs not upon opening, but upon receipt — specifically, the 3.7 seconds during which the recipient holds the tube in full view while reading the URL for the first time. If the "Sign For It" upgrade is deployed, this moment is shared with the postal carrier, who will maintain an admirably neutral expression.</p>
+          <p>The sender remains untraceable. No return address. No identifying markers. The recipient is left with nothing but questions, a mailing tube, and a lingering sense that someone out there knows them very, very well.</p>
+        </div>
+
+        <!-- Crime Scene Reconstruction -->
+        <div class="crime-scene-section">
+          <h3>Projected Crime Scene &mdash; Timeline Reconstruction</h3>
+          <div class="crime-scene-timeline">
+            <div class="crime-moment">
+              <div class="crime-time">T-minus 2 days</div>
+              <div class="crime-desc">Package enters postal system. No return address. The clock is ticking.</div>
+            </div>
+            <div class="crime-moment">
+              <div class="crime-time">T-0:00</div>
+              <div class="crime-desc">Doorbell rings. Postal carrier holds out a clipboard and a mailing tube that says "BigAssDildos.com" in clear, unmistakable lettering.</div>
+            </div>
+            <div class="crime-moment">
+              <div class="crime-time">T+0:03</div>
+              <div class="crime-desc">Recipient reads the URL. Time seems to slow. Their eyes widen. The postal carrier maintains eye contact. Someone must sign.</div>
+            </div>
+            <div class="crime-moment">
+              <div class="crime-time">T+0:15</div>
+              <div class="crime-desc">Signature complete. The carrier departs. The recipient stands in the doorway holding a tube they can neither explain nor put down. A roommate approaches from behind: "What's that?"</div>
+            </div>
+            <div class="crime-moment">
+              <div class="crime-time">T+2:00</div>
+              <div class="crime-desc">The tube has been opened. Inside: a card explaining that someone who cares about them very much arranged this delivery. No name. No clues. Only questions.</div>
+            </div>
+            <div class="crime-moment">
+              <div class="crime-time">T+5:00</div>
+              <div class="crime-desc">First panicked text sent to group chat: "Did one of you send me something?" Everyone denies it. You deny it hardest.</div>
+            </div>
+            <div class="crime-moment">
+              <div class="crime-time">T+72:00</div>
+              <div class="crime-desc">Three days later. Still no answers. The tube sits on their kitchen counter. They've told the story to four different people. You have accomplished everything you set out to do.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================
+     FOOTER
+     ============================================ -->
+<footer class="site-footer">
+  <p>CASE FILE #PD-2026 &bull; OPERATION: PACKAGE DEAL &bull; ALL EVIDENCE SHIPS ANONYMOUSLY</p>
+  <p style="margin-top:8px;">
+    <a href="#">About the Department</a> &bull;
+    <a href="#">Shipping & Returns</a> &bull;
+    <a href="#">FAQ</a> &bull;
+    <a href="#">Privacy Policy</a>
+  </p>
+  <p style="margin-top:12px;font-size:0.7rem;opacity:0.5;">This is a demo concept. No actual investigations were conducted in the making of this page.</p>
+</footer>
+
+<!-- ============================================
+     CART DRAWER
+     ============================================ -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-drawer-header">
+    <h3>Evidence Locker</h3>
+    <button class="cart-close" onclick="closeCart()">&times;</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty" id="cart-empty">No evidence collected yet.<br>The investigation awaits.</div>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span>Case Total</span>
+      <span id="cart-total">$0.00</span>
+    </div>
+    <button class="cart-checkout-btn" onclick="alert('Case filed. Evidence en route to the target. You were never here.')">File This Case</button>
+  </div>
+</div>
+
+<!-- ============================================
+     JAVASCRIPT
+     ============================================ -->
+<script>
+// Cart state
+let cart = [];
+let selectedVariant = 'Standard';
+let selectedPrice = 1499;
+
+function selectVariant(el, name, price) {
+  selectedVariant = name;
+  selectedPrice = price;
+  document.querySelectorAll('.variant-sticky').forEach(v => v.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('pdp-price').textContent = formatPrice(price);
+}
+
+function formatPrice(cents) {
+  return '$' + (cents / 100).toFixed(2);
+}
+
+function addToCart(product, variant, price) {
+  const existing = cart.find(i => i.product === product && i.variant === variant);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ product, variant, price, qty: 1 });
+  }
+  renderCart();
+  openCart();
+}
+
+function removeFromCart(index) {
+  cart.splice(index, 1);
+  renderCart();
+}
+
+function renderCart() {
+  const container = document.getElementById('cart-items');
+  const empty = document.getElementById('cart-empty');
+  const countEl = document.getElementById('cart-count');
+  const totalEl = document.getElementById('cart-total');
+
+  const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+  const totalPrice = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+
+  countEl.textContent = totalItems;
+  totalEl.textContent = formatPrice(totalPrice);
+
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    // Clear any item HTML
+    const items = container.querySelectorAll('.cart-item');
+    items.forEach(i => i.remove());
+    return;
+  }
+
+  empty.style.display = 'none';
+  let html = '';
+  cart.forEach((item, idx) => {
+    html += `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.product}</div>
+          <div class="cart-item-variant">${item.variant} &times; ${item.qty}</div>
+        </div>
+        <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
+        <button class="cart-remove" onclick="removeFromCart(${idx})">REMOVE</button>
+      </div>
+    `;
+  });
+  // Keep the empty div, replace everything else
+  container.innerHTML = `<div class="cart-empty" id="cart-empty" style="display:none">No evidence collected yet.<br>The investigation awaits.</div>` + html;
+}
+
+function openCart() {
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-drawer').classList.add('open');
+}
+
+function closeCart() {
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+}
+
+function changePhoto(src, caption) {
+  document.getElementById('pdp-hero-img').src = src;
+  document.querySelector('#pdp-main-photo .polaroid-caption').textContent = caption;
+}
+
+// Intersection Observer for scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animationPlayState = 'running';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.animate-in').forEach(el => {
+  el.style.animationPlayState = 'paused';
+  observer.observe(el);
+});
+
+// Show open stamp on scroll
+window.addEventListener('scroll', () => {
+  const stamp = document.getElementById('open-stamp');
+  if (window.scrollY > 100) {
+    stamp.style.display = 'inline-block';
+  } else {
+    stamp.style.display = 'none';
+  }
+}, { passive: true });
+</script>
+
+</body>
+</html>

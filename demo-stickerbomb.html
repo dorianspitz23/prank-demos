@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal — Mail Something Unforgivable</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rubik:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   RESET & BASE
+   ============================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --orange: #FF6600;
+  --green: #AAFF00;
+  --pink: #FF0066;
+  --blue: #00AAFF;
+  --black: #111111;
+  --white: #FFFFFF;
+  --yellow: #FFCC00;
+  --dark: #1a1a1a;
+  --marker: 'Permanent Marker', cursive;
+  --body: 'Rubik', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--body);
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+/* Grain overlay on entire page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ============================================
+   STICKER UTILITY CLASSES
+   ============================================ */
+.sticker {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 4px solid var(--white);
+  border-radius: 6px;
+  font-family: var(--marker);
+  font-size: 14px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.sticker-round {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 11px;
+  line-height: 1.1;
+  padding: 8px;
+}
+
+.sticker-pill {
+  border-radius: 30px;
+  padding: 8px 20px;
+}
+
+/* Scattered decorative stickers */
+.deco-sticker {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+.header {
+  background: var(--black);
+  border-bottom: 4px solid var(--orange);
+  padding: 16px 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: visible;
+}
+
+.logo {
+  font-family: var(--marker);
+  font-size: 28px;
+  color: var(--white);
+  letter-spacing: 1px;
+}
+.logo span { color: var(--orange); }
+
+.nav { display: flex; gap: 8px; align-items: center; }
+
+.nav-link {
+  font-family: var(--marker);
+  font-size: 14px;
+  padding: 6px 14px;
+  border: 3px solid var(--white);
+  border-radius: 4px;
+  color: var(--white);
+  background: transparent;
+  transition: all 0.15s;
+  transform: rotate(-1deg);
+  cursor: pointer;
+}
+.nav-link:nth-child(2) { transform: rotate(1.5deg); }
+.nav-link:nth-child(3) { transform: rotate(-0.5deg); }
+.nav-link:hover {
+  background: var(--orange);
+  color: var(--black);
+  transform: rotate(0deg) scale(1.05);
+}
+
+.header-sticker {
+  position: absolute;
+  font-size: 11px;
+  z-index: 10;
+}
+.header-sticker.s1 {
+  top: -4px; right: 200px;
+  background: var(--pink);
+  color: var(--white);
+  transform: rotate(12deg);
+}
+.header-sticker.s2 {
+  top: 6px; right: 120px;
+  background: var(--yellow);
+  color: var(--black);
+  transform: rotate(-8deg);
+  font-size: 16px;
+  padding: 4px 10px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header-sticker.s3 {
+  bottom: -8px; left: 280px;
+  background: var(--green);
+  color: var(--black);
+  transform: rotate(6deg);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 40px;
+  background: var(--dark);
+  overflow: hidden;
+}
+
+.hero-bg-texture {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(255,102,0,0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(170,255,0,0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(255,0,102,0.05) 0%, transparent 60%);
+  z-index: 0;
+}
+
+.hero-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-text h1 {
+  font-family: var(--marker);
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.95;
+  color: var(--white);
+  margin-bottom: 24px;
+  position: relative;
+}
+.hero-text h1 .break-word {
+  color: var(--orange);
+  display: inline-block;
+  transform: rotate(-2deg);
+  position: relative;
+  left: -8px;
+}
+
+.hero-sub {
+  font-size: 20px;
+  color: #ccc;
+  max-width: 500px;
+  margin-bottom: 36px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.hero-cta {
+  display: inline-block;
+  font-family: var(--marker);
+  font-size: 24px;
+  background: var(--green);
+  color: var(--black);
+  padding: 16px 48px;
+  border: 5px solid var(--white);
+  border-radius: 8px;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.4);
+  transform: rotate(-1deg);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.hero-cta:hover {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.5);
+  background: var(--yellow);
+}
+
+.hero-image-wrap {
+  position: relative;
+}
+.hero-image-wrap img {
+  border: 6px solid var(--white);
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.4);
+  transform: rotate(3deg);
+  transition: transform 0.3s;
+  width: 100%;
+}
+.hero-image-wrap:hover img {
+  transform: rotate(0deg);
+}
+
+/* Scattered hero stickers */
+.hero .slap { position: absolute; z-index: 5; }
+.hero .slap-1 {
+  top: 10%; right: 0;
+  background: var(--pink);
+  color: var(--white);
+  transform: rotate(15deg);
+  font-size: 16px;
+  padding: 10px 22px;
+}
+.hero .slap-2 {
+  bottom: 15%; right: 8%;
+  background: var(--blue);
+  color: var(--white);
+  transform: rotate(-10deg);
+  font-size: 14px;
+}
+.hero .slap-3 {
+  top: 20%; left: 55%;
+  background: var(--yellow);
+  color: var(--black);
+  transform: rotate(8deg);
+  font-size: 13px;
+}
+.hero .slap-4 {
+  bottom: 5%; left: 10%;
+  background: var(--orange);
+  color: var(--white);
+  transform: rotate(-6deg);
+}
+
+/* ============================================
+   PRODUCT GRID
+   ============================================ */
+.products {
+  padding: 100px 40px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+.products-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--marker);
+  font-size: clamp(32px, 5vw, 56px);
+  text-align: center;
+  margin-bottom: 60px;
+  color: var(--black);
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 120px;
+  height: 6px;
+  background: var(--orange);
+  margin: 16px auto 0;
+  border-radius: 3px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  position: relative;
+}
+
+.product-card {
+  background: var(--white);
+  border: 5px solid var(--black);
+  border-radius: 10px;
+  padding: 0;
+  overflow: visible;
+  position: relative;
+  transition: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  cursor: pointer;
+}
+.product-card:nth-child(1) { transform: rotate(-2deg); }
+.product-card:nth-child(2) { transform: rotate(1.5deg); }
+.product-card:nth-child(3) { transform: rotate(-1deg); }
+.product-card:nth-child(4) { transform: rotate(2deg); }
+
+.product-card:hover {
+  transform: rotate(0deg) scale(1.06) !important;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.2);
+  z-index: 5;
+}
+
+.product-img-wrap {
+  overflow: hidden;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+}
+.product-img-wrap img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.product-card:hover .product-img-wrap img {
+  transform: scale(1.05);
+}
+
+.product-price-badge {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  z-index: 4;
+  font-family: var(--marker);
+  font-size: 18px;
+  padding: 10px 16px;
+  border: 4px solid var(--white);
+  border-radius: 50%;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+}
+.product-card:nth-child(1) .product-price-badge { background: var(--orange); color: var(--white); transform: rotate(10deg); }
+.product-card:nth-child(2) .product-price-badge { background: var(--pink); color: var(--white); transform: rotate(-8deg); }
+.product-card:nth-child(3) .product-price-badge { background: var(--blue); color: var(--white); transform: rotate(12deg); }
+.product-card:nth-child(4) .product-price-badge { background: var(--green); color: var(--black); transform: rotate(-6deg); }
+
+.product-info {
+  padding: 16px 16px 20px;
+  text-align: center;
+}
+.product-info h3 {
+  font-family: var(--marker);
+  font-size: 18px;
+  color: var(--black);
+  margin-bottom: 6px;
+}
+.product-info p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* Decorative stickers between products */
+.product-deco {
+  position: absolute;
+  z-index: 3;
+}
+.product-deco.d1 {
+  top: -30px; left: 22%;
+  background: var(--yellow);
+  color: var(--black);
+  transform: rotate(-12deg);
+}
+.product-deco.d2 {
+  bottom: -20px; right: 18%;
+  background: var(--pink);
+  color: var(--white);
+  transform: rotate(8deg);
+}
+.product-deco.d3 {
+  top: 50%; left: -20px;
+  background: var(--green);
+  color: var(--black);
+  transform: rotate(-20deg);
+}
+
+/* ============================================
+   HOW IT WORKS
+   ============================================ */
+.how-it-works {
+  padding: 100px 40px;
+  background: var(--dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.how-it-works .section-title { color: var(--white); }
+.how-it-works .section-title::after { background: var(--green); }
+
+.steps-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  position: relative;
+}
+
+.step-card {
+  background: var(--white);
+  color: var(--black);
+  padding: 30px 24px 28px;
+  position: relative;
+  border-radius: 4px;
+  /* Torn poster edges via clip-path */
+  clip-path: polygon(
+    0% 3%, 5% 0%, 12% 2%, 20% 0%, 28% 1%, 35% 0%,
+    42% 2%, 50% 0%, 58% 1%, 65% 0%, 72% 2%, 80% 0%,
+    88% 1%, 95% 0%, 100% 3%, 100% 97%, 95% 100%,
+    88% 98%, 80% 100%, 72% 99%, 65% 100%, 58% 98%,
+    50% 100%, 42% 99%, 35% 100%, 28% 98%, 20% 100%,
+    12% 99%, 5% 100%, 0% 97%
+  );
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.3);
+}
+.step-card:nth-child(1) { transform: rotate(-1.5deg); }
+.step-card:nth-child(2) { transform: rotate(1deg); }
+.step-card:nth-child(3) { transform: rotate(-0.5deg); }
+.step-card:nth-child(4) { transform: rotate(1.5deg); }
+
+.step-number {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--marker);
+  font-size: 26px;
+  color: var(--white);
+  margin-bottom: 16px;
+  border: 3px solid var(--black);
+}
+.step-card:nth-child(1) .step-number { background: var(--orange); }
+.step-card:nth-child(2) .step-number { background: var(--pink); }
+.step-card:nth-child(3) .step-number { background: var(--blue); }
+.step-card:nth-child(4) .step-number { background: var(--green); color: var(--black); }
+
+.step-card h3 {
+  font-family: var(--marker);
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+.step-card p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+}
+
+/* Marker-style arrows between steps (desktop) */
+.step-arrow {
+  position: absolute;
+  top: 50%;
+  right: -22px;
+  font-size: 32px;
+  color: var(--orange);
+  font-family: var(--marker);
+  transform: translateY(-50%);
+  z-index: 5;
+}
+
+/* ============================================
+   TESTIMONIALS
+   ============================================ */
+.testimonials {
+  padding: 100px 40px;
+  background: #222;
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials .section-title { color: var(--white); }
+.testimonials .section-title::after { background: var(--pink); }
+
+.reviews-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.review-card {
+  padding: 28px;
+  border: 5px solid var(--white);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.3);
+  position: relative;
+}
+.review-card:nth-child(1) {
+  background: var(--orange);
+  color: var(--white);
+  transform: rotate(-2deg);
+}
+.review-card:nth-child(2) {
+  background: var(--blue);
+  color: var(--white);
+  transform: rotate(1.5deg);
+}
+.review-card:nth-child(3) {
+  background: var(--pink);
+  color: var(--white);
+  transform: rotate(-1deg);
+}
+
+.review-stars {
+  font-size: 22px;
+  margin-bottom: 12px;
+  filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2));
+}
+
+.review-card blockquote {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.review-author {
+  font-family: var(--marker);
+  font-size: 16px;
+  opacity: 0.9;
+}
+
+/* ============================================
+   WALL CTA
+   ============================================ */
+.wall-cta {
+  padding: 120px 40px;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.wall-cta-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(255,0,102,0.12) 0%, transparent 40%),
+    radial-gradient(circle at 70% 60%, rgba(0,170,255,0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 80%, rgba(170,255,0,0.08) 0%, transparent 30%);
+}
+
+.wall-cta-inner {
+  position: relative;
+  z-index: 2;
+}
+
+.wall-cta h2 {
+  font-family: var(--marker);
+  font-size: clamp(36px, 6vw, 72px);
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.05;
+}
+.wall-cta h2 span { color: var(--orange); }
+
+.wall-cta p {
+  font-size: 20px;
+  color: #aaa;
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wall-cta-btn {
+  display: inline-block;
+  font-family: var(--marker);
+  font-size: 28px;
+  background: var(--pink);
+  color: var(--white);
+  padding: 20px 56px;
+  border: 6px solid var(--white);
+  border-radius: 10px;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.4);
+  transform: rotate(-1deg);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.wall-cta-btn:hover {
+  transform: rotate(1deg) scale(1.06);
+  background: var(--orange);
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+}
+
+/* Scattered wall stickers */
+.wall-sticker {
+  position: absolute;
+  z-index: 3;
+}
+.wall-sticker.ws1 { top: 15%; left: 8%; background: var(--green); color: var(--black); transform: rotate(-15deg); }
+.wall-sticker.ws2 { top: 25%; right: 6%; background: var(--yellow); color: var(--black); transform: rotate(20deg); }
+.wall-sticker.ws3 { bottom: 20%; left: 12%; background: var(--blue); color: var(--white); transform: rotate(10deg); }
+.wall-sticker.ws4 { bottom: 15%; right: 10%; background: var(--orange); color: var(--white); transform: rotate(-8deg); }
+.wall-sticker.ws5 { top: 60%; left: 4%; background: var(--pink); color: var(--white); transform: rotate(25deg); font-size: 11px; }
+
+/* ============================================
+   TORN EDGE DIVIDER
+   ============================================ */
+.torn-divider {
+  height: 60px;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+.torn-divider::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -5%;
+  width: 110%;
+  height: 40px;
+  background: var(--white);
+  clip-path: polygon(
+    0% 60%, 2% 30%, 5% 70%, 8% 20%, 11% 55%, 14% 25%, 17% 65%, 20% 30%,
+    23% 60%, 26% 15%, 29% 50%, 32% 25%, 35% 70%, 38% 20%, 41% 55%, 44% 35%,
+    47% 65%, 50% 20%, 53% 50%, 56% 30%, 59% 70%, 62% 15%, 65% 55%, 68% 25%,
+    71% 60%, 74% 20%, 77% 50%, 80% 35%, 83% 65%, 86% 20%, 89% 55%, 92% 30%,
+    95% 60%, 98% 25%, 100% 50%, 100% 100%, 0% 100%
+  );
+}
+
+/* ============================================
+   PDP SECTION
+   ============================================ */
+.pdp {
+  background: var(--white);
+  color: var(--black);
+  padding: 80px 40px 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.pdp-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.pdp-gallery {
+  position: relative;
+}
+
+.pdp-main-image {
+  border: 6px solid var(--black);
+  border-radius: 10px;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.15);
+  transform: rotate(-2deg);
+  transition: transform 0.3s;
+  width: 100%;
+}
+.pdp-main-image:hover { transform: rotate(0deg); }
+
+.pdp-thumbs {
+  display: flex;
+  gap: 16px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.pdp-thumb {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border: 4px solid var(--black);
+  border-radius: 6px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.pdp-thumb:nth-child(1) { transform: rotate(3deg); }
+.pdp-thumb:nth-child(2) { transform: rotate(-2deg); }
+.pdp-thumb:nth-child(3) { transform: rotate(4deg); }
+.pdp-thumb:hover {
+  transform: rotate(0deg) scale(1.1) !important;
+  border-color: var(--orange);
+}
+
+.pdp-gallery-sticker {
+  position: absolute;
+  z-index: 5;
+}
+.pdp-gallery-sticker.gs1 {
+  top: -16px; right: -10px;
+  background: var(--pink);
+  color: var(--white);
+  transform: rotate(12deg);
+}
+.pdp-gallery-sticker.gs2 {
+  bottom: 100px; left: -16px;
+  background: var(--green);
+  color: var(--black);
+  transform: rotate(-10deg);
+}
+
+/* PDP details */
+.pdp-details { position: relative; }
+
+.pdp-name {
+  font-family: var(--marker);
+  font-size: clamp(36px, 5vw, 56px);
+  line-height: 1;
+  margin-bottom: 8px;
+  color: var(--black);
+  position: relative;
+}
+.pdp-name::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 80%;
+  height: 6px;
+  background: var(--orange);
+  border-radius: 3px;
+}
+
+.pdp-tagline {
+  font-size: 18px;
+  color: #666;
+  margin-top: 16px;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+.pdp-label {
+  font-family: var(--marker);
+  font-size: 16px;
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  padding: 4px 14px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  transform: rotate(-1deg);
+}
+
+/* Variant selector */
+.variant-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.variant-btn {
+  font-family: var(--marker);
+  font-size: 15px;
+  padding: 12px 22px;
+  border: 4px solid var(--black);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: var(--white);
+  color: var(--black);
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.15);
+}
+.variant-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+}
+.variant-btn.active {
+  background: var(--orange);
+  color: var(--white);
+  border-color: var(--orange);
+}
+.variant-btn.active-pink {
+  background: var(--pink);
+  color: var(--white);
+  border-color: var(--pink);
+}
+.variant-btn.active-blue {
+  background: var(--blue);
+  color: var(--white);
+  border-color: var(--blue);
+}
+
+.pdp-price {
+  font-family: var(--marker);
+  font-size: 36px;
+  color: var(--orange);
+  margin-bottom: 24px;
+}
+
+.pdp-atc {
+  display: block;
+  width: 100%;
+  font-family: var(--marker);
+  font-size: 24px;
+  padding: 18px;
+  background: var(--green);
+  color: var(--black);
+  border: 5px solid var(--black);
+  border-radius: 10px;
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+.pdp-atc:hover {
+  transform: translateY(-3px);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
+  background: var(--yellow);
+}
+
+/* PDP description poster */
+.pdp-desc-poster {
+  margin-top: 40px;
+  background: #f5f2ed;
+  padding: 30px;
+  position: relative;
+  clip-path: polygon(
+    0% 2%, 4% 0%, 10% 1%, 18% 0%, 25% 1.5%, 33% 0%,
+    40% 1%, 48% 0%, 55% 2%, 62% 0%, 70% 1%, 78% 0%,
+    85% 1.5%, 92% 0%, 100% 2%, 100% 98%, 96% 100%,
+    90% 99%, 82% 100%, 75% 98.5%, 67% 100%, 60% 99%,
+    52% 100%, 45% 98%, 38% 100%, 30% 99%, 22% 100%,
+    15% 98.5%, 8% 100%, 0% 98%
+  );
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+}
+
+.pdp-desc-poster h3 {
+  font-family: var(--marker);
+  font-size: 22px;
+  margin-bottom: 12px;
+  color: var(--black);
+}
+.pdp-desc-poster p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.7;
+}
+.pdp-desc-poster ul {
+  list-style: none;
+  margin-top: 16px;
+}
+.pdp-desc-poster ul li {
+  padding: 6px 0;
+  font-size: 15px;
+  color: #333;
+  position: relative;
+  padding-left: 24px;
+}
+.pdp-desc-poster ul li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+  font-size: 18px;
+}
+
+/* PDP scattered stickers */
+.pdp-sticker {
+  position: absolute;
+  z-index: 5;
+}
+.pdp-sticker.ps1 {
+  top: -20px; right: 40px;
+  background: var(--yellow);
+  color: var(--black);
+  transform: rotate(10deg);
+}
+.pdp-sticker.ps2 {
+  bottom: 200px; right: -10px;
+  background: var(--blue);
+  color: var(--white);
+  transform: rotate(-15deg);
+}
+.pdp-sticker.ps3 {
+  top: 300px; left: -30px;
+  background: var(--orange);
+  color: var(--white);
+  transform: rotate(18deg);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--black);
+  border-top: 5px solid var(--orange);
+  padding: 50px 40px 30px;
+  text-align: center;
+  position: relative;
+}
+
+.footer-logo {
+  font-family: var(--marker);
+  font-size: 32px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.footer-logo span { color: var(--orange); }
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.footer-links a {
+  font-size: 14px;
+  color: #888;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--orange); }
+
+.footer-copy {
+  font-size: 12px;
+  color: #555;
+}
+
+.footer-stickers {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+  .steps-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .step-arrow { display: none; }
+  .pdp-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-sub { margin-left: auto; margin-right: auto; }
+  .hero-image-wrap { max-width: 400px; margin: 0 auto; }
+  .hero .slap-1, .hero .slap-3 { display: none; }
+  .nav-link { font-size: 12px; padding: 5px 10px; }
+  .header-sticker { display: none; }
+  .product-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .product-card:nth-child(n) { transform: rotate(0deg); }
+  .steps-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .reviews-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+  .wall-sticker { display: none; }
+  .pdp-sticker, .pdp-gallery-sticker { display: none; }
+  .product-deco { display: none; }
+  .hero, .products, .how-it-works, .testimonials, .wall-cta, .pdp { padding-left: 20px; padding-right: 20px; }
+}
+
+@media (max-width: 480px) {
+  .logo { font-size: 22px; }
+  .nav { gap: 4px; }
+  .hero { min-height: 80vh; padding: 60px 20px; }
+  .hero-cta { font-size: 20px; padding: 14px 36px; }
+  .pdp-name { font-size: 32px; }
+  .pdp-atc { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="logo">PACKAGE<span>DEAL</span></div>
+  <nav class="nav">
+    <a href="#products" class="nav-link">PRODUCTS</a>
+    <a href="#how" class="nav-link">HOW IT WORKS</a>
+    <a href="#pdp" class="nav-link">SHOP</a>
+  </nav>
+  <div class="header-sticker sticker s1">NEW!</div>
+  <div class="header-sticker sticker s2">⚡</div>
+  <div class="header-sticker sticker s3" style="border:3px solid var(--black);">HOT</div>
+</header>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-bg-texture"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1>MAIL SOMETHING <span class="break-word">UNFORGIVABLE</span></h1>
+      <p class="hero-sub">
+        Embarrassing fake-URL mailing tubes. Shipped anonymously.
+        They have to sign for it in front of the mail carrier.
+        No return address. No mercy.
+      </p>
+      <a href="#products" class="hero-cta">BROWSE THE DAMAGE →</a>
+    </div>
+    <div class="hero-image-wrap">
+      <img src="images/hero.png" alt="Package Deal prank tubes">
+    </div>
+  </div>
+  <div class="sticker slap slap-1 sticker-pill">ANONYMOUS</div>
+  <div class="sticker slap slap-2">SHIPS FAST</div>
+  <div class="sticker slap slap-3 sticker-pill">PURE CHAOS</div>
+  <div class="sticker slap slap-4">NO TRACE</div>
+</section>
+
+<!-- ========== PRODUCTS ========== -->
+<section class="products" id="products">
+  <div class="products-inner">
+    <h2 class="section-title">PICK YOUR WEAPON</h2>
+    <div class="product-grid">
+
+      <div class="sticker product-deco d1" style="border-color:var(--black);">SEND IT</div>
+      <div class="sticker product-deco d2">100% CHAOS</div>
+      <div class="sticker product-deco d3 sticker-pill" style="border-color:var(--black);">ANONYMOUS AF</div>
+
+      <div class="product-card" onclick="showPDP('micropenis')">
+        <div class="product-price-badge">$14.99</div>
+        <div class="product-img-wrap">
+          <img src="images/micropenis1.webp" alt="MicroPenisCure.com tube">
+        </div>
+        <div class="product-info">
+          <h3>MicroPenisCure.com</h3>
+          <p>The best-seller. The one that started it all.</p>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="showPDP('bigass')">
+        <div class="product-price-badge">$14.99</div>
+        <div class="product-img-wrap">
+          <img src="images/bigassdildos1.webp" alt="BigAssDildos.com tube">
+        </div>
+        <div class="product-info">
+          <h3>BigAssDildos.com</h3>
+          <p>Big. Bold. Impossible to explain to neighbors.</p>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="showPDP('vaginal')">
+        <div class="product-price-badge">$14.99</div>
+        <div class="product-img-wrap">
+          <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com tube">
+        </div>
+        <div class="product-info">
+          <h3>VaginalOdorHelper.com</h3>
+          <p>Thoughtful. Concerned. Absolutely devastating.</p>
+        </div>
+      </div>
+
+      <div class="product-card" onclick="showPDP('bulk')">
+        <div class="product-price-badge">$12.99</div>
+        <div class="product-img-wrap">
+          <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com tube">
+        </div>
+        <div class="product-info">
+          <h3>BulkCondomDelivery.com</h3>
+          <p>Because someone out there is very optimistic.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="how-it-works" id="how">
+  <h2 class="section-title">HOW IT WORKS</h2>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <h3>Pick a Tube</h3>
+      <p>Choose the most embarrassing URL for your buddy. Each one printed bold on a legit mailing tube.</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <h3>Add Their Address</h3>
+      <p>We ship it directly. No return address, no sender info. Complete anonymity for you.</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <h3>They Sign For It</h3>
+      <p>Upgrade to "Sign For It" and they have to accept it face-to-face with the mail carrier. Peak discomfort.</p>
+      <span class="step-arrow">→</span>
+    </div>
+    <div class="step-card">
+      <div class="step-number">4</div>
+      <h3>Sit Back & Wait</h3>
+      <p>You'll know the exact moment it lands. The confused texts will follow shortly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== TESTIMONIALS ========== -->
+<section class="testimonials">
+  <h2 class="section-title">WHAT PEOPLE ARE SAYING</h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <blockquote>"My roommate had to sign for a MicroPenisCure tube in front of our entire apartment building. I watched from the window. Best $22 I ever spent."</blockquote>
+      <div class="review-author">— Jake R.</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <blockquote>"Sent the BigAssDildos tube to my brother's office. His coworkers still bring it up at every meeting. It's been four months."</blockquote>
+      <div class="review-author">— Sarah M.</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <blockquote>"I genuinely cannot believe this is a real product. Ordered three. My friend group will never recover."</blockquote>
+      <div class="review-author">— Chris D.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WALL CTA ========== -->
+<section class="wall-cta">
+  <div class="wall-cta-bg"></div>
+  <div class="sticker wall-sticker ws1 sticker-pill">SEND IT</div>
+  <div class="sticker wall-sticker ws2">NO MERCY</div>
+  <div class="sticker wall-sticker ws3 sticker-pill">UNTRACEABLE</div>
+  <div class="sticker wall-sticker ws4">PURE EVIL</div>
+  <div class="sticker wall-sticker ws5">★★★★★</div>
+  <div class="wall-cta-inner">
+    <h2>READY TO RUIN<br><span>SOMEONE'S DAY?</span></h2>
+    <p>Pick a tube. Add an address. Let chaos handle the rest.</p>
+    <a href="#products" class="wall-cta-btn">LET'S GO →</a>
+  </div>
+</section>
+
+<!-- ========== TORN DIVIDER ========== -->
+<div class="torn-divider" id="pdp"></div>
+
+<!-- ========== PDP ========== -->
+<section class="pdp">
+  <div class="pdp-inner">
+
+    <div class="pdp-gallery">
+      <img class="pdp-main-image" id="pdp-main-img" src="images/micropenis1.webp" alt="MicroPenisCure.com product">
+      <div class="pdp-thumbs">
+        <img class="pdp-thumb" src="images/lifestyle.png" alt="Lifestyle" onclick="document.getElementById('pdp-main-img').src=this.src">
+        <img class="pdp-thumb" src="images/lifestyle3.png" alt="Lifestyle 3" onclick="document.getElementById('pdp-main-img').src=this.src">
+        <img class="pdp-thumb" src="images/bulkcondom1-3.webp" alt="Close up" onclick="document.getElementById('pdp-main-img').src=this.src">
+      </div>
+      <div class="sticker pdp-gallery-sticker gs1">BEST SELLER</div>
+      <div class="sticker pdp-gallery-sticker gs2 sticker-pill" style="border-color:var(--black);">SEND IT</div>
+    </div>
+
+    <div class="pdp-details">
+      <div class="sticker pdp-sticker ps1">MOST POPULAR</div>
+      <div class="sticker pdp-sticker ps2 sticker-pill">NO TRACE</div>
+
+      <h1 class="pdp-name" id="pdp-name">MicroPenisCure.com</h1>
+      <p class="pdp-tagline" id="pdp-tagline">
+        The original. The one that started it all. A cardboard mailing tube with
+        "MicroPenisCure.com" printed right on the outside. Shipped anonymously to
+        anyone brave enough to accept it at their door.
+      </p>
+
+      <div class="pdp-label">CHOOSE YOUR CHAOS LEVEL</div>
+      <div class="variant-buttons" id="variant-buttons">
+        <button class="variant-btn" onclick="selectVariant(this, 1499, 'Standard — $14.99')">Standard — $14.99</button>
+        <button class="variant-btn active" onclick="selectVariant(this, 2199, 'Sign For It — $21.99')">Sign For It — $21.99</button>
+        <button class="variant-btn" onclick="selectVariant(this, 3499, 'Confetti Bomb — $34.99')" style="opacity:0.5; text-decoration: line-through; cursor: not-allowed;" disabled>Confetti Bomb — SOLD OUT</button>
+      </div>
+
+      <div class="pdp-price" id="pdp-price">$21.99</div>
+
+      <button class="pdp-atc" onclick="addToCart()">
+        SLAP IT IN THE CART 🛒
+      </button>
+
+      <div class="pdp-desc-poster">
+        <h3>What's In The Tube?</h3>
+        <p>
+          Nothing. That's the whole point. It's a cardboard mailing tube with an
+          absolutely mortifying URL printed in big, bold letters on the outside.
+          No return address. No explanation. Just confusion, panic, and a story
+          they'll tell for years.
+        </p>
+        <ul>
+          <li>Real USPS-shipped mailing tube</li>
+          <li>Embarrassing URL printed bold on the exterior</li>
+          <li>No return address — completely anonymous</li>
+          <li>"Sign For It" upgrade: they accept it face-to-face with the mail carrier</li>
+          <li>Ships within 1-2 business days</li>
+          <li>Tracking provided (for your eyes only)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sticker pdp-sticker ps3 sticker-round">100% REAL</div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="footer-stickers">
+    <div class="sticker" style="background:var(--orange);color:var(--white);transform:rotate(-8deg);font-size:11px;">ANONYMOUS</div>
+    <div class="sticker" style="background:var(--green);color:var(--black);transform:rotate(5deg);font-size:11px;">FAST SHIPPING</div>
+    <div class="sticker" style="background:var(--pink);color:var(--white);transform:rotate(-3deg);font-size:11px;">NO REGRETS</div>
+  </div>
+  <div class="footer-logo">PACKAGE<span>DEAL</span></div>
+  <div class="footer-links">
+    <a href="#">FAQ</a>
+    <a href="#">Shipping & Returns</a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Track Order</a>
+    <a href="#">About</a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Package Deal. All rights reserved. Friendships are not.</p>
+</footer>
+
+<script>
+/* ========== PDP PRODUCT SWITCHING ========== */
+const pdpData = {
+  micropenis: {
+    name: 'MicroPenisCure.com',
+    tagline: 'The original. The one that started it all. A cardboard mailing tube with "MicroPenisCure.com" printed right on the outside. Shipped anonymously to anyone brave enough to accept it at their door.',
+    image: 'images/micropenis1.webp',
+    variants: [
+      { label: 'Standard — $14.99', price: 1499 },
+      { label: 'Sign For It — $21.99', price: 2199, default: true },
+      { label: 'Confetti Bomb — SOLD OUT', price: 3499, soldOut: true }
+    ]
+  },
+  bigass: {
+    name: 'BigAssDildos.com',
+    tagline: 'A mailing tube that screams "BigAssDildos.com" in huge letters. No context. No return address. Just pure, undiluted awkwardness delivered straight to their door.',
+    image: 'images/bigassdildos1.webp',
+    variants: [
+      { label: 'Standard — $14.99', price: 1499 },
+      { label: 'Sign For It — $21.99', price: 2199, default: true },
+      { label: 'Confetti Bomb — SOLD OUT', price: 3499, soldOut: true },
+      { label: 'Actual Dildo — $43.99', price: 4399 }
+    ]
+  },
+  vaginal: {
+    name: 'VaginalOdorHelper.com',
+    tagline: 'Compassionate. Caring. Completely humiliating. This tube arrives looking like someone ordered personal hygiene help on their behalf. The concern makes it worse.',
+    image: 'images/vaginal-odor-helper1.webp',
+    variants: [
+      { label: 'Standard — $14.99', price: 1499 },
+      { label: 'Sign For It — $21.99', price: 2199, default: true },
+      { label: 'Confetti Bomb — SOLD OUT', price: 3499, soldOut: true }
+    ]
+  },
+  bulk: {
+    name: 'BulkCondomDelivery.com',
+    tagline: 'Nothing says "I believe in you" like a mailing tube that implies someone ordered condoms in bulk. One variant. One price. Maximum embarrassment.',
+    image: 'images/bulkcondom1.webp',
+    variants: [
+      { label: 'Standard — $12.99', price: 1299, default: true }
+    ]
+  }
+};
+
+function showPDP(productKey) {
+  const product = pdpData[productKey];
+  if (!product) return;
+
+  document.getElementById('pdp-name').textContent = product.name;
+  document.getElementById('pdp-tagline').textContent = product.tagline;
+  document.getElementById('pdp-main-img').src = product.image;
+
+  const btnContainer = document.getElementById('variant-buttons');
+  btnContainer.innerHTML = '';
+
+  product.variants.forEach(v => {
+    const btn = document.createElement('button');
+    btn.className = 'variant-btn' + (v.default ? ' active' : '');
+    btn.textContent = v.label;
+    if (v.soldOut) {
+      btn.style.opacity = '0.5';
+      btn.style.textDecoration = 'line-through';
+      btn.style.cursor = 'not-allowed';
+      btn.disabled = true;
+    } else {
+      btn.onclick = function() { selectVariant(this, v.price, v.label); };
+    }
+    btnContainer.appendChild(btn);
+
+    if (v.default) {
+      document.getElementById('pdp-price').textContent = '$' + (v.price / 100).toFixed(2);
+    }
+  });
+
+  // If no default set, use first non-sold-out
+  if (!product.variants.find(v => v.default)) {
+    const first = product.variants.find(v => !v.soldOut);
+    if (first) {
+      document.getElementById('pdp-price').textContent = '$' + (first.price / 100).toFixed(2);
+      btnContainer.querySelector('.variant-btn:not([disabled])').classList.add('active');
+    }
+  }
+
+  document.getElementById('pdp').scrollIntoView({ behavior: 'smooth' });
+}
+
+function selectVariant(btn, priceCents, label) {
+  document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active', 'active-pink', 'active-blue'));
+  btn.classList.add('active');
+  document.getElementById('pdp-price').textContent = '$' + (priceCents / 100).toFixed(2);
+}
+
+function addToCart() {
+  const name = document.getElementById('pdp-name').textContent;
+  const price = document.getElementById('pdp-price').textContent;
+  const activeVariant = document.querySelector('.variant-btn.active');
+  const variantLabel = activeVariant ? activeVariant.textContent : 'Standard';
+
+  // Fun feedback
+  const btn = document.querySelector('.pdp-atc');
+  const original = btn.textContent;
+  btn.textContent = 'SLAPPED! ✓';
+  btn.style.background = 'var(--orange)';
+  btn.style.color = 'var(--white)';
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 1500);
+
+  console.log('Added to cart:', name, variantLabel, price);
+}
+</script>
+</body>
+</html>

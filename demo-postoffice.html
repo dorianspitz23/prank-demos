@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal Postal Service — Official Mail of Embarrassment Since 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Lato', sans-serif;
+  background: #FFF8F0;
+  color: #3B2F1E;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --kraft: #8B6914;
+  --kraft-light: #C4A265;
+  --kraft-paper: #D4B896;
+  --airmail-blue: #003DA5;
+  --airmail-red: #C8102E;
+  --cream: #FFF8F0;
+  --stamp-green: #2E6B3E;
+  --wax-seal: #800020;
+  --postal-yellow: #FFD700;
+  --brown-dark: #3B2F1E;
+  --brown-mid: #6B5B3E;
+  --string-color: #8B7355;
+}
+
+/* ===== FONTS ===== */
+.font-serif { font-family: 'Merriweather', serif; }
+.font-sans { font-family: 'Lato', sans-serif; }
+.font-typewriter { font-family: 'Special Elite', cursive; }
+
+/* ===== AIRMAIL STRIPE ===== */
+.airmail-stripe {
+  height: 18px;
+  background: repeating-linear-gradient(
+    -55deg,
+    var(--airmail-red) 0px, var(--airmail-red) 12px,
+    #fff 12px, #fff 24px,
+    var(--airmail-blue) 24px, var(--airmail-blue) 36px,
+    #fff 36px, #fff 48px
+  );
+}
+.airmail-stripe-thin {
+  height: 10px;
+  background: repeating-linear-gradient(
+    -55deg,
+    var(--airmail-red) 0px, var(--airmail-red) 8px,
+    #fff 8px, #fff 16px,
+    var(--airmail-blue) 16px, var(--airmail-blue) 24px,
+    #fff 24px, #fff 32px
+  );
+}
+
+/* ===== KRAFT PAPER TEXTURE ===== */
+.kraft-bg {
+  background-color: #C4A265;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+}
+.kraft-dark-bg {
+  background-color: #8B6914;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+}
+
+/* ===== POSTAGE STAMP FRAME ===== */
+.stamp-frame {
+  background: #fff;
+  padding: 10px;
+  border: 2px solid #ccc;
+  position: relative;
+  /* Perforated edges using radial gradient mask */
+  -webkit-mask-image: radial-gradient(circle 4px at 0 0, transparent 98%, #000) -6px -6px / 14px 14px,
+                       radial-gradient(circle 4px at 0 0, transparent 98%, #000) calc(100% + 6px) -6px / 14px 14px,
+                       radial-gradient(circle 4px at 0 0, transparent 98%, #000) -6px calc(100% + 6px) / 14px 14px,
+                       radial-gradient(circle 4px at 0 0, transparent 98%, #000) calc(100% + 6px) calc(100% + 6px) / 14px 14px,
+                       linear-gradient(#000, #000);
+  -webkit-mask-composite: source-in, source-in, source-in, source-in, source-over;
+  mask-image: radial-gradient(circle 4px at 0 0, transparent 98%, #000) -6px -6px / 14px 14px,
+              linear-gradient(#000, #000) 6px 6px / calc(100% - 12px) calc(100% - 12px);
+  mask-composite: exclude;
+}
+
+/* Simpler perforated edge using box-shadow dots */
+.perf-edge {
+  position: relative;
+}
+.perf-edge::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background:
+    radial-gradient(circle 3px, var(--cream) 98%, transparent) -3px -3px / 12px 12px repeat;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ===== POSTMARK STAMP ===== */
+.postmark {
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border: 3px solid rgba(200, 16, 46, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(-15deg);
+  z-index: 10;
+  pointer-events: none;
+}
+.postmark::before {
+  content: 'PACKAGE DEAL';
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  color: rgba(200, 16, 46, 0.65);
+  letter-spacing: 2px;
+  position: absolute;
+  top: 18px;
+}
+.postmark::after {
+  content: 'APR 02 2026';
+  font-family: 'Special Elite', cursive;
+  font-size: 13px;
+  color: rgba(200, 16, 46, 0.65);
+  font-weight: bold;
+  position: absolute;
+  bottom: 22px;
+}
+.postmark-inner {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  color: rgba(200, 16, 46, 0.6);
+  letter-spacing: 1px;
+  border-top: 2px solid rgba(200, 16, 46, 0.5);
+  border-bottom: 2px solid rgba(200, 16, 46, 0.5);
+  padding: 2px 8px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ===== WAX SEAL ===== */
+.wax-seal {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle at 35% 35%, #a83248, var(--wax-seal) 50%, #5a0015);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 2px 8px rgba(255,255,255,0.15),
+    inset 0 -3px 8px rgba(0,0,0,0.3),
+    0 4px 15px rgba(0,0,0,0.3);
+  position: relative;
+}
+.wax-seal::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+}
+.wax-seal span {
+  font-family: 'Merriweather', serif;
+  font-size: 14px;
+  font-weight: 900;
+  color: #e8c8c8;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+  letter-spacing: 1px;
+}
+
+/* ===== RUBBER STAMP (scattered labels) ===== */
+.rubber-stamp {
+  font-family: 'Special Elite', cursive;
+  display: inline-block;
+  padding: 4px 14px;
+  border: 3px solid currentColor;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+  opacity: 0.7;
+  transform: rotate(-6deg);
+}
+.rubber-stamp-red { color: var(--airmail-red); }
+.rubber-stamp-blue { color: var(--airmail-blue); }
+.rubber-stamp-green { color: var(--stamp-green); }
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--cream);
+  border-bottom: 1px solid #e0d5c5;
+}
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.header-brand .wax-seal {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+.header-brand .wax-seal span { font-size: 11px; }
+.header-title {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(14px, 2.5vw, 20px);
+  font-weight: 900;
+  color: var(--brown-dark);
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+.header-title small {
+  display: block;
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--brown-mid);
+  letter-spacing: 2px;
+  margin-top: 2px;
+}
+.header-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.header-nav a {
+  font-family: 'Special Elite', cursive;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--brown-mid);
+  text-decoration: none;
+  padding: 6px 14px;
+  border: 1px solid #d5c9b5;
+  background: #fff;
+  transition: all 0.2s;
+}
+.header-nav a:hover {
+  background: var(--kraft-light);
+  color: #fff;
+  border-color: var(--kraft-light);
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  background-color: #C4A265;
+  background-image:
+    /* String cross pattern */
+    linear-gradient(var(--string-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--string-color) 1px, transparent 1px),
+    /* Kraft texture noise */
+    url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+  background-size: 100% 100%, 100% 100%, 200px 200px;
+  background-position: center center;
+  padding: 80px 24px;
+  overflow: hidden;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+/* Airmail stripe on left edge */
+.hero::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 22px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--airmail-red) 0px, var(--airmail-red) 14px,
+    #fff 14px, #fff 28px,
+    var(--airmail-blue) 28px, var(--airmail-blue) 42px,
+    #fff 42px, #fff 56px
+  );
+}
+/* Airmail stripe on right edge */
+.hero::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 22px;
+  background: repeating-linear-gradient(
+    180deg,
+    var(--airmail-blue) 0px, var(--airmail-blue) 14px,
+    #fff 14px, #fff 28px,
+    var(--airmail-red) 28px, var(--airmail-red) 42px,
+    #fff 42px, #fff 56px
+  );
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+}
+
+/* Address label */
+.address-label {
+  background: #fff;
+  border: 2px solid #8B7355;
+  padding: 40px 36px;
+  position: relative;
+  box-shadow: 2px 3px 12px rgba(0,0,0,0.15);
+}
+.address-label::before {
+  content: 'PAR AVION';
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  background: var(--airmail-blue);
+  color: #fff;
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  letter-spacing: 3px;
+  padding: 3px 16px;
+}
+.address-label::after {
+  content: 'AIR MAIL';
+  position: absolute;
+  top: -14px;
+  left: 150px;
+  background: var(--airmail-red);
+  color: #fff;
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  letter-spacing: 3px;
+  padding: 3px 16px;
+}
+
+.address-line {
+  font-family: 'Special Elite', cursive;
+  font-size: clamp(14px, 2vw, 18px);
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #ccc;
+}
+.address-line:last-child { border-bottom: none; }
+.address-line .label {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #999;
+  display: block;
+  margin-bottom: 2px;
+}
+.address-to {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(22px, 3.5vw, 36px);
+  font-weight: 900;
+  color: var(--brown-dark);
+  line-height: 1.2;
+  margin: 16px 0;
+}
+.address-contents {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(16px, 2.2vw, 22px);
+  font-weight: 700;
+  color: var(--airmail-red);
+  font-style: italic;
+}
+
+.hero-right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Stamp cluster in hero */
+.stamp-cluster {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.mini-stamp {
+  background: #fff;
+  border: 2px solid #d5c9b5;
+  padding: 6px;
+  text-align: center;
+  box-shadow: 1px 2px 6px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
+}
+.mini-stamp img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+.mini-stamp .denomination {
+  font-family: 'Merriweather', serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--stamp-green);
+  margin-top: 4px;
+}
+
+/* Hero postmark */
+.hero-postmark {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 150px;
+  height: 150px;
+  border: 4px solid rgba(200, 16, 46, 0.45);
+  border-radius: 50%;
+  transform: rotate(-20deg);
+  z-index: 10;
+}
+.hero-postmark::before {
+  content: 'PACKAGE DEAL STATION';
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Special Elite', cursive;
+  font-size: 9px;
+  color: rgba(200, 16, 46, 0.55);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+.hero-postmark::after {
+  content: '02 APR 2026';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Special Elite', cursive;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgba(200, 16, 46, 0.55);
+}
+
+/* Wax seal CTA button */
+.wax-seal-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  background: radial-gradient(circle at 35% 35%, #a83248, var(--wax-seal) 50%, #5a0015);
+  color: #e8c8c8;
+  font-family: 'Merriweather', serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 18px 36px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,0.12),
+    inset 0 -3px 6px rgba(0,0,0,0.3),
+    0 6px 20px rgba(128,0,32,0.4);
+  transition: all 0.25s;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.wax-seal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,0.12),
+    inset 0 -3px 6px rgba(0,0,0,0.3),
+    0 10px 30px rgba(128,0,32,0.5);
+}
+
+/* ===== SECTION UTILITY ===== */
+section { padding: 80px 24px; }
+.section-title {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(24px, 4vw, 40px);
+  font-weight: 900;
+  color: var(--brown-dark);
+  text-align: center;
+  margin-bottom: 12px;
+}
+.section-subtitle {
+  font-family: 'Special Elite', cursive;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brown-mid);
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+/* ===== PRODUCTS / "AVAILABLE POSTAGE" ===== */
+.products-section {
+  background: var(--cream);
+}
+.products-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 36px;
+}
+.product-stamp {
+  background: #fff;
+  border: 3px solid #ccc;
+  padding: 12px;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  /* Perforation dots around edge */
+  outline: 3px dotted #d5c9b5;
+  outline-offset: 6px;
+}
+.product-stamp:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+/* Postmark cancel on hover */
+.product-stamp::after {
+  content: 'CLAIMED';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-25deg);
+  font-family: 'Special Elite', cursive;
+  font-size: 38px;
+  letter-spacing: 6px;
+  color: rgba(200, 16, 46, 0.5);
+  border: 4px solid rgba(200, 16, 46, 0.4);
+  border-radius: 8px;
+  padding: 4px 20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  z-index: 5;
+}
+.product-stamp:hover::after {
+  opacity: 1;
+}
+
+.product-stamp-name {
+  font-family: 'Merriweather', serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.product-stamp img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 8px;
+}
+.product-stamp-price {
+  font-family: 'Merriweather', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--stamp-green);
+  margin-top: 4px;
+}
+.product-stamp-tagline {
+  font-family: 'Special Elite', cursive;
+  font-size: 13px;
+  color: var(--brown-mid);
+  margin-top: 8px;
+  line-height: 1.4;
+  min-height: 38px;
+}
+.stamp-corner-label {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: 'Special Elite', cursive;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--airmail-red);
+  border: 1.5px solid var(--airmail-red);
+  padding: 2px 8px;
+  transform: rotate(3deg);
+}
+
+/* ===== HOW IT WORKS / "POSTAL ROUTE" ===== */
+.route-section {
+  background: #f5efe6;
+}
+.route-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+/* Dotted line connector */
+.route-timeline::before {
+  content: '';
+  position: absolute;
+  left: 40px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-left: 3px dashed var(--kraft-light);
+}
+.route-station {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+  margin-bottom: 48px;
+  position: relative;
+}
+.route-station:last-child { margin-bottom: 0; }
+.station-mark {
+  width: 82px;
+  height: 82px;
+  flex-shrink: 0;
+  border: 3px solid var(--kraft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  z-index: 2;
+  position: relative;
+}
+.station-mark .station-num {
+  font-family: 'Merriweather', serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--kraft);
+}
+.station-info {
+  padding-top: 10px;
+}
+.station-label {
+  font-family: 'Special Elite', cursive;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--airmail-red);
+  margin-bottom: 4px;
+}
+.station-title {
+  font-family: 'Merriweather', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brown-dark);
+  margin-bottom: 8px;
+}
+.station-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  color: var(--brown-mid);
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+/* ===== TESTIMONIALS / "LETTERS FROM SENDERS" ===== */
+.letters-section {
+  background: var(--cream);
+}
+.letters-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 36px;
+}
+.letter-card {
+  position: relative;
+}
+/* Envelope flap */
+.letter-envelope {
+  background: #e8dcc8;
+  height: 70px;
+  clip-path: polygon(0 0, 50% 70%, 100% 0);
+  position: relative;
+  z-index: 1;
+}
+.letter-envelope::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: repeating-linear-gradient(
+    -55deg,
+    var(--airmail-red) 0px, var(--airmail-red) 6px,
+    #fff 6px, #fff 12px,
+    var(--airmail-blue) 12px, var(--airmail-blue) 18px,
+    #fff 18px, #fff 24px
+  );
+}
+/* Mini stamp on envelope */
+.letter-stamp {
+  position: absolute;
+  top: 6px;
+  right: 14px;
+  width: 36px;
+  height: 42px;
+  background: var(--stamp-green);
+  border: 2px dotted rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+.letter-stamp span {
+  font-family: 'Special Elite', cursive;
+  font-size: 8px;
+  color: #fff;
+  text-transform: uppercase;
+}
+/* Letter body */
+.letter-body {
+  background: #fff;
+  border: 1px solid #e0d5c5;
+  padding: 28px 24px;
+  margin-top: -20px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.letter-text {
+  font-family: 'Special Elite', cursive;
+  font-size: 15px;
+  color: var(--brown-dark);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.letter-sig {
+  font-family: 'Merriweather', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--brown-mid);
+  text-align: right;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  color: #fff;
+  padding: 60px 24px 24px;
+  background: var(--brown-dark);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 36px;
+  margin-bottom: 36px;
+}
+.footer-col-title {
+  font-family: 'Special Elite', cursive;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--kraft-light);
+  margin-bottom: 16px;
+}
+.footer-col a, .footer-col p {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: #bfa87a;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 8px;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 24px;
+  text-align: center;
+}
+.footer-bottom p {
+  font-family: 'Special Elite', cursive;
+  font-size: 12px;
+  color: #7a6b50;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+/* ===== PDP SECTION ===== */
+.pdp-section {
+  background: var(--cream);
+  padding: 80px 24px;
+}
+.pdp-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+.pdp-image-area {
+  position: relative;
+}
+.pdp-main-stamp {
+  background: #fff;
+  border: 4px solid #ccc;
+  padding: 14px;
+  outline: 4px dotted #d5c9b5;
+  outline-offset: 8px;
+  position: relative;
+}
+.pdp-main-stamp img {
+  width: 100%;
+  display: block;
+}
+.pdp-postmark {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 120px;
+  height: 120px;
+  border: 3px solid rgba(200, 16, 46, 0.5);
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.pdp-postmark span {
+  font-family: 'Special Elite', cursive;
+  font-size: 10px;
+  color: rgba(200, 16, 46, 0.6);
+  letter-spacing: 1px;
+}
+.pdp-postmark strong {
+  font-family: 'Special Elite', cursive;
+  font-size: 14px;
+  color: rgba(200, 16, 46, 0.6);
+}
+
+/* Gallery strip */
+.pdp-gallery {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+.pdp-gallery-thumb {
+  flex: 1;
+  background: #fff;
+  border: 2px solid #d5c9b5;
+  padding: 4px;
+  outline: 2px dotted #e0d5c5;
+  outline-offset: 3px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.pdp-gallery-thumb:hover { border-color: var(--kraft); }
+.pdp-gallery-thumb img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  display: block;
+}
+
+/* PDP details */
+.pdp-details {
+  padding-top: 8px;
+}
+.pdp-badge {
+  display: inline-block;
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--airmail-red);
+  border: 2px solid var(--airmail-red);
+  padding: 4px 14px;
+  margin-bottom: 16px;
+  transform: rotate(-2deg);
+}
+.pdp-title {
+  font-family: 'Merriweather', serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 900;
+  color: var(--brown-dark);
+  margin-bottom: 24px;
+  line-height: 1.2;
+}
+
+/* Shipping manifest */
+.manifest {
+  background: #fff;
+  border: 2px solid #d5c9b5;
+  padding: 20px;
+  margin-bottom: 24px;
+  font-family: 'Lato', sans-serif;
+}
+.manifest-header {
+  font-family: 'Special Elite', cursive;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--airmail-blue);
+  border-bottom: 2px solid var(--airmail-blue);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.manifest-row {
+  display: flex;
+  padding: 8px 0;
+  border-bottom: 1px dashed #e0d5c5;
+  font-size: 14px;
+}
+.manifest-row:last-child { border-bottom: none; }
+.manifest-label {
+  font-family: 'Special Elite', cursive;
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #999;
+  width: 140px;
+  flex-shrink: 0;
+}
+.manifest-value {
+  color: var(--brown-dark);
+  font-weight: 600;
+}
+
+/* Variant selector */
+.variant-selector {
+  margin-bottom: 28px;
+}
+.variant-option {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border: 2px solid #e0d5c5;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: #fff;
+}
+.variant-option:hover, .variant-option.active {
+  border-color: var(--kraft);
+  background: #faf5ec;
+}
+.variant-option.active {
+  border-color: var(--kraft);
+  box-shadow: 0 0 0 2px var(--kraft-light);
+}
+.variant-radio {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  flex-shrink: 0;
+  position: relative;
+}
+.variant-option.active .variant-radio {
+  border-color: var(--kraft);
+}
+.variant-option.active .variant-radio::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: var(--kraft);
+  border-radius: 50%;
+}
+.variant-name {
+  font-family: 'Special Elite', cursive;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: var(--brown-dark);
+  flex: 1;
+}
+.variant-price {
+  font-family: 'Merriweather', serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--stamp-green);
+}
+.variant-note {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  color: var(--airmail-red);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Send parcel button */
+.send-parcel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 18px 32px;
+  background: radial-gradient(circle at 35% 35%, #a83248, var(--wax-seal) 50%, #5a0015);
+  color: #e8c8c8;
+  font-family: 'Merriweather', serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,0.12),
+    inset 0 -3px 6px rgba(0,0,0,0.3),
+    0 6px 20px rgba(128,0,32,0.35);
+  transition: all 0.25s;
+  margin-bottom: 24px;
+}
+.send-parcel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 2px 6px rgba(255,255,255,0.12),
+    inset 0 -3px 6px rgba(0,0,0,0.3),
+    0 10px 30px rgba(128,0,32,0.5);
+}
+
+/* Letter-format description */
+.pdp-letter {
+  background: #fff;
+  border: 1px solid #e0d5c5;
+  padding: 28px;
+  position: relative;
+  margin-bottom: 28px;
+}
+.pdp-letter::before {
+  content: 'PARCEL DESCRIPTION — CONFIDENTIAL';
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: var(--cream);
+  padding: 0 10px;
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--brown-mid);
+}
+.pdp-letter p {
+  font-family: 'Merriweather', serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--brown-dark);
+  margin-bottom: 12px;
+}
+.pdp-letter p:last-child { margin-bottom: 0; }
+
+/* Delivery confirmation */
+.delivery-notice {
+  border: 3px solid var(--stamp-green);
+  padding: 24px;
+  background: #f4faf4;
+}
+.delivery-notice-header {
+  font-family: 'Special Elite', cursive;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--stamp-green);
+  border-bottom: 2px solid var(--stamp-green);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.delivery-notice p {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: var(--brown-dark);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+.delivery-notice .checkmark {
+  color: var(--stamp-green);
+  font-weight: 700;
+  margin-right: 6px;
+}
+
+/* ===== SCATTERED STAMPS ===== */
+.scattered-stamp {
+  position: absolute;
+  font-family: 'Special Elite', cursive;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border: 2.5px solid;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+  .hero { padding: 60px 24px; min-height: auto; }
+  .pdp-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .route-timeline::before { left: 30px; }
+  .station-mark { width: 62px; height: 62px; }
+  .station-mark .station-num { font-size: 22px; }
+  .header-inner { justify-content: center; text-align: center; }
+  .header-nav { justify-content: center; }
+  .letters-grid { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr 1fr; }
+  .pdp-gallery-thumb img { height: 60px; }
+}
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: 1fr; max-width: 340px; }
+  section { padding: 50px 16px; }
+}
+
+/* ===== TOAST / CART FEEDBACK ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--stamp-green);
+  color: #fff;
+  padding: 16px 28px;
+  font-family: 'Special Elite', cursive;
+  font-size: 15px;
+  letter-spacing: 1px;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transform: translateY(120px);
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 1000;
+}
+.toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes sealPulse {
+  0%, 100% { box-shadow: 0 6px 20px rgba(128,0,32,0.35); }
+  50% { box-shadow: 0 6px 30px rgba(128,0,32,0.55); }
+}
+.wax-seal-btn { animation: sealPulse 3s ease-in-out infinite; }
+.send-parcel-btn { animation: sealPulse 3s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<!-- ===== AIRMAIL STRIPE TOP ===== -->
+<div class="airmail-stripe"></div>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-brand">
+      <div class="wax-seal"><span>PD</span></div>
+      <div class="header-title">
+        PACKAGE DEAL POSTAL SERVICE
+        <small>Est. 2026 &mdash; Delivering Embarrassment Nationwide</small>
+      </div>
+    </div>
+    <nav class="header-nav">
+      <a href="#postage">Available Postage</a>
+      <a href="#route">Postal Route</a>
+      <a href="#letters">Sender Letters</a>
+      <a href="#pdp">Parcel Details</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-content">
+    <div style="position: relative;">
+      <div class="address-label">
+        <div class="address-line">
+          <span class="label">Sender</span>
+          <strong>[ANONYMOUS]</strong> &mdash; Identity Sealed
+        </div>
+        <div class="address-to">
+          TO: Someone Who<br>Absolutely Deserves It
+        </div>
+        <div class="address-line">
+          <span class="label">Recipient Address</span>
+          Their Home. Their Doorstep. In Front of Their Neighbors.
+        </div>
+        <div class="address-line">
+          <span class="label">Declared Contents</span>
+          <span class="address-contents">Pure, Certified Embarrassment</span>
+        </div>
+        <div class="address-line" style="margin-top: 16px; border-bottom: none;">
+          <span class="label">Customs Declaration</span>
+          Item(s) may cause involuntary blushing, neighborhood gossip, and the urgent desire to relocate. Sender accepts no liability. No returns.
+        </div>
+        <div style="margin-top: 20px;">
+          <a href="#postage" class="wax-seal-btn">&#9993; Send a Package</a>
+        </div>
+      </div>
+      <!-- Scattered stamps -->
+      <div class="scattered-stamp" style="top: -20px; right: -10px; border-color: var(--airmail-red); color: var(--airmail-red); transform: rotate(-8deg); opacity: 0.45;">FRAGILE</div>
+      <div class="scattered-stamp" style="bottom: 10px; right: -16px; border-color: var(--airmail-blue); color: var(--airmail-blue); transform: rotate(4deg); opacity: 0.35;">THIS END UP</div>
+    </div>
+    <div class="hero-right">
+      <div class="stamp-cluster" style="position: relative;">
+        <div class="hero-postmark"></div>
+        <div class="mini-stamp">
+          <img src="images/micropenis1.webp" alt="MicroPenisCure.com tube" loading="lazy">
+          <div class="denomination">$14.99</div>
+        </div>
+        <div class="mini-stamp">
+          <img src="images/bigassdildos1.webp" alt="BigAssDildos.com tube" loading="lazy">
+          <div class="denomination">$14.99</div>
+        </div>
+        <div class="mini-stamp">
+          <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com tube" loading="lazy">
+          <div class="denomination">$14.99</div>
+        </div>
+        <div class="mini-stamp">
+          <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com tube" loading="lazy">
+          <div class="denomination">$12.99</div>
+        </div>
+      </div>
+      <div style="text-align: center;">
+        <span class="rubber-stamp rubber-stamp-red" style="font-size: 16px; letter-spacing: 4px; opacity: 0.55; transform: rotate(-4deg);">HANDLE WITH CARE</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="airmail-stripe-thin"></div>
+
+<!-- ===== PRODUCTS / "AVAILABLE POSTAGE" ===== -->
+<section class="products-section" id="postage">
+  <div class="container">
+    <div class="section-subtitle">Official Catalog &mdash; Series One</div>
+    <h2 class="section-title">Available Postage</h2>
+    <p style="text-align:center; max-width:600px; margin: -24px auto 48px; font-family: 'Merriweather', serif; font-size: 15px; color: var(--brown-mid); line-height:1.7;">
+      Each parcel ships anonymously in a plain cardboard mailing tube. The URL printed on the outside, however, is anything but plain. Select your denomination below.
+    </p>
+    <div class="products-grid">
+
+      <div class="product-stamp" onclick="showToast('MicroPenisCure.com added to your mailbag!')">
+        <div class="stamp-corner-label">First Class</div>
+        <div class="product-stamp-name">MicroPenisCure.com</div>
+        <img src="images/micropenis1.webp" alt="MicroPenisCure.com prank tube" loading="lazy">
+        <div class="product-stamp-price">$14.99</div>
+        <div class="product-stamp-tagline">"The carrier requires a signature, but good luck making eye contact."</div>
+      </div>
+
+      <div class="product-stamp" onclick="showToast('BigAssDildos.com added to your mailbag!')">
+        <div class="stamp-corner-label">Priority</div>
+        <div class="product-stamp-name">BigAssDildos.com</div>
+        <img src="images/bigassdildos1.webp" alt="BigAssDildos.com prank tube" loading="lazy">
+        <div class="product-stamp-price">$14.99</div>
+        <div class="product-stamp-tagline">"Contents may prompt unsolicited conversations with postal staff."</div>
+      </div>
+
+      <div class="product-stamp" onclick="showToast('VaginalOdorHelper.com added to your mailbag!')">
+        <div class="stamp-corner-label">Express</div>
+        <div class="product-stamp-name">VaginalOdorHelper.com</div>
+        <img src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com prank tube" loading="lazy">
+        <div class="product-stamp-price">$14.99</div>
+        <div class="product-stamp-tagline">"The helpful suggestion nobody asked for, now in mailable form."</div>
+      </div>
+
+      <div class="product-stamp" onclick="showToast('BulkCondomDelivery.com added to your mailbag!')">
+        <div class="stamp-corner-label">Economy</div>
+        <div class="product-stamp-name">BulkCondomDelivery.com</div>
+        <img src="images/bulkcondom1.webp" alt="BulkCondomDelivery.com prank tube" loading="lazy">
+        <div class="product-stamp-price">$12.99</div>
+        <div class="product-stamp-tagline">"Because nothing says 'I'm thinking of you' like bulk prophylactics."</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="airmail-stripe-thin"></div>
+
+<!-- ===== HOW IT WORKS / "POSTAL ROUTE" ===== -->
+<section class="route-section" id="route">
+  <div class="container">
+    <div class="section-subtitle">Package Tracking &mdash; Your Parcel's Journey</div>
+    <h2 class="section-title">The Postal Route</h2>
+    <p style="text-align:center; max-width:600px; margin: -24px auto 56px; font-family: 'Merriweather', serif; font-size: 15px; color: var(--brown-mid); line-height:1.7;">
+      Every parcel follows the same meticulous route through our processing facilities. We treat embarrassment with the same care and professionalism as any other form of mail. More, actually.
+    </p>
+    <div class="route-timeline">
+      <div class="route-station">
+        <div class="station-mark"><span class="station-num">1</span></div>
+        <div class="station-info">
+          <div class="station-label">Origination</div>
+          <div class="station-title">Select Your Parcel</div>
+          <div class="station-desc">Browse our curated catalog of socially catastrophic mailing tubes. Choose the URL that best reflects your feelings about the recipient. We offer a range from "mildly mortifying" to "they may need to move."</div>
+        </div>
+      </div>
+      <div class="route-station">
+        <div class="station-mark"><span class="station-num">2</span></div>
+        <div class="station-info">
+          <div class="station-label">Processing</div>
+          <div class="station-title">We Prepare Your Shipment</div>
+          <div class="station-desc">Your selected tube is packaged with institutional precision. We print the URL in large, unmistakable lettering on the outside of the tube. No return address. No explanation. Just the URL, bold and unignorable, traveling through the postal system for all to see.</div>
+        </div>
+      </div>
+      <div class="route-station">
+        <div class="station-mark"><span class="station-num">3</span></div>
+        <div class="station-info">
+          <div class="station-label">In Transit</div>
+          <div class="station-title">En Route to Recipient</div>
+          <div class="station-desc">Your parcel enters the mail stream. It passes through sorting facilities. It rides in mail trucks. It sits in the recipient's local post office. At every stage, someone reads the URL. At every stage, someone has questions.</div>
+        </div>
+      </div>
+      <div class="route-station">
+        <div class="station-mark"><span class="station-num">4</span></div>
+        <div class="station-info">
+          <div class="station-label">Delivered</div>
+          <div class="station-title">Signed, Sealed, Embarrassed</div>
+          <div class="station-desc">The parcel arrives. The mail carrier reads the URL. The neighbor sees the tube. The recipient has no idea who sent it, no way to explain it, and an empty tube as a lasting memento of your thoughtfulness. Delivery confirmed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="airmail-stripe-thin"></div>
+
+<!-- ===== TESTIMONIALS / "LETTERS FROM SENDERS" ===== -->
+<section class="letters-section" id="letters">
+  <div class="container">
+    <div class="section-subtitle">Correspondence &mdash; From Our Patrons</div>
+    <h2 class="section-title">Letters from Senders</h2>
+    <p style="text-align:center; max-width:600px; margin: -24px auto 48px; font-family: 'Merriweather', serif; font-size: 15px; color: var(--brown-mid); line-height:1.7;">
+      We receive a great deal of correspondence from satisfied senders. The postal service does not typically publish private mail, but we have made an exception for reasons of public enjoyment.
+    </p>
+    <div class="letters-grid">
+
+      <div class="letter-card">
+        <div class="letter-envelope">
+          <div class="letter-stamp"><span>POST</span></div>
+        </div>
+        <div class="letter-body">
+          <div class="letter-text">
+            Dear Postmaster, I sent the MicroPenisCure tube to my roommate. He had to sign for it in front of our entire building's mail room. The concierge called him "Mr. Cure" for three weeks. Money well spent. I would like to purchase another.
+          </div>
+          <div class="letter-sig">&mdash; Sender #4,271 (Austin, TX)</div>
+        </div>
+      </div>
+
+      <div class="letter-card">
+        <div class="letter-envelope">
+          <div class="letter-stamp"><span>POST</span></div>
+        </div>
+        <div class="letter-body">
+          <div class="letter-text">
+            To Whom It May Concern, My brother opened the BigAssDildos tube at Christmas dinner. In front of our grandmother. She asked him if he needed "the website" and offered to help him navigate it. He has not spoken to any of us since. Thank you for your service.
+          </div>
+          <div class="letter-sig">&mdash; Sender #2,888 (Portland, OR)</div>
+        </div>
+      </div>
+
+      <div class="letter-card">
+        <div class="letter-envelope">
+          <div class="letter-stamp"><span>POST</span></div>
+        </div>
+        <div class="letter-body">
+          <div class="letter-text">
+            Esteemed Postal Authorities, My coworker found the VaginalOdorHelper tube on her desk in the open-plan office. She turned the precise color of your airmail stripe. She still doesn't know it was me. Your anonymity guarantee is ironclad. Five stars. Will use again for her birthday.
+          </div>
+          <div class="letter-sig">&mdash; Sender #6,102 (Chicago, IL)</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="airmail-stripe"></div>
+
+<!-- ===== PDP SECTION ===== -->
+<section class="pdp-section" id="pdp">
+  <div class="container">
+    <div class="section-subtitle">Form 27-B &mdash; Parcel Detail Record</div>
+    <h2 class="section-title">Parcel Details</h2>
+    <p style="text-align:center; max-width:600px; margin: -24px auto 56px; font-family: 'Merriweather', serif; font-size: 15px; color: var(--brown-mid); line-height:1.7;">
+      The following is an official record of parcel specifications, contents declaration, and delivery terms. Please review carefully before authorizing shipment.
+    </p>
+
+    <div class="pdp-grid">
+      <!-- Image Area -->
+      <div class="pdp-image-area">
+        <div class="pdp-main-stamp">
+          <img id="pdp-main-img" src="images/vaginal-odor-helper1.webp" alt="VaginalOdorHelper.com mailing tube">
+          <div class="pdp-postmark">
+            <span>PACKAGE DEAL</span>
+            <strong>APR 2026</strong>
+            <span>STATION 7</span>
+          </div>
+        </div>
+        <div class="pdp-gallery">
+          <div class="pdp-gallery-thumb" onclick="changeImage('images/vaginal-odor-helper1.webp')">
+            <img src="images/vaginal-odor-helper1.webp" alt="Tube front view" loading="lazy">
+          </div>
+          <div class="pdp-gallery-thumb" onclick="changeImage('images/vaginal-odor-helper1-3.webp')">
+            <img src="images/vaginal-odor-helper1-3.webp" alt="Tube side view" loading="lazy">
+          </div>
+          <div class="pdp-gallery-thumb" onclick="changeImage('images/lifestyle.png')">
+            <img src="images/lifestyle.png" alt="Lifestyle shot" loading="lazy">
+          </div>
+          <div class="pdp-gallery-thumb" onclick="changeImage('images/lifestyle3.png')">
+            <img src="images/lifestyle3.png" alt="In the wild" loading="lazy">
+          </div>
+        </div>
+        <!-- Scattered rubber stamps -->
+        <div style="margin-top: 20px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <span class="rubber-stamp rubber-stamp-red" style="opacity: 0.5;">Fragile Ego</span>
+          <span class="rubber-stamp rubber-stamp-blue" style="opacity: 0.4; transform: rotate(3deg);">Par Avion</span>
+          <span class="rubber-stamp rubber-stamp-green" style="opacity: 0.45; transform: rotate(-3deg);">Inspected</span>
+        </div>
+      </div>
+
+      <!-- Details Area -->
+      <div class="pdp-details">
+        <div class="pdp-badge">Official Parcel</div>
+        <h2 class="pdp-title">VaginalOdorHelper.com</h2>
+
+        <!-- Shipping Manifest -->
+        <div class="manifest">
+          <div class="manifest-header">&#9993; Shipping Manifest &mdash; Form 27-B/VOH</div>
+          <div class="manifest-row">
+            <div class="manifest-label">From</div>
+            <div class="manifest-value">[SENDER REDACTED] &mdash; Anonymous Origin</div>
+          </div>
+          <div class="manifest-row">
+            <div class="manifest-label">To</div>
+            <div class="manifest-value">Your chosen recipient (address provided at checkout)</div>
+          </div>
+          <div class="manifest-row">
+            <div class="manifest-label">Contents</div>
+            <div class="manifest-value">One (1) cardboard mailing tube, exterior printed with the URL "VaginalOdorHelper.com" in large, permanent, very readable lettering</div>
+          </div>
+          <div class="manifest-row">
+            <div class="manifest-label">Declared Value</div>
+            <div class="manifest-value" style="color: var(--stamp-green); font-size: 18px;">From $14.99</div>
+          </div>
+          <div class="manifest-row">
+            <div class="manifest-label">Ref. No.</div>
+            <div class="manifest-value" style="font-family: 'Special Elite', cursive; letter-spacing: 2px;">VOH-2026-04-7291</div>
+          </div>
+        </div>
+
+        <!-- Variant Selector -->
+        <div class="variant-selector">
+          <div style="font-family: 'Special Elite', cursive; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--brown-mid); margin-bottom: 12px;">
+            Select Service Tier
+          </div>
+          <div class="variant-option" onclick="selectVariant(this, '$14.99')" data-price="14.99">
+            <div class="variant-radio"></div>
+            <div class="variant-name">Standard Post</div>
+            <div class="variant-price">$14.99</div>
+          </div>
+          <div class="variant-option active" onclick="selectVariant(this, '$21.99')" data-price="21.99">
+            <div class="variant-radio"></div>
+            <div class="variant-name">Registered Mail &mdash; Signature Required</div>
+            <div class="variant-price">$21.99</div>
+          </div>
+          <div class="variant-option" onclick="selectVariant(this, '$34.99')" data-price="34.99">
+            <div class="variant-radio"></div>
+            <div style="flex:1;">
+              <div class="variant-name">Special Delivery &mdash; With Confetti</div>
+              <div class="variant-note">Temporarily Unavailable</div>
+            </div>
+            <div class="variant-price">$34.99</div>
+          </div>
+        </div>
+
+        <button class="send-parcel-btn" onclick="showToast('Parcel queued for dispatch! Check your mailbag.')">
+          &#9993;&ensp;Send This Parcel
+        </button>
+
+        <!-- Letter-style description -->
+        <div class="pdp-letter">
+          <p>
+            The VaginalOdorHelper.com mailing tube is a precision instrument of social disruption. Upon delivery, the recipient will find a plain cardboard tube&mdash;the kind that might contain a rolled poster or important document&mdash;bearing the URL in large, professional typeface on its exterior.
+          </p>
+          <p>
+            The tube itself is empty. The contents are irrelevant. What matters is the journey: the mail carrier who reads it, the porch where it sits for the neighbors to see, and the long, quiet moment when the recipient realizes someone, somewhere, paid actual money to make this happen&mdash;and they will never know who.
+          </p>
+          <p>
+            Upgrade to <strong>Registered Mail</strong> for maximum impact. The recipient must sign for it, in person, while the delivery agent holds the tube with the URL facing outward. Eye contact is unavoidable. Dignity is optional.
+          </p>
+        </div>
+
+        <!-- Delivery Confirmation Notice -->
+        <div class="delivery-notice">
+          <div class="delivery-notice-header">&#10003; Official Delivery Confirmation Notice</div>
+          <p><span class="checkmark">&#10003;</span> Ships within 1-2 business days from our processing facility</p>
+          <p><span class="checkmark">&#10003;</span> No return address. No sender name. Complete anonymity.</p>
+          <p><span class="checkmark">&#10003;</span> URL printed on exterior is visible throughout transit to all postal workers, neighbors, roommates, and passersby</p>
+          <p><span class="checkmark">&#10003;</span> Registered Mail tier requires recipient signature upon delivery&mdash;in person, with witnesses</p>
+          <p><span class="checkmark">&#10003;</span> All parcels are legal, non-harmful, and contain absolutely nothing inside except the lingering question of "who sent this"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="airmail-stripe"></div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-col-title">Postal Office</div>
+      <a href="#postage">Available Postage</a>
+      <a href="#route">Postal Route</a>
+      <a href="#letters">Sender Letters</a>
+      <a href="#pdp">Parcel Details</a>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Service Information</div>
+      <p>Shipping &amp; Returns</p>
+      <p>Tracking Your Parcel</p>
+      <p>Frequently Asked Questions</p>
+      <p>Privacy Policy</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Branch Offices</div>
+      <p>Station 1 &mdash; Austin, TX</p>
+      <p>Station 7 &mdash; Portland, OR</p>
+      <p>Station 12 &mdash; Chicago, IL</p>
+      <p style="font-style: italic; font-size: 12px; margin-top: 8px; color: #6a5a40;">(Embarrassment ships nationwide from undisclosed facilities)</p>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Official Notice</div>
+      <p style="font-family: 'Special Elite', cursive; font-size: 13px; line-height: 1.6; color: #8a7a58;">
+        Package Deal Postal Service is not affiliated with, endorsed by, or in any way connected to the United States Postal Service, Royal Mail, or any legitimate postal authority. We are, however, fully committed to delivering embarrassment with the same punctuality and professionalism you have come to expect from government mail. Sometimes better.
+      </p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 PACKAGE DEAL POSTAL SERVICE &mdash; ALL RIGHTS RESERVED</p>
+    <p style="font-size: 10px; color: #5a4b35;">Ref. No. PD-2026-FOOTER-001 &bull; Printed on recycled postal forms &bull; "Neither rain, nor sleet, nor shame shall stay these parcels"</p>
+  </div>
+</footer>
+
+<div class="airmail-stripe"></div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast"></div>
+
+<script>
+/* ===== VARIANT SELECTOR ===== */
+function selectVariant(el, price) {
+  document.querySelectorAll('.variant-option').forEach(v => v.classList.remove('active'));
+  el.classList.add('active');
+}
+
+/* ===== PDP IMAGE SWITCHER ===== */
+function changeImage(src) {
+  const img = document.getElementById('pdp-main-img');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = src;
+    img.style.opacity = '1';
+  }, 200);
+  img.style.transition = 'opacity 0.2s ease';
+}
+
+/* ===== TOAST ===== */
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+/* ===== SMOOTH SCROLL FOR NAV ===== */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+</body>
+</html>

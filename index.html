@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Deal — Design Explorations</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 80px 24px 40px;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #D4714E, #FFD166, #D4714E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .card {
+            background: #151515;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #444;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .card-preview {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 4px 10px;
+            border-radius: 100px;
+            margin-bottom: 12px;
+        }
+
+        .card h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Individual card themes */
+        .card-neon .card-preview { background: linear-gradient(135deg, #0a0a0a, #1a0030, #001a2a); }
+        .card-neon .card-tag { background: #7C3AED22; color: #A78BFA; }
+        .card-neon .card-preview::after { content: ""; position: absolute; width: 200px; height: 200px; background: radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+        .card-retro .card-preview { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .card-retro .card-tag { background: #CC000022; color: #FF6B6B; }
+
+        .card-scrapbook .card-preview { background: linear-gradient(135deg, #FFFDF5, #D4A574); }
+        .card-scrapbook .card-tag { background: #E6394622; color: #E63946; }
+
+        .card-comic .card-preview { background: linear-gradient(135deg, #FFD700, #FF0000, #0066FF); }
+        .card-comic .card-tag { background: #0066FF22; color: #4499FF; }
+
+        .card-sticker .card-preview { background: linear-gradient(135deg, #111, #222); }
+        .card-sticker .card-tag { background: #AAFF0022; color: #AAFF00; }
+
+        .card-crime .card-preview { background: linear-gradient(135deg, #C4956A, #8B6914); }
+        .card-crime .card-tag { background: #CC333322; color: #FF6B6B; }
+
+        .card-post .card-preview { background: linear-gradient(135deg, #C4A265, #003DA5); }
+        .card-post .card-tag { background: #003DA522; color: #6B9FFF; }
+
+        .card-ransom .card-preview { background: linear-gradient(135deg, #D2B48C, #E8E0D8); }
+        .card-ransom .card-tag { background: #8B002022; color: #E07070; }
+
+        .card-preview-label {
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .card-retro .card-preview-label,
+        .card-scrapbook .card-preview-label,
+        .card-ransom .card-preview-label { color: #1a1a1a; text-shadow: none; }
+
+        .section-label {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px 0;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #555;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 24px;
+            color: #444;
+            font-size: 0.8rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        @media (max-width: 700px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Package Deal — Design Explorations</h1>
+        <p>8 wildly different takes on a prank mail e-commerce site. Each has a homepage + demo PDP.</p>
+    </div>
+
+    <div class="section-label">Round 1 — Style Explorations</div>
+    <div class="grid">
+        <a href="demo-neon.html" class="card card-neon">
+            <div class="card-preview"><span class="card-preview-label">Neon Chaos</span></div>
+            <div class="card-body">
+                <span class="card-tag">Dark + Electric</span>
+                <h2>Neon Chaos</h2>
+                <p>Glowing gradients, glassmorphism cards, animated neon pulses. Gaming culture energy meets e-commerce.</p>
+            </div>
+        </a>
+        <a href="demo-retro.html" class="card card-retro">
+            <div class="card-preview"><span class="card-preview-label">Retro Mail Order</span></div>
+            <div class="card-body">
+                <span class="card-tag">90s Infomercial</span>
+                <h2>Retro Mail Order</h2>
+                <p>Comic Neue, starburst badges, fake countdowns, "As Seen On TV" stamps. Late-night infomercial energy.</p>
+            </div>
+        </a>
+        <a href="demo-scrapbook.html" class="card card-scrapbook">
+            <div class="card-preview"><span class="card-preview-label">Scrapbook Chaos</span></div>
+            <div class="card-body">
+                <span class="card-tag">Handmade + Warm</span>
+                <h2>Scrapbook Chaos</h2>
+                <p>Polaroid photos, torn paper edges, washi tape, notebook paper, cork boards. Craft table explosion.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="section-label">Round 2 — More Style Explorations</div>
+    <div class="grid">
+        <a href="demo-comic.html" class="card card-comic">
+            <div class="card-preview"><span class="card-preview-label">Comic Book</span></div>
+            <div class="card-body">
+                <span class="card-tag">Pop Art</span>
+                <h2>Comic Book Pop Art</h2>
+                <p>Ben-Day dots, speech bubbles, KAPOW! bursts, halftone overlays, panel layouts. Lichtenstein vibes.</p>
+            </div>
+        </a>
+        <a href="demo-stickerbomb.html" class="card card-sticker">
+            <div class="card-preview"><span class="card-preview-label">Sticker Bomb</span></div>
+            <div class="card-body">
+                <span class="card-tag">Street Art</span>
+                <h2>Sticker Bomb</h2>
+                <p>Layered stickers, wheat-paste posters, grain texture, Permanent Marker font. Skateboard culture energy.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="section-label">Round 3 — Prank & Mail Themed</div>
+    <div class="grid">
+        <a href="demo-crimeboard.html" class="card card-crime">
+            <div class="card-preview"><span class="card-preview-label">Crime Board</span></div>
+            <div class="card-body">
+                <span class="card-tag">Detective</span>
+                <h2>Crime Board</h2>
+                <p>Cork board, push pins, red string, polaroid evidence, sticky notes, witness statements. Case file energy.</p>
+            </div>
+        </a>
+        <a href="demo-postoffice.html" class="card card-post">
+            <div class="card-preview"><span class="card-preview-label">Post Office</span></div>
+            <div class="card-body">
+                <span class="card-tag">Vintage Postal</span>
+                <h2>Post Office Gone Wrong</h2>
+                <p>Airmail stripes, postage stamps, wax seals, kraft paper, postmarks. Postal service gone sideways.</p>
+            </div>
+        </a>
+        <a href="demo-ransom.html" class="card card-ransom">
+            <div class="card-preview"><span class="card-preview-label">Ransom Note</span></div>
+            <div class="card-body">
+                <span class="card-tag">Cut-Out Letters</span>
+                <h2>Ransom Note</h2>
+                <p>Every word a different font/size/rotation. Tape strips, wax seals, envelope shapes, fingerprint smudges.</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="footer">
+        Package Deal — Design Explorations &middot; Not a real store (yet)
+    </div>
+</body>
+</html>
