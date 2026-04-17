@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Package Deal — Swipe Right on Chaos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ========================================================================
+   PACKAGE DEAL — DATING APP FULL SPA (Rewrite)
+   Single HTML file, hash routing, mobile-first
+   ======================================================================== */
+
+/* ===== RESET & VARIABLES ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --pink: #FF6B6B;
+  --pink-dark: #E85555;
+  --coral: #FF8E53;
+  --hot-pink: #FD297B;
+  --heart-red: #FF3B5C;
+  --gold: #FFD700;
+  --gold-dark: #D4A800;
+  --green: #00D46A;
+  --super-like-blue: #00D4FF;
+  --nope-red: #FF4458;
+  --dark: #1a1a1a;
+  --dark-card: #242424;
+  --dark-card-hover: #2a2a2a;
+  --dark-surface: #2a2a2a;
+  --dark-border: #333;
+  --text-primary: #1a1a1a;
+  --text-secondary: #6b6b6b;
+  --text-light: #999;
+  --text-on-dark: #f5f5f5;
+  --text-on-dark-muted: #aaa;
+  --white: #ffffff;
+  --off-white: #fafafa;
+  --soft-pink: #FFF0F0;
+  --border: #eee;
+  --anger-red: #DC2626;
+  --anger-border: #FF4444;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.10);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.14);
+  --shadow-card: 0 10px 30px rgba(0,0,0,0.12);
+  --shadow-glow-pink: 0 0 40px rgba(253,41,123,0.3);
+  --radius: 1rem;
+  --radius-sm: 0.75rem;
+  --radius-pill: 50px;
+  --font-display: 'Outfit', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --gradient-pink: linear-gradient(135deg, #FF6B6B, #FF8E53);
+  --gradient-pink-v: linear-gradient(180deg, #FF6B6B, #FF8E53);
+  --gradient-hot: linear-gradient(135deg, #FD297B, #FF6B6B);
+  --gradient-gold: linear-gradient(135deg, #FFD700, #FFA500);
+  --gradient-dark: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%);
+  --max-w: 1280px;
+  --nav-h: 60px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+ul { list-style: none; }
+
+/* ===== UTILITIES ===== */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 1rem; }
+.section-pad { padding: 4rem 0; }
+@media (min-width: 768px) { .section-pad { padding: 5rem 0; } }
+.gradient-text { background: var(--gradient-pink); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.pill-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.875rem 2rem; border-radius: var(--radius-pill);
+  background: var(--gradient-pink); color: var(--white);
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(255,107,107,0.4);
+}
+.pill-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 25px rgba(255,107,107,0.5); }
+.pill-btn:active { transform: translateY(0); }
+.pill-btn-outline {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.875rem 2rem; border-radius: var(--radius-pill);
+  border: 2px solid var(--pink); color: var(--pink);
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+  transition: all 0.2s;
+}
+.pill-btn-outline:hover { background: var(--soft-pink); }
+.pill-btn-sm { padding: 0.625rem 1.5rem; font-size: 0.875rem; }
+.pill-btn-dark { background: var(--gradient-dark); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+.pill-btn-gold { background: var(--gradient-gold); box-shadow: 0 4px 15px rgba(255,215,0,0.4); color: #1a1a1a; }
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin-bottom: 0.5rem;
+}
+.section-kicker {
+  font-family: var(--font-display); font-weight: 600; font-size: 0.8rem;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  color: var(--pink); margin-bottom: 0.5rem;
+}
+.section-sub { color: var(--text-secondary); font-size: 1.05rem; max-width: 540px; }
+
+/* Reveal animation */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Page visibility */
+[data-page] { display: none; }
+[data-page].active { display: block; }
+
+/* ===== TOP NAV (fixed) ===== */
+.top-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border); height: var(--nav-h);
+}
+.top-nav .container {
+  display: flex; align-items: center; justify-content: space-between; height: 100%;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;
+  cursor: pointer;
+}
+.nav-logo .heart-icon {
+  width: 28px; height: 28px; background: var(--gradient-pink); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; color: white; font-size: 14px;
+}
+.nav-links { display: flex; align-items: center; gap: 1.25rem; }
+.nav-links a {
+  font-size: 0.9rem; font-weight: 500; color: var(--text-secondary);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--pink); }
+.nav-cart {
+  position: relative; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--soft-pink); display: flex; align-items: center;
+  justify-content: center; color: var(--pink); font-size: 1.1rem;
+  cursor: pointer; transition: transform 0.2s;
+}
+.nav-cart:hover { transform: scale(1.1); }
+.nav-cart-badge {
+  position: absolute; top: -2px; right: -2px; width: 18px; height: 18px;
+  background: var(--gradient-pink); border-radius: 50%; color: white;
+  font-size: 0.65rem; font-weight: 700; display: flex; align-items: center;
+  justify-content: center;
+}
+body { padding-top: var(--nav-h); }
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--gradient-pink-v); color: var(--white);
+  padding: 4rem 0 3rem; position: relative; overflow: hidden;
+  min-height: calc(100vh - var(--nav-h));
+  display: flex; align-items: center;
+}
+.hero-particles {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+}
+.hero-particles .heart-particle {
+  position: absolute; font-size: 1.2rem; opacity: 0;
+  animation: floatHeart 4s ease-in-out infinite;
+}
+@keyframes floatHeart {
+  0% { opacity: 0; transform: translateY(0) scale(0.5) rotate(0deg); }
+  20% { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-300px) scale(1.2) rotate(30deg); }
+}
+.hero .container { position: relative; z-index: 2; }
+.hero-grid { display: grid; gap: 2rem; align-items: center; }
+@media (min-width: 768px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 3rem; } }
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.2); border-radius: var(--radius-pill);
+  padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600;
+  backdrop-filter: blur(8px); margin-bottom: 1rem;
+}
+.hero h1 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1; margin-bottom: 1rem;
+}
+.hero-sub { font-size: 1.15rem; opacity: 0.9; margin-bottom: 0.75rem; max-width: 440px; }
+.hero-match-count {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-weight: 700; font-size: 1.1rem; margin-bottom: 1.5rem;
+}
+.hero-match-count .pulse-dot {
+  width: 10px; height: 10px; background: var(--green); border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } }
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+.hero-ctas .pill-btn { background: white; color: var(--pink); font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.hero-ctas .pill-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+.hero-ctas .pill-btn-outline { border-color: white; color: white; }
+.hero-ctas .pill-btn-outline:hover { background: rgba(255,255,255,0.15); }
+.hero-image-wrap {
+  position: relative; display: flex; justify-content: center;
+}
+.hero-image-wrap img {
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+  max-height: 500px; object-fit: cover; width: 100%;
+}
+.hero-float-badge {
+  position: absolute; background: white; border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem; box-shadow: var(--shadow-md);
+  font-size: 0.8rem; font-weight: 600; color: var(--text-primary);
+  animation: floatBadge 3s ease-in-out infinite;
+}
+.hero-float-badge.top-right { top: -10px; right: -10px; }
+.hero-float-badge.bottom-left { bottom: 10px; left: -10px; animation-delay: 1.5s; }
+@keyframes floatBadge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+/* ===== STATS STRIP ===== */
+.stats-strip { background: var(--dark); color: var(--text-on-dark); padding: 2rem 0; }
+.stats-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  text-align: center;
+}
+@media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-item .stat-num {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  background: var(--gradient-pink); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.stat-item .stat-label { font-size: 0.85rem; color: var(--text-on-dark-muted); margin-top: 0.25rem; }
+
+/* ===== HOT MATCHES (Swipe cards) ===== */
+.hot-matches { background: var(--off-white); }
+.hot-matches .section-header { text-align: center; margin-bottom: 2.5rem; }
+.swipe-area {
+  position: relative; max-width: 380px; margin: 0 auto; height: 520px;
+  perspective: 1000px;
+}
+.swipe-card {
+  position: absolute; inset: 0; border-radius: var(--radius);
+  background: var(--white); box-shadow: var(--shadow-card);
+  overflow: hidden; cursor: grab; user-select: none;
+  transition: box-shadow 0.3s;
+  will-change: transform;
+}
+.swipe-card:active { cursor: grabbing; }
+.swipe-card-img {
+  width: 100%; height: 320px; object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.swipe-card-body { padding: 1rem 1.25rem; }
+.swipe-card-name {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.4rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.swipe-card-name .age { font-weight: 400; color: var(--text-secondary); }
+.swipe-card-badge {
+  display: inline-block; padding: 0.2rem 0.6rem; border-radius: var(--radius-pill);
+  font-size: 0.7rem; font-weight: 600; margin-top: 0.25rem;
+}
+.badge-bestseller { background: var(--soft-pink); color: var(--pink); }
+.badge-popular { background: #E0F2FE; color: #0284C7; }
+.swipe-card-bio { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.5; }
+.swipe-card-match {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.85rem; font-weight: 600; color: var(--green); margin-top: 0.5rem;
+}
+.swipe-card-price {
+  font-family: var(--font-display); font-weight: 700;
+  color: var(--pink); font-size: 1rem; margin-top: 0.25rem;
+}
+/* Swipe overlay stamps */
+.swipe-stamp {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+  font-family: var(--font-display); font-weight: 800; font-size: 3rem;
+  padding: 0.5rem 1.5rem; border-radius: var(--radius); border: 4px solid;
+  pointer-events: none; opacity: 0; transition: all 0.15s ease;
+  text-transform: uppercase;
+}
+.swipe-stamp.like { color: var(--green); border-color: var(--green); transform: translate(-50%, -50%) rotate(-15deg) scale(0); }
+.swipe-stamp.nope { color: var(--nope-red); border-color: var(--nope-red); transform: translate(-50%, -50%) rotate(15deg) scale(0); }
+.swipe-stamp.super { color: var(--super-like-blue); border-color: var(--super-like-blue); transform: translate(-50%, -50%) scale(0); }
+.swipe-card.dragging .swipe-stamp { transition: none; }
+
+/* Action buttons */
+.swipe-actions {
+  display: flex; justify-content: center; gap: 1rem; margin-top: 1.5rem;
+}
+.action-btn {
+  width: 56px; height: 56px; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 1.4rem;
+  box-shadow: var(--shadow-md); transition: transform 0.2s, box-shadow 0.2s;
+}
+.action-btn:hover { transform: scale(1.15); }
+.action-btn.nope-btn { background: var(--white); color: var(--nope-red); border: 2px solid var(--nope-red); }
+.action-btn.star-btn { background: var(--white); color: var(--super-like-blue); border: 2px solid var(--super-like-blue); }
+.action-btn.heart-btn { background: var(--gradient-pink); color: var(--white); border: none; box-shadow: 0 4px 15px rgba(255,107,107,0.4); }
+.swipe-counter { text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--text-light); }
+
+/* ===== GAG GIFTS GRID ===== */
+.gag-gifts { background: var(--white); }
+.gag-gifts .section-header { text-align: center; margin-bottom: 2rem; }
+.mini-profiles {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+}
+@media (min-width: 768px) { .mini-profiles { grid-template-columns: repeat(3, 1fr); } }
+.mini-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+.mini-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.mini-card-img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.mini-card-body { padding: 0.75rem; }
+.mini-card-name { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+.mini-card-price { font-size: 0.85rem; color: var(--pink); font-weight: 600; margin-top: 0.25rem; }
+
+/* ===== CHAT TESTIMONIALS ===== */
+.chat-testimonials { background: var(--dark); color: var(--text-on-dark); }
+.chat-testimonials .section-header { text-align: center; margin-bottom: 2.5rem; }
+.chat-threads { display: grid; gap: 1.5rem; }
+@media (min-width: 768px) { .chat-threads { grid-template-columns: repeat(3, 1fr); } }
+.chat-thread {
+  background: var(--dark-card); border-radius: var(--radius); padding: 1.25rem;
+  box-shadow: var(--shadow-md);
+}
+.chat-thread-header {
+  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;
+  padding-bottom: 0.75rem; border-bottom: 1px solid var(--dark-border);
+}
+.chat-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gradient-pink); display: flex; align-items: center;
+  justify-content: center; color: white; font-weight: 700; font-size: 0.85rem;
+}
+.chat-name { font-weight: 600; font-size: 0.9rem; }
+.chat-time { font-size: 0.75rem; color: var(--text-on-dark-muted); margin-left: auto; }
+.chat-messages { display: flex; flex-direction: column; gap: 0.5rem; }
+.chat-bubble {
+  padding: 0.6rem 1rem; border-radius: 18px; font-size: 0.875rem;
+  max-width: 85%; line-height: 1.4; animation: bubbleIn 0.3s ease backwards;
+}
+.chat-bubble.sent {
+  background: var(--gradient-pink); color: white;
+  align-self: flex-end; border-bottom-right-radius: 4px;
+}
+.chat-bubble.received {
+  background: var(--dark-surface); color: var(--text-on-dark);
+  align-self: flex-start; border-bottom-left-radius: 4px;
+}
+@keyframes bubbleIn { from { opacity: 0; transform: scale(0.8) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.chat-read-receipt { font-size: 0.7rem; color: var(--super-like-blue); text-align: right; margin-top: 0.15rem; }
+.chat-typing {
+  display: flex; gap: 4px; padding: 0.6rem 1rem;
+  background: var(--dark-surface); border-radius: 18px;
+  align-self: flex-start; border-bottom-left-radius: 4px; width: fit-content;
+}
+.chat-typing span {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--text-on-dark-muted);
+  animation: typingDot 1.4s infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingDot { 0%, 60%, 100% { opacity: 0.3; transform: translateY(0); } 30% { opacity: 1; transform: translateY(-4px); } }
+
+/* ===== HOW IT WORKS ===== */
+.how-it-works { background: var(--white); }
+.how-it-works .section-header { text-align: center; margin-bottom: 2.5rem; }
+.onboarding-cards { display: grid; gap: 1.5rem; }
+@media (min-width: 768px) { .onboarding-cards { grid-template-columns: repeat(3, 1fr); } }
+.onboarding-card {
+  background: var(--white); border-radius: var(--radius); padding: 2rem 1.5rem;
+  text-align: center; box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s;
+}
+.onboarding-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.onboarding-icon {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 1rem;
+  background: var(--soft-pink); display: flex; align-items: center;
+  justify-content: center; font-size: 1.75rem;
+}
+.onboarding-step {
+  font-family: var(--font-display); font-weight: 700; font-size: 0.75rem;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--pink); margin-bottom: 0.5rem;
+}
+.onboarding-card h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin-bottom: 0.5rem; }
+.onboarding-card p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* ===== BENEFITS STRIP ===== */
+.benefits-strip { background: var(--soft-pink); padding: 1.5rem 0; overflow: hidden; }
+.benefits-track {
+  display: flex; gap: 1rem; animation: scrollBenefits 25s linear infinite;
+  width: max-content;
+}
+.benefit-pill {
+  flex-shrink: 0; display: flex; align-items: center; gap: 0.5rem;
+  background: var(--white); border-radius: var(--radius-pill);
+  padding: 0.6rem 1.25rem; font-size: 0.85rem; font-weight: 500;
+  box-shadow: var(--shadow-sm); white-space: nowrap;
+}
+.benefit-pill .bp-icon { font-size: 1.1rem; }
+@keyframes scrollBenefits { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+/* ===== BAD PARKING GRID ===== */
+.bad-parking { background: var(--white); }
+.bad-parking .section-header { text-align: center; margin-bottom: 2rem; }
+.parking-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+}
+@media (min-width: 768px) { .parking-grid { grid-template-columns: repeat(3, 1fr); } }
+.parking-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); border: 2px solid transparent;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.parking-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--anger-red); }
+.parking-card-img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.parking-card-body { padding: 0.75rem; }
+.parking-card-name { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; }
+.parking-card-price { font-size: 0.85rem; color: var(--anger-red); font-weight: 600; margin-top: 0.25rem; }
+.parking-card .sold-out-badge {
+  position: absolute; top: 8px; right: 8px;
+  background: rgba(0,0,0,0.7); color: white;
+  padding: 0.2rem 0.6rem; border-radius: var(--radius-pill);
+  font-size: 0.7rem; font-weight: 600;
+}
+.parking-card { position: relative; }
+
+/* ===== TRUST STRIP ===== */
+.trust-strip { background: var(--dark); color: var(--text-on-dark); padding: 2.5rem 0; }
+.trust-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 2rem; }
+.trust-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+.trust-item .ti-icon { font-size: 1.25rem; color: var(--green); }
+
+/* ===== STICKERS SCROLL ===== */
+.stickers-scroll { background: var(--off-white); }
+.stickers-scroll .section-header { text-align: center; margin-bottom: 2rem; }
+.sticker-track-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 1rem; }
+.sticker-track { display: flex; gap: 1rem; width: max-content; }
+.sticker-card {
+  flex-shrink: 0; width: 180px; background: var(--white); border-radius: var(--radius);
+  overflow: hidden; box-shadow: var(--shadow-sm); transition: transform 0.2s;
+}
+.sticker-card:hover { transform: translateY(-4px); }
+.sticker-card-img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.sticker-card-body { padding: 0.6rem 0.75rem; }
+.sticker-card-name { font-family: var(--font-display); font-weight: 600; font-size: 0.8rem; }
+.sticker-card-price { font-size: 0.8rem; color: var(--pink); font-weight: 600; }
+.sticker-card .sold-out-overlay {
+  position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-weight: 700; font-size: 0.9rem; border-radius: var(--radius);
+}
+.sticker-card { position: relative; }
+
+/* ===== FAQ ACCORDION ===== */
+.faq-section { background: var(--white); }
+.faq-section .section-header { text-align: center; margin-bottom: 2rem; }
+.faq-list { max-width: 700px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-q {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.25rem 0; font-family: var(--font-display); font-weight: 600;
+  font-size: 1rem; text-align: left; color: var(--text-primary);
+  cursor: pointer; background: none; border: none; transition: color 0.2s;
+}
+.faq-q:hover { color: var(--pink); }
+.faq-q .faq-icon { font-size: 1.25rem; transition: transform 0.3s; flex-shrink: 0; }
+.faq-q.open .faq-icon { transform: rotate(45deg); }
+.faq-a {
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+  font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;
+}
+.faq-a.open { max-height: 300px; padding-bottom: 1.25rem; }
+
+/* ===== PD GOLD PREMIUM ===== */
+.pd-gold { background: var(--dark); color: var(--text-on-dark); }
+.gold-card {
+  max-width: 600px; margin: 0 auto;
+  background: linear-gradient(135deg, #2a2a2a, #3a3a3a);
+  border: 2px solid var(--gold); border-radius: var(--radius);
+  padding: 2.5rem 2rem; text-align: center;
+  box-shadow: 0 0 40px rgba(255,215,0,0.15);
+  position: relative; overflow: hidden;
+}
+.gold-card::before {
+  content: ''; position: absolute; top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: conic-gradient(from 0deg, transparent 0%, rgba(255,215,0,0.05) 25%, transparent 50%);
+  animation: goldSpin 8s linear infinite;
+}
+@keyframes goldSpin { 100% { transform: rotate(360deg); } }
+.gold-card > * { position: relative; z-index: 1; }
+.gold-card .gold-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--gradient-gold); color: #1a1a1a;
+  padding: 0.4rem 1rem; border-radius: var(--radius-pill);
+  font-family: var(--font-display); font-weight: 700; font-size: 0.8rem;
+  text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem;
+}
+.gold-card h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem;
+}
+.gold-card p { color: var(--text-on-dark-muted); font-size: 1rem; margin-bottom: 1.5rem; }
+.gold-perks { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; text-align: left; }
+.gold-perk { display: flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; }
+.gold-perk .gp-icon { color: var(--gold); }
+
+/* ===== RECIPIENTS + FINAL CTA ===== */
+.recipients-cta { background: var(--off-white); }
+.recipients-cta .section-header { text-align: center; margin-bottom: 2rem; }
+.recipient-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
+.recipient-tab {
+  padding: 0.5rem 1.25rem; border-radius: var(--radius-pill);
+  border: 2px solid var(--border); font-size: 0.85rem; font-weight: 500;
+  transition: all 0.2s; cursor: pointer;
+}
+.recipient-tab.active, .recipient-tab:hover { border-color: var(--pink); background: var(--soft-pink); color: var(--pink); }
+.recipient-content { max-width: 500px; margin: 0 auto; text-align: center; }
+.recipient-content p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.5rem; line-height: 1.6; }
+.final-cta-box {
+  background: var(--gradient-pink); border-radius: var(--radius);
+  padding: 3rem 2rem; text-align: center; color: var(--white); margin-top: 3rem;
+}
+.final-cta-box h2 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.75rem;
+}
+.final-cta-box p { opacity: 0.9; margin-bottom: 1.5rem; }
+.final-cta-box .pill-btn { background: white; color: var(--pink); font-weight: 700; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+
+/* ===== FOOTER ===== */
+.site-footer {
+  background: var(--dark); color: var(--text-on-dark-muted);
+  padding: 3rem 0 1.5rem;
+}
+.footer-grid {
+  display: grid; gap: 2rem; margin-bottom: 2rem;
+}
+@media (min-width: 768px) { .footer-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.footer-brand .footer-logo {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;
+  color: var(--text-on-dark); margin-bottom: 0.5rem;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.footer-brand p { font-size: 0.85rem; line-height: 1.5; }
+.footer-col h4 {
+  font-family: var(--font-display); font-weight: 600; font-size: 0.9rem;
+  color: var(--text-on-dark); margin-bottom: 0.75rem;
+}
+.footer-col a { display: block; font-size: 0.85rem; padding: 0.2rem 0; transition: color 0.2s; }
+.footer-col a:hover { color: var(--pink); }
+.footer-bottom {
+  border-top: 1px solid var(--dark-border); padding-top: 1.5rem;
+  text-align: center; font-size: 0.8rem;
+}
+
+/* ===== COLLECTION PAGE ===== */
+.collection-back {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.9rem; font-weight: 500; color: var(--text-secondary);
+  margin-bottom: 1.5rem; cursor: pointer; transition: color 0.2s;
+}
+.collection-back:hover { color: var(--pink); }
+.collection-header { text-align: center; margin-bottom: 2rem; }
+.filter-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin-bottom: 2rem; }
+.filter-pill {
+  padding: 0.5rem 1.25rem; border-radius: var(--radius-pill);
+  border: 2px solid var(--border); font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+}
+.filter-pill.active, .filter-pill:hover { border-color: var(--pink); background: var(--soft-pink); color: var(--pink); }
+.collection-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+}
+@media (min-width: 768px) { .collection-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .collection-grid { grid-template-columns: repeat(4, 1fr); } }
+.coll-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer; position: relative;
+}
+.coll-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.coll-card-img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.coll-card-body { padding: 0.75rem; }
+.coll-card-name { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; }
+.coll-card-cat { font-size: 0.75rem; color: var(--text-light); margin-top: 0.15rem; }
+.coll-card-price { font-size: 0.9rem; color: var(--pink); font-weight: 600; margin-top: 0.25rem; }
+.coll-card-badge {
+  position: absolute; top: 8px; left: 8px;
+  padding: 0.2rem 0.6rem; border-radius: var(--radius-pill);
+  font-size: 0.7rem; font-weight: 600;
+}
+.coll-card-badge.bestseller { background: var(--soft-pink); color: var(--pink); }
+.coll-card-badge.sold-out { background: rgba(0,0,0,0.7); color: white; }
+.coll-card.is-sold-out .coll-card-img { opacity: 0.5; }
+
+/* ===== PDP PAGE ===== */
+.pdp-back { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 1rem; cursor: pointer; transition: color 0.2s; }
+.pdp-back:hover { color: var(--pink); }
+
+/* Image carousel */
+.pdp-carousel { position: relative; border-radius: var(--radius); overflow: hidden; margin-bottom: 1.5rem; }
+.pdp-carousel-track { display: flex; transition: transform 0.3s ease; }
+.pdp-carousel-slide { flex: 0 0 100%; }
+.pdp-carousel-slide img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+.pdp-carousel-dots {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 6px;
+}
+.pdp-carousel-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.2s;
+}
+.pdp-carousel-dot.active { background: white; width: 24px; border-radius: 4px; }
+.pdp-carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.9);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; cursor: pointer; box-shadow: var(--shadow-sm);
+  transition: transform 0.2s; z-index: 2; border: none;
+}
+.pdp-carousel-arrow:hover { transform: translateY(-50%) scale(1.1); }
+.pdp-carousel-arrow.prev { left: 10px; }
+.pdp-carousel-arrow.next { right: 10px; }
+
+/* Bio */
+.pdp-bio { margin-bottom: 2rem; }
+.pdp-name-row {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.5rem;
+}
+.pdp-name {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+}
+.pdp-age { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; color: var(--text-secondary); }
+.pdp-match-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: rgba(0,212,106,0.1); color: var(--green);
+  padding: 0.3rem 0.75rem; border-radius: var(--radius-pill);
+  font-size: 0.8rem; font-weight: 600;
+}
+.pdp-tagline { font-size: 1rem; color: var(--text-secondary); font-style: italic; margin-bottom: 0.75rem; }
+.pdp-bio-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem; }
+.pdp-interest-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.pdp-interest-tag {
+  padding: 0.4rem 0.75rem; border-radius: var(--radius-pill);
+  background: var(--soft-pink); color: var(--pink);
+  font-size: 0.8rem; font-weight: 500;
+}
+
+/* Variant selector */
+.pdp-variants { margin-bottom: 2rem; }
+.pdp-variants-title {
+  font-family: var(--font-display); font-weight: 600; font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+.variant-options { display: flex; flex-direction: column; gap: 0.5rem; }
+.variant-option {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 1rem; border-radius: var(--radius-sm); border: 2px solid var(--border);
+  cursor: pointer; transition: all 0.2s; position: relative;
+}
+.variant-option:hover { border-color: var(--pink); }
+.variant-option.selected { border-color: var(--pink); background: var(--soft-pink); }
+.variant-option.sold-out { opacity: 0.5; cursor: not-allowed; }
+.variant-radio {
+  width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.variant-option.selected .variant-radio { border-color: var(--pink); }
+.variant-option.selected .variant-radio::after {
+  content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--pink);
+}
+.variant-label { flex: 1; }
+.variant-label-name { font-weight: 600; font-size: 0.95rem; }
+.variant-label-desc { font-size: 0.8rem; color: var(--text-secondary); }
+.variant-price { font-family: var(--font-display); font-weight: 700; color: var(--pink); }
+.variant-badge {
+  position: absolute; top: -8px; right: 8px;
+  padding: 0.15rem 0.5rem; border-radius: var(--radius-pill);
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+}
+.variant-badge.popular { background: var(--gradient-pink); color: white; }
+.variant-badge.sold-out { background: #666; color: white; }
+
+/* Fixed action bar (dating-style X / star / heart) */
+.pdp-action-bar {
+  display: flex; justify-content: center; gap: 1rem;
+  padding: 1rem 0; margin-bottom: 1.5rem;
+}
+.pdp-action-btn {
+  width: 60px; height: 60px; border-radius: 50%; display: flex;
+  align-items: center; justify-content: center; font-size: 1.5rem;
+  box-shadow: var(--shadow-md); transition: transform 0.2s;
+}
+.pdp-action-btn:hover { transform: scale(1.15); }
+.pdp-action-btn.nope { background: var(--white); color: var(--nope-red); border: 2px solid var(--nope-red); }
+.pdp-action-btn.super { background: var(--white); color: var(--super-like-blue); border: 2px solid var(--super-like-blue); }
+.pdp-action-btn.heart { background: var(--gradient-pink); color: white; border: none; box-shadow: 0 4px 15px rgba(255,107,107,0.4); }
+
+/* Sticky ATC */
+.pdp-sticky-atc {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border); padding: 0.75rem 1rem;
+  display: none; /* shown by JS when scrolled past action bar */
+}
+.pdp-sticky-atc.visible { display: flex; align-items: center; justify-content: space-between; }
+.pdp-sticky-left { display: flex; flex-direction: column; }
+.pdp-sticky-name { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; }
+.pdp-sticky-price { font-size: 0.9rem; color: var(--pink); font-weight: 600; }
+.pdp-sticky-btn { padding: 0.75rem 1.5rem; }
+
+/* Chat bubbles on PDP */
+.pdp-chat { background: var(--dark); color: var(--text-on-dark); }
+.pdp-chat .container { max-width: 500px; }
+.pdp-chat-header { text-align: center; margin-bottom: 1.5rem; }
+.pdp-chat .chat-bubble { margin-bottom: 0.25rem; }
+
+/* Compatibility stats */
+.pdp-compat { background: var(--off-white); }
+.pdp-compat .section-header { text-align: center; margin-bottom: 2rem; }
+.compat-bars { max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem; }
+.compat-bar-item label { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 500; margin-bottom: 0.35rem; }
+.compat-bar-track { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.compat-bar-fill { height: 100%; border-radius: 4px; background: var(--gradient-pink); width: 0; transition: width 1s ease; }
+
+/* Value props */
+.pdp-value-props { background: var(--white); }
+.value-props-grid { display: grid; gap: 1.5rem; }
+@media (min-width: 768px) { .value-props-grid { grid-template-columns: 1fr 1fr; } }
+.value-prop-item {
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+.value-prop-icon {
+  width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+  background: var(--soft-pink); display: flex; align-items: center;
+  justify-content: center; font-size: 1.25rem;
+}
+.value-prop-item h4 { font-family: var(--font-display); font-weight: 600; margin-bottom: 0.25rem; }
+.value-prop-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
+
+/* Sign For It upgrade compare */
+.pdp-upgrade { background: var(--off-white); }
+.pdp-upgrade .section-header { text-align: center; margin-bottom: 2rem; }
+.upgrade-compare { display: grid; gap: 1rem; }
+@media (min-width: 768px) { .upgrade-compare { grid-template-columns: 1fr 1fr; } }
+.upgrade-card {
+  background: var(--white); border-radius: var(--radius); padding: 1.5rem;
+  border: 2px solid var(--border); transition: border-color 0.2s;
+}
+.upgrade-card.recommended { border-color: var(--pink); position: relative; }
+.upgrade-card.recommended::before {
+  content: 'RECOMMENDED'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: var(--gradient-pink); color: white; padding: 0.2rem 0.75rem;
+  border-radius: var(--radius-pill); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em;
+}
+.upgrade-card h4 { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.upgrade-card .price { font-size: 1.25rem; color: var(--pink); font-weight: 700; margin-bottom: 0.75rem; }
+.upgrade-features { display: flex; flex-direction: column; gap: 0.4rem; }
+.upgrade-features li { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+.upgrade-features li .check { color: var(--green); }
+
+/* PDP differentiators */
+.pdp-differentiators { background: var(--white); }
+.pdp-differentiators .section-header { text-align: center; margin-bottom: 2rem; }
+.diff-cards { display: grid; gap: 1rem; grid-template-columns: repeat(2, 1fr); }
+.diff-card {
+  background: var(--off-white); border-radius: var(--radius); padding: 1.25rem;
+  text-align: center;
+}
+.diff-card .diff-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+.diff-card h4 { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; margin-bottom: 0.25rem; }
+.diff-card p { font-size: 0.8rem; color: var(--text-secondary); }
+
+/* Occasions */
+.pdp-occasions { background: var(--off-white); }
+.pdp-occasions .section-header { text-align: center; margin-bottom: 1.5rem; }
+.occasions-pills { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+.occasion-pill {
+  padding: 0.5rem 1rem; border-radius: var(--radius-pill);
+  background: var(--white); font-size: 0.85rem; font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+/* PDP Recipients tabs */
+.pdp-recipients { background: var(--white); }
+
+/* Cross-sells */
+.pdp-cross-sells { background: var(--off-white); }
+.pdp-cross-sells .section-header { text-align: center; margin-bottom: 2rem; }
+.cross-sell-grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 500px) { .cross-sell-grid { grid-template-columns: 1fr; } }
+.cross-card {
+  background: var(--white); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm); cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+}
+.cross-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.cross-card-img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.cross-card-body { padding: 0.75rem; }
+.cross-card-name { font-family: var(--font-display); font-weight: 600; font-size: 0.9rem; }
+.cross-card-price { font-size: 0.85rem; color: var(--pink); font-weight: 600; margin-top: 0.25rem; }
+
+/* Match toast */
+.match-toast {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+  z-index: 9999; background: var(--gradient-pink); color: white;
+  padding: 2rem 3rem; border-radius: var(--radius); text-align: center;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.3); opacity: 0;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s;
+}
+.match-toast.show { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.match-toast h2 {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 2rem; margin-bottom: 0.5rem;
+}
+.match-toast p { opacity: 0.9; }
+.match-toast-overlay {
+  position: fixed; inset: 0; z-index: 9998;
+  background: rgba(0,0,0,0.5); opacity: 0; pointer-events: none;
+  transition: opacity 0.4s;
+}
+.match-toast-overlay.show { opacity: 1; pointer-events: auto; }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP NAV ===== -->
+<nav class="top-nav">
+  <div class="container">
+    <div class="nav-logo" onclick="navigate('home')">
+      <span class="heart-icon">&#x2764;</span>
+      <span class="gradient-text">Package Deal</span>
+    </div>
+    <div class="nav-links">
+      <a href="#collection" onclick="navigate('collection')">Browse</a>
+      <div class="nav-cart" onclick="showMatchToast('Your cart is empty!','Swipe right on something first.')">
+        &#x1F6D2;
+        <span class="nav-cart-badge">0</span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== MATCH TOAST ===== -->
+<div class="match-toast-overlay" id="matchOverlay"></div>
+<div class="match-toast" id="matchToast">
+  <h2 id="matchTitle">It's a Match! &#x1F525;</h2>
+  <p id="matchSub">Added to your cart</p>
+</div>
+
+<!-- ================================================================
+     HOMEPAGE
+     ================================================================ -->
+<section data-page="home" class="active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-kicker">&#x1F525; #1 Prank Store</div>
+          <h1>Find Your<br>Perfect <span style="opacity:0.9">Prank</span></h1>
+          <p class="hero-sub">Anonymous prank mail shipped in embarrassing tubes. Your friend has to explain it to everyone.</p>
+          <div class="hero-match-count"><span class="pulse-dot"></span> 2,400+ matches made</div>
+          <div class="hero-ctas">
+            <a class="pill-btn" href="#collection" onclick="navigate('collection')">&#x1F50D; Browse Profiles</a>
+            <a class="pill-btn pill-btn-outline" href="#pdp-micropeniscure" onclick="navigate('pdp-micropeniscure')">&#x2764; Top Match</a>
+          </div>
+        </div>
+        <div class="hero-image-wrap">
+          <img src="storefront-images/hero.png" alt="Package Deal hero">
+          <div class="hero-float-badge top-right">&#x2B50; 4.5/5 rating</div>
+          <div class="hero-float-badge bottom-left">&#x1F4E6; 100% Anonymous</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="stats-strip">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item reveal"><div class="stat-num">2,400+</div><div class="stat-label">Pranks Shipped</div></div>
+        <div class="stat-item reveal"><div class="stat-num">4.5/5</div><div class="stat-label">Average Rating</div></div>
+        <div class="stat-item reveal"><div class="stat-num">100%</div><div class="stat-label">Anonymous</div></div>
+        <div class="stat-item reveal"><div class="stat-num">60-Day</div><div class="stat-label">Guarantee</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hot Matches — Swipe cards -->
+  <div class="hot-matches section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">&#x1F525; Hot Matches</div>
+        <h2 class="section-heading">Swipe Right on Chaos</h2>
+        <p class="section-sub" style="margin:0 auto;">Four prank mail tubes. One unforgettable delivery.</p>
+      </div>
+      <div class="swipe-area" id="swipeArea">
+        <!-- Cards injected by JS -->
+      </div>
+      <div class="swipe-actions" id="swipeActions">
+        <button class="action-btn nope-btn" onclick="swipeAction('nope')" title="Nope">&#x2717;</button>
+        <button class="action-btn star-btn" onclick="swipeAction('super')" title="Super Like">&#x2B50;</button>
+        <button class="action-btn heart-btn" onclick="swipeAction('like')" title="Like">&#x2764;</button>
+      </div>
+      <div class="swipe-counter" id="swipeCounter"></div>
+    </div>
+  </div>
+
+  <!-- Gag Gifts -->
+  <div class="gag-gifts section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">&#x1F381; Gag Gifts</div>
+        <h2 class="section-heading">More Profiles to Love</h2>
+        <p class="section-sub" style="margin:0 auto;">Physical products that raise questions nobody wants to answer.</p>
+      </div>
+      <div class="mini-profiles reveal" id="gagGrid"></div>
+    </div>
+  </div>
+
+  <!-- Chat Testimonials -->
+  <div class="chat-testimonials section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker" style="color:var(--super-like-blue);">&#x1F4AC; Messages</div>
+        <h2 class="section-heading" style="color:var(--text-on-dark);">The Group Chat Reactions</h2>
+        <p class="section-sub" style="color:var(--text-on-dark-muted); margin:0 auto;">Real conversations. Real confusion. Real entertainment.</p>
+      </div>
+      <div class="chat-threads reveal" id="chatThreads"></div>
+    </div>
+  </div>
+
+  <!-- How It Works -->
+  <div class="how-it-works section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">&#x1F4F1; How It Works</div>
+        <h2 class="section-heading">Three Simple Steps</h2>
+        <p class="section-sub" style="margin:0 auto;">Easier than setting up a dating profile.</p>
+      </div>
+      <div class="onboarding-cards reveal">
+        <div class="onboarding-card">
+          <div class="onboarding-icon">&#x1F50D;</div>
+          <div class="onboarding-step">Step 1</div>
+          <h3>Browse Profiles</h3>
+          <p>Swipe through our catalog of embarrassing mail tubes, gag gifts, and prank stickers.</p>
+        </div>
+        <div class="onboarding-card">
+          <div class="onboarding-icon">&#x1F3AF;</div>
+          <div class="onboarding-step">Step 2</div>
+          <h3>Pick Your Prank</h3>
+          <p>Choose a chaos level. Base delivery, Sign For It, or the nuclear Confetti Bomb option.</p>
+        </div>
+        <div class="onboarding-card">
+          <div class="onboarding-icon">&#x1F4E6;</div>
+          <div class="onboarding-step">Step 3</div>
+          <h3>We Ship It</h3>
+          <p>Completely anonymous. No return address. They'll never know it was you. Unless you tell them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Benefits Strip -->
+  <div class="benefits-strip">
+    <div class="benefits-track" id="benefitsTrack">
+      <!-- doubled for infinite scroll -->
+    </div>
+  </div>
+
+  <!-- Bad Parking -->
+  <div class="bad-parking section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker" style="color:var(--anger-red);">&#x1F697; Bad Parking</div>
+        <h2 class="section-heading">For Cars That Deserve It</h2>
+        <p class="section-sub" style="margin:0 auto;">Fake tickets, passive-aggressive cards, and bumper stickers for vehicular justice.</p>
+      </div>
+      <div class="parking-grid reveal" id="parkingGrid"></div>
+    </div>
+  </div>
+
+  <!-- Trust Strip -->
+  <div class="trust-strip">
+    <div class="container">
+      <div class="trust-items reveal">
+        <div class="trust-item"><span class="ti-icon">&#x1F512;</span> Secure Checkout</div>
+        <div class="trust-item"><span class="ti-icon">&#x1F4E6;</span> Discreet Billing</div>
+        <div class="trust-item"><span class="ti-icon">&#x1F6E1;&#xFE0F;</span> 60-Day Guarantee</div>
+        <div class="trust-item"><span class="ti-icon">&#x2705;</span> 100% Anonymous</div>
+        <div class="trust-item"><span class="ti-icon">&#x1F4B3;</span> All Cards Accepted</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stickers Scroll -->
+  <div class="stickers-scroll section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">&#x1F3F7;&#xFE0F; Prank Stickers</div>
+        <h2 class="section-heading">Stick It to Them</h2>
+        <p class="section-sub" style="margin:0 auto;">Fake WiFi networks, fake outlets, and stickers that make people question reality.</p>
+      </div>
+    </div>
+    <div class="sticker-track-wrap reveal">
+      <div class="sticker-track" id="stickerTrack"></div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">&#x2753; Dating Tips</div>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list reveal" id="homeFaqList"></div>
+    </div>
+  </div>
+
+  <!-- PD Gold -->
+  <div class="pd-gold section-pad">
+    <div class="container">
+      <div class="gold-card reveal">
+        <div class="gold-badge">&#x1F451; PD Gold</div>
+        <h2>Upgrade to Package Deal Gold</h2>
+        <p>Our premium bundles. More chaos per dollar. Maximum embarrassment at a discount.</p>
+        <div class="gold-perks">
+          <div class="gold-perk"><span class="gp-icon">&#x2714;</span> Save up to 30% on bundles</div>
+          <div class="gold-perk"><span class="gp-icon">&#x2714;</span> Free Confetti Bomb upgrade</div>
+          <div class="gold-perk"><span class="gp-icon">&#x2714;</span> Priority anonymous shipping</div>
+          <div class="gold-perk"><span class="gp-icon">&#x2714;</span> Exclusive "Full Send" bundles</div>
+        </div>
+        <a class="pill-btn pill-btn-gold" href="#collection" onclick="navigate('collection')">&#x1F451; View Bundles</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipients + Final CTA -->
+  <div class="recipients-cta section-pad">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-kicker">&#x1F465; Perfect For</div>
+        <h2 class="section-heading">Who's Getting Pranked?</h2>
+      </div>
+      <div class="recipient-tabs reveal" id="homeRecipientTabs"></div>
+      <div class="recipient-content reveal" id="homeRecipientContent"></div>
+
+      <div class="final-cta-box reveal">
+        <h2>Ready to Swipe Right on Chaos?</h2>
+        <p>2,400+ people already found their perfect match. Your friend is next.</p>
+        <a class="pill-btn" href="#collection" onclick="navigate('collection')">&#x1F50D; Start Browsing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">&#x2764; Package Deal</div>
+          <p>Anonymous prank mail, gag gifts, and stickers. Chaos delivered to their door.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Shop</h4>
+          <a href="#collection" onclick="navigate('collection')">All Products</a>
+          <a href="#pdp-micropeniscure" onclick="navigate('pdp-micropeniscure')">Bestsellers</a>
+          <a href="#" onclick="event.preventDefault()">Bundles</a>
+        </div>
+        <div class="footer-col">
+          <h4>Help</h4>
+          <a href="#" onclick="event.preventDefault()">FAQ</a>
+          <a href="#" onclick="event.preventDefault()">Shipping & Returns</a>
+          <a href="#" onclick="event.preventDefault()">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">&copy; 2026 Package Deal. All rights reserved. Chaos guaranteed.</div>
+    </div>
+  </footer>
+
+</section>
+
+<!-- ================================================================
+     COLLECTION PAGE
+     ================================================================ -->
+<section data-page="collection">
+  <div class="section-pad">
+    <div class="container">
+      <a class="collection-back" onclick="navigate('home')">&#x2190; Back to Home</a>
+      <div class="collection-header reveal">
+        <div class="section-kicker">&#x1F50D; Browse Profiles</div>
+        <h2 class="section-heading">All 27 Profiles</h2>
+        <p class="section-sub" style="margin:0 auto;">Every prank, every category. Swipe through them all.</p>
+      </div>
+      <div class="filter-pills" id="filterPills"></div>
+      <div class="collection-grid" id="collectionGrid"></div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">&copy; 2026 Package Deal. All rights reserved.</div>
+    </div>
+  </footer>
+</section>
+
+<!-- ================================================================
+     PDP PAGE (dynamic — single template filled by JS)
+     ================================================================ -->
+<section data-page="pdp">
+  <div class="section-pad" style="padding-top:1.5rem;">
+    <div class="container" id="pdpContainer">
+      <!-- Filled by renderPDP() -->
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     JAVASCRIPT
+     ================================================================ -->
+<script>
+/* ===================================================================
+   DATA
+   =================================================================== */
+const IMG = 'storefront-images/';
+
+const PDP_PRODUCTS = {
+  micropeniscure: {
+    name: 'MicroPenisCure.com',
+    age: 28,
+    match: 94,
+    badge: 'Bestseller',
+    tagline: null,
+    images: ['micropenis1.webp','micropenis2.webp','micropenis3.webp'],
+    bio: "Your friend is at work. Someone from the mailroom walks over holding a tube. They can see the label from ten feet away. MicroPenisCure.com in letters large enough to read from across the room. No return address. The group chat lights up. Nobody confesses.",
+    interests: ['Office Pranks','Group Chat Fuel','Anonymous Delivery','Signature Upgrade'],
+    variants: [
+      { id: 'base', name: 'No Signature', desc: 'Left at the door. Quietly devastating.', price: '$14.99', badge: null },
+      { id: 'sign', name: 'Sign For It', desc: 'They sign their name for MicroPenisCure.com in front of the delivery driver.', price: '$21.99', badge: 'popular' },
+      { id: 'confetti', name: 'Confetti Bomb', desc: 'Opens to an explosion of glitter. Cleanup takes weeks.', price: '$34.99', badge: 'sold-out' }
+    ],
+    defaultVariant: 'sign',
+    hasSignForIt: true,
+    chat: [
+      { type: 'received', text: 'Bro WHAT did you send me', delay: 0 },
+      { type: 'received', text: 'I had to SIGN for it', delay: 1 },
+      { type: 'received', text: 'My coworkers saw the label', delay: 2 },
+      { type: 'sent', text: '😂😂😂', delay: 3 },
+      { type: 'received', text: 'I will find out who did this', delay: 4 },
+      { type: 'sent', text: "Good luck it's completely anonymous", delay: 5 }
+    ],
+    compat: { humor: 98, embarrassment: 95, shareability: 92, chaos: 88 },
+    crossSells: ['bigassdildos','vaginalodorhelper','bulkcondomdelivery'],
+    occasions: ['Birthday Revenge','Roommate Wars','Office Prank','Bachelor Party','Just Because','Graduation Gift']
+  },
+  bigassdildos: {
+    name: 'BigAssDildos.com',
+    age: 32,
+    match: 92,
+    badge: null,
+    tagline: 'Thank You & Cum Again!',
+    images: ['bigassdildos2.webp','bigassdildos6.webp','bigassdildos3.webp','bigassdildos4.webp'],
+    bio: "The $43.99 variant has an actual dildo inside. The group chat screenshot lives forever. They open the tube expecting a laugh and find something much, much worse. The label alone is enough to create an HR incident.",
+    interests: ['Maximum Chaos','Actual Dildo Inside','HR Incident','Group Chat Legend'],
+    variants: [
+      { id: 'base', name: 'No Signature', desc: 'Standard delivery of maximum shame.', price: '$14.99', badge: null },
+      { id: 'sign', name: 'Sign For It', desc: 'They sign for BigAssDildos.com while the driver watches.', price: '$21.99', badge: 'popular' },
+      { id: 'confetti', name: 'Confetti Bomb', desc: 'Glitter explosion on open. Impossible to hide.', price: '$34.99', badge: 'sold-out' },
+      { id: 'dildo', name: 'Actual Dildo', desc: 'Yes, there is an actual dildo inside the tube.', price: '$43.99', badge: null }
+    ],
+    defaultVariant: 'sign',
+    hasSignForIt: true,
+    chat: [
+      { type: 'received', text: 'What the actual hell', delay: 0 },
+      { type: 'received', text: 'THERE IS A DILDO IN HERE', delay: 1 },
+      { type: 'sent', text: "You're welcome", delay: 2 },
+      { type: 'received', text: 'My roommate saw it first', delay: 3 },
+      { type: 'sent', text: 'Even better', delay: 4 },
+      { type: 'received', text: 'I hate you so much', delay: 5 }
+    ],
+    compat: { humor: 96, embarrassment: 99, shareability: 94, chaos: 97 },
+    crossSells: ['micropeniscure','vaginalodorhelper','bulkcondomdelivery'],
+    occasions: ['Bachelor Party','Roommate Wars','Office Chaos','Birthday Revenge','Housewarming','Just Because']
+  },
+  vaginalodorhelper: {
+    name: 'VaginalOdorHelper.com',
+    age: 31,
+    match: 88,
+    badge: null,
+    tagline: null,
+    images: ['vaginal-odor-helper1.webp','vaginal-odor-helper3.webp','vaginal-odor-helper2.webp','vaginal-odor-helper4.webp'],
+    bio: "Clinical enough to raise real concern. Someone else sees it \u2014 roommate, partner. This prank doesn\u2019t end when opened. The tube sits on the counter. Visitors ask questions. There are no good answers.",
+    interests: ['Slow Burn','Clinical Label','Roommate Discovery','Lingering Embarrassment'],
+    variants: [
+      { id: 'base', name: 'No Signature', desc: 'Arrives quietly. Chaos builds slowly.', price: '$14.99', badge: null },
+      { id: 'sign', name: 'Sign For It', desc: 'They acknowledge receiving VaginalOdorHelper.com with their signature.', price: '$21.99', badge: 'popular' },
+      { id: 'confetti', name: 'Confetti Bomb', desc: 'Glitter evidence everywhere. Cannot deny opening it.', price: '$34.99', badge: 'sold-out' }
+    ],
+    defaultVariant: 'sign',
+    hasSignForIt: true,
+    chat: [
+      { type: 'received', text: 'Someone sent me something called VaginalOdorHelper', delay: 0 },
+      { type: 'received', text: 'My partner saw it before I did', delay: 1 },
+      { type: 'received', text: 'I had to explain that it was a prank', delay: 2 },
+      { type: 'sent', text: 'Was it a prank tho?', delay: 3 },
+      { type: 'received', text: '...', delay: 4 },
+      { type: 'sent', text: "I'm kidding. Or am I", delay: 5 }
+    ],
+    compat: { humor: 85, embarrassment: 92, shareability: 78, chaos: 90 },
+    crossSells: ['micropeniscure','bigassdildos','bulkcondomdelivery'],
+    occasions: ['Roommate Wars','Best Friend Prank','Bachelorette Party','Just Because','Birthday Chaos']
+  },
+  bulkcondomdelivery: {
+    name: 'BulkCondomDelivery.com',
+    age: 26,
+    match: 78,
+    badge: null,
+    tagline: 'More Rubber for Your Chubber',
+    images: ['bulkcondom1.webp','bulkcondom2.webp','bulkcondom3.webp'],
+    bio: "Best for family homes. Mom has questions. Dinner gets interesting. A tube labeled BulkCondomDelivery.com shows up at the front door. Someone\u2019s parent picks it up. The conversation that follows is something money can\u2019t buy.",
+    interests: ['Family Homes','Awkward Dinners','Parent Discovery','Budget Prank'],
+    variants: [
+      { id: 'base', name: 'Standard Delivery', desc: 'One tube. One label. Maximum family chaos.', price: '$12.99', badge: null }
+    ],
+    defaultVariant: 'base',
+    hasSignForIt: false,
+    chat: [
+      { type: 'received', text: 'My MOM picked this up from the porch', delay: 0 },
+      { type: 'received', text: 'BulkCondomDelivery.com', delay: 1 },
+      { type: 'received', text: 'Dinner was SO uncomfortable', delay: 2 },
+      { type: 'sent', text: "You're welcome for the family bonding", delay: 3 },
+      { type: 'received', text: "Dad won't make eye contact with me", delay: 4 }
+    ],
+    compat: { humor: 82, embarrassment: 88, shareability: 90, chaos: 75 },
+    crossSells: ['micropeniscure','bigassdildos','vaginalodorhelper'],
+    occasions: ['Family Homes','College Dorms','Roommate Wars','Holiday Chaos','Just Because']
+  }
+};
+
+const COLLECTION_PRODUCTS = [
+  // Prank Mail
+  { id: 'micropeniscure', name: 'MicroPenisCure.com', cat: 'prank-mail', img: 'micropenis1.webp', price: '$14.99+', badge: 'bestseller', soldOut: false, hasPDP: true },
+  { id: 'bigassdildos', name: 'BigAssDildos.com', cat: 'prank-mail', img: 'bigassdildos2.webp', price: '$14.99+', badge: null, soldOut: false, hasPDP: true },
+  { id: 'vaginalodorhelper', name: 'VaginalOdorHelper.com', cat: 'prank-mail', img: 'vaginal-odor-helper1.webp', price: '$14.99+', badge: null, soldOut: false, hasPDP: true },
+  { id: 'bulkcondomdelivery', name: 'BulkCondomDelivery.com', cat: 'prank-mail', img: 'bulkcondom1.webp', price: '$12.99', badge: null, soldOut: false, hasPDP: true },
+  // Gag Gifts
+  { id: 'eye-bleach', name: 'Eye Bleach', cat: 'gag-gifts', img: 'eye-bleach1.png', price: '$7.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'computer-antifreeze', name: 'Computer Antifreeze', cat: 'gag-gifts', img: 'computer-antifreeze1.jpg', price: '$6.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'human-cone', name: 'Human Cone', cat: 'gag-gifts', img: 'human-cone1.jpg', price: '$9.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'headlight-fluid', name: 'Headlight Fluid', cat: 'gag-gifts', img: 'headlight-fluid1.jpg', price: '$8.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'child-chucker', name: 'Child Chucker', cat: 'gag-gifts', img: 'child-chucker1.jpg', price: '$13.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'box-in-a-box', name: 'Box in a Box', cat: 'gag-gifts', img: 'box-in-a-box1.jpg', price: '$57.99', badge: null, soldOut: false, hasPDP: false },
+  // Bad Parking
+  { id: 'fake-parking-tickets', name: 'Fake Parking Tickets', cat: 'bad-parking', img: 'fake-parking-tickets1.jpg', price: '$6.49', badge: 'sold-out', soldOut: true, hasPDP: false },
+  { id: 'hit-and-run', name: 'Hit & Run Cards', cat: 'bad-parking', img: 'bad-parking-hit-and-run1.jpg', price: '$7.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'road-rage', name: 'Road Rage Cards', cat: 'bad-parking', img: 'bad-parking-road-rage1.jpg', price: '$8.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'street-justice', name: 'Street Justice Cards', cat: 'bad-parking', img: 'bad-parking-street-justice1.jpg', price: '$8.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'i-park-like-an-ass', name: 'I Park Like An Ass', cat: 'bad-parking', img: 'i-park-like-an-ass1.jpg', price: '$12.49', badge: null, soldOut: false, hasPDP: false },
+  { id: 'parked-like-a-moron', name: 'Parked Like a Moron', cat: 'bad-parking', img: 'parked-like-a-moron1.jpg', price: '$3.79', badge: null, soldOut: false, hasPDP: false },
+  // Stickers
+  { id: 'fake-wifi', name: 'Fake WiFi Stickers', cat: 'prank-stickers', img: 'fake-wifi-stickers1.jpg', price: '$7.99', badge: 'sold-out', soldOut: true, hasPDP: false },
+  { id: 'voice-activated', name: 'Voice Activated Stickers', cat: 'prank-stickers', img: 'voice-activated-stickers1.jpg', price: '$5.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'fake-outlet', name: 'Fake Outlet Stickers', cat: 'prank-stickers', img: 'fake-outlet-stickers1.jpg', price: '$7.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'rectal-use', name: 'For Rectal Use Only', cat: 'prank-stickers', img: 'rectal-use-only-stickers1.jpg', price: '$5.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'fecal-sample', name: 'Fecal Sample Stickers', cat: 'prank-stickers', img: 'fecal-sample-stickers1.jpg', price: '$6.99', badge: 'sold-out', soldOut: true, hasPDP: false },
+  { id: 'machinery-warning', name: 'Machinery Warning', cat: 'prank-stickers', img: 'machinery-warning-stickers1.jpg', price: '$6.99', badge: 'sold-out', soldOut: true, hasPDP: false },
+  { id: 'i-love-gay-porn', name: 'I Love Gay Porn', cat: 'prank-stickers', img: 'i-love-gay-porn-stickers1.jpg', price: '$5.99', badge: 'sold-out', soldOut: true, hasPDP: false },
+  { id: 'i-heart-penis', name: 'I Heart Penis', cat: 'prank-stickers', img: 'i-heart-penis-stickers1.jpg', price: '$5.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'dont-put-dick', name: "Don't Put Dick Decals", cat: 'prank-stickers', img: 'dont-put-dick-decals1.jpg', price: '$8.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'adult-postcards', name: 'Adult Postcards', cat: 'prank-stickers', img: 'adult-postcards1.jpg', price: '$9.99', badge: null, soldOut: false, hasPDP: false },
+  { id: 'honk-poop', name: 'Honk If You Poop', cat: 'prank-stickers', img: 'honk-poop-sticker1.jpg', price: '$5.99', badge: null, soldOut: false, hasPDP: false }
+];
+
+const GAG_GIFTS = COLLECTION_PRODUCTS.filter(p => p.cat === 'gag-gifts');
+const BAD_PARKING = COLLECTION_PRODUCTS.filter(p => p.cat === 'bad-parking');
+const STICKERS = COLLECTION_PRODUCTS.filter(p => p.cat === 'prank-stickers');
+
+const SWIPE_CARDS = [
+  { id: 'micropeniscure', name: 'MicroPenisCure.com', age: 28, img: 'micropenis1.webp', match: 94, badge: 'Bestseller', bio: 'Arrives at work. The whole office sees the label.', price: '$14.99+' },
+  { id: 'bigassdildos', name: 'BigAssDildos.com', age: 32, img: 'bigassdildos2.webp', match: 92, badge: null, bio: "The $43.99 variant has an actual dildo inside.", price: '$14.99+' },
+  { id: 'vaginalodorhelper', name: 'VaginalOdorHelper.com', age: 31, img: 'vaginal-odor-helper1.webp', match: 88, badge: null, bio: "Clinical enough to raise real concern.", price: '$14.99+' },
+  { id: 'bulkcondomdelivery', name: 'BulkCondomDelivery.com', age: 26, img: 'bulkcondom1.webp', match: 78, badge: null, bio: "Best for family homes. Mom has questions.", price: '$12.99' }
+];
+
+const CHAT_DATA = [
+  {
+    name: 'Jake', initial: 'J', time: '2:34 PM',
+    msgs: [
+      { type: 'received', text: 'Dude someone sent me a tube that says MicroPenisCure.com' },
+      { type: 'received', text: 'I had to sign for it IN FRONT of my coworkers' },
+      { type: 'sent', text: 'LMAOOO how was lunch after that?' },
+      { type: 'received', text: 'Everyone was asking if I ordered something' },
+      { type: 'typing', text: '' }
+    ]
+  },
+  {
+    name: 'Sarah', initial: 'S', time: '5:12 PM',
+    msgs: [
+      { type: 'received', text: 'I just got a package from BigAssDildos.com' },
+      { type: 'received', text: 'My boyfriend opened it before I got home' },
+      { type: 'sent', text: 'Oh no' },
+      { type: 'received', text: 'He thought I ordered it for us' },
+      { type: 'received', text: 'The conversation was... interesting' },
+      { type: 'read', text: 'Read 5:14 PM' }
+    ]
+  },
+  {
+    name: 'Mike', initial: 'M', time: '11:47 AM',
+    msgs: [
+      { type: 'received', text: 'Who TF sent BulkCondomDelivery to my parents house' },
+      { type: 'received', text: 'My mom picked it up' },
+      { type: 'sent', text: "Happy birthday buddy!" },
+      { type: 'received', text: 'I hate every single one of you' },
+      { type: 'typing', text: '' }
+    ]
+  }
+];
+
+const HOME_FAQ = [
+  { q: 'Is it really anonymous?', a: 'Completely. No return address, no sender info, no trail. The only thing they get is an embarrassing tube and a lot of questions from everyone who sees it.' },
+  { q: 'What if they know it was me?', a: "They won't. Unless you tell them. Which, based on our data, about 87% of senders do within 48 hours because they can't stop laughing." },
+  { q: 'How long does shipping take?', a: '3-5 business days of anticipation. We ship via USPS from the US. International shipping available for global chaos.' },
+  { q: "What's the Sign For It upgrade?", a: "The delivery driver requires a signature. Your friend has to acknowledge, in writing, that they're receiving a package from MicroPenisCure.com. In front of the driver. It's worth every penny." },
+  { q: 'Do you have a satisfaction guarantee?', a: "60-day money-back guarantee. If they don't react, we don't deserve your money. (This has never happened.)" }
+];
+
+const RECIPIENTS = [
+  { label: '&#x1F468; Best Friend', text: 'The person who would do the same to you. This is mutually assured embarrassment.' },
+  { label: '&#x1F3E2; Coworker', text: "Office pranks hit different when the whole floor sees the label. Water cooler conversation for weeks." },
+  { label: '&#x1F468;&#x200D;&#x1F469;&#x200D;&#x1F466; Sibling', text: "The original prank partner. Send it to their house. Bonus points if your parents are visiting." },
+  { label: '&#x1F393; College Friend', text: "Ship to the dorm. The RA will have questions. The roommate will have screenshots." },
+  { label: '&#x1F389; Newlywed', text: "Nothing says congratulations quite like a tube from BigAssDildos.com arriving at the new marital home." }
+];
+
+const BENEFITS = [
+  { icon: '&#x1F4E6;', text: 'Free Shipping $25+' },
+  { icon: '&#x1F512;', text: '100% Anonymous' },
+  { icon: '&#x1F6E1;&#xFE0F;', text: '60-Day Guarantee' },
+  { icon: '&#x2B50;', text: '4.5/5 Rating' },
+  { icon: '&#x1F4AC;', text: '2,400+ Shipped' },
+  { icon: '&#x1F4B3;', text: 'Secure Checkout' },
+  { icon: '&#x1F381;', text: 'Gift Wrapping Available' }
+];
+
+const CATEGORIES = [
+  { id: 'all', label: 'All Profiles' },
+  { id: 'prank-mail', label: '&#x1F4E6; Prank Mail' },
+  { id: 'gag-gifts', label: '&#x1F381; Gag Gifts' },
+  { id: 'bad-parking', label: '&#x1F697; Bad Parking' },
+  { id: 'prank-stickers', label: '&#x1F3F7;&#xFE0F; Stickers' }
+];
+
+
+/* ===================================================================
+   ROUTING
+   =================================================================== */
+function navigate(page) {
+  window.location.hash = page;
+}
+
+function handleRoute() {
+  const hash = window.location.hash.slice(1) || 'home';
+  const pages = document.querySelectorAll('[data-page]');
+  pages.forEach(p => p.classList.remove('active'));
+
+  // Determine which page section to show
+  let pageId;
+  let pdpSlug = null;
+  if (hash.startsWith('pdp-')) {
+    pageId = 'pdp';
+    pdpSlug = hash.replace('pdp-', '');
+  } else {
+    pageId = hash;
+  }
+
+  const target = document.querySelector(`[data-page="${pageId}"]`);
+  if (target) {
+    target.classList.add('active');
+  } else {
+    document.querySelector('[data-page="home"]').classList.add('active');
+  }
+
+  // Render PDP if needed
+  if (pdpSlug && PDP_PRODUCTS[pdpSlug]) {
+    renderPDP(pdpSlug);
+  }
+
+  // Scroll to top
+  window.scrollTo(0, 0);
+
+  // Re-observe reveal elements
+  observeReveals();
+}
+
+window.addEventListener('hashchange', handleRoute);
+
+
+/* ===================================================================
+   REVEAL / INTERSECTION OBSERVER
+   =================================================================== */
+let revealObserver;
+function observeReveals() {
+  if (revealObserver) revealObserver.disconnect();
+  revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
+}
+
+
+/* ===================================================================
+   HERO PARTICLES
+   =================================================================== */
+function initHeroParticles() {
+  const container = document.getElementById('heroParticles');
+  if (!container) return;
+  container.innerHTML = '';
+  const hearts = ['&#x2764;','&#x1F499;','&#x1F49C;','&#x1F49B;','&#x2764;'];
+  for (let i = 0; i < 15; i++) {
+    const span = document.createElement('span');
+    span.className = 'heart-particle';
+    span.innerHTML = hearts[i % hearts.length];
+    span.style.left = Math.random() * 100 + '%';
+    span.style.bottom = '-20px';
+    span.style.animationDelay = (Math.random() * 4) + 's';
+    span.style.animationDuration = (3 + Math.random() * 3) + 's';
+    span.style.fontSize = (0.8 + Math.random() * 1) + 'rem';
+    container.appendChild(span);
+  }
+}
+
+
+/* ===================================================================
+   SWIPE CARDS
+   =================================================================== */
+let swipeIndex = 0;
+let swipeDragging = false;
+let swipeStartX = 0, swipeStartY = 0, swipeDx = 0;
+let currentSwipeCard = null;
+
+function buildSwipeCards() {
+  const area = document.getElementById('swipeArea');
+  if (!area) return;
+  area.innerHTML = '';
+  swipeIndex = 0;
+
+  // Build cards in reverse so first card is on top
+  for (let i = SWIPE_CARDS.length - 1; i >= 0; i--) {
+    const d = SWIPE_CARDS[i];
+    const card = document.createElement('div');
+    card.className = 'swipe-card';
+    card.dataset.index = i;
+    card.style.zIndex = SWIPE_CARDS.length - i;
+    if (i > 0) {
+      card.style.transform = `scale(${1 - i * 0.04}) translateY(${i * 8}px)`;
+    }
+    card.innerHTML = `
+      <img class="swipe-card-img" src="${IMG}${d.img}" alt="${d.name}">
+      <div class="swipe-card-body">
+        <div class="swipe-card-name">${d.name} <span class="age">${d.age}</span></div>
+        ${d.badge ? `<span class="swipe-card-badge badge-bestseller">${d.badge}</span>` : ''}
+        <div class="swipe-card-bio">${d.bio}</div>
+        <div class="swipe-card-match">&#x1F49A; ${d.match}% Match</div>
+        <div class="swipe-card-price">From ${d.price}</div>
+      </div>
+      <div class="swipe-stamp like">LIKE</div>
+      <div class="swipe-stamp nope">NOPE</div>
+      <div class="swipe-stamp super">SUPER</div>
+    `;
+    area.appendChild(card);
+
+    // Touch/mouse drag events
+    card.addEventListener('mousedown', swipeStart);
+    card.addEventListener('touchstart', swipeStart, { passive: false });
+  }
+  updateSwipeCounter();
+}
+
+function getTopCard() {
+  const area = document.getElementById('swipeArea');
+  const cards = area.querySelectorAll('.swipe-card');
+  for (const c of cards) {
+    if (!c.classList.contains('swiped-away')) return c;
+  }
+  return null;
+}
+
+function swipeStart(e) {
+  const card = getTopCard();
+  if (!card || card !== this) return;
+  swipeDragging = true;
+  currentSwipeCard = card;
+  card.classList.add('dragging');
+  const pos = e.touches ? e.touches[0] : e;
+  swipeStartX = pos.clientX;
+  swipeStartY = pos.clientY;
+  swipeDx = 0;
+  card.style.transition = 'none';
+
+  document.addEventListener('mousemove', swipeMove);
+  document.addEventListener('mouseup', swipeEnd);
+  document.addEventListener('touchmove', swipeMove, { passive: false });
+  document.addEventListener('touchend', swipeEnd);
+}
+
+function swipeMove(e) {
+  if (!swipeDragging || !currentSwipeCard) return;
+  e.preventDefault();
+  const pos = e.touches ? e.touches[0] : e;
+  swipeDx = pos.clientX - swipeStartX;
+  const dy = pos.clientY - swipeStartY;
+  const rotate = swipeDx * 0.08;
+  currentSwipeCard.style.transform = `translate(${swipeDx}px, ${dy * 0.3}px) rotate(${rotate}deg)`;
+
+  // Show stamps
+  const likeStamp = currentSwipeCard.querySelector('.swipe-stamp.like');
+  const nopeStamp = currentSwipeCard.querySelector('.swipe-stamp.nope');
+  const superStamp = currentSwipeCard.querySelector('.swipe-stamp.super');
+  const threshold = 60;
+
+  if (swipeDx > threshold) {
+    likeStamp.style.opacity = Math.min((swipeDx - threshold) / 80, 1);
+    likeStamp.style.transform = 'translate(-50%, -50%) rotate(-15deg) scale(1)';
+    nopeStamp.style.opacity = 0;
+  } else if (swipeDx < -threshold) {
+    nopeStamp.style.opacity = Math.min((-swipeDx - threshold) / 80, 1);
+    nopeStamp.style.transform = 'translate(-50%, -50%) rotate(15deg) scale(1)';
+    likeStamp.style.opacity = 0;
+  } else {
+    likeStamp.style.opacity = 0;
+    nopeStamp.style.opacity = 0;
+  }
+  // Super like on strong upswipe
+  if (dy < -100) {
+    superStamp.style.opacity = Math.min((-dy - 100) / 80, 1);
+    superStamp.style.transform = 'translate(-50%, -50%) scale(1)';
+  } else {
+    superStamp.style.opacity = 0;
+  }
+}
+
+function swipeEnd() {
+  if (!swipeDragging || !currentSwipeCard) return;
+  document.removeEventListener('mousemove', swipeMove);
+  document.removeEventListener('mouseup', swipeEnd);
+  document.removeEventListener('touchmove', swipeMove);
+  document.removeEventListener('touchend', swipeEnd);
+  swipeDragging = false;
+  currentSwipeCard.classList.remove('dragging');
+
+  const threshold = 100;
+  if (swipeDx > threshold) {
+    flyAway(currentSwipeCard, 'right');
+  } else if (swipeDx < -threshold) {
+    flyAway(currentSwipeCard, 'left');
+  } else {
+    // Snap back
+    currentSwipeCard.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    currentSwipeCard.style.transform = '';
+    resetStamps(currentSwipeCard);
+  }
+  currentSwipeCard = null;
+}
+
+function flyAway(card, direction) {
+  const idx = parseInt(card.dataset.index);
+  const d = SWIPE_CARDS[idx];
+  card.classList.add('swiped-away');
+  card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+  const x = direction === 'right' ? 600 : -600;
+  card.style.transform = `translate(${x}px, -100px) rotate(${x * 0.05}deg)`;
+  card.style.opacity = '0';
+
+  if (direction === 'right') {
+    showMatchToast(`It's a Match! \u2764\uFE0F`, `You liked ${d.name}`);
+  }
+
+  swipeIndex++;
+  updateSwipeCounter();
+
+  // Reposition remaining cards
+  setTimeout(() => {
+    const area = document.getElementById('swipeArea');
+    const remaining = area.querySelectorAll('.swipe-card:not(.swiped-away)');
+    remaining.forEach((c, i) => {
+      c.style.transition = 'transform 0.3s ease';
+      if (i === 0) {
+        c.style.transform = '';
+        c.style.zIndex = 10;
+      } else {
+        c.style.transform = `scale(${1 - i * 0.04}) translateY(${i * 8}px)`;
+        c.style.zIndex = 10 - i;
+      }
+    });
+  }, 100);
+
+  // If all swiped, rebuild after delay
+  if (swipeIndex >= SWIPE_CARDS.length) {
+    setTimeout(() => buildSwipeCards(), 1500);
+  }
+}
+
+function resetStamps(card) {
+  card.querySelectorAll('.swipe-stamp').forEach(s => {
+    s.style.opacity = '0';
+    s.style.transform = '';
+  });
+}
+
+function swipeAction(type) {
+  const card = getTopCard();
+  if (!card) return;
+  if (type === 'like') {
+    const likeStamp = card.querySelector('.swipe-stamp.like');
+    likeStamp.style.opacity = '1';
+    likeStamp.style.transform = 'translate(-50%, -50%) rotate(-15deg) scale(1)';
+    setTimeout(() => flyAway(card, 'right'), 200);
+  } else if (type === 'nope') {
+    const nopeStamp = card.querySelector('.swipe-stamp.nope');
+    nopeStamp.style.opacity = '1';
+    nopeStamp.style.transform = 'translate(-50%, -50%) rotate(15deg) scale(1)';
+    setTimeout(() => flyAway(card, 'left'), 200);
+  } else if (type === 'super') {
+    const superStamp = card.querySelector('.swipe-stamp.super');
+    superStamp.style.opacity = '1';
+    superStamp.style.transform = 'translate(-50%, -50%) scale(1)';
+    card.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+    card.style.transform = 'translateY(-600px) scale(1.1)';
+    card.style.opacity = '0';
+    card.classList.add('swiped-away');
+    const idx = parseInt(card.dataset.index);
+    showMatchToast('Super Like! \u2B50', `You super-liked ${SWIPE_CARDS[idx].name}`);
+    swipeIndex++;
+    updateSwipeCounter();
+    setTimeout(() => {
+      const area = document.getElementById('swipeArea');
+      const remaining = area.querySelectorAll('.swipe-card:not(.swiped-away)');
+      remaining.forEach((c, i) => {
+        c.style.transition = 'transform 0.3s ease';
+        c.style.transform = i === 0 ? '' : `scale(${1 - i * 0.04}) translateY(${i * 8}px)`;
+        c.style.zIndex = 10 - i;
+      });
+    }, 100);
+    if (swipeIndex >= SWIPE_CARDS.length) setTimeout(() => buildSwipeCards(), 1500);
+  }
+}
+
+function updateSwipeCounter() {
+  const el = document.getElementById('swipeCounter');
+  if (!el) return;
+  const remaining = SWIPE_CARDS.length - swipeIndex;
+  el.textContent = remaining > 0 ? `${remaining} profile${remaining !== 1 ? 's' : ''} remaining` : 'All profiles viewed! Refreshing...';
+}
+
+
+/* ===================================================================
+   GAG GIFTS GRID
+   =================================================================== */
+function buildGagGrid() {
+  const grid = document.getElementById('gagGrid');
+  if (!grid) return;
+  grid.innerHTML = GAG_GIFTS.map(p => `
+    <div class="mini-card" onclick="navigate('collection')">
+      <img class="mini-card-img" src="${IMG}${p.img}" alt="${p.name}">
+      <div class="mini-card-body">
+        <div class="mini-card-name">${p.name}</div>
+        <div class="mini-card-price">${p.price}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+
+/* ===================================================================
+   CHAT THREADS
+   =================================================================== */
+function buildChatThreads() {
+  const container = document.getElementById('chatThreads');
+  if (!container) return;
+  container.innerHTML = CHAT_DATA.map((thread, ti) => `
+    <div class="chat-thread">
+      <div class="chat-thread-header">
+        <div class="chat-avatar">${thread.initial}</div>
+        <div class="chat-name">${thread.name}</div>
+        <div class="chat-time">${thread.time}</div>
+      </div>
+      <div class="chat-messages">
+        ${thread.msgs.map((m, mi) => {
+          if (m.type === 'typing') return `<div class="chat-typing"><span></span><span></span><span></span></div>`;
+          if (m.type === 'read') return `<div class="chat-read-receipt">${m.text}</div>`;
+          return `<div class="chat-bubble ${m.type}" style="animation-delay:${mi * 0.15}s">${m.text}</div>`;
+        }).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+
+
+/* ===================================================================
+   BENEFITS STRIP
+   =================================================================== */
+function buildBenefits() {
+  const track = document.getElementById('benefitsTrack');
+  if (!track) return;
+  const pills = BENEFITS.map(b => `<div class="benefit-pill"><span class="bp-icon">${b.icon}</span>${b.text}</div>`).join('');
+  track.innerHTML = pills + pills; // doubled for infinite scroll
+}
+
+
+/* ===================================================================
+   BAD PARKING GRID
+   =================================================================== */
+function buildParkingGrid() {
+  const grid = document.getElementById('parkingGrid');
+  if (!grid) return;
+  grid.innerHTML = BAD_PARKING.map(p => `
+    <div class="parking-card" onclick="navigate('collection')">
+      ${p.soldOut ? '<div class="sold-out-badge">SOLD OUT</div>' : ''}
+      <img class="parking-card-img" src="${IMG}${p.img}" alt="${p.name}" style="${p.soldOut ? 'opacity:0.5' : ''}">
+      <div class="parking-card-body">
+        <div class="parking-card-name">${p.name}</div>
+        <div class="parking-card-price">${p.price}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+
+/* ===================================================================
+   STICKERS SCROLL
+   =================================================================== */
+function buildStickers() {
+  const track = document.getElementById('stickerTrack');
+  if (!track) return;
+  track.innerHTML = STICKERS.map(p => `
+    <div class="sticker-card" onclick="navigate('collection')">
+      ${p.soldOut ? `<div class="sold-out-overlay">SOLD OUT</div>` : ''}
+      <img class="sticker-card-img" src="${IMG}${p.img}" alt="${p.name}">
+      <div class="sticker-card-body">
+        <div class="sticker-card-name">${p.name}</div>
+        <div class="sticker-card-price">${p.price}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+
+/* ===================================================================
+   FAQ ACCORDION
+   =================================================================== */
+function buildFAQ(containerId, items) {
+  const list = document.getElementById(containerId);
+  if (!list) return;
+  list.innerHTML = items.map((item, i) => `
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        <span>${item.q}</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">${item.a}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFaq(btn) {
+  const isOpen = btn.classList.contains('open');
+  // Close all in same list
+  const parent = btn.closest('.faq-list, .pdp-faq-list');
+  if (parent) {
+    parent.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+    parent.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  }
+  if (!isOpen) {
+    btn.classList.add('open');
+    btn.nextElementSibling.classList.add('open');
+  }
+}
+
+
+/* ===================================================================
+   RECIPIENTS TABS
+   =================================================================== */
+function buildRecipients(tabsId, contentId) {
+  const tabs = document.getElementById(tabsId);
+  const content = document.getElementById(contentId);
+  if (!tabs || !content) return;
+
+  tabs.innerHTML = RECIPIENTS.map((r, i) => `
+    <button class="recipient-tab ${i === 0 ? 'active' : ''}" onclick="selectRecipient('${tabsId}','${contentId}',${i})">${r.label}</button>
+  `).join('');
+  content.innerHTML = `<p>${RECIPIENTS[0].text}</p>`;
+}
+
+function selectRecipient(tabsId, contentId, idx) {
+  const tabs = document.getElementById(tabsId);
+  const content = document.getElementById(contentId);
+  tabs.querySelectorAll('.recipient-tab').forEach((t, i) => t.classList.toggle('active', i === idx));
+  content.innerHTML = `<p>${RECIPIENTS[idx].text}</p>`;
+}
+
+
+/* ===================================================================
+   COLLECTION PAGE
+   =================================================================== */
+let activeFilter = 'all';
+
+function buildCollection() {
+  buildFilterPills();
+  renderCollectionGrid();
+}
+
+function buildFilterPills() {
+  const container = document.getElementById('filterPills');
+  if (!container) return;
+  container.innerHTML = CATEGORIES.map(c => `
+    <button class="filter-pill ${c.id === activeFilter ? 'active' : ''}" onclick="filterCollection('${c.id}')">${c.label}</button>
+  `).join('');
+}
+
+function filterCollection(cat) {
+  activeFilter = cat;
+  buildFilterPills();
+  renderCollectionGrid();
+}
+
+function renderCollectionGrid() {
+  const grid = document.getElementById('collectionGrid');
+  if (!grid) return;
+  const filtered = activeFilter === 'all' ? COLLECTION_PRODUCTS : COLLECTION_PRODUCTS.filter(p => p.cat === activeFilter);
+  grid.innerHTML = filtered.map(p => {
+    const onClick = p.hasPDP ? `onclick="navigate('pdp-${p.id}')"` : `onclick="showMatchToast('Coming Soon','Full profile page launching soon!')"`;
+    return `
+    <div class="coll-card ${p.soldOut ? 'is-sold-out' : ''}" ${onClick}>
+      ${p.badge === 'bestseller' ? '<div class="coll-card-badge bestseller">Bestseller</div>' : ''}
+      ${p.soldOut ? '<div class="coll-card-badge sold-out">Sold Out</div>' : ''}
+      <img class="coll-card-img" src="${IMG}${p.img}" alt="${p.name}">
+      <div class="coll-card-body">
+        <div class="coll-card-name">${p.name}</div>
+        <div class="coll-card-cat">${formatCat(p.cat)}</div>
+        <div class="coll-card-price">${p.price}</div>
+      </div>
+    </div>
+    `;
+  }).join('');
+}
+
+function formatCat(cat) {
+  return cat.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+}
+
+
+/* ===================================================================
+   PDP RENDERING
+   =================================================================== */
+function renderPDP(slug) {
+  const p = PDP_PRODUCTS[slug];
+  if (!p) return;
+  const container = document.getElementById('pdpContainer');
+  const defaultVar = p.variants.find(v => v.id === p.defaultVariant) || p.variants[0];
+
+  container.innerHTML = `
+    <!-- Back link -->
+    <a class="pdp-back" onclick="navigate('collection')">&#x2190; Back to Profiles</a>
+
+    <!-- Image carousel -->
+    <div class="pdp-carousel" id="pdpCarousel">
+      <div class="pdp-carousel-track" id="pdpCarouselTrack">
+        ${p.images.map(img => `<div class="pdp-carousel-slide"><img src="${IMG}${img}" alt="${p.name}"></div>`).join('')}
+      </div>
+      ${p.images.length > 1 ? `
+        <button class="pdp-carousel-arrow prev" onclick="carouselPrev()">&#x2039;</button>
+        <button class="pdp-carousel-arrow next" onclick="carouselNext()">&#x203A;</button>
+      ` : ''}
+      <div class="pdp-carousel-dots" id="pdpCarouselDots">
+        ${p.images.map((_, i) => `<div class="pdp-carousel-dot ${i === 0 ? 'active' : ''}" onclick="carouselTo(${i})"></div>`).join('')}
+      </div>
+    </div>
+
+    <!-- Bio -->
+    <div class="pdp-bio">
+      <div class="pdp-name-row">
+        <span class="pdp-name">${p.name}</span>
+        <span class="pdp-age">${p.age}</span>
+        <span class="pdp-match-badge">&#x1F49A; ${p.match}% Match</span>
+      </div>
+      ${p.tagline ? `<div class="pdp-tagline">"${p.tagline}"</div>` : ''}
+      ${p.badge ? `<span class="swipe-card-badge badge-bestseller" style="display:inline-block;margin-bottom:0.5rem;">${p.badge}</span>` : ''}
+      <p class="pdp-bio-text">${p.bio}</p>
+      <div class="pdp-interest-tags">
+        ${p.interests.map(t => `<span class="pdp-interest-tag">${t}</span>`).join('')}
+      </div>
+    </div>
+
+    <!-- Variant selector -->
+    <div class="pdp-variants">
+      <div class="pdp-variants-title">Choose Your Commitment Level</div>
+      <div class="variant-options" id="variantOptions">
+        ${p.variants.map(v => `
+          <div class="variant-option ${v.id === p.defaultVariant ? 'selected' : ''} ${v.badge === 'sold-out' ? 'sold-out' : ''}"
+               onclick="selectVariant('${slug}','${v.id}')" data-variant="${v.id}">
+            <div class="variant-radio"></div>
+            <div class="variant-label">
+              <div class="variant-label-name">${v.name}</div>
+              <div class="variant-label-desc">${v.desc}</div>
+            </div>
+            <div class="variant-price">${v.price}</div>
+            ${v.badge === 'popular' ? '<div class="variant-badge popular">POPULAR</div>' : ''}
+            ${v.badge === 'sold-out' ? '<div class="variant-badge sold-out">SOLD OUT</div>' : ''}
+          </div>
+        `).join('')}
+      </div>
+    </div>
+
+    <!-- Action bar (X / star / heart) -->
+    <div class="pdp-action-bar" id="pdpActionBar">
+      <button class="pdp-action-btn nope" onclick="navigate('collection')" title="Back to Browse">&#x2717;</button>
+      <button class="pdp-action-btn super" onclick="showMatchToast('Super Like! \\u2B50','${p.name} added to favorites')" title="Super Like">&#x2B50;</button>
+      <button class="pdp-action-btn heart" onclick="addToCart('${slug}')" title="Add to Cart">&#x2764;</button>
+    </div>
+
+    <!-- Sticky ATC (appears on scroll) -->
+    <div class="pdp-sticky-atc" id="pdpStickyAtc">
+      <div class="pdp-sticky-left">
+        <div class="pdp-sticky-name">${p.name}</div>
+        <div class="pdp-sticky-price" id="stickyPrice">${defaultVar.price}</div>
+      </div>
+      <button class="pill-btn pdp-sticky-btn" onclick="addToCart('${slug}')">&#x2764; Add to Cart</button>
+    </div>
+
+    <!-- Chat bubbles -->
+    <div class="pdp-chat section-pad">
+      <div class="container" style="max-width:500px;">
+        <div class="pdp-chat-header">
+          <div class="section-kicker" style="color:var(--super-like-blue);">&#x1F4AC; After Delivery</div>
+          <h2 class="section-heading" style="color:var(--text-on-dark);">The Text Thread</h2>
+        </div>
+        <div class="chat-messages" id="pdpChatMessages">
+          ${p.chat.map((m, i) => `
+            <div class="chat-bubble ${m.type}" style="animation-delay:${i * 0.3}s">${m.text}</div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Compatibility stats -->
+    <div class="pdp-compat section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">&#x1F4CA; Compatibility</div>
+          <h2 class="section-heading">Your Match Stats</h2>
+        </div>
+        <div class="compat-bars" id="compatBars">
+          ${Object.entries(p.compat).map(([key, val]) => `
+            <div class="compat-bar-item" data-val="${val}">
+              <label><span>${key.charAt(0).toUpperCase() + key.slice(1)}</span><span>${val}%</span></label>
+              <div class="compat-bar-track"><div class="compat-bar-fill"></div></div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Value props -->
+    <div class="pdp-value-props section-pad">
+      <div class="container">
+        <div class="section-header" style="text-align:center;margin-bottom:2rem;">
+          <div class="section-kicker">&#x1F4AA; Why This Prank</div>
+          <h2 class="section-heading">The Full Picture</h2>
+        </div>
+        <div class="value-props-grid">
+          <div class="value-prop-item">
+            <div class="value-prop-icon">&#x1F4E6;</div>
+            <div><h4>100% Anonymous</h4><p>No return address. No sender info. They'll never know unless you tell them.</p></div>
+          </div>
+          <div class="value-prop-item">
+            <div class="value-prop-icon">&#x1F3AF;</div>
+            <div><h4>The Label Does the Work</h4><p>Everyone who sees the tube reads it. The prank happens before they even open it.</p></div>
+          </div>
+          <div class="value-prop-item">
+            <div class="value-prop-icon">&#x1F4F1;</div>
+            <div><h4>Group Chat Content</h4><p>Your friend will screenshot the tube and send it. You get to watch the chaos unfold.</p></div>
+          </div>
+          <div class="value-prop-item">
+            <div class="value-prop-icon">&#x1F6E1;&#xFE0F;</div>
+            <div><h4>60-Day Guarantee</h4><p>If they don't react, full refund. This has literally never happened.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sign For It upgrade (skip for BulkCondom) -->
+    ${p.hasSignForIt ? `
+    <div class="pdp-upgrade section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">&#x1F4DD; Upgrade Your Prank</div>
+          <h2 class="section-heading">Base vs. Sign For It</h2>
+        </div>
+        <div class="upgrade-compare">
+          <div class="upgrade-card">
+            <h4>No Signature</h4>
+            <div class="price">${p.variants[0].price}</div>
+            <ul class="upgrade-features">
+              <li><span class="check">&#x2714;</span> Embarrassing label on tube</li>
+              <li><span class="check">&#x2714;</span> Left at the door</li>
+              <li><span class="check">&#x2714;</span> 100% anonymous</li>
+            </ul>
+          </div>
+          <div class="upgrade-card recommended">
+            <h4>Sign For It</h4>
+            <div class="price">${p.variants[1].price}</div>
+            <ul class="upgrade-features">
+              <li><span class="check">&#x2714;</span> Everything in No Signature</li>
+              <li><span class="check">&#x2714;</span> They must sign their name</li>
+              <li><span class="check">&#x2714;</span> Face-to-face with delivery driver</li>
+              <li><span class="check">&#x2714;</span> Maximum embarrassment potential</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    ` : ''}
+
+    <!-- Stats strip -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item"><div class="stat-num">2,400+</div><div class="stat-label">Pranks Shipped</div></div>
+          <div class="stat-item"><div class="stat-num">4.5/5</div><div class="stat-label">Average Rating</div></div>
+          <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Anonymous</div></div>
+          <div class="stat-item"><div class="stat-num">60-Day</div><div class="stat-label">Guarantee</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Differentiators -->
+    <div class="pdp-differentiators section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">&#x2728; Why Package Deal</div>
+          <h2 class="section-heading">Not Your Average Prank</h2>
+        </div>
+        <div class="diff-cards">
+          <div class="diff-card"><div class="diff-icon">&#x1F3AF;</div><h4>The Label IS the Prank</h4><p>Everyone reads it before they open it.</p></div>
+          <div class="diff-card"><div class="diff-icon">&#x1F575;&#xFE0F;</div><h4>Untraceable</h4><p>No return address, no sender info.</p></div>
+          <div class="diff-card"><div class="diff-icon">&#x1F4F8;</div><h4>Screenshot-Worthy</h4><p>Built for group chat reactions.</p></div>
+          <div class="diff-card"><div class="diff-icon">&#x1F91D;</div><h4>They'll Laugh Too</h4><p>Embarrassing, not mean. That's the line.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Occasions pills -->
+    <div class="pdp-occasions section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">&#x1F389; Perfect For</div>
+          <h2 class="section-heading">When to Send It</h2>
+        </div>
+        <div class="occasions-pills">
+          ${p.occasions.map(o => `<span class="occasion-pill">${o}</span>`).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Recipients tabs -->
+    <div class="pdp-recipients section-pad">
+      <div class="container">
+        <div class="section-header" style="text-align:center;margin-bottom:2rem;">
+          <div class="section-kicker">&#x1F465; Recipients</div>
+          <h2 class="section-heading">Who's Getting This?</h2>
+        </div>
+        <div class="recipient-tabs" id="pdpRecipientTabs"></div>
+        <div class="recipient-content" id="pdpRecipientContent"></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="faq-section section-pad">
+      <div class="container">
+        <div class="section-header" style="text-align:center;margin-bottom:2rem;">
+          <div class="section-kicker">&#x2753; Questions</div>
+          <h2 class="section-heading">Before You Commit</h2>
+        </div>
+        <div class="faq-list pdp-faq-list" id="pdpFaqList"></div>
+      </div>
+    </div>
+
+    <!-- Cross-sells -->
+    <div class="pdp-cross-sells section-pad">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-kicker">&#x1F525; You Might Also Like</div>
+          <h2 class="section-heading">More Matches</h2>
+        </div>
+        <div class="cross-sell-grid">
+          ${p.crossSells.map(csId => {
+            const cs = PDP_PRODUCTS[csId];
+            if (!cs) return '';
+            return `
+              <div class="cross-card" onclick="navigate('pdp-${csId}')">
+                <img class="cross-card-img" src="${IMG}${cs.images[0]}" alt="${cs.name}">
+                <div class="cross-card-body">
+                  <div class="cross-card-name">${cs.name}</div>
+                  <div class="cross-card-price">From ${cs.variants[0].price}</div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">&#x2764; Package Deal</div>
+            <p>Anonymous prank mail, gag gifts, and stickers.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Shop</h4>
+            <a href="#collection" onclick="navigate('collection')">All Products</a>
+          </div>
+          <div class="footer-col">
+            <h4>Help</h4>
+            <a href="#" onclick="event.preventDefault()">FAQ</a>
+            <a href="#" onclick="event.preventDefault()">Contact</a>
+          </div>
+        </div>
+        <div class="footer-bottom">&copy; 2026 Package Deal. All rights reserved.</div>
+      </div>
+    </footer>
+  `;
+
+  // Init sub-components
+  buildRecipients('pdpRecipientTabs', 'pdpRecipientContent');
+  buildFAQ('pdpFaqList', HOME_FAQ);
+  initCarousel(slug);
+  initStickyATC();
+  animateCompatBars();
+  observeReveals();
+}
+
+
+/* ===================================================================
+   VARIANT SELECTOR
+   =================================================================== */
+function selectVariant(slug, variantId) {
+  const p = PDP_PRODUCTS[slug];
+  const v = p.variants.find(x => x.id === variantId);
+  if (!v || v.badge === 'sold-out') return;
+
+  document.querySelectorAll('.variant-option').forEach(el => {
+    el.classList.toggle('selected', el.dataset.variant === variantId);
+  });
+
+  // Update sticky price
+  const stickyPrice = document.getElementById('stickyPrice');
+  if (stickyPrice) stickyPrice.textContent = v.price;
+
+  // Store selection
+  window._selectedVariant = variantId;
+}
+
+
+/* ===================================================================
+   IMAGE CAROUSEL
+   =================================================================== */
+let carouselIndex = 0;
+let carouselTotal = 0;
+let carouselTouchStartX = 0;
+
+function initCarousel(slug) {
+  const p = PDP_PRODUCTS[slug];
+  carouselIndex = 0;
+  carouselTotal = p.images.length;
+
+  const carousel = document.getElementById('pdpCarousel');
+  if (!carousel) return;
+  carousel.addEventListener('touchstart', (e) => { carouselTouchStartX = e.touches[0].clientX; }, { passive: true });
+  carousel.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - carouselTouchStartX;
+    if (Math.abs(dx) > 50) {
+      if (dx < 0) carouselNext();
+      else carouselPrev();
+    }
+  });
+}
+
+function carouselTo(idx) {
+  carouselIndex = Math.max(0, Math.min(idx, carouselTotal - 1));
+  const track = document.getElementById('pdpCarouselTrack');
+  if (track) track.style.transform = `translateX(-${carouselIndex * 100}%)`;
+  document.querySelectorAll('.pdp-carousel-dot').forEach((d, i) => d.classList.toggle('active', i === carouselIndex));
+}
+
+function carouselNext() { carouselTo((carouselIndex + 1) % carouselTotal); }
+function carouselPrev() { carouselTo((carouselIndex - 1 + carouselTotal) % carouselTotal); }
+
+
+/* ===================================================================
+   STICKY ATC
+   =================================================================== */
+function initStickyATC() {
+  const actionBar = document.getElementById('pdpActionBar');
+  const sticky = document.getElementById('pdpStickyAtc');
+  if (!actionBar || !sticky) return;
+
+  const observer = new IntersectionObserver(([entry]) => {
+    sticky.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+  observer.observe(actionBar);
+}
+
+
+/* ===================================================================
+   COMPAT BARS ANIMATION
+   =================================================================== */
+function animateCompatBars() {
+  const bars = document.querySelectorAll('.compat-bar-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const fill = entry.target.querySelector('.compat-bar-fill');
+        const val = entry.target.dataset.val;
+        fill.style.width = val + '%';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  bars.forEach(b => observer.observe(b));
+}
+
+
+/* ===================================================================
+   ADD TO CART / MATCH TOAST
+   =================================================================== */
+let cartCount = 0;
+
+function addToCart(slug) {
+  const p = PDP_PRODUCTS[slug];
+  cartCount++;
+  document.querySelector('.nav-cart-badge').textContent = cartCount;
+  showMatchToast("It's a Match! \u2764\uFE0F", `${p.name} added to cart`);
+}
+
+function showMatchToast(title, sub) {
+  const toast = document.getElementById('matchToast');
+  const overlay = document.getElementById('matchOverlay');
+  const titleEl = document.getElementById('matchTitle');
+  const subEl = document.getElementById('matchSub');
+  titleEl.textContent = title;
+  subEl.textContent = sub;
+  toast.classList.add('show');
+  overlay.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+    overlay.classList.remove('show');
+  }, 1800);
+}
+
+
+/* ===================================================================
+   INIT
+   =================================================================== */
+function init() {
+  initHeroParticles();
+  buildSwipeCards();
+  buildGagGrid();
+  buildChatThreads();
+  buildBenefits();
+  buildParkingGrid();
+  buildStickers();
+  buildFAQ('homeFaqList', HOME_FAQ);
+  buildRecipients('homeRecipientTabs', 'homeRecipientContent');
+  buildCollection();
+  handleRoute();
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
