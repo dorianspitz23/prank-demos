@@ -449,6 +449,7 @@ h4 { font-size: 17px; }
   background: var(--sky);
   overflow: hidden;
   padding-block: 40px 60px;
+  border-bottom: 5px solid var(--accent);
 }
 .hero::after {
   content: '';
@@ -497,27 +498,11 @@ h4 { font-size: 17px; }
 @keyframes pulse { 50% { opacity: 0.5; transform: scale(1.2); } }
 
 .hero__title {
-  font-size: clamp(40px, 7.5vw, 78px);
-  line-height: 0.95;
-  margin-bottom: 20px;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.0;
+  margin-bottom: 24px;
   color: var(--ink);
-}
-.hero__title em {
-  font-style: normal;
-  color: var(--accent);
-  display: inline-block;
-  position: relative;
-}
-.hero__title em::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -8px;
-  height: 10px;
-  background: var(--accent);
-  opacity: 0.22;
-  border-radius: 99px;
+  letter-spacing: -0.02em;
 }
 
 .hero__sub {
@@ -552,6 +537,45 @@ h4 { font-size: 17px; }
   gap: 15px;
 }
 @media (min-width: 900px) { .hero__visual { min-height: 560px; } }
+
+/* Scattered product collage — replicates the "Proudly Selling Stuff" hero */
+.hero__visual--collage {
+  position: relative;
+  display: block;
+  min-height: 520px;
+  padding: 0;
+}
+@media (min-width: 900px) { .hero__visual--collage { min-height: 600px; } }
+
+.hero__item {
+  position: absolute;
+  filter: drop-shadow(0 16px 22px rgba(25, 45, 60, 0.22));
+  transition: transform var(--dur-med) var(--ease-brand);
+  object-fit: contain;
+}
+
+.hero__item--can   { top: 18%; left: -4%;  width: 34%;  z-index: 3; transform: rotate(-6deg); }
+.hero__item--cards { top: 55%; left: 14%;  width: 30%;  z-index: 4; transform: rotate(3deg); }
+.hero__item--wipes { top: 5%;  left: 30%;  width: 28%;  z-index: 2; transform: rotate(-3deg); }
+.hero__item--kit   { top: 40%; left: 38%;  width: 38%;  z-index: 5; transform: rotate(4deg); }
+.hero__item--box   { top: 0;   right: 20%; width: 30%;  z-index: 2; transform: rotate(-2deg); }
+.hero__item--nada  { top: 50%; right: 2%;  width: 24%;  z-index: 3; transform: rotate(5deg); }
+.hero__item--yeti  { bottom: -4%; right: -6%; width: 38%; z-index: 6; transform: rotate(-2deg); filter: drop-shadow(0 16px 22px rgba(25, 45, 60, 0.28)); }
+
+.hero__item:hover { transform: rotate(0) scale(1.04); z-index: 10; }
+
+.hero--composite .hero__inner { padding-block: 50px 30px; }
+@media (max-width: 899px) {
+  /* Mobile: simpler staggered strip */
+  .hero__visual--collage { min-height: 360px; }
+  .hero__item--can   { top: 15%; left: 2%;   width: 30%; }
+  .hero__item--cards { top: 55%; left: 14%;  width: 28%; }
+  .hero__item--wipes { display: none; }
+  .hero__item--kit   { top: 30%; left: 36%;  width: 34%; }
+  .hero__item--box   { display: none; }
+  .hero__item--nada  { display: none; }
+  .hero__item--yeti  { bottom: 0; right: -4%; width: 36%; }
+}
 
 .hero__mascot-wrap {
   position: relative;
