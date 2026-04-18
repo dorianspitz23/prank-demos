@@ -538,43 +538,70 @@ h4 { font-size: 17px; }
 }
 @media (min-width: 900px) { .hero__visual { min-height: 560px; } }
 
-/* Scattered product collage — replicates the "Proudly Selling Stuff" hero */
-.hero__visual--collage {
-  position: relative;
+/* Full-bleed banner hero — uses the authentic Witty Yeti hero artwork */
+.hero--banner {
+  padding-block: 0;
+  background: var(--sky);
+}
+.hero--banner .hero__banner {
   display: block;
-  min-height: 520px;
-  padding: 0;
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  object-fit: cover;
+  object-position: center;
 }
-@media (min-width: 900px) { .hero__visual--collage { min-height: 600px; } }
-
-.hero__item {
+/* Accessible heading for screen readers — the visible headline is baked
+   into the banner image, but a text h1 still needs to exist for a11y/SEO */
+.hero__sr-heading {
   position: absolute;
-  filter: drop-shadow(0 16px 22px rgba(25, 45, 60, 0.22));
-  transition: transform var(--dur-med) var(--ease-brand);
-  object-fit: contain;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-
-.hero__item--can   { top: 18%; left: -4%;  width: 34%;  z-index: 3; transform: rotate(-6deg); }
-.hero__item--cards { top: 55%; left: 14%;  width: 30%;  z-index: 4; transform: rotate(3deg); }
-.hero__item--wipes { top: 5%;  left: 30%;  width: 28%;  z-index: 2; transform: rotate(-3deg); }
-.hero__item--kit   { top: 40%; left: 38%;  width: 38%;  z-index: 5; transform: rotate(4deg); }
-.hero__item--box   { top: 0;   right: 20%; width: 30%;  z-index: 2; transform: rotate(-2deg); }
-.hero__item--nada  { top: 50%; right: 2%;  width: 24%;  z-index: 3; transform: rotate(5deg); }
-.hero__item--yeti  { bottom: -4%; right: -6%; width: 38%; z-index: 6; transform: rotate(-2deg); filter: drop-shadow(0 16px 22px rgba(25, 45, 60, 0.28)); }
-
-.hero__item:hover { transform: rotate(0) scale(1.04); z-index: 10; }
-
-.hero--composite .hero__inner { padding-block: 50px 30px; }
+.hero__cta-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px 40px;
+  align-items: center;
+  padding-block: 28px 32px;
+  text-align: center;
+}
+@media (min-width: 900px) {
+  .hero__cta-row {
+    grid-template-columns: 1.3fr auto auto;
+    text-align: left;
+  }
+}
+.hero--banner .hero__sub {
+  margin: 0;
+  max-width: 52ch;
+  color: var(--ink-soft);
+  font-size: 16px;
+  line-height: 1.55;
+}
 @media (max-width: 899px) {
-  /* Mobile: simpler staggered strip */
-  .hero__visual--collage { min-height: 360px; }
-  .hero__item--can   { top: 15%; left: 2%;   width: 30%; }
-  .hero__item--cards { top: 55%; left: 14%;  width: 28%; }
-  .hero__item--wipes { display: none; }
-  .hero__item--kit   { top: 30%; left: 36%;  width: 34%; }
-  .hero__item--box   { display: none; }
-  .hero__item--nada  { display: none; }
-  .hero__item--yeti  { bottom: 0; right: -4%; width: 36%; }
+  .hero--banner .hero__sub { margin-inline: auto; }
+}
+.hero--banner .hero__ctas {
+  margin: 0;
+  justify-content: center;
+}
+@media (min-width: 900px) {
+  .hero--banner .hero__ctas { justify-content: flex-end; }
+}
+.hero--banner .hero__bullets {
+  margin: 0;
+  justify-content: center;
+  gap: 8px 22px;
+}
+@media (min-width: 900px) {
+  .hero--banner .hero__bullets { justify-content: flex-start; grid-column: 1 / -1; padding-top: 6px; border-top: 1px solid rgba(25,45,60,0.08); }
 }
 
 .hero__mascot-wrap {
