@@ -542,7 +542,7 @@ h4 { font-size: 17px; }
 .hero--overlay {
   position: relative;
   background-color: var(--sky);
-  background-image: url('images/witty-yeti-hero2.png');
+  background-image: image-set(url('images/witty-yeti-hero2.webp') type('image/webp'), url('images/witty-yeti-hero2.png') type('image/png'));
   background-repeat: no-repeat;
   background-position: right center;
   background-size: auto 100%;
