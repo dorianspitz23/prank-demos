@@ -538,70 +538,46 @@ h4 { font-size: 17px; }
 }
 @media (min-width: 900px) { .hero__visual { min-height: 560px; } }
 
-/* Full-bleed banner hero — uses the authentic Witty Yeti hero artwork */
-.hero--banner {
-  padding-block: 0;
-  background: var(--sky);
-}
-.hero--banner .hero__banner {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 600px;
-  object-fit: cover;
-  object-position: center;
-}
-/* Accessible heading for screen readers — the visible headline is baked
-   into the banner image, but a text h1 still needs to exist for a11y/SEO */
-.hero__sr-heading {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-.hero__cta-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 18px 40px;
+/* Overlay hero — products on the right (in image), text on the left */
+.hero--overlay {
+  position: relative;
+  background-color: var(--sky);
+  background-image: url('images/witty-yeti-hero2.png');
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  min-height: 480px;
+  padding-block: 70px;
+  display: flex;
   align-items: center;
-  padding-block: 28px 32px;
-  text-align: center;
 }
-@media (min-width: 900px) {
-  .hero__cta-row {
-    grid-template-columns: 1.3fr auto auto;
-    text-align: left;
-  }
+@media (min-width: 1200px) { .hero--overlay { min-height: 560px; } }
+
+.hero--overlay .hero__inner {
+  width: 100%;
+  padding-block: 0;
+  display: block;
 }
-.hero--banner .hero__sub {
-  margin: 0;
-  max-width: 52ch;
-  color: var(--ink-soft);
-  font-size: 16px;
-  line-height: 1.55;
+.hero--overlay .hero__text {
+  max-width: 560px;
 }
+.hero--overlay .hero__ctas {
+  margin-bottom: 30px;
+}
+.hero--overlay .hero__bullets {
+  gap: 14px 30px;
+}
+
+/* Mobile: stack text above a cropped-in version of the image */
 @media (max-width: 899px) {
-  .hero--banner .hero__sub { margin-inline: auto; }
-}
-.hero--banner .hero__ctas {
-  margin: 0;
-  justify-content: center;
-}
-@media (min-width: 900px) {
-  .hero--banner .hero__ctas { justify-content: flex-end; }
-}
-.hero--banner .hero__bullets {
-  margin: 0;
-  justify-content: center;
-  gap: 8px 22px;
-}
-@media (min-width: 900px) {
-  .hero--banner .hero__bullets { justify-content: flex-start; grid-column: 1 / -1; padding-top: 6px; border-top: 1px solid rgba(25,45,60,0.08); }
+  .hero--overlay {
+    background-size: 140% auto;
+    background-position: bottom center;
+    padding-bottom: 56vw;
+    padding-top: 40px;
+    align-items: flex-start;
+  }
+  .hero--overlay .hero__text { max-width: 100%; }
 }
 
 .hero__mascot-wrap {
