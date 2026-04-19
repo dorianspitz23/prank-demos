@@ -449,16 +449,11 @@ h4 { font-size: 17px; }
   background: var(--sky);
   overflow: hidden;
 }
+/* .hero__inner defaults — intentionally block-level, overridden by
+   .hero--overlay .hero__inner below for the active hero layout. */
 .hero__inner {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 30px;
-  align-items: center;
   z-index: 1;
-}
-@media (min-width: 900px) {
-  .hero__inner { grid-template-columns: 1.05fr 1fr; gap: 50px; padding-block: 30px; }
 }
 
 .hero__eyebrow {
@@ -559,6 +554,7 @@ h4 { font-size: 17px; }
 .hero--overlay .hero__inner {
   position: relative;
   z-index: 2;
+  display: block;
   padding: clamp(30px, 4vw, 50px) clamp(24px, 5vw, 60px);
   max-width: none;
   width: 100%;
