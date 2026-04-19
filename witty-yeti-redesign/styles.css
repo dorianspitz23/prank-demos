@@ -589,6 +589,36 @@ h4 { font-size: 17px; }
   font-size: clamp(12px, 1vw, 14px);
 }
 
+/* Rating cluster above headline — 4.8/5 with partial-fill stars */
+.hero__rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(16px, 2vw, 22px);
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+.hero__rating-text strong { color: var(--ink); font-weight: 700; }
+.hero__stars {
+  position: relative;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 1;
+  letter-spacing: 2px;
+  /* reserve space + keep bg/fg glyphs pixel-aligned */
+}
+.hero__stars-bg { color: #C5D0D9; }
+.hero__stars-fg {
+  position: absolute;
+  inset: 0;
+  color: #F4B01F;
+  overflow: hidden;
+  white-space: nowrap;
+  /* width applied inline (e.g. 96% = 4.8 stars) */
+}
+
 /* Mobile: stack — image below text naturally */
 @media (max-width: 820px) {
   .hero--overlay {
