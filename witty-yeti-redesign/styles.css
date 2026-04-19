@@ -582,7 +582,7 @@ h4 { font-size: 17px; }
 .hero--overlay .hero__sub {
   font-size: clamp(18px, 1.5vw, 22px);
   line-height: 1.55;
-  margin-top: clamp(16px, 1.8vw, 26px);
+  margin-top: clamp(28px, 2.8vw, 44px);
   margin-bottom: clamp(28px, 3vw, 40px);
   max-width: 46ch;
 }
