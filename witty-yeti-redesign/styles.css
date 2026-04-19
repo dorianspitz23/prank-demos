@@ -527,32 +527,20 @@ h4 { font-size: 17px; }
    Product image lives at the bottom, right-aligned. No horizontal overlap. */
 .hero--overlay {
   position: relative;
-  /* Two flat colors meeting at a hard horizon line, like the real site. */
+  /* Two flat colors meeting at a hard horizon line, like the real site.
+     70/30 wall-to-floor ratio. */
   background: linear-gradient(180deg,
-    #BED4E6 64%,
-    #DBE8F1 64%);
+    #BED4E6 70%,
+    #DBE8F1 70%);
   overflow: hidden;
   min-height: clamp(640px, 60vw, 860px);
   display: flex;
   align-items: center;
 }
 
-/* Soft ground shadow beneath the products for that "sitting on a surface" feel */
-.hero--overlay::after {
-  content: '';
-  position: absolute;
-  left: 28%;
-  right: 4%;
-  bottom: 6%;
-  height: 28px;
-  background: radial-gradient(ellipse at center, rgba(25, 45, 60, 0.12) 0%, transparent 70%);
-  filter: blur(12px);
-  pointer-events: none;
-  z-index: 0;
-}
-
 /* Product image — absolute, pinned right+bottom. Transparent PNG means the
-   image's invisible left half can overlap text without showing anything. */
+   image's invisible left half can overlap text without showing anything.
+   drop-shadow on the <img> casts a silhouette-shaped shadow per product. */
 .hero__bg {
   position: absolute;
   right: 0;
@@ -565,6 +553,8 @@ h4 { font-size: 17px; }
   display: block;
   width: 100%;
   height: auto;
+  filter: drop-shadow(0 10px 12px rgba(25, 45, 60, 0.18))
+          drop-shadow(0 2px 3px rgba(25, 45, 60, 0.14));
 }
 
 /* Text column — vertically centered, left-aligned, sits beside products */
