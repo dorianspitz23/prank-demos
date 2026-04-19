@@ -80,10 +80,7 @@
           <span class="hero__stars-bg">★★★★★</span>
           <span class="hero__stars-fg" style="width: 96%;">★★★★★</span>
         </span>
-        <span class="hero__rating-text">
-          <strong><span class="js-count" data-to="4.8" data-decimals="1">4.8</span>/5</strong>
-          by <span class="js-count" data-to="38000" data-comma>38,000</span> customers
-        </span>
+        <span class="hero__rating-text"><strong>4.8/5</strong> by 38,000 customers</span>
       </div>
       <h1 class="hero__title">Proudly Selling Stuff<br/>Nobody Asked For</h1>
       <p class="hero__sub">For the coworker, roommate, or brother-in-law who's had it coming.</p>
@@ -109,10 +106,10 @@
 <section class="stats">
   <div class="container">
     <div class="stats__grid">
-      <div class="stat"><span class="stat__num">247,482</span><span class="stat__label">Pranks shipped</span></div>
-      <div class="stat"><span class="stat__num">4.8 / 5</span><span class="stat__label">Average rating</span></div>
-      <div class="stat"><span class="stat__num">100%</span><span class="stat__label">Anonymous</span></div>
-      <div class="stat"><span class="stat__num">60-day</span><span class="stat__label">Guarantee</span></div>
+      <div class="stat"><span class="stat__num"><span class="js-count" data-to="247482" data-comma>247,482</span></span><span class="stat__label">Pranks shipped</span></div>
+      <div class="stat"><span class="stat__num"><span class="js-count" data-to="4.8" data-decimals="1">4.8</span> / 5</span><span class="stat__label">Average rating</span></div>
+      <div class="stat"><span class="stat__num"><span class="js-count" data-to="100">100</span>%</span><span class="stat__label">Anonymous</span></div>
+      <div class="stat"><span class="stat__num"><span class="js-count" data-to="60">60</span>-day</span><span class="stat__label">Guarantee</span></div>
     </div>
   </div>
 </section>
@@ -587,15 +584,13 @@
     });
   });
 
-  // Hero rating rolling counter — animates stars fill + numbers up from 0
+  // Rolling counters — any .js-count inside a group animates from 0 to its
+  // data-to target when the group scrolls into view. Used for the stats bar.
   (function () {
-    const rating = document.querySelector('.hero__rating');
-    if (!rating) return;
+    const groups = document.querySelectorAll('.stats, .hero__rating');
+    if (!groups.length) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const fg       = rating.querySelector('.hero__stars-fg');
-    const counters = rating.querySelectorAll('.js-count');
-    const targetW  = parseFloat(fg.style.width) || 96;
     const DURATION = 1600;
     const ease     = t => 1 - Math.pow(1 - t, 3);
 
@@ -604,8 +599,9 @@
       return comma ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ',') : s;
     }
 
-    function run() {
-      fg.style.width = '0%';
+    function animate(group) {
+      const counters = group.querySelectorAll('.js-count');
+      if (!counters.length) return;
       counters.forEach(el => {
         const decimals = +(el.dataset.decimals || 0);
         el.textContent = format(0, decimals, 'comma' in el.dataset);
@@ -614,7 +610,6 @@
       function step(now) {
         const p = Math.min((now - t0) / DURATION, 1);
         const k = ease(p);
-        fg.style.width = (targetW * k) + '%';
         counters.forEach(el => {
           const to       = parseFloat(el.dataset.to);
           const decimals = +(el.dataset.decimals || 0);
@@ -627,10 +622,13 @@
 
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { run(); obs.disconnect(); }
+        if (e.isIntersecting) {
+          animate(e.target);
+          obs.unobserve(e.target);
+        }
       });
     }, { threshold: 0.4 });
-    io.observe(rating);
+    groups.forEach(g => io.observe(g));
   })();
 </script>
 
