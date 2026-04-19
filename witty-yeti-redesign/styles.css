@@ -532,30 +532,45 @@ h4 { font-size: 17px; }
    Product image lives at the bottom, right-aligned. No horizontal overlap. */
 .hero--overlay {
   position: relative;
-  /* Transparent hero PNG means we can use any flat bg — no seam possible.
-     Using the live wittyyeti.com header blue for brand fidelity. */
   background: #E2EFF8;
   overflow: hidden;
+  min-height: clamp(480px, 42vw, 640px);
   display: flex;
-  flex-direction: column;
-  min-height: clamp(520px, 52vw, 760px);
+  align-items: center;
 }
 
+/* Product image — absolute, pinned right+bottom. Transparent PNG means the
+   image's invisible left half can overlap text without showing anything. */
+.hero__bg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: clamp(420px, 62%, 960px);
+  z-index: 1;
+  pointer-events: none;
+}
+.hero__bg img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Text column — vertically centered, left-aligned, sits beside products */
 .hero--overlay .hero__inner {
   position: relative;
-  padding: clamp(40px, 6vw, 80px) clamp(24px, 5vw, 60px) 20px;
+  z-index: 2;
+  padding: clamp(30px, 4vw, 50px) clamp(24px, 5vw, 60px);
   max-width: none;
-  display: block;
+  width: 100%;
 }
-
 .hero--overlay .hero__text {
-  max-width: clamp(320px, 60%, 780px);
+  max-width: clamp(320px, 42%, 540px);
 }
 .hero--overlay .hero__eyebrow {
   margin-bottom: clamp(12px, 1.8vw, 20px);
 }
 .hero--overlay .hero__title {
-  font-size: clamp(32px, 4.6vw, 58px);
+  font-size: clamp(30px, 4.2vw, 52px);
   line-height: 1.05;
   letter-spacing: -0.02em;
   margin-bottom: clamp(20px, 2.6vw, 30px);
@@ -569,32 +584,21 @@ h4 { font-size: 17px; }
   font-size: clamp(12px, 1vw, 14px);
 }
 
-/* Product image — pinned to bottom via margin-top:auto in flex column */
-.hero__bg {
-  display: block;
-  margin-top: auto;
-  max-width: 78%;
-  margin-left: auto;
-  margin-right: 0;
-}
-.hero__bg img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Mobile: image naturally follows text, no min-height gymnastics */
+/* Mobile: stack — image below text naturally */
 @media (max-width: 820px) {
   .hero--overlay {
     min-height: auto;
+    display: block;
+    padding-block: 40px 0;
   }
   .hero__bg {
+    position: static;
+    width: 100%;
     max-width: 100%;
-    margin-left: 0;
     margin-top: 20px;
   }
   .hero--overlay .hero__inner {
-    padding: 30px 20px 0;
+    padding: 0 20px;
   }
   .hero--overlay .hero__text { max-width: 100%; }
   .hero--overlay .hero__title { font-size: clamp(32px, 8vw, 44px); }
