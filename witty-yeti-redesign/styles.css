@@ -558,12 +558,15 @@ h4 { font-size: 17px; }
           drop-shadow(0 6px 6px  rgba(15, 30, 50, 0.25));
 }
 
-/* Text column — vertically centered, left-aligned, sits beside products */
+/* Text column — vertically centered, pushed right into the empty middle
+   zone between the viewport edge and the product collage. */
 .hero--overlay .hero__inner {
   position: relative;
   z-index: 2;
   display: block;
-  padding: clamp(30px, 4vw, 50px) clamp(24px, 5vw, 60px);
+  padding-block: clamp(30px, 4vw, 50px);
+  padding-right: clamp(24px, 5vw, 60px);
+  padding-left: clamp(80px, 13vw, 220px);
   max-width: none;
   width: 100%;
 }
