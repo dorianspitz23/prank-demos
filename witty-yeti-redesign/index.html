@@ -627,7 +627,14 @@
           obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.4 });
+    }, {
+      // Require the group to be well within the viewport (top 75% zone +
+      // at least 40% of its own height visible) so it only fires once the
+      // user has actually scrolled to it — not on initial page load when
+      // tall screens could peek the section below the hero.
+      threshold: 0.4,
+      rootMargin: '0px 0px -25% 0px'
+    });
     groups.forEach(g => io.observe(g));
   })();
 </script>
