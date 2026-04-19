@@ -527,14 +527,13 @@ h4 { font-size: 17px; }
    Product image lives at the bottom, right-aligned. No horizontal overlap. */
 .hero--overlay {
   position: relative;
-  /* Two-tone backdrop matching the real Witty Yeti studio feel: soft sky
-     "wall" transitions gently into a lighter "floor" around 60-74%. The
-     horizon reads as a subtle tonal shift, not a hard edge. */
+  /* Two-tone backdrop: medium sky-blue "wall" transitions to a distinctly
+     lighter "floor" around 60-70%. Noticeable but soft — not a hard seam. */
   background: linear-gradient(180deg,
-    #CADDEE 0%,
-    #CADDEE 60%,
-    #E2ECF4 74%,
-    #E5EEF6 100%);
+    #BFD6E9 0%,
+    #BFD6E9 60%,
+    #E9F1F8 70%,
+    #EDF4F9 100%);
   overflow: hidden;
   min-height: clamp(640px, 60vw, 860px);
   display: flex;
