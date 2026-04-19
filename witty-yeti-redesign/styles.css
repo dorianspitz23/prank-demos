@@ -527,13 +527,13 @@ h4 { font-size: 17px; }
    Product image lives at the bottom, right-aligned. No horizontal overlap. */
 .hero--overlay {
   position: relative;
-  /* Two-tone backdrop: medium sky-blue "wall" transitions to a distinctly
-     lighter "floor" around 60-70%. Noticeable but soft — not a hard seam. */
+  /* Two-tone backdrop: deeper sky-blue "wall" transitions to a clearly
+     lighter "floor" around 62-67%. Horizon reads as a defined band. */
   background: linear-gradient(180deg,
-    #BFD6E9 0%,
-    #BFD6E9 60%,
-    #E9F1F8 70%,
-    #EDF4F9 100%);
+    #A9C5DF 0%,
+    #A9C5DF 62%,
+    #F2F7FB 67%,
+    #F5F9FC 100%);
   overflow: hidden;
   min-height: clamp(640px, 60vw, 860px);
   display: flex;
