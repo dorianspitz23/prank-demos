@@ -553,8 +553,9 @@ h4 { font-size: 17px; }
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 10px 12px rgba(25, 45, 60, 0.18))
-          drop-shadow(0 2px 3px rgba(25, 45, 60, 0.14));
+  /* Per-product silhouette shadows (transparent PNG) */
+  filter: drop-shadow(0 22px 18px rgba(15, 30, 50, 0.35))
+          drop-shadow(0 6px 6px  rgba(15, 30, 50, 0.25));
 }
 
 /* Text column — vertically centered, left-aligned, sits beside products */
