@@ -558,13 +558,14 @@ h4 { font-size: 17px; }
           drop-shadow(0 6px 6px  rgba(15, 30, 50, 0.25));
 }
 
-/* Text column — vertically centered, pushed right into the empty middle
-   zone between the viewport edge and the product collage. */
+/* Text column — pushed right into the empty middle zone + nudged down
+   via asymmetric padding so the block sits lower than pure center. */
 .hero--overlay .hero__inner {
   position: relative;
   z-index: 2;
   display: block;
-  padding-block: clamp(30px, 4vw, 50px);
+  padding-top: clamp(100px, 12vw, 200px);
+  padding-bottom: clamp(30px, 4vw, 50px);
   padding-right: clamp(24px, 5vw, 60px);
   padding-left: clamp(80px, 13vw, 220px);
   max-width: none;
