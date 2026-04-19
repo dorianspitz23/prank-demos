@@ -533,7 +533,7 @@ h4 { font-size: 17px; }
     #BED4E6 70%,
     #DBE8F1 70%);
   overflow: hidden;
-  min-height: clamp(640px, 60vw, 860px);
+  min-height: clamp(520px, 50vw, 720px);
   display: flex;
   align-items: center;
 }
@@ -558,13 +558,12 @@ h4 { font-size: 17px; }
           drop-shadow(0 6px 6px  rgba(15, 30, 50, 0.25));
 }
 
-/* Text column — pushed right into the empty middle zone + nudged down
-   via asymmetric padding so the block sits lower than pure center. */
+/* Text column — pushed right into the empty middle zone. */
 .hero--overlay .hero__inner {
   position: relative;
   z-index: 2;
   display: block;
-  padding-top: clamp(100px, 12vw, 200px);
+  padding-top: clamp(40px, 5vw, 90px);
   padding-bottom: clamp(30px, 4vw, 50px);
   padding-right: clamp(24px, 5vw, 60px);
   padding-left: clamp(80px, 13vw, 220px);
@@ -593,20 +592,20 @@ h4 { font-size: 17px; }
 .hero__rating {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: clamp(16px, 2vw, 22px);
+  gap: 16px;
+  margin-bottom: clamp(20px, 2.4vw, 28px);
   font-family: var(--font-display);
-  font-size: 14px;
+  font-size: clamp(15px, 1.2vw, 18px);
   color: var(--ink-soft);
   letter-spacing: 0.02em;
 }
-.hero__rating-text strong { color: var(--ink); font-weight: 700; }
+.hero__rating-text strong { color: var(--ink); font-weight: 700; font-size: 1.1em; }
 .hero__stars {
   position: relative;
   display: inline-block;
-  font-size: 22px;
+  font-size: clamp(28px, 2.6vw, 36px);
   line-height: 1;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   /* reserve space + keep bg/fg glyphs pixel-aligned */
 }
 .hero__stars-bg { color: #C5D0D9; }
