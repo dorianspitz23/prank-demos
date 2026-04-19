@@ -527,15 +527,19 @@ h4 { font-size: 17px; }
 }
 @media (min-width: 900px) { .hero__visual { min-height: 560px; } }
 
-/* Overlay hero — image displayed natural-aspect full width, text absolutely
-   positioned on top in the image's empty-sky-blue left area. */
+/* Overlay hero — image scaled to 85%, right-aligned. Text anchored top-left
+   in the generous empty sky-blue zone that remains on the left. */
 .hero--overlay {
   position: relative;
   background: var(--sky);
   overflow: hidden;
 }
 
-.hero__bg { display: block; width: 100%; }
+.hero__bg {
+  display: block;
+  max-width: 85%;
+  margin-left: auto;
+}
 .hero__bg img {
   display: block;
   width: 100%;
@@ -545,36 +549,38 @@ h4 { font-size: 17px; }
 .hero--overlay .hero__inner {
   position: absolute;
   inset: 0;
-  padding: clamp(30px, 5vw, 70px) clamp(24px, 6vw, 80px);
+  padding: clamp(40px, 5vw, 70px) clamp(24px, 5vw, 60px);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
   max-width: none;
 }
 
 .hero--overlay .hero__text {
-  max-width: 45%;
-}
-.hero--overlay .hero__title {
-  font-size: clamp(28px, 4.5vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: clamp(16px, 2.5vw, 28px);
+  max-width: clamp(320px, 38%, 500px);
 }
 .hero--overlay .hero__eyebrow {
   margin-bottom: clamp(12px, 1.8vw, 20px);
 }
+.hero--overlay .hero__title {
+  font-size: clamp(28px, 4.2vw, 52px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: clamp(18px, 2.5vw, 28px);
+}
 .hero--overlay .hero__ctas {
-  margin-bottom: clamp(14px, 2vw, 24px);
+  margin-bottom: clamp(14px, 2vw, 22px);
 }
 .hero--overlay .hero__bullets {
-  gap: 10px 24px;
+  gap: 8px 22px;
   flex-wrap: wrap;
   font-size: clamp(12px, 1vw, 14px);
 }
 
 /* Mobile: stack — image on top, text below in its own block */
 @media (max-width: 820px) {
-  .hero--overlay { background: var(--sky); }
+  .hero__bg { max-width: 100%; margin-left: 0; }
   .hero--overlay .hero__inner {
     position: relative;
     inset: auto;
