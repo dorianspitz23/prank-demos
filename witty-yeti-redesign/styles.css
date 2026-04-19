@@ -541,43 +541,102 @@ h4 { font-size: 17px; }
 /* Overlay hero — products on the right (in image), text on the left */
 .hero--overlay {
   position: relative;
-  background-color: var(--sky);
-  background-image: image-set(url('images/witty-yeti-hero2.webp') type('image/webp'), url('images/witty-yeti-hero2.png') type('image/png'));
-  background-repeat: no-repeat;
-  background-position: right center;
-  background-size: auto 100%;
-  min-height: 480px;
+  background: var(--sky);
+  overflow: hidden;
+  min-height: 560px;
   padding-block: 70px;
   display: flex;
   align-items: center;
 }
-@media (min-width: 1200px) { .hero--overlay { min-height: 560px; } }
+@media (min-width: 1280px) { .hero--overlay { min-height: 620px; } }
+
+/* Product image pinned right, fills full section height */
+.hero__bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+}
+.hero__bg img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  object-position: right center;
+}
+
+/* Sky-blue fade on the left half so text never overlaps products visually */
+.hero__fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(90deg,
+    var(--sky) 0%,
+    var(--sky) 32%,
+    rgba(226, 239, 248, 0.85) 44%,
+    rgba(226, 239, 248, 0) 60%);
+  pointer-events: none;
+}
 
 .hero--overlay .hero__inner {
+  position: relative;
+  z-index: 2;
   width: 100%;
   padding-block: 0;
   display: block;
 }
 .hero--overlay .hero__text {
-  max-width: 560px;
+  max-width: 540px;
 }
-.hero--overlay .hero__ctas {
-  margin-bottom: 30px;
+.hero--overlay .hero__title {
+  font-size: clamp(34px, 5.2vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 28px;
 }
+.hero--overlay .hero__ctas { margin-bottom: 26px; }
 .hero--overlay .hero__bullets {
-  gap: 14px 30px;
+  gap: 12px 26px;
+  flex-wrap: wrap;
 }
 
-/* Mobile: stack text above a cropped-in version of the image */
-@media (max-width: 899px) {
-  .hero--overlay {
-    background-size: 140% auto;
-    background-position: bottom center;
-    padding-bottom: 56vw;
-    padding-top: 40px;
-    align-items: flex-start;
+/* Tablet: image takes less of the screen, fade gets wider */
+@media (max-width: 1100px) {
+  .hero__fade {
+    background: linear-gradient(90deg,
+      var(--sky) 0%,
+      var(--sky) 40%,
+      rgba(226, 239, 248, 0.8) 55%,
+      rgba(226, 239, 248, 0) 75%);
   }
-  .hero--overlay .hero__text { max-width: 100%; }
+  .hero--overlay .hero__text { max-width: 480px; }
+}
+
+/* Mobile: stack — image below text, not behind it */
+@media (max-width: 820px) {
+  .hero--overlay {
+    min-height: auto;
+    padding-block: 40px 0;
+    display: block;
+  }
+  .hero__bg {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin-top: 24px;
+  }
+  .hero__bg img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .hero__fade { display: none; }
+  .hero--overlay .hero__text { max-width: 100%; text-align: left; }
+  .hero--overlay .hero__title { font-size: clamp(32px, 8vw, 44px); }
 }
 
 .hero__mascot-wrap {
