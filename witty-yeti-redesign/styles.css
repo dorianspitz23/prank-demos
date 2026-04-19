@@ -529,7 +529,7 @@ h4 { font-size: 17px; }
   position: relative;
   background: #E2EFF8;
   overflow: hidden;
-  min-height: clamp(480px, 42vw, 640px);
+  min-height: clamp(540px, 48vw, 720px);
   display: flex;
   align-items: center;
 }
@@ -540,7 +540,7 @@ h4 { font-size: 17px; }
   position: absolute;
   right: 0;
   bottom: 0;
-  width: clamp(420px, 62%, 960px);
+  width: clamp(620px, 78%, 1280px);
   z-index: 1;
   pointer-events: none;
 }
