@@ -529,7 +529,7 @@ h4 { font-size: 17px; }
   position: relative;
   background: #E2EFF8;
   overflow: hidden;
-  min-height: clamp(540px, 48vw, 720px);
+  min-height: clamp(600px, 56vw, 820px);
   display: flex;
   align-items: center;
 }
@@ -540,7 +540,7 @@ h4 { font-size: 17px; }
   position: absolute;
   right: 0;
   bottom: 0;
-  width: clamp(620px, 78%, 1280px);
+  width: clamp(720px, 90%, 1480px);
   z-index: 1;
   pointer-events: none;
 }
@@ -560,16 +560,13 @@ h4 { font-size: 17px; }
   width: 100%;
 }
 .hero--overlay .hero__text {
-  max-width: clamp(320px, 42%, 540px);
-}
-.hero--overlay .hero__eyebrow {
-  margin-bottom: clamp(12px, 1.8vw, 20px);
+  max-width: clamp(340px, 44%, 620px);
 }
 .hero--overlay .hero__title {
-  font-size: clamp(30px, 4.2vw, 52px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: clamp(20px, 2.6vw, 30px);
+  font-size: clamp(38px, 5.5vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin-bottom: clamp(24px, 3vw, 36px);
 }
 .hero--overlay .hero__ctas {
   margin-bottom: clamp(16px, 2vw, 24px);
