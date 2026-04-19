@@ -527,11 +527,31 @@ h4 { font-size: 17px; }
    Product image lives at the bottom, right-aligned. No horizontal overlap. */
 .hero--overlay {
   position: relative;
-  background: #E2EFF8;
+  /* Two-tone backdrop: sky-blue "wall" on top, whiter "floor" on the bottom
+     third — mimics the studio backdrop in the original Witty Yeti hero. */
+  background: linear-gradient(180deg,
+    #D6E6F2 0%,
+    #D6E6F2 62%,
+    #ECF2F7 66%,
+    #EFF4F9 100%);
   overflow: hidden;
-  min-height: clamp(600px, 56vw, 820px);
+  min-height: clamp(640px, 60vw, 860px);
   display: flex;
   align-items: center;
+}
+
+/* Soft ground shadow beneath the products for that "sitting on a surface" feel */
+.hero--overlay::after {
+  content: '';
+  position: absolute;
+  left: 28%;
+  right: 4%;
+  bottom: 6%;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(25, 45, 60, 0.12) 0%, transparent 70%);
+  filter: blur(12px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Product image — absolute, pinned right+bottom. Transparent PNG means the
@@ -540,7 +560,7 @@ h4 { font-size: 17px; }
   position: absolute;
   right: 0;
   bottom: 0;
-  width: clamp(720px, 90%, 1480px);
+  width: clamp(820px, 100%, 1600px);
   z-index: 1;
   pointer-events: none;
 }
@@ -560,13 +580,13 @@ h4 { font-size: 17px; }
   width: 100%;
 }
 .hero--overlay .hero__text {
-  max-width: clamp(340px, 44%, 620px);
+  max-width: clamp(360px, 46%, 700px);
 }
 .hero--overlay .hero__title {
-  font-size: clamp(38px, 5.5vw, 72px);
-  line-height: 1.02;
-  letter-spacing: -0.025em;
-  margin-bottom: clamp(24px, 3vw, 36px);
+  font-size: clamp(44px, 6.5vw, 88px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: clamp(26px, 3vw, 40px);
 }
 .hero--overlay .hero__ctas {
   margin-bottom: clamp(16px, 2vw, 24px);
