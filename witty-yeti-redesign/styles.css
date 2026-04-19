@@ -532,11 +532,9 @@ h4 { font-size: 17px; }
    Product image lives at the bottom, right-aligned. No horizontal overlap. */
 .hero--overlay {
   position: relative;
-  /* Match the hero image's exact backdrop gradient so there's no seam
-     where CSS bg meets image bg. Sampled via PIL from witty-yeti-hero2.png:
-       top-left     = #BDDBF8
-       bottom-left  = #D8EAFD */
-  background: linear-gradient(180deg, #BDDBF8 0%, #D8EAFD 100%);
+  /* Transparent hero PNG means we can use any flat bg — no seam possible.
+     Using the live wittyyeti.com header blue for brand fidelity. */
+  background: #E2EFF8;
   overflow: hidden;
   display: flex;
   flex-direction: column;
