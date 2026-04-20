@@ -1041,6 +1041,102 @@ h4 { font-size: 17px; }
 .cat-card:hover .cat-card__arrow { transform: translateX(4px); }
 
 /* ==========================================================================
+   VALUE PROP — "Not just a prank. A whole production."
+   ========================================================================== */
+
+.valueprop__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .valueprop__inner { grid-template-columns: 1.05fr 1fr; gap: 60px; }
+}
+
+.valueprop__copy h2 {
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+.valueprop__copy > p {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 52ch;
+  margin-bottom: 32px;
+}
+
+.valueprop__cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 34px;
+}
+@media (min-width: 640px) {
+  .valueprop__cards { grid-template-columns: 1fr 1fr; gap: 18px; }
+}
+
+.valueprop__card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 20px 22px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color var(--dur-med) var(--ease-brand), transform var(--dur-med) var(--ease-brand);
+}
+.valueprop__card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.valueprop__icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  border: 1.5px solid var(--accent-line);
+  color: var(--accent);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.valueprop__card h3 {
+  font-size: 15px;
+  margin: 0 0 5px;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+.valueprop__card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  max-width: 28ch;
+}
+
+.valueprop__visual {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-width: 520px;
+  margin-inline: auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background: var(--sky);
+}
+.valueprop__visual video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================================================
    BENEFITS STRIP
    ========================================================================== */
 
