@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feature alt #5 — Big Type (Editorial)</title>
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Mont', 'Droid Sans', system-ui, sans-serif; background: #f5f5f5; }
+
+  .orange-band {
+    position: relative;
+    background: #FF7518;
+    color: #fff;
+    padding: 80px 20px;
+    overflow: hidden;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+  }
+  /* Giant typographic backdrop — the headline itself as decoration */
+  .orange-band::before {
+    content: 'EXPLAIN';
+    position: absolute;
+    top: -30px;
+    right: -80px;
+    font-size: clamp(200px, 30vw, 420px);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    color: rgba(255,255,255,0.08);
+    line-height: 0.85;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  .inner {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+  }
+  @media (max-width: 820px) { .inner { grid-template-columns: 1fr; } }
+
+  .copy { color: #fff; }
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
+  }
+  .tag::before {
+    content: '';
+    width: 32px;
+    height: 2px;
+    background: #fff;
+  }
+  h2 {
+    font-size: clamp(56px, 8.5vw, 112px);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin: 0 0 28px;
+    font-weight: 700;
+  }
+  p {
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 42ch;
+    margin: 0 0 32px;
+    opacity: 0.92;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 20px 40px;
+    background: #fff; color: #FF5F00;
+    border: 0; border-radius: 99px;
+    font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 15px;
+    text-decoration: none;
+    box-shadow: 0 16px 32px -8px rgba(0,0,0,0.3);
+    transition: all .35s cubic-bezier(.29,.63,.44,1);
+  }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 22px 40px -8px rgba(0,0,0,0.35); }
+
+  /* Smaller product, pushed to the right */
+  .img-wrap {
+    position: relative;
+    aspect-ratio: 1/1;
+    max-width: 360px;
+    margin-left: auto;
+  }
+  .img-wrap img {
+    width: 100%;
+    filter: drop-shadow(0 28px 36px rgba(0,0,0,0.32));
+    transform: rotate(8deg);
+    transition: transform .5s ease;
+  }
+  .img-wrap:hover img { transform: rotate(0) scale(1.05); }
+</style>
+</head>
+<body>
+  <section class="orange-band">
+    <div class="inner">
+      <div class="copy">
+        <span class="tag">FLAGSHIP PRANK · MAILED ANONYMOUSLY</span>
+        <h2>Watch them try to explain this one.</h2>
+        <p>USPS-standard packaging. Their name on the label. A URL the mailman will remember. Signed: not you.</p>
+        <a class="btn" href="#">Send one anonymously →</a>
+      </div>
+      <div class="img-wrap">
+        <picture>
+          <source srcset="../images/bigassdildos.webp" type="image/webp" />
+          <img src="../images/bigassdildos.png" alt="BigAssDildos anonymous prank mail tube" />
+        </picture>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
