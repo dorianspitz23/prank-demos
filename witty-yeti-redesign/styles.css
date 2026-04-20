@@ -1121,10 +1121,8 @@ h4 { font-size: 17px; }
 
 .valueprop__visual {
   position: relative;
-  /* Portrait container — full image shows via object-fit: contain (slight
-     bars top/bottom vs cropping the sides). */
   aspect-ratio: 4 / 5;
-  max-width: 560px;
+  max-width: 520px;
   margin-inline: auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -1135,7 +1133,7 @@ h4 { font-size: 17px; }
 .valueprop__visual img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
