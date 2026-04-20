@@ -978,10 +978,31 @@ h4 { font-size: 17px; }
   padding: 25px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   color: var(--white);
   isolation: isolate;
+  overflow: hidden;
+  min-height: 260px;
 }
+/* Product image peeks out of the bottom-right corner of each card */
+.cat-card__product {
+  position: absolute;
+  right: -18%;
+  bottom: -12%;
+  width: 75%;
+  height: auto;
+  max-height: 85%;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+  transition: transform 0.4s cubic-bezier(0.29, 0.63, 0.44, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+.cat-card:hover .cat-card__product {
+  transform: scale(1.08) rotate(-3deg);
+}
+.cat-card__label,
+.cat-card__title { position: relative; z-index: 1; }
 .cat-card__bg::before {
   content: '';
   position: absolute;
