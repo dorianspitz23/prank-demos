@@ -856,7 +856,7 @@ h4 { font-size: 17px; }
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(calc(-50% - 55px));
+  transform: translateY(calc(-50% - 95px));
   width: 90%;
   height: auto;
   max-height: 100%;
@@ -866,7 +866,7 @@ h4 { font-size: 17px; }
   transition: transform var(--dur-slow) var(--ease-brand);
 }
 .orange-band--orbit .orange-band__img:hover img {
-  transform: translateY(calc(-50% - 55px)) scale(1.03);
+  transform: translateY(calc(-50% - 95px)) scale(1.03);
 }
 
 @media (prefers-reduced-motion: reduce) {
