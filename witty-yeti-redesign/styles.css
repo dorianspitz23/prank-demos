@@ -846,14 +846,16 @@ h4 { font-size: 17px; }
 
 @keyframes orbit { to { transform: rotate(360deg); } }
 
-/* Product image — absolute, LEFT-ALIGNED so the hand's cut-off sits at
-   the outermost ring's leftmost point. Vertically centered. */
+/* Product image — absolute, LEFT-ALIGNED so the hand's cut-off (at the
+   image's left edge) sits at the outermost ring's leftmost point.
+   Width 90% so the tube doesn't extend past the ring's right side —
+   the whole product fits inside the orbit composition. */
 .orange-band--orbit .orange-band__img img {
   position: absolute;
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 100%;
+  width: 90%;
   height: auto;
   max-height: 100%;
   object-fit: contain;
