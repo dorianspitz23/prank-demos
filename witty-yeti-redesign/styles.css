@@ -802,6 +802,7 @@ h4 { font-size: 17px; }
    emerges from the ring instead of random clipping. */
 .orange-band__img {
   aspect-ratio: 1 / 1;
+  width: 100%;
   max-width: 560px;
   margin-inline: auto;
   position: relative;
