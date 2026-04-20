@@ -983,23 +983,23 @@ h4 { font-size: 17px; }
   overflow: hidden;
   min-height: 260px;
 }
-/* Product image peeks out of the bottom-right corner of each card */
+/* Product image centered in the lower portion of each card — fully visible */
 .cat-card__product {
   position: absolute;
-  right: -18%;
-  bottom: -12%;
-  width: 75%;
+  left: 50%;
+  bottom: 8%;
+  transform: translateX(-50%);
+  width: 80%;
+  max-height: 58%;
   height: auto;
-  max-height: 85%;
   object-fit: contain;
-  object-position: right bottom;
-  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+  filter: drop-shadow(0 12px 20px rgba(0,0,0,0.28));
   transition: transform 0.4s cubic-bezier(0.29, 0.63, 0.44, 1);
   pointer-events: none;
   z-index: 0;
 }
 .cat-card:hover .cat-card__product {
-  transform: scale(1.08) rotate(-3deg);
+  transform: translateX(-50%) scale(1.06) rotate(-2deg);
 }
 .cat-card__label,
 .cat-card__title { position: relative; z-index: 1; }
