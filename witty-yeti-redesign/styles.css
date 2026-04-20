@@ -1121,10 +1121,10 @@ h4 { font-size: 17px; }
 
 .valueprop__visual {
   position: relative;
-  /* Container aspect matches the lifestyle photo's native ratio (~1.29:1)
-     so the whole image renders without cropping. */
-  aspect-ratio: 13 / 10;
-  max-width: 620px;
+  /* Portrait container — full image shows via object-fit: contain (slight
+     bars top/bottom vs cropping the sides). */
+  aspect-ratio: 4 / 5;
+  max-width: 560px;
   margin-inline: auto;
   border-radius: var(--radius-lg);
   overflow: hidden;
