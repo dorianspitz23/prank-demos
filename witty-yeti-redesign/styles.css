@@ -1129,7 +1129,8 @@ h4 { font-size: 17px; }
   box-shadow: var(--shadow-lg);
   background: var(--sky);
 }
-.valueprop__visual video {
+.valueprop__visual video,
+.valueprop__visual img {
   width: 100%;
   height: 100%;
   object-fit: cover;
