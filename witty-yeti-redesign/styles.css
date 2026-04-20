@@ -848,13 +848,15 @@ h4 { font-size: 17px; }
 
 /* Product image — absolute, LEFT-ALIGNED so the hand's cut-off (at the
    image's left edge) sits at the outermost ring's leftmost point.
-   Width 90% so the tube doesn't extend past the ring's right side —
-   the whole product fits inside the orbit composition. */
+   Shifted up: the source PNG has the product in its LOWER half (hand +
+   tube span roughly y=362-930 of a 1200x931 image). Offsetting the
+   vertical center up by ~12% of image height brings the whole hand — top
+   AND wrist — into the outer ring's left-edge zone. */
 .orange-band--orbit .orange-band__img img {
   position: absolute;
   left: 0;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% - 55px));
   width: 90%;
   height: auto;
   max-height: 100%;
@@ -864,7 +866,7 @@ h4 { font-size: 17px; }
   transition: transform var(--dur-slow) var(--ease-brand);
 }
 .orange-band--orbit .orange-band__img:hover img {
-  transform: translateY(-50%) scale(1.03);
+  transform: translateY(calc(-50% - 55px)) scale(1.03);
 }
 
 @media (prefers-reduced-motion: reduce) {
