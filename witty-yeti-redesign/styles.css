@@ -1955,6 +1955,91 @@ h4 { font-size: 17px; }
 }
 .section--navy .guarantee__seal { background: var(--accent); }
 
+/* ==========================================================================
+   GUARANTEE BAND — "If it's not funny, it's free."
+   ========================================================================== */
+
+.guarantee-band {
+  position: relative;
+  background:
+    radial-gradient(circle at 70% 10%, rgba(255, 177, 27, 0.12), transparent 55%),
+    radial-gradient(circle at 20% 90%, rgba(255, 102, 1, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  color: var(--white);
+  overflow: hidden;
+  padding-block: clamp(64px, 8vw, 110px);
+}
+.guarantee-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(135deg, transparent 0 28px, rgba(255,255,255,0.02) 28px 29px);
+}
+.guarantee-band__inner {
+  position: relative;
+  text-align: center;
+  max-width: 820px;
+  margin-inline: auto;
+}
+.guarantee-band .kicker {
+  color: var(--accent-light);
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.guarantee-band .kicker::before { background: var(--accent-light); }
+.guarantee-band__title {
+  font-size: clamp(38px, 5.5vw, 72px);
+  letter-spacing: -0.025em;
+  line-height: 1.02;
+  color: var(--white);
+  margin: 0 0 26px;
+}
+.guarantee-band__title em {
+  font-style: normal;
+  color: var(--accent);
+  position: relative;
+  display: inline-block;
+}
+.guarantee-band__title em::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 6px;
+  background: var(--accent);
+  opacity: 0.35;
+  border-radius: 99px;
+}
+.guarantee-band__body {
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.82);
+  max-width: 58ch;
+  margin: 0 auto 34px;
+}
+.guarantee-band__body strong {
+  color: var(--accent-light);
+  font-weight: 700;
+  white-space: nowrap;
+}
+.guarantee-band__ctas {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.guarantee-band .btn--outline {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--white);
+}
+.guarantee-band .btn--outline:hover {
+  background: var(--white);
+  color: var(--ink);
+  border-color: var(--white);
+}
+
 /* -------- Utilities -------- */
 
 .u-center   { text-align: center; }
