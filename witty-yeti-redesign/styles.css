@@ -1202,7 +1202,8 @@ h4 { font-size: 17px; }
   border-radius: 99px;
   z-index: 2;
 }
-.phone__screen img { width: 100%; height: 100%; object-fit: cover; }
+.phone__screen img,
+.phone__screen video { width: 100%; height: 100%; object-fit: cover; display: block; }
 .phone__caption {
   position: absolute;
   bottom: 12px; left: 12px; right: 12px;
