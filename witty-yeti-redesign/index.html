@@ -102,14 +102,56 @@
   </picture>
 </section>
 
-<!-- STATS -->
-<section class="stats">
+<!-- MARQUEE TESTIMONIALS (replaces stats bar) -->
+<section class="marquee-section stats">
   <div class="container">
-    <div class="stats__grid">
-      <div class="stat"><span class="stat__num"><span class="js-count" data-to="247482" data-comma>247,482</span></span><span class="stat__label">Pranks shipped</span></div>
-      <div class="stat"><span class="stat__num"><span class="js-count" data-to="4.8" data-decimals="1">4.8</span> / 5</span><span class="stat__label">Average rating</span></div>
-      <div class="stat"><span class="stat__num"><span class="js-count" data-to="100">100</span>%</span><span class="stat__label">Anonymous</span></div>
-      <div class="stat"><span class="stat__num"><span class="js-count" data-to="60">60</span>-day</span><span class="stat__label">Guarantee</span></div>
+    <header class="section__head">
+      <span class="kicker">Live from the group chat</span>
+      <h2>38,000+ senders. One running joke.</h2>
+      <p class="lead u-max-prose">Short quotes. Long memories. A ticker of real one-liners from senders who finally got to watch it all play out.</p>
+    </header>
+
+    <div class="stat-row">
+      <div class="stat-row__item"><div class="stat-row__num"><span class="js-count" data-to="4.8" data-decimals="1">4.8</span> / 5</div><div class="stat-row__lab">Avg. rating</div></div>
+      <div class="stat-row__item"><div class="stat-row__num"><span class="js-count" data-to="38124" data-comma>38,124</span></div><div class="stat-row__lab">Verified reviews</div></div>
+      <div class="stat-row__item"><div class="stat-row__num"><span class="js-count" data-to="247482" data-comma>247,482</span></div><div class="stat-row__lab">Pranks shipped</div></div>
+      <div class="stat-row__item"><div class="stat-row__num"><span class="js-count" data-to="96">96</span>%</div><div class="stat-row__lab">Would send again</div></div>
+    </div>
+  </div>
+
+  <div class="marquee">
+    <div class="marquee__track">
+      <div class="mchip"><div class="mchip__avatar">J</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"He's STILL trying to figure out who sent it. Three months later."</p><div class="mchip__who"><b>Jake T.</b> · Denver</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">D</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"His wife cried laughing. That's a five-star outcome right there."</p><div class="mchip__who"><b>Danielle R.</b> · Austin</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">M</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"He texted me one word: 'respect.' Worth every dollar."</p><div class="mchip__who"><b>Marcus H.</b> · Chicago</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">T</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"My roommate called USPS. She thought it was a delivery mistake."</p><div class="mchip__who"><b>Taylor N.</b> · Brooklyn</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">N</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Six months undercover. He's interviewed four suspects. Zero leads."</p><div class="mchip__who"><b>Nadia S.</b> · Phoenix</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">J</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Dropped the pic in the group chat. 47 messages in 6 minutes."</p><div class="mchip__who"><b>Jamie L.</b> · San Diego</div></div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">J</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"He's STILL trying to figure out who sent it. Three months later."</p><div class="mchip__who"><b>Jake T.</b> · Denver</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">D</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"His wife cried laughing. That's a five-star outcome right there."</p><div class="mchip__who"><b>Danielle R.</b> · Austin</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">M</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"He texted me one word: 'respect.' Worth every dollar."</p><div class="mchip__who"><b>Marcus H.</b> · Chicago</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">T</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"My roommate called USPS. She thought it was a delivery mistake."</p><div class="mchip__who"><b>Taylor N.</b> · Brooklyn</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">N</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Six months undercover. He's interviewed four suspects. Zero leads."</p><div class="mchip__who"><b>Nadia S.</b> · Phoenix</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">J</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Dropped the pic in the group chat. 47 messages in 6 minutes."</p><div class="mchip__who"><b>Jamie L.</b> · San Diego</div></div></div>
+    </div>
+  </div>
+
+  <div class="marquee marquee--reverse">
+    <div class="marquee__track">
+      <div class="mchip"><div class="mchip__avatar">C</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Mailed the Shart Kit to my group chat. I am no longer the quiet one."</p><div class="mchip__who"><b>Chris W.</b> · Seattle</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">R</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Fake parking tickets on my sister's car. She's still fuming. Perfect."</p><div class="mchip__who"><b>Riley P.</b> · Atlanta</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">S</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Fake WiFi stickers on every outlet. He keeps typing passwords into walls."</p><div class="mchip__who"><b>Sam K.</b> · Portland</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">L</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Bought three tubes. Already planning the next round. This is an addiction."</p><div class="mchip__who"><b>Leah M.</b> · Boston</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">A</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Packaging held up through three suspicious roommate inspections."</p><div class="mchip__who"><b>Alex F.</b> · Miami</div></div></div>
+      <div class="mchip"><div class="mchip__avatar">P</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Customer service replaced a crushed can in 18 hours. No interview."</p><div class="mchip__who"><b>Priya V.</b> · Nashville</div></div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">C</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Mailed the Shart Kit to my group chat. I am no longer the quiet one."</p><div class="mchip__who"><b>Chris W.</b> · Seattle</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">R</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Fake parking tickets on my sister's car. She's still fuming. Perfect."</p><div class="mchip__who"><b>Riley P.</b> · Atlanta</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">S</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Fake WiFi stickers on every outlet. He keeps typing passwords into walls."</p><div class="mchip__who"><b>Sam K.</b> · Portland</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">L</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Bought three tubes. Already planning the next round. This is an addiction."</p><div class="mchip__who"><b>Leah M.</b> · Boston</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">A</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Packaging held up through three suspicious roommate inspections."</p><div class="mchip__who"><b>Alex F.</b> · Miami</div></div></div>
+      <div class="mchip" aria-hidden="true"><div class="mchip__avatar">P</div><div class="mchip__body"><div class="mchip__stars">★★★★★</div><p class="mchip__text">"Customer service replaced a crushed can in 18 hours. No interview."</p><div class="mchip__who"><b>Priya V.</b> · Nashville</div></div></div>
     </div>
   </div>
 </section>
