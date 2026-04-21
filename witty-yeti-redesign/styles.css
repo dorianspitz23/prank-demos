@@ -2263,6 +2263,31 @@ h4 { font-size: 17px; }
   }
 }
 
+/* Single-variant PDPs: hide the sticky ATC until the in-page ATC leaves view.
+   Multi-variant PDPs (prank-mail tubes) omit this attribute, so the default
+   always-visible behavior is preserved. */
+.sticky-atc[data-sticky-behavior="on-scroll"] {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(110%);
+  transition:
+    opacity   .28s ease,
+    transform .32s cubic-bezier(.29,.63,.44,1);
+}
+.sticky-atc[data-sticky-behavior="on-scroll"].is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+@media (min-width: 980px) {
+  .sticky-atc[data-sticky-behavior="on-scroll"] {
+    transform: translateY(-130%);
+  }
+  .sticky-atc[data-sticky-behavior="on-scroll"].is-visible {
+    transform: translateY(0);
+  }
+}
+
 /* Guarantee block */
 .guarantee { text-align: center; max-width: 680px; margin-inline: auto; }
 .guarantee__seal {

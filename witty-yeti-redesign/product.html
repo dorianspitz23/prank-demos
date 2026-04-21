@@ -222,8 +222,8 @@
   </section>
 </div>
 
-<!-- Sticky ATC bar -->
-<div class="sticky-atc" role="region" aria-label="Add to cart bar">
+<!-- Sticky ATC bar — single-variant PDP: only show once the in-page ATC scrolls out of view -->
+<div class="sticky-atc" data-sticky-behavior="on-scroll" role="region" aria-label="Add to cart bar">
   <img class="sticky-atc__thumb" src="https://www.wittyyeti.com/cdn/shop/products/full_4c880cf7-a5d5-4e93-b905-69469ddfc06e_720x.jpg" alt="" />
   <div class="sticky-atc__info">
     <strong>Dehydrated Water · <span id="stickyVariant">Single Can</span></strong>
@@ -484,6 +484,21 @@
   // pattern (slider + 3 tier cards) is reserved for prank-mail tubes which
   // have Subtle/Public/Nuclear variants. Styles live in styles.css under
   // `.chaos-meter` + `.chaos-tier` and can be reused on those PDPs.
+
+  // Sticky ATC visibility: only show after the in-page Add-to-cart leaves view.
+  // Opted in via [data-sticky-behavior="on-scroll"] on the sticky bar itself —
+  // prank-mail tube PDPs (when added) can omit that attr to keep the default
+  // always-visible behavior.
+  const stickyBar = document.querySelector('.sticky-atc[data-sticky-behavior="on-scroll"]');
+  const atcBtn    = document.getElementById('addToCart');
+  if (stickyBar && atcBtn && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        stickyBar.classList.toggle('is-visible', !entry.isIntersecting);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -20px 0px' });
+    io.observe(atcBtn);
+  }
 
   const qty = document.getElementById('qty');
   document.getElementById('qtyUp').addEventListener('click', () => qty.value = +qty.value + 1);
