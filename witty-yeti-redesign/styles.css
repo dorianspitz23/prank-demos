@@ -609,7 +609,7 @@ h4 { font-size: 17px; }
   font-size: clamp(44px, 6.5vw, 88px);
   line-height: 1.0;
   letter-spacing: -0.03em;
-  margin-bottom: clamp(26px, 3vw, 40px);
+  margin-bottom: clamp(0px, 0.4vw, 6px);
 }
 .hero--overlay .hero__sub {
   font-size: clamp(18px, 1.5vw, 22px);
