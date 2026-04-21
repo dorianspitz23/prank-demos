@@ -1570,6 +1570,50 @@ h4 { font-size: 17px; }
 .bundle-card p { font-size: 14px; color: var(--ink-soft); margin: 0; }
 .bundle-card svg { color: var(--accent); flex-shrink: 0; margin-left: auto; }
 
+/* Full Send — fanned quartet, no container.
+   Rest: 4 tubes stacked in a fan.
+   Hover: all 4 tubes fan out + shrink so each is fully visible. */
+.full-send-fan {
+  position: relative;
+  width: 300px;
+  height: 260px;
+  flex-shrink: 0;
+}
+.full-send-fan img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 58%;
+  margin-left: -29%;
+  transform-origin: 50% 95%;
+  filter: drop-shadow(0 16px 18px rgba(15, 30, 50, 0.22));
+  transition:
+    transform .55s cubic-bezier(.29,.63,.44,1),
+    width     .55s cubic-bezier(.29,.63,.44,1),
+    margin-left .55s cubic-bezier(.29,.63,.44,1),
+    left      .55s cubic-bezier(.29,.63,.44,1);
+}
+.full-send-fan img:nth-child(1) { transform: rotate(-22deg) translateX(-14%); z-index: 1; }
+.full-send-fan img:nth-child(2) { transform: rotate(-8deg)  translateX(-5%);  z-index: 2; }
+.full-send-fan img:nth-child(3) { transform: rotate(8deg)   translateX(5%);   z-index: 3; }
+.full-send-fan img:nth-child(4) { transform: rotate(20deg)  translateX(14%);  z-index: 4; }
+
+/* Hover — shrink each tube and slot them into 4 side-by-side positions so
+   every tube is fully visible end-to-end. Width drops to 22%, 4 tubes fit
+   with small gaps. Left-position overrides the centering math (margin-left:0). */
+.bundle-card:hover .full-send-fan img {
+  width: 22%;
+  margin-left: 0;
+}
+.bundle-card:hover .full-send-fan img:nth-child(1) { left: 2%;  transform: rotate(-5deg); }
+.bundle-card:hover .full-send-fan img:nth-child(2) { left: 27%; transform: rotate(-2deg); }
+.bundle-card:hover .full-send-fan img:nth-child(3) { left: 52%; transform: rotate(2deg);  }
+.bundle-card:hover .full-send-fan img:nth-child(4) { left: 77%; transform: rotate(5deg);  }
+
+@media (max-width: 720px) {
+  .full-send-fan { width: 100%; max-width: 340px; height: 240px; margin: 20px auto 0; }
+}
+
 /* ==========================================================================
    FAQ
    ========================================================================== */
