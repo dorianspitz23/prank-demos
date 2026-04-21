@@ -1602,10 +1602,13 @@ h4 { font-size: 17px; }
 .full-send-fan img:nth-child(3) { transform: rotate(8deg);   z-index: 3; }
 .full-send-fan img:nth-child(4) { transform: rotate(20deg);  z-index: 4; }
 
-/* Hover — 2×2 grid. Each tube at ~46% of container width, slight jitter.
-   Left/top overrides the centering math (margin-left:0, top:x%). */
+/* Hover — 2×2 grid. Force square tiles with object-fit: cover so the 4
+   source images (different natural aspect ratios) line up perfectly. */
 .bundle-card:hover .full-send-fan img {
   width: 46%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center;
   margin-left: 0;
 }
 .bundle-card:hover .full-send-fan img:nth-child(1) { left: 2%;  top: 2%;  transform: rotate(0); }
