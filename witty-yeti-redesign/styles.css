@@ -1608,10 +1608,10 @@ h4 { font-size: 17px; }
   width: 46%;
   margin-left: 0;
 }
-.bundle-card:hover .full-send-fan img:nth-child(1) { left: 2%;  top: 2%;  transform: rotate(-3deg); }
-.bundle-card:hover .full-send-fan img:nth-child(2) { left: 52%; top: 2%;  transform: rotate(3deg);  }
-.bundle-card:hover .full-send-fan img:nth-child(3) { left: 2%;  top: 52%; transform: rotate(2deg);  }
-.bundle-card:hover .full-send-fan img:nth-child(4) { left: 52%; top: 52%; transform: rotate(-2deg); }
+.bundle-card:hover .full-send-fan img:nth-child(1) { left: 2%;  top: 2%;  transform: rotate(0); }
+.bundle-card:hover .full-send-fan img:nth-child(2) { left: 52%; top: 2%;  transform: rotate(0); }
+.bundle-card:hover .full-send-fan img:nth-child(3) { left: 2%;  top: 52%; transform: rotate(0); }
+.bundle-card:hover .full-send-fan img:nth-child(4) { left: 52%; top: 52%; transform: rotate(0); }
 
 @media (max-width: 900px) {
   .bundle-card:has(.full-send-fan) { flex-direction: column; gap: 24px; }
