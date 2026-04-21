@@ -236,17 +236,16 @@ h4 { font-size: 17px; }
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
+  row-gap: 6px;
   gap: 32px;
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  overflow-x: auto;
-  scrollbar-width: none;
 }
-.nav::-webkit-scrollbar { display: none; }
-@media (max-width: 900px) { .nav { gap: 22px; font-size: 13px; justify-content: flex-end; } }
+@media (max-width: 900px) { .nav { gap: 18px; font-size: 13px; justify-content: flex-end; } }
 .nav a {
   position: relative;
   color: var(--ink);
