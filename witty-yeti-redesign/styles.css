@@ -1570,6 +1570,114 @@ h4 { font-size: 17px; }
 .bundle-card p { font-size: 14px; color: var(--ink-soft); margin: 0; }
 .bundle-card svg { color: var(--accent); flex-shrink: 0; margin-left: auto; }
 
+/* Hero bundle (The Full Send — 4 prank tubes) */
+.bundle-card--hero {
+  padding: 30px;
+  align-items: stretch;
+  gap: 28px;
+  position: relative;
+  overflow: hidden;
+}
+.bundle-card--hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 85% 0%, rgba(255, 177, 27, 0.08), transparent 55%);
+  pointer-events: none;
+}
+.bundle-card--hero .bundle-card__body { position: relative; flex: 1; min-width: 0; }
+.bundle-card__title { font-size: clamp(22px, 2.4vw, 28px); margin-bottom: 12px; }
+.bundle-card--hero p { font-size: 15px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 18px; }
+.bundle-card--hero p strong { color: var(--ink); font-weight: 700; }
+.bundle-card__price-row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.bundle-card__price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  color: var(--accent);
+  line-height: 1;
+}
+.bundle-card__was {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--ink-muted);
+  text-decoration: line-through;
+}
+.bundle-card__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: clamp(220px, 30%, 320px);
+  flex-shrink: 0;
+  align-self: center;
+}
+.bundle-card__grid figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.bundle-card__grid img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: var(--canvas);
+  border-radius: 8px;
+  padding: 8px;
+}
+.bundle-card__grid figcaption {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted);
+  text-align: center;
+  line-height: 1.2;
+}
+@media (max-width: 720px) {
+  .bundle-card--hero { flex-direction: column; }
+  .bundle-card__grid { width: 100%; }
+}
+
+/* Savings badge (Full Send hero) */
+.bundle-save-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--accent);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 18px rgba(247, 143, 30, 0.28);
+}
+.bundle-save-badge strong { font-size: 15px; font-weight: 800; letter-spacing: 0.06em; }
+.bundle-save-badge span { font-size: 11px; font-weight: 600; opacity: 0.92; }
+
+/* Inline save pill (Double Trouble tag) */
+.bundle-save-pill {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--white);
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin-right: 6px;
+  vertical-align: baseline;
+}
+
 /* ==========================================================================
    FAQ
    ========================================================================== */
