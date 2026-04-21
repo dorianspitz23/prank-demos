@@ -164,41 +164,38 @@
         </div>
       </div>
 
-      <!-- Bundle upsells (non-mailer products). Prank-mail tubes have
-           their own dedicated bundle module elsewhere — don't duplicate there. -->
+      <!-- Bundle upsells (non-mailer products). Click-through cards that
+           open a bundle-builder page where shoppers pick the other product(s).
+           Prank-mail tubes have their own Full Send bundle — don't duplicate. -->
       <section class="pdp-bundles" aria-label="Bundle and save">
         <header class="pdp-bundles__head">
           <span class="kicker">Bundle &amp; save</span>
           <h3>Better together</h3>
         </header>
         <div class="pdp-bundles__grid">
-          <label class="pdp-bundle">
-            <input type="checkbox" class="pdp-bundle__check" aria-label="Add Double Trouble bundle" />
-            <span class="pdp-bundle__save">Save $8</span>
-            <span class="pdp-bundle__check-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            </span>
-            <span class="pdp-bundle__swatch pdp-bundle__swatch--duo" aria-hidden="true">
-              <span></span><span></span>
+          <a class="pdp-bundle" href="bundle.html?tier=double&amp;base=dehydrated-water">
+            <span class="pdp-bundle__save">Save 15%</span>
+            <span class="pdp-bundle__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="9" height="15" rx="1.5"/><rect x="13" y="5" width="9" height="15" rx="1.5"/></svg>
             </span>
             <span class="pdp-bundle__body">
-              <span class="pdp-bundle__name">+ Double Trouble</span>
-              <span class="pdp-bundle__sub">Add any second product to this order and save $8 automatically at checkout.</span>
+              <span class="pdp-bundle__name">Double Trouble</span>
+              <span class="pdp-bundle__sub">Add any second product and save 15% on both. Pick &amp; add to cart.</span>
             </span>
-          </label>
+            <svg class="pdp-bundle__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
 
-          <label class="pdp-bundle">
-            <input type="checkbox" class="pdp-bundle__check" aria-label="Add MicroPenisCure tube" />
-            <span class="pdp-bundle__save">Save $3</span>
-            <span class="pdp-bundle__check-icon" aria-hidden="true">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <a class="pdp-bundle" href="bundle.html?tier=triple&amp;base=dehydrated-water">
+            <span class="pdp-bundle__save pdp-bundle__save--hot">Save 25%</span>
+            <span class="pdp-bundle__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="5" width="7" height="15" rx="1.2"/><rect x="8.5" y="5" width="7" height="15" rx="1.2"/><rect x="16" y="5" width="7" height="15" rx="1.2"/></svg>
             </span>
-            <img class="pdp-bundle__img" src="images/micropenis1.webp" alt="" />
             <span class="pdp-bundle__body">
-              <span class="pdp-bundle__name">+ MicroPenisCure tube <em>($18.99)</em></span>
-              <span class="pdp-bundle__sub">Stack our bestselling prank-mail tube on top. Sent together, unmarked, two weeks apart.</span>
+              <span class="pdp-bundle__name">Triple Threat</span>
+              <span class="pdp-bundle__sub">Pick any two more products and save 25% on the whole cart.</span>
             </span>
-          </label>
+            <svg class="pdp-bundle__arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
         </div>
       </section>
 
