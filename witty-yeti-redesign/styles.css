@@ -595,7 +595,7 @@ h4 { font-size: 17px; }
   position: relative;
   z-index: 2;
   display: block;
-  padding-top: clamp(6px, 1vw, 16px);
+  padding-top: clamp(30px, 3.5vw, 60px);
   padding-bottom: clamp(24px, 3vw, 40px);
   padding-right: clamp(24px, 5vw, 60px);
   padding-left: clamp(80px, 13vw, 220px);
@@ -614,7 +614,7 @@ h4 { font-size: 17px; }
 .hero--overlay .hero__sub {
   font-size: clamp(18px, 1.5vw, 22px);
   line-height: 1.55;
-  margin-top: clamp(28px, 2.8vw, 44px);
+  margin-top: clamp(10px, 1vw, 18px);
   margin-bottom: clamp(28px, 3vw, 40px);
   max-width: 46ch;
 }
@@ -663,7 +663,7 @@ h4 { font-size: 17px; }
   .hero--overlay {
     min-height: auto;
     display: block;
-    padding-block: 12px 0;
+    padding-block: 40px 0;
   }
   .hero__bg {
     position: static;
