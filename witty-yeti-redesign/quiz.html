@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Prank Matchmaker — Witty Yeti</title>
+<meta name="description" content="Four questions. One recommendation. Zero guesswork. The Witty Yeti prank matchmaker tells you exactly which prank to send." />
+<meta name="theme-color" content="#0F2E45" />
+<link rel="icon" href="https://www.wittyyeti.com/cdn/shop/files/just_the_character_orange_background_face_32x32.jpg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="promo-bar" role="region" aria-label="Promotion">
+  Think you're clever? We think we are! <a href="#footer">Join the mailing list</a> — 10% off your first order.
+</div>
+
+<!-- Unified nav bar: logo + primary nav + cart -->
+<header class="nav-bar">
+  <div class="container nav-bar__inner">
+    <a class="nav-logo" href="index.html" aria-label="Witty Yeti home">
+      <img src="images/witty-yeti-logo-no-bg.png" alt="" />
+      <span class="nav-logo__text">Witty Yeti</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html">Home</a>
+      <a href="collection.html">Shop</a>
+      <a href="quiz.html" class="is-active">Quiz</a>
+      <a href="track.html">Track</a>
+      <a href="index.html#how">How it works</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="shipping-returns.html">Shipping</a>
+    </nav>
+    <a class="nav-cart" href="#cart" aria-label="Cart (0 items)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="nav-cart__count">0</span>
+    </a>
+  </div>
+</header>
+
+<main class="chaos-page" id="quiz">
+  <div class="container">
+    <!-- Hero -->
+    <section class="chaos-hero">
+      <span class="kicker chaos-kicker">Prank matchmaker</span>
+      <h1 class="chaos-title">Every friend deserves the <em>perfect</em> prank.</h1>
+      <p class="chaos-sub">Four questions. One recommendation. Zero guesswork. Tell us who's getting it and how far you want to take it.</p>
+
+      <div class="chaos-tags">
+        <span>Birthday gag</span>
+        <span>Roommate revenge</span>
+        <span>Office prank</span>
+        <span>Bachelor party</span>
+        <span>Just because</span>
+        <span>Secret Santa</span>
+        <span>New parent</span>
+        <span>Sibling rivalry</span>
+      </div>
+
+      <div class="chaos-meta">
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 seconds</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg>4 questions</span>
+        <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Personalized result</span>
+      </div>
+    </section>
+
+    <!-- Quiz card -->
+    <section class="chaos-card chaos-glass" id="quizCard">
+      <div class="chaos-progress">
+        <div class="chaos-progress__row">
+          <span class="chaos-progress__label">Finding your match...</span>
+          <span class="chaos-progress__count"><span id="stepNow">1</span> of <span id="stepTotal">4</span></span>
+        </div>
+        <div class="chaos-progress__bar" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1">
+          <div class="chaos-progress__fill" id="progressFill" style="width:25%"></div>
+        </div>
+      </div>
+
+      <div class="chaos-question" id="questionWrap">
+        <h2 class="chaos-question__title" id="questionText">Who's the prank for?</h2>
+        <div class="chaos-answers" id="answers"></div>
+      </div>
+    </section>
+
+    <!-- Result card (hidden) -->
+    <section class="chaos-result" id="resultCard" hidden>
+      <span class="chaos-badge">Your perfect match</span>
+      <h2 class="chaos-title chaos-title--small">The algorithm has spoken.</h2>
+      <p class="chaos-sub">Based on your answers, this is the one that lands:</p>
+
+      <article class="chaos-result-card chaos-glass">
+        <div class="chaos-result-card__image">
+          <img id="resultImg" src="images/bigassdildos.png" alt="" />
+        </div>
+        <div class="chaos-result-card__body">
+          <h3 id="resultName">BigAssDildos Supply Co.</h3>
+          <p class="chaos-variant" id="resultVariant">Base Tube</p>
+          <p class="chaos-price" id="resultPrice">$14.99</p>
+          <p class="chaos-desc" id="resultDesc">A plain mailer tube that arrives with a catalog no reasonable person would order. They'll blame their spouse. Their spouse will blame them. You'll be nowhere near it.</p>
+          <a href="product.html" class="btn btn--primary btn--lg chaos-cta">See This Prank <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+
+      <div class="chaos-result-secondary">
+        <a href="collection.html" class="chaos-link">Not your style? See all pranks →</a>
+        <button type="button" id="resetBtn" class="chaos-reset">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9 9 0 0 0-6.35 2.65L3 8"/><path d="M3 3v5h5"/></svg>
+          Take the quiz again
+        </button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer id="footer" class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <h4>The Fun Stuff</h4>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="shipping-returns.html">Witty Yeti Guarantee</a></li>
+          <li><a href="#">Our reviews</a></li>
+          <li><a href="#">Wholesale inquiries</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>The Good Stuff</h4>
+        <ul>
+          <li><a href="#">Contact us</a></li>
+          <li><a href="#">Leave a review</a></li>
+          <li><a href="track.html">Track my order</a></li>
+          <li><a href="shipping-returns.html">Shipping policy</a></li>
+          <li><a href="shipping-returns.html">Return policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>The Legal Stuff</h4>
+        <ul>
+          <li><a href="#">Terms of service</a></li>
+          <li><a href="#">Privacy policy</a></li>
+          <li><a href="#">Refund policy</a></li>
+          <li><a href="#">Accessibility</a></li>
+          <li><a href="#">Affiliate</a></li>
+        </ul>
+      </div>
+      <div class="footer__brand">
+        <h4>Want More Stuff?</h4>
+        <p>Sign up here to never miss a new product launch. 10% off your first order, zero spam. We promise.</p>
+        <form class="newsletter" onsubmit="event.preventDefault()" aria-label="Newsletter signup">
+          <input type="email" placeholder="you@domain.com" aria-label="Email address" />
+          <button class="btn btn--primary btn--sm" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Witty Yeti · Boulder, CO · hi@wittyyeti.com</span>
+      <span>No return addresses, no regrets.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const QUESTIONS = [
+    { id: 1, q: "Who's the prank for?",
+      a: ['Friend', 'Coworker', 'Family member', 'Significant other'] },
+    { id: 2, q: "What's the occasion?",
+      a: ['Birthday', 'No occasion, just chaos', 'Bachelor/Bachelorette', 'They deserve it'] },
+    { id: 3, q: 'How far do you want to take it?',
+      a: ['Just enough to be embarrassing', 'They should have to sign for it', 'Full nuclear'] },
+    { id: 4, q: "What's their embarrassment tolerance?",
+      a: ["They'll laugh it off", "They'll die inside (in a good way)", "They'll never forgive you (and that's the point)"] },
+  ];
+
+  const RESULTS = {
+    micropeniscure: {
+      name: 'MicroPenisCure.com',
+      variant: 'Base tube',
+      price: '$12.99',
+      desc: 'The gateway prank. Plain-label tube, no return address, and a catalog they will absolutely interrogate their coworkers about. The suspect list gets very long, very fast.',
+      img: 'images/micropeniscure.png',
+    },
+    bigassdildos: {
+      name: 'BigAssDildos Supply Co.',
+      variant: 'Full nuclear',
+      price: '$14.99',
+      desc: 'Plain mailer tube, catalog no reasonable person would order. They will blame their spouse. Their spouse will blame them. You will be nowhere near it.',
+      img: 'images/bigassdildos.png',
+    },
+    vaginalodorhelper: {
+      name: 'VaginalOdorHelper.com',
+      variant: 'Discreet drop',
+      price: '$13.99',
+      desc: 'Arrives looking unassuming. Reads like a real medical mailer. Gets opened alone in a quiet room, then immediately photographed and sent to the group chat.',
+      img: 'images/bigassdildos.png',
+    },
+    bulkcondomdelivery: {
+      name: 'BulkCondomDelivery.com',
+      variant: 'Family-safe tube',
+      price: '$13.99',
+      desc: 'Lands on a family member\'s doorstep. Questions are raised. Explanations are attempted. Nobody believes them. You stay suspiciously quiet at dinner.',
+      img: 'images/bigassdildos.png',
+    },
+  };
+
+  function route(answers) {
+    const recipient = answers[1];
+    const occasion  = answers[2];
+    const intensity = answers[3];
+    const tolerance = answers[4];
+    let key = 'micropeniscure';
+    if (recipient === 'Coworker') key = 'micropeniscure';
+    else if (recipient === 'Family member') key = 'bulkcondomdelivery';
+    else if (intensity === 'Full nuclear' ||
+             tolerance === "They'll never forgive you (and that's the point)") key = 'bigassdildos';
+    else if (occasion === 'Bachelor/Bachelorette') key = 'bigassdildos';
+    else if (tolerance === "They'll die inside (in a good way)") key = 'vaginalodorhelper';
+    return RESULTS[key];
+  }
+
+  const state = { step: 0, answers: {}, locked: false };
+
+  const $ = (sel) => document.querySelector(sel);
+  const quizCard   = $('#quizCard');
+  const resultCard = $('#resultCard');
+  const qText      = $('#questionText');
+  const aWrap      = $('#answers');
+  const fill       = $('#progressFill');
+  const stepNow    = $('#stepNow');
+  const stepTotal  = $('#stepTotal');
+
+  stepTotal.textContent = QUESTIONS.length;
+
+  function render() {
+    const q = QUESTIONS[state.step];
+    qText.textContent = q.q;
+    aWrap.innerHTML = '';
+    q.a.forEach((ans) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'chaos-answer';
+      btn.innerHTML = '<span class="chaos-answer__text"></span><span class="chaos-answer__dot"></span>';
+      btn.querySelector('.chaos-answer__text').textContent = ans;
+      btn.addEventListener('click', () => pick(ans, btn));
+      aWrap.appendChild(btn);
+    });
+    const pct = ((state.step + 1) / QUESTIONS.length) * 100;
+    fill.style.width = pct + '%';
+    stepNow.textContent = state.step + 1;
+    $('.chaos-progress__bar').setAttribute('aria-valuenow', state.step + 1);
+    quizCard.classList.remove('is-leaving');
+  }
+
+  function pick(ans, btn) {
+    if (state.locked) return;
+    state.locked = true;
+    btn.classList.add('is-selected');
+    state.answers[QUESTIONS[state.step].id] = ans;
+
+    setTimeout(() => {
+      state.step += 1;
+      state.locked = false;
+      if (state.step >= QUESTIONS.length) {
+        showResult();
+      } else {
+        quizCard.classList.add('is-leaving');
+        setTimeout(render, 180);
+      }
+    }, 340);
+  }
+
+  function showResult() {
+    const r = route(state.answers);
+    $('#resultImg').src = r.img;
+    $('#resultImg').alt = r.name + ' prank product';
+    $('#resultName').textContent = r.name;
+    $('#resultVariant').textContent = r.variant;
+    $('#resultPrice').textContent = r.price;
+    $('#resultDesc').textContent = r.desc;
+    quizCard.hidden = true;
+    resultCard.hidden = false;
+    resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  $('#resetBtn').addEventListener('click', () => {
+    state.step = 0; state.answers = {}; state.locked = false;
+    resultCard.hidden = true; quizCard.hidden = false;
+    render();
+    quizCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
