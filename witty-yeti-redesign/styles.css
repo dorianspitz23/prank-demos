@@ -3086,6 +3086,72 @@ h4 { font-size: 17px; }
 .notfound p { color: var(--ink-soft); max-width: 48ch; margin: 0 auto 25px; font-size: 17px; }
 
 /* ==========================================================================
+   "AS FEATURED IN" — logo marquee (homepage under hero + PDP under details)
+   Uses the existing .marquee + .marquee__track infrastructure with a
+   .marquee--featured modifier for logo-specific sizing and treatment.
+   ========================================================================== */
+.featured-in {
+  padding: 38px 0 42px;
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+.featured-in__kicker {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin: 0 0 22px;
+}
+.marquee--featured { margin: 0; padding: 0; }
+.marquee--featured .marquee__track {
+  gap: 56px;
+  align-items: center;
+  animation-duration: 70s;
+}
+@media (max-width: 720px) {
+  .marquee--featured .marquee__track { gap: 38px; animation-duration: 55s; }
+}
+.featured-in__logo {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  opacity: 0.55;
+  filter: grayscale(1);
+  transition: opacity .3s ease, filter .3s ease, transform .3s ease;
+}
+.featured-in__logo:hover,
+.featured-in__logo:focus-visible {
+  opacity: 1;
+  filter: grayscale(0);
+  transform: translateY(-1px);
+}
+.featured-in__logo img {
+  max-height: 44px;
+  max-width: 160px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+.featured-in__text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  padding: 0 6px;
+  font-style: italic;
+}
+
+/* ==========================================================================
    CART DRAWER — WY-branded port of storefront ShopifyCartDrawer
    Slide-out from right · sky/white panel · orange accents · persistent items.
    ========================================================================== */
