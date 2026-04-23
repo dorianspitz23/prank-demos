@@ -3135,10 +3135,12 @@ h4 { font-size: 17px; }
 .featured-in__logo {
   flex-shrink: 0;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 8px 16px 8px 8px;
-  border-radius: 99px;
+  gap: 10px;
+  padding: 14px 18px 12px;
+  min-width: 110px;
+  border-radius: 16px;
   background: var(--white);
   border: 1px solid var(--border);
   color: var(--ink);
@@ -3148,13 +3150,13 @@ h4 { font-size: 17px; }
 .featured-in__logo:hover,
 .featured-in__logo:focus-visible {
   border-color: var(--accent);
-  box-shadow: 0 6px 16px rgba(247, 143, 30, 0.18);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(247, 143, 30, 0.2);
+  transform: translateY(-3px);
   color: var(--accent);
 }
 .featured-in__fav {
-  width: 32px;
-  height: 32px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background: var(--sky);
   display: grid;
@@ -3163,20 +3165,21 @@ h4 { font-size: 17px; }
   overflow: hidden;
 }
 .featured-in__fav img {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   display: block;
   transition: transform .3s ease;
 }
-.featured-in__logo:hover .featured-in__fav img { transform: scale(1.15); }
+.featured-in__logo:hover .featured-in__fav img { transform: scale(1.12); }
 .featured-in__name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: -0.005em;
   white-space: nowrap;
-  line-height: 1;
+  line-height: 1.1;
+  text-align: center;
 }
 
 /* ==========================================================================
