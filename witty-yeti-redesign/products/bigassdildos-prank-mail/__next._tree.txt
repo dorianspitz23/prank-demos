@@ -1,6 +1,6 @@
-:HL["/prank-demos/witty-yeti-redesign/_next/static/chunks/01cah0pgscnnl.css","style"]
+:HL["/prank-demos/witty-yeti-redesign/_next/static/chunks/0y-2m74z.4nfk.css","style"]
 :HL["/prank-demos/witty-yeti-redesign/_next/static/media/DroidSans_700-s.p.0oqw.dgc6nceq.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
 :HL["/prank-demos/witty-yeti-redesign/_next/static/media/DroidSans_Regular-s.p.14_gctah3bq20.ttf","font",{"crossOrigin":"","type":"font/ttf"}]
 :HL["/prank-demos/witty-yeti-redesign/_next/static/media/Mont_Bold_Regular-s.p.0rh4-d~tztw52.woff","font",{"crossOrigin":"","type":"font/woff"}]
 :HL["/prank-demos/witty-yeti-redesign/_next/static/media/Mont_Regular-s.p.12ac0vnz84hul.woff","font",{"crossOrigin":"","type":"font/woff"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"products","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bigassdildos-prank-mail","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"QUJ-poy5xpWRLgNXTc7pm"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"products","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"bigassdildos-prank-mail","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"hxCwBX3GK9A9g0MH_8jPX"}
